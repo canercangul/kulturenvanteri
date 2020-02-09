@@ -1,0 +1,57 @@
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+}
+
+.meta {
+    font-size: 100%;
+}
+
+.meta .blogdate {
+    font-style: italic;
+}
+
+.locationinfo {
+    font-size: 100%;
+    overflow: auto;
+    width: 300px;
+    height: 150px;
+}
+
+.user-location-info {
+    font-size: 100%;
+    overflow: auto;
+    width: 150px;
+    height: 80px;
+}
+
+.comment-location-info {
+    font-size: 100%;
+    overflow: auto;
+    width: 200px;
+    height: 140px;
+}
+
+.info-window-max {
+    font-size: 100%;
+    overflow: auto;
+}
+
+.popup-content {
+    width: 80%;
+    padding: 0px 0px 0px 5px;
+    line-height: 1.3;
+}
+
+.locationinfo h2 a,
+.info-window-max h2 a {
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+
+.storycontent {
+    font-family: 'Untitled';
+}
