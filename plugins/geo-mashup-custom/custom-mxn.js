@@ -1,9 +1,56 @@
+//Custom Leaflet
 
 GeoMashup.addAction( 'loadedMap', function ( properties, mxn ) {
+	
 	var leaflet_map = mxn.getMap();
 
-// Add Scale	
-	L.control.scale().addTo(leaflet_map);
+	// Add Scale	
+	// L.control.scale({position:'topleft'}).addTo(leaflet_map);
+
+	// Add Location
+	L.control.locate({
+		position:'bottomleft',
+		flyTo: true,
+		locateOptions: {
+			enableHighAccuracy: true
+		},
+		strings: {
+			title: "Konumumu göster"
+		}
+	}).addTo(leaflet_map);
+
+	// Add Location 2 https://leafletjs.com/examples/mobile/
+
+	// function onLocationFound(e) {
+	// 	var radius = e.accuracy / 2;
+
+	// 	L.marker(e.latlng).addTo(leaflet_map)
+	// 		.bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+	// 	L.circle(e.latlng, radius).addTo(leaflet_map);
+	// }
+
+	// function onLocationError(e) {
+	// 	alert(e.message);
+	// }
+
+	// leaflet_map.on('locationfound', onLocationFound);
+	// leaflet_map.on('locationerror', onLocationError);
+
+	// leaflet_map.locate({
+	// 	setView: true,
+	// 	maxZoom: 16
+	// });
+
+	// Show coordinates
+	leaflet_map.on('click', 
+	function(e){
+		var coord = e.latlng.toString().split(',');
+		var lat = coord[0].split('(');
+		var lng = coord[1].split(')');
+		console.log("Lat, Long: " + lat[1] + "," + lng[0]);
+	});
+
 } );
 
 // MXN geo-mashup/js/geo-mashup-mxn.js
@@ -116,7 +163,7 @@ GeoMashup.createMap = function( container, opts ) {
 	this.base_color_icon.iconSize = [20, 20];
 	this.base_color_icon.shadowSize = [0, 0];
 	this.base_color_icon.iconAnchor = [0, 0];
-	this.base_color_icon.infoWindowAnchor = [15, 2];
+	this.base_color_icon.infoWindowAnchor = [0, 0];
 	this.multiple_term_icon = this.clone( this.base_color_icon );
 	this.multiple_term_icon.image = opts.url_path + '/images/mm_36_mixed.png';
 
@@ -389,7 +436,73 @@ GeoMashup.createMap = function( container, opts ) {
 mxn.register('leaflet', {
 
 	Mapstraction: {
+		
+		init: function(element, api) {
+			if (typeof L.Map === 'undefined') {
+				throw new Error(api + ' map script not imported');
+			}
 	
+			var me = this;
+			var map = new L.Map(element.id, {
+				zoomControl: false
+			});
+			map.addEventListener('moveend', function(){
+				me.endPan.fire();
+			}); 
+			map.on("click", function(e) {
+				me.click.fire({'location': new mxn.LatLonPoint(e.latlng.lat, e.latlng.lng)});
+			});
+			map.on("popupopen", function(e) {
+				if (e.popup._source.mxnMarker) {
+				e.popup._source.mxnMarker.openInfoBubble.fire({'bubbleContainer': e.popup._container});
+				}
+			});
+			map.on("popupclose", function(e) {
+				if (e.popup._source.mxnMarker) {
+				e.popup._source.mxnMarker.closeInfoBubble.fire({'bubbleContainer': e.popup._container});
+				}
+			});
+			map.on('load', function(e) {
+				me.load.fire();
+			});
+			map.on('zoomend', function(e) {
+				me.changeZoom.fire();
+			});
+			this.layers = {};
+			this.features = [];
+			this.maps[api] = map;
+	
+			this.controls =  {
+				pan: null,
+				zoom: null,
+				overview: null,
+				scale: null,
+				map_type: null
+			};
+
+
+			this.satellite_tile = {
+				name: 'Esri',
+				attribution: 'Kültür Envanteri &mdash; &copy; Esri</a>',
+				url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+			};
+			
+	
+			this.osm_tile = {
+				name: 'Osm',
+				attribution: 'Kültür Envanteri &mdash; &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+				url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+			};
+			
+			var subdomains = 'abc';
+			this.addTileLayer (this.satellite_tile.url, 1.0, this.satellite_tile.name, this.satellite_tile.attribution, 3, 17, true); //rakamlar max zoom out-in seviyelerini belirliyor
+			this.addTileLayer (this.osm_tile.url, 1.0, this.osm_tile.name, this.osm_tile.attribution, 3, 17, true);
+
+			this.currentMapType = mxn.Mapstraction.ROAD;
+	
+			this.loaded[api] = true;
+		},
+		
 		applyOptions: function(){
 			if (this.options.enableScrollWheelZoom) {
 				this.maps[this.api].scrollWheelZoom.enable();
@@ -457,7 +570,7 @@ mxn.register('leaflet', {
 			var map = this.maps[this.api];
 			
 			if (this.controls.zoom === null) {
-				this.controls.zoom = new L.Control.Zoom({position:'topleft'}); //Pozisyon değişebilir. Parantez içine ekle: {position: 'topright'}
+				this.controls.zoom = new L.Control.Zoom({position:'bottomleft'}); //Pozisyon değişebilir. Parantez içine ekle: {position: 'topright'}
 				map.addControl(this.controls.zoom);
 			}
 		},
@@ -472,7 +585,7 @@ mxn.register('leaflet', {
 			if (this.controls.map_type === null) {
 				// Layer control'de marker'lar görünmesin "this.features" silindi.
 				// this.controls.map_type = new L.Control.Layers(this.layers, this.features);
-				this.controls.map_type = new L.Control.Layers(this.layers, null, {position:'topleft', collapsed:false});
+				this.controls.map_type = new L.Control.Layers(this.layers, null, {position:'bottomleft', collapsed:false});
 				map.addControl(this.controls.map_type,);
 			}
 		},	

@@ -838,9 +838,7 @@ GeoMashup = {
 	},
 
 	objectLinkHtml : function(object_id) {
-		return ['<a href="#',
-		this.opts.name,
-		'" onclick="frames[\'',
+		return ['<a onclick="frames[\'', // kulturenvanteri.com deleted href="#"
 		this.opts.name,
 		'\'].GeoMashup.clickObjectMarker(',
 		object_id,
@@ -881,8 +879,8 @@ GeoMashup = {
 					var list_item = [];
 					list_item.push('<li><img src="');
 					list_item.push(obj.icon.image);
-					list_item.push('" alt="');
-					list_item.push(obj.title);
+					//list_item.push('"');
+					//list_item.push(obj.title);
 					list_item.push('" />');
 					list_item.push(this.objectLinkHtml(object_id));
 					list_item.push('</li>');
