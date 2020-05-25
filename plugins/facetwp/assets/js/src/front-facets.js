@@ -508,7 +508,7 @@
                     $input.val(results[0].formatted_address);
                 }
                 else {
-                    $input.val('Your location');
+                    $input.val('Konumunuz');
                 }
                 $this.addClass('f-reset');
                 FWP.autoload();

@@ -174,7 +174,7 @@ class FacetWP_Facet_Proximity_Core extends FacetWP_Facet
         // Pass extra options into Places Autocomplete
         $options = apply_filters( 'facetwp_proximity_autocomplete_options', [] );
         FWP()->display->json['proximity']['autocomplete_options'] = $options;
-        FWP()->display->json['proximity']['clearText'] = __( 'Clear location', 'fwp-front' );
+        FWP()->display->json['proximity']['clearText'] = __( 'Seçilen konum', 'fwp-front' );
         FWP()->display->json['proximity']['queryDelay'] = 250;
         FWP()->display->json['proximity']['minLength'] = 3;
     }
