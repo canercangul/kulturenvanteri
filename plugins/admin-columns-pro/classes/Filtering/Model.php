@@ -91,10 +91,10 @@ abstract class Model extends ACP\Model {
 	 */
 	public function get_filter_value() {
 		if ( $this->is_ranged() ) {
-			$value = array(
+			$value = [
 				'min' => $this->get_request_var( 'min' ),
 				'max' => $this->get_request_var( 'max' ),
-			);
+			];
 
 			return false !== $value['min'] || false !== $value['max'] ? $value : false;
 		}
@@ -111,7 +111,7 @@ abstract class Model extends ACP\Model {
 	 * @return bool
 	 */
 	protected function validate_value( $value, $filters = 'all' ) {
-		$available = array( 'serialize', 'length', 'empty' );
+		$available = [ 'serialize', 'length', 'empty' ];
 
 		switch ( $filters ) {
 			case 'all':
@@ -162,10 +162,10 @@ abstract class Model extends ACP\Model {
 			$label = strtolower( $this->column->get_label() );
 		}
 
-		return array(
+		return [
 			sprintf( __( "Without %s", 'codepress-admin-columns' ), $label ),
 			sprintf( __( "Has %s", 'codepress-admin-columns' ), $label ),
-		);
+		];
 	}
 
 	/**
@@ -198,32 +198,30 @@ abstract class Model extends ACP\Model {
 	}
 
 	/**
-	 * @deprecated 4.2
-	 *
 	 * @param $format
 	 *
 	 * @return array|false
+	 * @deprecated 4.2
 	 */
 	protected function get_date_options_relative( $format ) {
-		_deprecated_function( __METHOD__, '4.2', 'acp_filtering_helper()->get_date_options_relative()' );
+		_deprecated_function( __METHOD__, '4.2', 'ACP\Filtering\Helper::get_date_options_relative()' );
 
-		return acp_filtering_helper()->get_date_options_relative( $format );
+		return ( new Helper() )->get_date_options_relative( $format );
 	}
 
 	/**
-	 * @deprecated 4.2
-	 *
 	 * @param array  $dates
 	 * @param        $display
 	 * @param string $format
 	 * @param null   $key
 	 *
 	 * @return array
+	 * @deprecated 4.2
 	 */
 	protected function get_date_options( array $dates, $display, $format = 'Y-m-d', $key = null ) {
-		_deprecated_function( __METHOD__, '4.2', 'acp_filtering_helper()->get_date_options()' );
+		_deprecated_function( __METHOD__, '4.2', 'ACP\Filtering\Helper::get_date_options()' );
 
-		return acp_filtering_helper()->get_date_options( $dates, $display, $format, $key );
+		return ( new Helper() )->get_date_options( $dates, $display, $format, $key );
 	}
 
 }

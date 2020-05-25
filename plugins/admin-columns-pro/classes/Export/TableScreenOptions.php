@@ -3,31 +3,26 @@
 namespace ACP\Export;
 
 use AC;
+use AC\Asset\Location;
 use AC\Preferences;
+use AC\Registrable;
 use ACP;
-use ACP\Asset\Enqueueable;
-use ACP\Settings\ListScreen\HideOnScreen;
+use ACP\Export\HideOnScreen;
 
-/**
- * @since 1.0
- */
-class TableScreenOptions {
+class TableScreenOptions implements Registrable {
 
 	/**
-	 * @var Enqueueable[]
+	 * @var Location
 	 */
-	protected $assets;
+	protected $location;
 
-	/**
-	 * @param array $assets
-	 */
-	public function __construct( array $assets ) {
-		$this->assets = $assets;
+	public function __construct( Location $location ) {
+		$this->location = $location;
+	}
 
+	public function register() {
 		add_action( 'ac/table', [ $this, 'register_screen_option' ] );
-		add_action( 'ac/table_scripts', [ $this, 'scripts' ] );
 		add_filter( 'ac/table/body_class', [ $this, 'add_hide_export_button_class' ], 10, 2 );
-
 		add_action( 'wp_ajax_acp_export_show_export_button', [ $this, 'update_table_option_show_export_button' ] );
 	}
 
@@ -46,6 +41,14 @@ class TableScreenOptions {
 		}
 
 		if ( ( new HideOnScreen\Export() )->is_hidden( $list_screen ) ) {
+			return;
+		}
+
+		$exclude_columns = get_hidden_columns( $list_screen->get_screen_id() );
+
+		$columns = ( new ExportableColumnFactory( $list_screen ) )->create( $exclude_columns );
+
+		if ( empty( $columns ) ) {
 			return;
 		}
 
@@ -100,15 +103,6 @@ class TableScreenOptions {
 		$this->set_export_button_setting( filter_input( INPUT_POST, 'list_screen' ), ( 'true' === filter_input( INPUT_POST, 'value' ) ) ? 1 : 0 );
 
 		exit;
-	}
-
-	/**
-	 * Load scripts
-	 */
-	public function scripts() {
-		foreach ( $this->assets as $asset ) {
-			$asset->enqueue();
-		}
 	}
 
 	/**

@@ -11,10 +11,10 @@ class Post extends Model\CustomField {
 		$setting = $this->column->get_setting( 'post' );
 
 		if ( ! $setting instanceof AC\Settings\Column\Post ) {
-			return array();
+			return [];
 		}
 
-		$ids = array();
+		$ids = [];
 
 		foreach ( $this->strategy->get_results() as $id ) {
 			$title = false;
@@ -32,9 +32,9 @@ class Post extends Model\CustomField {
 			$ids[ $id ] = $title;
 		}
 
-		return array(
+		return [
 			'ids' => $this->sort( $ids ),
-		);
+		];
 	}
 
 }

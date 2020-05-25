@@ -18,21 +18,21 @@ class Taxonomy extends AC\Helper\Select\Entities
 	private $args;
 
 	/**
-	 * @param array $args
+	 * @param array                  $args
 	 * @param AC\Helper\Select\Value $value
 	 */
-	public function __construct( array $args = array(), AC\Helper\Select\Value $value = null ) {
+	public function __construct( array $args = [], AC\Helper\Select\Value $value = null ) {
 		if ( null === $value ) {
 			$value = new Value\Taxonomy();
 		}
 
-		$args = array_merge( array(
+		$args = array_merge( [
 			'page'       => 1,
 			'number'     => 30,
 			'search'     => '',
 			'hide_empty' => 0,
 			'taxonomy'   => null,
-		), $args );
+		], $args );
 
 		// calculate offset
 		$args['offset'] = ( $args['page'] - 1 ) * $args['number'];

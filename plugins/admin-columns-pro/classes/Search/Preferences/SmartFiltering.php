@@ -1,4 +1,5 @@
 <?php
+
 namespace ACP\Search\Preferences;
 
 use AC\ListScreen;

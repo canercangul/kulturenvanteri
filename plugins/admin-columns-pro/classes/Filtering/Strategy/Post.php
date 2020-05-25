@@ -3,18 +3,20 @@
 namespace ACP\Filtering\Strategy;
 
 use ACP\Filtering\Strategy;
+use WP_Query;
 
 class Post extends Strategy {
 
 	public function handle_request() {
-		add_action( 'pre_get_posts', array( $this, 'handle_filter_requests' ), 1 );
+		add_action( 'pre_get_posts', [ $this, 'handle_filter_requests' ], 1 );
 	}
 
 	/**
 	 * Handle filter request
-	 * @since 3.5
 	 *
-	 * @param \WP_Query $wp_query
+	 * @param WP_Query $wp_query
+	 *
+	 * @since 3.5
 	 */
 	public function handle_filter_requests( $wp_query ) {
 		if ( ! $wp_query->is_main_query() || ! is_admin() ) {
@@ -47,7 +49,7 @@ class Post extends Strategy {
 		$values = $wpdb->get_col( $wpdb->prepare( $sql, $this->get_column()->get_post_type() ) );
 
 		if ( empty( $values ) ) {
-			return array();
+			return [];
 		}
 
 		return $values;
@@ -65,27 +67,27 @@ class Post extends Strategy {
 		switch ( $value ) {
 
 			case 'cpac_empty' :
-				$tax_query = array(
+				$tax_query = [
 					'terms'    => false,
 					'operator' => 'NOT EXISTS',
-				);
+				];
 
 				break;
 			case 'cpac_nonempty' :
-				$tax_query = array(
+				$tax_query = [
 					'terms'    => false,
 					'operator' => 'EXISTS',
-				);
+				];
 
 				break;
 			default :
-				$tax_query = array(
+				$tax_query = [
 					'terms' => $value,
 					'field' => 'slug',
-				);
+				];
 		}
 
-		$vars['tax_query'][] = array_merge( array( 'taxonomy' => $taxonomy ), $tax_query );
+		$vars['tax_query'][] = array_merge( [ 'taxonomy' => $taxonomy ], $tax_query );
 
 		return $vars;
 	}

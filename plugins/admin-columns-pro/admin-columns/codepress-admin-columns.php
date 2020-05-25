@@ -9,7 +9,7 @@ if ( ! is_admin() ) {
 }
 
 define( 'AC_FILE', __FILE__ );
-define( 'AC_VERSION', '4.0.3' );
+define( 'AC_VERSION', '4.1.5' );
 
 require_once __DIR__ . '/classes/Dependencies.php';
 

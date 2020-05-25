@@ -4,12 +4,19 @@ namespace ACP\Editing\Admin;
 
 use AC\Admin\Tooltip;
 use AC\Form\Element\Checkbox;
-use AC\Settings\Admin;
+use AC\Renderable;
+use AC\Settings\General;
+use ACP\Editing\Settings\CustomField;
 
-class CustomFieldEditing extends Admin\General {
+class CustomFieldEditing implements Renderable {
+
+	/**
+	 * @var CustomField
+	 */
+	private $option;
 
 	public function __construct() {
-		parent::__construct( 'custom_field_editable' );
+		$this->option = new CustomField();
 	}
 
 	/**
@@ -20,43 +27,39 @@ class CustomFieldEditing extends Admin\General {
 			'<p>%s</p><p>%s</p>',
 			__( 'Inline edit will display all the raw values in an editable text field.', 'codepress-admin-columns' ),
 			sprintf(
-				__( "Please read <a href='%s'>our documentation</a> if you plan to use these fields.", 'codepress-admin-columns' ),
-				ac_get_site_utm_url( 'documentation/faq/enable-inline-editing-custom-fields/', 'general-settings' )
+				__( "Please read %s if you plan to use these fields.", 'codepress-admin-columns' ),
+				sprintf(
+					'<a href="%s">%s</a>',
+					ac_get_site_utm_url( 'documentation/faq/enable-inline-editing-custom-fields/', 'general-settings' ),
+					__( 'our documentation', 'codepress-admin-columns' )
+				)
 			)
 		);
 
-		return new Tooltip( $this->name, array( 'content' => $content ) );
+		return new Tooltip( $this->option->get_name(), [ 'content' => $content ] );
 	}
 
 	private function get_label() {
 		return sprintf( '%s %s %s',
 			__( 'Enable inline editing for Custom Fields.', 'codepress-admin-columns' ),
-			sprintf( __( "Default is %s.", 'codepress-admin-columns' ), '<code>' . __( 'off', 'codepress-admin-columns' ) . '</code>' ),
+			sprintf(
+				__( "Default is %s.", 'codepress-admin-columns' ),
+				sprintf( '<code>%s</code>', __( 'off', 'codepress-admin-columns' ) )
+			),
 			$this->get_tooltip()->get_label()
 		);
 	}
 
-	protected function get_value() {
-		return $this->settings->is_empty() ? '0' : parent::get_value();
-	}
-
-	/**
-	 * @return bool
-	 */
-	public function is_enabled() {
-		return '1' === $this->get_value();
-	}
-
 	public function render() {
-		$name = sprintf( '%s[%s]', $this->settings->get_name(), $this->name );
+		$name = sprintf( '%s[%s]', General::NAME, $this->option->get_name() );
 
 		$checkbox = new Checkbox( $name );
 
 		$checkbox
-			->set_options( array(
+			->set_options( [
 				'1' => $this->get_label(),
-			) )
-			->set_value( $this->get_value() );
+			] )
+			->set_value( $this->option->is_enabled() ? 1 : 0 );
 
 		return $checkbox->render() . $this->get_tooltip()->get_instructions();
 	}

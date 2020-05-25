@@ -30,7 +30,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<input name="title" id="new_listscreen_name" class="name" data-value="" placeholder="<?= __( 'Enter name', 'codepress-admin-columns' ); ?>" value="" type="text">
 				</div>
 			</div>
-
 			<div class="row actions">
 
 				<a class="instructions ac-pointer" rel="layout-help" data-pos="left" data-width="305" data-noclick="1">

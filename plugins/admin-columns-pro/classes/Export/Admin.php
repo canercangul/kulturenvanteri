@@ -2,20 +2,36 @@
 
 namespace ACP\Export;
 
+use AC;
+use AC\Registrable;
+use ACP\Export\HideOnScreen;
+use ACP\Settings\ListScreen\HideOnScreenCollection;
 use Exception;
 
 /**
  * Handles general functionality for admin screens
  * @since 1.0
  */
-class Admin {
+class Admin implements Registrable {
 
 	/**
-	 * Constructor
-	 * @since 1.0
+	 * @var ExportDirectory
 	 */
-	public function __construct() {
-		add_action( 'admin_init', array( $this, 'maybe_download_export' ) );
+	private $export_dir;
+
+	public function __construct( ExportDirectory $export_dir ) {
+		$this->export_dir = $export_dir;
+	}
+
+	public function register() {
+		add_action( 'admin_init', [ $this, 'maybe_download_export' ] );
+		add_action( 'acp/admin/settings/hide_on_screen', [ $this, 'add_hide_on_screen' ], 10, 2 );
+	}
+
+	public function add_hide_on_screen( HideOnScreenCollection $collection, AC\ListScreen $list_screen ) {
+		if ( $list_screen instanceof ListScreen ) {
+			$collection->add( new HideOnScreen\Export(), 60 );
+		}
 	}
 
 	/**
@@ -30,8 +46,6 @@ class Admin {
 			return;
 		}
 
-		$export_dir = ac_addon_export()->get_export_dir();
-
 		// Base directory for the export file
 		$fname = md5( get_current_user_id() . $export_download ) . '.csv';
 
@@ -43,7 +57,7 @@ class Admin {
 
 		while ( true ) {
 			// Construct full file path
-			$fpath = $export_dir['path'] . $fname;
+			$fpath = $this->export_dir->get_path() . $fname;
 			$fpath .= '-' . $counter . '.csv';
 
 			// Check whether the file to load exists

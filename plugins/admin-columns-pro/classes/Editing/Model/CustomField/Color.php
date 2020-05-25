@@ -10,9 +10,9 @@ class Color extends Model\CustomField {
 	 * @return array
 	 */
 	public function get_view_settings() {
-		return array(
+		return [
 			'type' => 'color',
-		);
+		];
 	}
 
 }

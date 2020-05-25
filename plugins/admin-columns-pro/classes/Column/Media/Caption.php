@@ -18,8 +18,8 @@ class Caption extends AC\Column\Media\Caption
 		return new Editing\Model\Media\Caption( $this );
 	}
 
-	public function search (  ) {
-	    return new Search\Comparison\Post\Excerpt();
+	public function search() {
+		return new Search\Comparison\Post\Excerpt();
 	}
 
 }

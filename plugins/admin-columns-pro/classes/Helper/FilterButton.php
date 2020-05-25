@@ -45,7 +45,7 @@ abstract class FilterButton
 	 * @return callable
 	 */
 	protected function get_callback() {
-		return array( $this, 'display_button' );
+		return [ $this, 'display_button' ];
 	}
 
 }

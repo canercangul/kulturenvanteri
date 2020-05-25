@@ -7,7 +7,7 @@ use ACP\Sorting\Model;
 class LastModifiedAuthor extends Model {
 
 	public function get_sorting_vars() {
-		$ids = array();
+		$ids = [];
 
 		$setting = $this->column->get_setting( 'user' );
 
@@ -15,9 +15,9 @@ class LastModifiedAuthor extends Model {
 			$ids[ $id ] = $setting->get_user_name( $this->column->get_raw_value( $id ) );
 		}
 
-		return array(
+		return [
 			'ids' => $this->sort( $ids ),
-		);
+		];
 	}
 
 }

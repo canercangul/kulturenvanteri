@@ -10,11 +10,11 @@ class Users {
 
 	/**
 	 * Retrieve the encryption key belonging to a user. Creates a new key if no key exist yet for the user
-	 * @since 1.0
 	 *
 	 * @param int $user_id Optional. ID of user to retrieve the key for
 	 *
 	 * @return string User's encryption key
+	 * @since 1.0
 	 */
 	public static function get_user_encryption_key( $user_id = 0 ) {
 		$use_user_id = $user_id ? $user_id : get_current_user_id();

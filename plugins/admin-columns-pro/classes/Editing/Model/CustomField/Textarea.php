@@ -7,9 +7,9 @@ use ACP\Editing\Model;
 class Textarea extends Model\CustomField {
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type' => 'textarea',
-		);
+		];
 	}
 
 }

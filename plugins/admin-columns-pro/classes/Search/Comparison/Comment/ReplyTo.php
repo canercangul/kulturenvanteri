@@ -1,4 +1,5 @@
 <?php
+
 namespace ACP\Search\Comparison\Comment;
 
 use AC;
@@ -12,9 +13,9 @@ class ReplyTo extends Comparison
 	implements Comparison\SearchableValues {
 
 	public function __construct() {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
-		) );
+		] );
 
 		parent::__construct( $operators );
 	}

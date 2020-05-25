@@ -31,7 +31,7 @@ class AjaxRequestListScreenUsers implements Registrable {
 			'number' => 10,
 		] );
 
-		$options = new Select\Options\Paginated(
+		$options = new AC\Helper\Select\Options\Paginated(
 			$entities,
 			new Select\Group\UserRole(
 				new Select\Formatter\UserName( $entities )

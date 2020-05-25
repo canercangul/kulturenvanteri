@@ -7,11 +7,11 @@ use ACP\Editing\Model;
 class AuthorEmail extends Model\Comment {
 
 	public function get_view_settings() {
-		return array( 'type' => 'email' );
+		return [ 'type' => 'email' ];
 	}
 
 	public function save( $id, $value ) {
-		return $this->update_comment( $id, array( 'comment_author_email' => $value ) );
+		return $this->update_comment( $id, [ 'comment_author_email' => $value ] );
 	}
 
 }

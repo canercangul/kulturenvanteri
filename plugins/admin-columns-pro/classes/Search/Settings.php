@@ -3,8 +3,8 @@
 namespace ACP\Search;
 
 use AC;
+use AC\Asset\Enqueueable;
 use AC\Registrable;
-use ACP\Asset\Enqueueable;
 
 class Settings
 	implements Registrable {
@@ -19,8 +19,8 @@ class Settings
 	}
 
 	public function register() {
-		add_action( 'ac/column/settings', array( $this, 'column_settings' ) );
-		add_action( 'ac/settings/scripts', array( $this, 'admin_scripts' ) );
+		add_action( 'ac/column/settings', [ $this, 'column_settings' ] );
+		add_action( 'ac/admin_scripts/columns', [ $this, 'admin_scripts' ] );
 	}
 
 	public function column_settings( AC\Column $column ) {
@@ -35,7 +35,7 @@ class Settings
 	}
 
 	public function admin_scripts() {
-		foreach( $this->assets as $asset ){
+		foreach ( $this->assets as $asset ) {
 			$asset->enqueue();
 		}
 	}

@@ -18,18 +18,18 @@ class Role extends Model {
 	}
 
 	public function get_view_settings() {
-		$options = array();
+		$options = [];
 		if ( $_roles = get_editable_roles() ) {
 			foreach ( $_roles as $k => $role ) {
 				$options[ $k ] = translate_user_role( $role['name'] );
 			}
 		}
 
-		return array(
+		return [
 			'type'     => 'select2_dropdown',
 			'multiple' => true,
 			'options'  => $options,
-		);
+		];
 	}
 
 	public function save( $id, $value ) {

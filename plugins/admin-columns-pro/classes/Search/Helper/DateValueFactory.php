@@ -52,10 +52,10 @@ class DateValueFactory {
 	 */
 	public function create_range( DateTime $start, DateTime $end ) {
 		return new Value(
-			array(
+			[
 				$start->format( $this->format ),
 				$end->format( $this->format ),
-			),
+			],
 			$this->type
 		);
 	}
@@ -82,7 +82,7 @@ class DateValueFactory {
 	}
 
 	/**
-	 * @param int $day
+	 * @param int $days
 	 *
 	 * @return Value
 	 */

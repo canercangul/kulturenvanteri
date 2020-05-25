@@ -9,15 +9,15 @@ class ImageFileSizes extends Model {
 	public function get_sorting_vars() {
 		$this->set_data_type( 'numeric' );
 
-		$ids = array();
+		$ids = [];
 
 		foreach ( $this->strategy->get_results() as $id ) {
 			$ids[ $id ] = array_sum( $this->column->get_raw_value( $id ) );
 		}
 
-		return array(
+		return [
 			'ids' => $this->sort( $ids ),
-		);
+		];
 	}
 
 }

@@ -30,7 +30,7 @@ class ID extends Model {
 	}
 
 	public function get_filtering_vars( $vars ) {
-		add_filter( 'posts_where', array( $this, 'filter_by_id' ) );
+		add_filter( 'posts_where', [ $this, 'filter_by_id' ] );
 
 		return $vars;
 	}

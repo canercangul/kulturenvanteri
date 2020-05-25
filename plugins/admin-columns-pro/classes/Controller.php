@@ -3,7 +3,7 @@
 namespace ACP;
 
 use AC\Request;
-use ACP\Exception;
+use ACP\Exception\ControllerException;
 
 abstract class Controller {
 
@@ -25,8 +25,8 @@ abstract class Controller {
 	public function dispatch( $action ) {
 		$method = $action . '_action';
 
-		if ( ! is_callable( array( $this, $method ) ) ) {
-			throw Exception\Controller::from_invalid_action( $action );
+		if ( ! is_callable( [ $this, $method ] ) ) {
+			throw ControllerException::from_invalid_action( $action );
 		}
 
 		$this->$method();

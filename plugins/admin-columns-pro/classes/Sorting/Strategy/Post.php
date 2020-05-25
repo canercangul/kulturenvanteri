@@ -13,7 +13,7 @@ final class Post extends Strategy {
 	private $wp_query;
 
 	public function manage_sorting() {
-		add_action( 'pre_get_posts', array( $this, 'handle_sorting_request' ) );
+		add_action( 'pre_get_posts', [ $this, 'handle_sorting_request' ] );
 	}
 
 	/**
@@ -30,7 +30,7 @@ final class Post extends Strategy {
 		return $this->wp_query;
 	}
 
-	public function get_results( array $args = array() ) {
+	public function get_results( array $args = [] ) {
 		return $this->get_posts( $args );
 	}
 
@@ -46,11 +46,11 @@ final class Post extends Strategy {
 	 * @return array Array of post ID's
 	 * @since 1.0.7
 	 */
-	protected function get_posts( array $args = array() ) {
-		$query_vars = $this->wp_query ? $this->wp_query->query_vars : array();
+	protected function get_posts( array $args = [] ) {
+		$query_vars = $this->wp_query ? $this->wp_query->query_vars : [];
 
 		if ( ! isset( $query_vars['post_status'] ) || empty( $query_vars['post_status'] ) ) {
-			$query_vars['post_status'] = array( 'any' );
+			$query_vars['post_status'] = [ 'any' ];
 		}
 
 		if ( isset( $query_vars['orderby'] ) ) {

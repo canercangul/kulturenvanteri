@@ -1,4 +1,5 @@
 <?php
+
 namespace ACP\Search\Comparison\Comment;
 
 use ACP\Search\Comparison;

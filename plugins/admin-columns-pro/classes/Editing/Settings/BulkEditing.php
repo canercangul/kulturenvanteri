@@ -1,4 +1,5 @@
 <?php
+
 namespace ACP\Editing\Settings;
 
 use AC;
@@ -11,13 +12,19 @@ class BulkEditing extends AC\Settings\Column {
 	 * @return array
 	 */
 	protected function define_options() {
-		return array(
+		return [
 			'bulk-editing',
-		);
+		];
 	}
 
-	private function get_tooltip() {
-		return new ACP\Editing\Tooltip\BulkEditing( $this->column->get_name() );
+	/**
+	 * @return string
+	 */
+	private function get_instructions() {
+		$view = new View();
+		$view->set_template( 'tooltip/bulk-editing' );
+
+		return $view->render();
 	}
 
 	/**
@@ -26,9 +33,9 @@ class BulkEditing extends AC\Settings\Column {
 	public function create_view() {
 		$view = new View();
 		$view->set( 'label', __( 'Bulk Editing', 'codepress-admin-columns' ) )
-		     ->set( 'tooltip', __( 'Bulk Editing is always enabled.', 'codepress-admin-columns' ) )
+		     ->set( 'instructions', $this->get_instructions() )
 		     ->set( 'setting',
-			     sprintf( '<em>%s</em> %s', $this->get_status_label(), $this->get_tooltip()->get_label() . $this->get_tooltip()->get_instructions() )
+			     sprintf( '<em>%s</em>', $this->get_status_label() )
 		     );
 
 		return $view;

@@ -1,7 +1,8 @@
 <?php
+
 namespace ACP\Admin;
 
-use ACP\Asset\Enqueueable;
+use AC\Asset\Enqueueable;
 
 interface Assets {
 

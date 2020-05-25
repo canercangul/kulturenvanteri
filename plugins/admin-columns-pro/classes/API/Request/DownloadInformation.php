@@ -3,8 +3,8 @@
 namespace ACP\API\Request;
 
 use ACP\API\Request;
-use ACP\Type\SiteUrl;
 use ACP\Type\License\Key;
+use ACP\Type\SiteUrl;
 
 /**
  * Used for installing 'add-ons'
@@ -12,8 +12,9 @@ use ACP\Type\License\Key;
 class DownloadInformation extends Request {
 
 	/**
-	 * @param string $plugin_name e.g. 'plugin-name'
-	 * @param Key    $license_key
+	 * @param string  $plugin_name e.g. 'plugin-name'
+	 * @param Key     $license_key
+	 * @param SiteUrl $site_url
 	 */
 	public function __construct( $plugin_name, Key $license_key, SiteUrl $site_url ) {
 		parent::__construct( [

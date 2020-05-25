@@ -11,9 +11,9 @@ class Post extends Field
 	implements SearchableValues {
 
 	public function __construct() {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
-		) );
+		] );
 
 		parent::__construct( $operators );
 	}
@@ -23,11 +23,11 @@ class Post extends Field
 	}
 
 	public function get_values( $s, $paged ) {
-		$entities = new Select\Entities\Post( array(
+		$entities = new Select\Entities\Post( [
 			's'         => $s,
 			'paged'     => $paged,
 			'post_type' => get_post_types_by_support( 'comments' ),
-		) );
+		] );
 
 		return new AC\Helper\Select\Options\Paginated(
 			$entities,

@@ -8,9 +8,9 @@ use ACP\Filtering\Settings;
 class Image extends Model\CustomField {
 
 	public function get_filtering_data() {
-		$data = array(
+		$data = [
 			'empty_option' => true,
-		);
+		];
 
 		$values = $this->get_meta_values();
 

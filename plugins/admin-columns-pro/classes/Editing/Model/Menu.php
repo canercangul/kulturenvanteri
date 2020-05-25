@@ -20,7 +20,7 @@ abstract class Menu extends Model {
 	abstract protected function get_title( $id );
 
 	public function get_view_settings() {
-		$options = array();
+		$options = [];
 
 		$menus = wp_get_nav_menus();
 
@@ -30,16 +30,16 @@ abstract class Menu extends Model {
 			}
 		}
 
-		return array(
+		return [
 			'type'         => 'select2_dropdown',
 			'multiple'     => true,
 			'clear_button' => true,
 			'options'      => $options,
-		);
+		];
 	}
 
 	public function get_edit_value( $id ) {
-		$menus = array();
+		$menus = [];
 
 		foreach ( $this->column->get_menus( $id ) as $menu ) {
 			$menus[ $menu->term_id ] = $menu->name;
@@ -57,13 +57,13 @@ abstract class Menu extends Model {
 	 * @return array|false
 	 */
 	private function item_exists( $menu_id, $object_id ) {
-		$items = wp_get_nav_menu_items( $menu_id, array( 'post_status' => 'publish' ) );
+		$items = wp_get_nav_menu_items( $menu_id, [ 'post_status' => 'publish' ] );
 
 		if ( ! $items ) {
 			return false;
 		}
 
-		$items = wp_filter_object_list( $items, array( 'object' => $this->column->get_object_type() ) );
+		$items = wp_filter_object_list( $items, [ 'object' => $this->column->get_object_type() ] );
 
 		return in_array( $object_id, wp_list_pluck( $items, 'object_id' ) );
 	}
@@ -71,7 +71,7 @@ abstract class Menu extends Model {
 	public function save( $id, $menu_ids ) {
 		$transaction = new Transaction();
 
-		$results = array();
+		$results = [];
 
 		// Delete item from menu
 		foreach ( $this->column->get_menu_item_ids( $id ) as $menu_item_id ) {
@@ -88,14 +88,14 @@ abstract class Menu extends Model {
 				continue;
 			}
 
-			$item = array(
+			$item = [
 				'menu-item-object-id' => $id,
 				'menu-item-db-id'     => 0,
 				'menu-item-object'    => $this->column->get_object_type(),
 				'menu-item-type'      => $this->column->get_item_type(),
 				'menu-item-title'     => $this->get_title( $id ),
 				'menu-item-status'    => 'publish',
-			);
+			];
 
 			$result = wp_update_nav_menu_item( $menu_id, 0, $item );
 

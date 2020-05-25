@@ -7,7 +7,7 @@ use ACP\Editing\Ajax\TableRows;
 final class Taxonomy extends TableRows {
 
 	public function register() {
-		add_action( 'parse_term_query', array( $this, 'handle_request' ) );
+		add_action( 'parse_term_query', [ $this, 'handle_request' ] );
 	}
 
 }

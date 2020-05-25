@@ -7,13 +7,13 @@ use ACP\Editing\Model;
 class Checkmark extends Model\CustomField {
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'    => 'togglable',
-			'options' => array(
+			'options' => [
 				'0' => __( 'False', 'codepress-admin-columns' ),
 				'1' => __( 'True', 'codepress-admin-columns' ),
-			),
-		);
+			],
+		];
 	}
 
 }

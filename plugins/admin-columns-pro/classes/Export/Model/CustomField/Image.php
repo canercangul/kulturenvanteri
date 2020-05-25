@@ -7,7 +7,7 @@ use ACP\Export\Model;
 class Image extends Model {
 
 	public function get_value( $id ) {
-		$urls = array();
+		$urls = [];
 
 		foreach ( (array) $this->get_column()->get_raw_value( $id ) as $url ) {
 			if ( is_numeric( $url ) ) {

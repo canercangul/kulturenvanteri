@@ -31,9 +31,9 @@ class Dimensions extends Model\Media\Meta {
 			$meta_values[ $id ] = $aspect ? $aspect : '';
 		}
 
-		return array(
+		return [
 			'ids' => $this->sort( $meta_values ),
-		);
+		];
 	}
 
 }

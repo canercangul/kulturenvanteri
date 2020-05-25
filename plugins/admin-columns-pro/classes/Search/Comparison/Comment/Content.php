@@ -7,13 +7,13 @@ use ACP\Search\Operators;
 class Content extends Field {
 
 	public function __construct() {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::CONTAINS,
 			Operators::EQ,
 			Operators::NOT_CONTAINS,
 			Operators::BEGINS_WITH,
 			Operators::ENDS_WITH,
-		), false );
+		], false );
 
 		parent::__construct( $operators );
 	}

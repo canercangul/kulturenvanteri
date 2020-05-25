@@ -13,7 +13,7 @@ class Helper {
 	 * @return array
 	 */
 	public function get_post_titles( $post_ids ) {
-		$titles = array();
+		$titles = [];
 
 		if ( $post_ids ) {
 			foreach ( $post_ids as $id ) {
@@ -47,7 +47,7 @@ class Helper {
 	 * @return array
 	 */
 	public function get_term_names( $term_ids, $taxonomy ) {
-		$terms = array();
+		$terms = [];
 
 		if ( $term_ids ) {
 			foreach ( $term_ids as $term_id ) {
@@ -85,7 +85,7 @@ class Helper {
 	 * @return array
 	 */
 	public function get_date_options( array $dates, $display, $format = 'Y-m-d', $key = null ) {
-		$options = array();
+		$options = [];
 
 		switch ( $display ) {
 			case 'yearly':
@@ -136,14 +136,14 @@ class Helper {
 	 * @return array|false
 	 */
 	public function get_date_options_relative( $format ) {
-		$options = array();
+		$options = [];
 
 		switch ( $format ) {
 			case 'future_past':
-				$options = array(
+				$options = [
 					'future' => __( 'Future dates', 'codepress-admin-columns' ),
 					'past'   => __( 'Past dates', 'codepress-admin-columns' ),
-				);
+				];
 
 				break;
 		}

@@ -26,7 +26,7 @@ class API implements RequestDispatcher {
 	/**
 	 * @var array
 	 */
-	private $meta = array();
+	private $meta = [];
 
 	/**
 	 * @return string
@@ -109,9 +109,9 @@ class API implements RequestDispatcher {
 	 * @inheritDoc
 	 */
 	public function dispatch( Request $request, array $args = [] ) {
-		$body = array_merge( $request->get_body(), array(
+		$body = array_merge( $request->get_body(), [
 			'meta' => $this->meta,
-		) );
+		] );
 
 		$request->set_body( $body );
 

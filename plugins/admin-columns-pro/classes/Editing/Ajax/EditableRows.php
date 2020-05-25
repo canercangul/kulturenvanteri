@@ -62,7 +62,7 @@ abstract class EditableRows extends Request {
 	/**
 	 * @param array $parameters
 	 */
-	protected function error( $parameters = array() ) {
+	protected function error( $parameters = [] ) {
 		$response = new Response\Json;
 
 		if ( $parameters ) {

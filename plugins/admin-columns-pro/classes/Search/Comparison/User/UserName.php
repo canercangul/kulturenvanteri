@@ -7,12 +7,12 @@ use ACP\Search\Operators;
 class UserName extends UserField {
 
 	public function __construct() {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
 			Operators::CONTAINS,
 			Operators::BEGINS_WITH,
 			Operators::ENDS_WITH,
-		) );
+		] );
 
 		parent::__construct( $operators );
 	}

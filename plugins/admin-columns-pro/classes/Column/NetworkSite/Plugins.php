@@ -17,7 +17,7 @@ class Plugins extends AC\Column {
 	}
 
 	public function get_raw_value( $blog_id ) {
-		$active_plugins = array();
+		$active_plugins = [];
 
 		$plugins = get_plugins();
 

@@ -14,7 +14,7 @@ class Role extends Model {
 	}
 
 	public function get_filtering_data() {
-		$data = array();
+		$data = [];
 		$roles = new WP_Roles();
 
 		foreach ( $roles->roles as $key => $role ) {

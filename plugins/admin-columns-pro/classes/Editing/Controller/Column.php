@@ -3,7 +3,9 @@
 namespace ACP\Editing\Controller;
 
 use AC;
+use AC\Request;
 use AC\Response\Json;
+use AC\Type\ListScreenId;
 use ACP\Controller;
 use ACP\Editing\Editable;
 use ACP\Editing\ListScreen;
@@ -13,10 +15,28 @@ use ACP\Editing\PaginatedOptions;
 abstract class Column extends Controller {
 
 	/**
+	 * @var AC\ListScreenRepository\Storage;
+	 */
+	private $storage;
+
+	public function __construct( AC\ListScreenRepository\Storage $storage, Request $request ) {
+		$this->storage = $storage;
+
+		parent::__construct( $request );
+
+	}
+
+	/**
 	 * @return AC\ListScreen|ListScreen|false
 	 */
 	protected function get_list_screen_from_request() {
-		$list_screen = AC()->get_listscreen_repository()->find( $this->request->get( 'layout' ) );
+		$list_id = $this->request->get( 'layout' );
+
+		if ( ! $list_id ) {
+			return false;
+		}
+
+		$list_screen = $this->storage->find( new ListScreenId( $list_id ) );
 
 		if ( ! $list_screen || ! $list_screen instanceof ListScreen ) {
 			return false;

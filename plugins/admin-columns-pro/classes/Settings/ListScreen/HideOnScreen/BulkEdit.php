@@ -1,4 +1,5 @@
 <?php
+
 namespace ACP\Settings\ListScreen\HideOnScreen;
 
 use ACP\Settings\ListScreen\HideOnScreen;

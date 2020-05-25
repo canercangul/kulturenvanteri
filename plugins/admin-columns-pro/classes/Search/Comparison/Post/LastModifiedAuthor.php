@@ -12,12 +12,12 @@ class LastModifiedAuthor extends Comparison\Meta
 	implements Comparison\SearchableValues {
 
 	public function __construct() {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
 			Operators::GT,
 			Operators::LT,
 			Operators::BETWEEN,
-		) );
+		] );
 
 		parent::__construct( $operators, '_edit_last', MetaType::POST );
 	}

@@ -15,7 +15,7 @@ class DateGmt extends Model {
 	}
 
 	public function get_filtering_vars( $vars ) {
-		add_filter( 'comments_clauses', array( $this, 'filter_by_date_gmt' ) );
+		add_filter( 'comments_clauses', [ $this, 'filter_by_date_gmt' ] );
 
 		return $vars;
 	}

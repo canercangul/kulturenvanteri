@@ -15,21 +15,21 @@ class Content extends Model {
 	}
 
 	public function get_filtering_vars( $vars ) {
-		add_filter( 'posts_where', array( $this, 'filter_by_description' ) );
+		add_filter( 'posts_where', [ $this, 'filter_by_description' ] );
 
 		return $vars;
 	}
 
 	public function get_filtering_data() {
-		$options = array();
+		$options = [];
 
 		foreach ( $this->strategy->get_values_by_db_field( 'post_content' ) as $value ) {
 			$options[ $value ] = strip_tags( $value );
 		}
 
-		return array(
+		return [
 			'options' => $options,
-		);
+		];
 	}
 
 }

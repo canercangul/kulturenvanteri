@@ -21,17 +21,17 @@ class IsEmpty extends MetaQuery\Comparison {
 	}
 
 	public function __invoke() {
-		return array(
+		return [
 			'relation' => 'OR',
-			array(
+			[
 				'key'   => $this->key,
 				'value' => $this->value->get_value(),
-			),
-			array(
+			],
+			[
 				'key'     => $this->key,
 				'compare' => $this->operator,
-			),
-		);
+			],
+		];
 	}
 
 }

@@ -20,12 +20,12 @@ class Taxonomy extends Comparison
 	protected $taxonomy;
 
 	public function __construct( $taxonomy ) {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
 			Operators::NEQ,
 			Operators::IS_EMPTY,
 			Operators::NOT_IS_EMPTY,
-		) );
+		] );
 
 		$this->taxonomy = $taxonomy;
 
@@ -37,11 +37,11 @@ class Taxonomy extends Comparison
 	}
 
 	public function get_values( $search, $page ) {
-		$entities = new Select\Entities\Taxonomy( array(
+		$entities = new Select\Entities\Taxonomy( [
 			'search'   => $search,
 			'page'     => $page,
 			'taxonomy' => $this->taxonomy,
-		) );
+		] );
 
 		return new AC\Helper\Select\Options\Paginated(
 			$entities,

@@ -1,4 +1,5 @@
 <?php
+
 namespace ACP\Column\CustomField;
 
 use ACP\Search\Comparison\Meta;

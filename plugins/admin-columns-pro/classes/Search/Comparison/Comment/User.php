@@ -1,4 +1,5 @@
 <?php
+
 namespace ACP\Search\Comparison\Comment;
 
 use AC;
@@ -10,11 +11,11 @@ class User extends Field
 	implements SearchableValues {
 
 	public function __construct() {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
 			Operators::IS_EMPTY,
 			Operators::NOT_IS_EMPTY,
-		) );
+		] );
 
 		parent::__construct( $operators );
 	}

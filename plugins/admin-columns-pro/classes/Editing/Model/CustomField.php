@@ -3,8 +3,8 @@
 namespace ACP\Editing\Model;
 
 use AC;
-use ACP\Editing\Admin\CustomFieldEditing;
 use ACP\Editing\Model;
+use ACP\Editing\Settings;
 
 class CustomField extends Model {
 
@@ -27,9 +27,7 @@ class CustomField extends Model {
 	}
 
 	protected function is_editing_enabled() {
-		$option = new CustomFieldEditing();
-
-		return $option->is_enabled();
+		return ( new Settings\CustomField() )->is_enabled();
 	}
 
 	public function register_settings() {

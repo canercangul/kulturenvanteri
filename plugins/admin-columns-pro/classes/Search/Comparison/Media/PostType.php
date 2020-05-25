@@ -1,4 +1,5 @@
 <?php
+
 namespace ACP\Search\Comparison\Media;
 
 use AC;
@@ -11,9 +12,9 @@ class PostType extends Comparison
 	implements Comparison\RemoteValues {
 
 	public function __construct() {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
-		) );
+		] );
 
 		parent::__construct( $operators );
 	}
@@ -30,7 +31,7 @@ class PostType extends Comparison
 	}
 
 	public function get_values() {
-		$options = array();
+		$options = [];
 
 		foreach ( $this->get_post_types() as $post_type ) {
 			$post_type_object = get_post_type_object( $post_type );
@@ -63,7 +64,7 @@ class PostType extends Comparison
 		$values = $wpdb->get_col( $wpdb->prepare( $sql, 'attachment', 'attachment' ) );
 
 		if ( empty( $values ) ) {
-			return array();
+			return [];
 		}
 
 		return $values;

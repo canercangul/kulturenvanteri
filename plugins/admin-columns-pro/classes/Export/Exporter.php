@@ -30,19 +30,20 @@ abstract class Exporter {
 	/**
 	 * Export the data to a temporary file. The file should be the CSV, Excel or other export file
 	 * such that it can be downloaded by the user
-	 * @since 1.0
 	 *
 	 * @param resource $fh File reference pointer of file to write to
 	 *
 	 * @return string
+	 * @since 1.0
 	 */
 	abstract public function export( $fh );
 
 	/**
 	 * Load an array of data to the exporter
-	 * @since 1.0
 	 *
 	 * @param array $data Data array. See the property $data for the expected format
+	 *
+	 * @since 1.0
 	 */
 	public function load_data( $data ) {
 		$this->data = $data;
@@ -50,8 +51,8 @@ abstract class Exporter {
 
 	/**
 	 * Retrieve the data loaded to the exporter
-	 * @since 1.0
 	 * @return array Data array. See the property $data for the returned format
+	 * @since 1.0
 	 */
 	public function get_data() {
 		return $this->data;
@@ -59,10 +60,11 @@ abstract class Exporter {
 
 	/**
 	 * Load an array of column labels to the exporter
-	 * @since 1.0
 	 *
 	 * @param array $column_labels Column labels array. See the property $column_labels for the
 	 *                             expected format
+	 *
+	 * @since 1.0
 	 */
 	public function load_column_labels( $column_labels ) {
 		$this->column_labels = $column_labels;
@@ -70,8 +72,8 @@ abstract class Exporter {
 
 	/**
 	 * Retrieve the column labels loaded to the exporter
-	 * @since 1.0
 	 * @return array Column labels array. See the property $data for the returned format
+	 * @since 1.0
 	 */
 	public function get_column_labels() {
 		return $this->column_labels;

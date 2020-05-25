@@ -22,7 +22,7 @@ class Name extends AC\Column\User\Name
 	}
 
 	public function search() {
-		return new Search\Comparison\User\Name( array( 'first_name', 'last_name' ) );
+		return new Search\Comparison\User\Name( [ 'first_name', 'last_name' ] );
 	}
 
 }

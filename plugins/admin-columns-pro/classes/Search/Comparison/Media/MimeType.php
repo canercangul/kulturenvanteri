@@ -13,9 +13,9 @@ class MimeType extends Comparison
 	implements Comparison\RemoteValues {
 
 	public function __construct() {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
-		) );
+		] );
 
 		parent::__construct( $operators );
 	}
@@ -27,9 +27,9 @@ class MimeType extends Comparison
 	}
 
 	public function get_values() {
-		$entities = new Select\Entities\MimeType( array(
+		$entities = new Select\Entities\MimeType( [
 			'post_type' => 'attachment',
-		) );
+		] );
 
 		$mime_types = $entities->get_copy();
 

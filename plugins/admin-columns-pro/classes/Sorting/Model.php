@@ -71,19 +71,19 @@ class Model extends ACP\Model {
 
 	/**
 	 * Get the sorting vars
-	 * @since 4.0
 	 * @return array
+	 * @since 4.0
 	 */
 	public function get_sorting_vars() {
-		$sorting_vars = array(
+		$sorting_vars = [
 			'orderby' => $this->orderby,
-		);
+		];
 
 		// fallback to sorting by column value
 		if ( empty( $this->orderby ) ) {
-			$sorting_vars = array(
+			$sorting_vars = [
 				'ids' => $this->sort_by_column_value( $this->strategy->get_results() ),
-			);
+			];
 		}
 
 		return $sorting_vars;
@@ -124,7 +124,7 @@ class Model extends ACP\Model {
 	 * @return array
 	 */
 	public function sort_by_column_value( array $ids ) {
-		$values = array();
+		$values = [];
 
 		foreach ( $ids as $id ) {
 			$values[ $id ] = $this->column->get_raw_value( $id );
@@ -139,8 +139,8 @@ class Model extends ACP\Model {
 	 *
 	 * @param string|array $value String or array with a string
 	 *
-	 * @since 4.0
 	 * @return string|false Returns prepared value on success, false on failure.
+	 * @since 4.0
 	 */
 	protected function prepare_value( $value ) {
 		if ( is_array( $value ) ) {
@@ -170,11 +170,11 @@ class Model extends ACP\Model {
 	 *
 	 * @param array $array
 	 *
-	 * @since 4.0
 	 * @return array Optimized for sorting
+	 * @since 4.0
 	 */
 	protected function prepare_values( $array ) {
-		$show_all_results = acp_sorting()->show_all_results();
+		$show_all_results = acp_sorting_show_all_results();
 
 		foreach ( $array as $id => $value ) {
 			$value = $this->prepare_value( $value );

@@ -7,6 +7,7 @@ use ACP\Search\Helper\Sql\Comparison;
 use ACP\Search\Operators;
 use ACP\Search\Value;
 use DateTime;
+use Exception;
 
 class GtDaysAgo extends Comparison {
 
@@ -18,7 +19,7 @@ class GtDaysAgo extends Comparison {
 	 * @param Value $value
 	 *
 	 * @return Comparison
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function bind_value( Value $value ) {
 		$date = new DateTime();

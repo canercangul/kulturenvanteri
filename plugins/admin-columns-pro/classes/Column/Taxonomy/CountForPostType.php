@@ -20,24 +20,24 @@ class CountForPostType extends AC\Column {
 		$count = $raw_value ?: 0;
 		$term = get_term( $id, $this->get_taxonomy() );
 
-		$url = add_query_arg( array( 'post_type' => $this->get_post_type_setting(), $this->get_taxonomy_param( $this->get_taxonomy() ) => $term->slug ), admin_url( 'edit.php' ) );
+		$url = add_query_arg( [ 'post_type' => $this->get_post_type_setting(), $this->get_taxonomy_param( $this->get_taxonomy() ) => $term->slug ], admin_url( 'edit.php' ) );
 
 		return sprintf( '<a href="%s">%s</a>', $url, $count );
 	}
 
 	public function get_raw_value( $id ) {
-		$posts = get_posts( array(
+		$posts = get_posts( [
 			'fields'         => 'ids',
 			'posts_per_page' => -1,
 			'post_type'      => $this->get_post_type_setting() ?: 'any',
-			'tax_query'      => array(
-				array(
+			'tax_query'      => [
+				[
 					'taxonomy' => $this->get_taxonomy(),
 					'field'    => 'id',
 					'terms'    => $id,
-				),
-			),
-		) );
+				],
+			],
+		] );
 
 		return count( $posts );
 	}

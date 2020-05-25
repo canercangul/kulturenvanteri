@@ -17,10 +17,10 @@ class CommentSummary extends AC\Helper\Select\Formatter {
 	public function get_label( $comment, $is_duplicate = false ) {
 		$date = new DateTime( $comment->comment_date );
 
-		$value = array_filter( array(
+		$value = array_filter( [
 			$comment->comment_author_email,
 			$date->format( 'M j, Y H:i' ),
-		) );
+		] );
 
 		return $comment->comment_ID . ' - ' . implode( ' / ', $value );
 	}

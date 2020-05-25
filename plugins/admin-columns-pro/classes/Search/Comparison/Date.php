@@ -27,12 +27,12 @@ abstract class Date extends Comparison {
 	 * @return Operators
 	 */
 	public function operators() {
-		return new Operators( array(
+		return new Operators( [
 			Operators::EQ,
 			Operators::GT,
 			Operators::LT,
 			Operators::BETWEEN,
-		) );
+		] );
 	}
 
 	/**

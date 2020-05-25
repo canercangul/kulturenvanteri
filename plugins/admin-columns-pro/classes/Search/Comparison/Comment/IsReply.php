@@ -1,4 +1,5 @@
 <?php
+
 namespace ACP\Search\Comparison\Comment;
 
 use AC;
@@ -11,9 +12,9 @@ class IsReply extends Comparison
 	implements Comparison\Values {
 
 	public function __construct() {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
-		) );
+		] );
 
 		parent::__construct( $operators );
 	}
@@ -35,10 +36,10 @@ class IsReply extends Comparison
 	}
 
 	public function get_values() {
-		return AC\Helper\Select\Options::create_from_array( array(
+		return AC\Helper\Select\Options::create_from_array( [
 			'1' => __( 'True', 'codepress-admin-columns' ),
 			'0' => __( 'False', 'codepress-admin-columns' ),
-		) );
+		] );
 	}
 
 }

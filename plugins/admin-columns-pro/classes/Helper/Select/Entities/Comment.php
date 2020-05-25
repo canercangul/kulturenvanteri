@@ -15,22 +15,22 @@ class Comment extends AC\Helper\Select\Entities
 	protected $query;
 
 	/**
-	 * @param array        $args
+	 * @param array                  $args
 	 * @param AC\Helper\Select\Value $value
 	 */
-	public function __construct( array $args = array(), AC\Helper\Select\Value $value = null ) {
+	public function __construct( array $args = [], AC\Helper\Select\Value $value = null ) {
 		if ( null === $value ) {
 			$value = new Value\Comment();
 		}
 
-		$args = array_merge( array(
+		$args = array_merge( [
 			'number'        => 30,
 			'fields'        => 'ID',
 			'orderby'       => 'comment_date_gmt',
 			'paged'         => 1,
 			'search'        => null,
 			'no_found_rows' => false,
-		), $args );
+		], $args );
 
 		$args['offset'] = ( $args['paged'] - 1 ) * $args['number'];
 

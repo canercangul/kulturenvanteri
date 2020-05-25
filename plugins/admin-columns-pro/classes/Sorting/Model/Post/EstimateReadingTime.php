@@ -13,15 +13,15 @@ class EstimateReadingTime extends Model {
 	}
 
 	public function get_sorting_vars() {
-		$ids = array();
+		$ids = [];
 
 		foreach ( $this->strategy->get_results() as $id ) {
 			$ids[ $id ] = ac_helper()->string->word_count( $this->column->get_raw_value( $id ) );
 		}
 
-		return array(
+		return [
 			'ids' => $this->sort( $ids ),
-		);
+		];
 	}
 
 }

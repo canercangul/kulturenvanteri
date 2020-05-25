@@ -107,10 +107,10 @@ class Preference {
 	 * @return bool
 	 */
 	public function save() {
-		$this->preferences->set( $this->key, array(
+		$this->preferences->set( $this->key, [
 			'order'   => $this->get_order(),
 			'orderby' => $this->get_order_by(),
-		) );
+		] );
 
 		return $this->preferences->save();
 	}

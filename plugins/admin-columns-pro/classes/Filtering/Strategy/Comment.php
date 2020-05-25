@@ -3,18 +3,20 @@
 namespace ACP\Filtering\Strategy;
 
 use ACP\Filtering\Strategy;
+use WP_Comment_Query;
 
 class Comment extends Strategy {
 
 	public function handle_request() {
-		add_action( 'pre_get_comments', array( $this, 'handle_filter_requests' ), 2 );
+		add_action( 'pre_get_comments', [ $this, 'handle_filter_requests' ], 2 );
 	}
 
 	/**
 	 * Handle filter request for single values
-	 * @since 3.5
 	 *
-	 * @param \WP_Comment_Query $comment_query
+	 * @param WP_Comment_Query $comment_query
+	 *
+	 * @since 3.5
 	 */
 	public function handle_filter_requests( $comment_query ) {
 		// meta_query in WP_Comment is by default a string. We parse it to an array because of PHP7.1 compatibility issue
@@ -23,11 +25,10 @@ class Comment extends Strategy {
 	}
 
 	/**
-	 * @since 3.5
-	 *
 	 * @param string $field
 	 *
 	 * @return array
+	 * @since 3.5
 	 */
 	public function get_values_by_db_field( $field ) {
 		global $wpdb;
@@ -40,7 +41,7 @@ class Comment extends Strategy {
 		" );
 
 		if ( ! $results ) {
-			return array();
+			return [];
 		}
 
 		return $results;

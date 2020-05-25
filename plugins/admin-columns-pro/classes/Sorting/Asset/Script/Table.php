@@ -2,8 +2,8 @@
 
 namespace ACP\Sorting\Asset\Script;
 
-use ACP\Asset\Location;
-use ACP\Asset\Script;
+use AC\Asset\Location;
+use AC\Asset\Script;
 use ACP\Sorting\Table\Preference;
 
 final class Table extends Script {
@@ -17,7 +17,7 @@ final class Table extends Script {
 	 * @param Preference $preference
 	 */
 	public function __construct( $handle, Location $location, Preference $preference ) {
-		parent::__construct( $handle, $location, array( 'jquery' ) );
+		parent::__construct( $handle, $location, [ 'jquery' ] );
 
 		$this->preference = $preference;
 	}
@@ -25,10 +25,10 @@ final class Table extends Script {
 	public function register() {
 		parent::register();
 
-		wp_localize_script( $this->get_handle(), 'ACP_Sorting', array(
+		wp_localize_script( $this->get_handle(), 'ACP_Sorting', [
 			'order'   => $this->preference->get_order(),
 			'orderby' => $this->preference->get_order_by(),
-		) );
+		] );
 	}
 
 }

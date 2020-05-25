@@ -16,19 +16,19 @@ class UsedAsFeaturedImage extends AC\Column
 	}
 
 	public function get_raw_value( $id ) {
-		$ids = get_posts( array(
+		$ids = get_posts( [
 			'posts_per_page' => -1,
 			'post_type'      => 'any',
 			'post_status'    => 'any',
 			'fields'         => 'ids',
 			'no_found_rows'  => true,
-			'meta_query'     => array(
-				array(
+			'meta_query'     => [
+				[
 					'key'   => '_thumbnail_id',
 					'value' => $id,
-				),
-			),
-		) );
+				],
+			],
+		] );
 
 		return $ids;
 	}

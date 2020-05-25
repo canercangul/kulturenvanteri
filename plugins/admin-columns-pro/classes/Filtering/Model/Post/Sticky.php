@@ -25,20 +25,20 @@ class Sticky extends Model {
 	}
 
 	public function get_filtering_vars( $vars ) {
-		add_filter( 'posts_where', array( $this, 'filter_by_sticky' ) );
+		add_filter( 'posts_where', [ $this, 'filter_by_sticky' ] );
 
 		return $vars;
 	}
 
 	public function get_filtering_data() {
-		$options = array(
+		$options = [
 			0 => __( 'Not sticky', 'codepress-admin-columns' ),
 			1 => __( 'Sticky', 'codepress-admin-columns' ),
-		);
+		];
 
-		return array(
+		return [
 			'options' => $options,
-		);
+		];
 	}
 
 }

@@ -5,6 +5,7 @@ namespace ACP\Search\Helper\Sql\Comparison;
 use ACP\Search\Helper\DateValueFactory;
 use ACP\Search\Helper\Sql\Comparison;
 use ACP\Search\Value;
+use Exception;
 
 class LtDaysAgo extends Between {
 
@@ -12,7 +13,7 @@ class LtDaysAgo extends Between {
 	 * @param Value $value
 	 *
 	 * @return Comparison
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function bind_value( Value $value ) {
 		$value_factory = new DateValueFactory( $value->get_type() );

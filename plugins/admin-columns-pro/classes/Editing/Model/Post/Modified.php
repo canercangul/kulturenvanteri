@@ -17,9 +17,9 @@ class Modified extends Model\Post {
 	}
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type' => 'date_time',
-		);
+		];
 	}
 
 	public function save( $id, $value ) {

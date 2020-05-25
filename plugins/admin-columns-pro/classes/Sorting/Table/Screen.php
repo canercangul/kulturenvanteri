@@ -3,9 +3,10 @@
 namespace ACP\Sorting\Table;
 
 use AC;
+use AC\Asset\Location;
+use AC\Asset\Style;
 use AC\Table;
 use ACP;
-use ACP\Asset\Location;
 use ACP\Sorting\Asset\Script;
 use ACP\Sorting\ListScreen;
 use ACP\Sorting\ModelFactory;
@@ -22,23 +23,19 @@ class Screen {
 	 */
 	private $location;
 
-	/**
-	 * @param AC\ListScreen     $list_screen
-	 * @param Location\Absolute $location
-	 */
 	public function __construct( AC\ListScreen $list_screen, Location\Absolute $location ) {
 		$this->list_screen = $list_screen;
 		$this->location = $location;
 	}
 
 	public function register() {
-		add_action( 'admin_enqueue_scripts', array( $this, 'scripts' ) );
-		add_action( 'ac/table', array( $this, 'register_reset_button' ) );
+		add_action( 'admin_enqueue_scripts', [ $this, 'scripts' ] );
+		add_action( 'ac/table', [ $this, 'register_reset_button' ] );
 
 		/**
 		 * @see WP_List_Table::get_column_info
 		 */
-		add_filter( 'manage_' . $this->list_screen->get_screen_id() . '_sortable_columns', array( $this, 'add_sortable_headings' ) );
+		add_filter( 'manage_' . $this->list_screen->get_screen_id() . '_sortable_columns', [ $this, 'add_sortable_headings' ] );
 
 		// After filtering
 		$this->init_sorting();
@@ -164,16 +161,15 @@ class Screen {
 	}
 
 	/**
-	 * @since 1.0
-	 *
 	 * @param array $sortable_columns Column name or label
 	 *
 	 * @return array Column name or Sanitized Label
+	 * @since 1.0
 	 */
 	public function add_sortable_headings( $sortable_columns ) {
 
 		// Stores the default columns on the listings screen
-		if ( ! AC()->is_doing_ajax() && current_user_can( AC\Capabilities::MANAGE ) ) {
+		if ( ! wp_doing_ajax() && current_user_can( AC\Capabilities::MANAGE ) ) {
 
 			$native = new ACP\Sorting\NativeSortables( $this->list_screen );
 			$native->store( $sortable_columns );
@@ -213,20 +209,13 @@ class Screen {
 	}
 
 	/**
-	 * @return bool
-	 */
-	public function reset_sorting() {
-		return $this->preference()->delete();
-	}
-
-	/**
 	 * Scripts
 	 */
 	public function scripts() {
-		$assets = array(
+		$assets = [
 			new Script\Table( 'acp-sorting', $this->location->with_suffix( 'assets/sorting/js/table.js' ), $this->preference() ),
-			new ACP\Asset\Style( 'acp-sorting', $this->location->with_suffix( 'assets/sorting/css/table.css' ) ),
-		);
+			new Style( 'acp-sorting', $this->location->with_suffix( 'assets/sorting/css/table.css' ) ),
+		];
 
 		foreach ( $assets as $asset ) {
 			$asset->enqueue();

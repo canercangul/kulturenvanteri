@@ -3,44 +3,45 @@
 namespace ACP\Export;
 
 use AC;
-use ACP\Asset\Enqueueable;
+use AC\Asset\Location;
+use AC\Registrable;
+use ACP\Export\Asset\Script;
 
-class TableScreen implements AC\Registrable {
-
-	/**
-	 * @var Enqueueable[]
-	 */
-	protected $assets;
+class TableScreen implements Registrable {
 
 	/**
-	 * @param array $assets
+	 * @var Location
 	 */
-	public function __construct( array $assets ) {
-		$this->assets = $assets;
+	protected $location;
+
+	public function __construct( Location $location ) {
+		$this->location = $location;
 	}
 
 	public function register() {
-		add_action( 'ac/table_scripts', array( $this, 'scripts' ) );
-		add_action( 'admin_footer', array( $this, 'export_form' ) );
-	}
-
-	public function scripts() {
-		foreach ( $this->assets as $asset ) {
-			$asset->enqueue();
-		}
+		add_action( 'ac/table/list_screen', [ $this, 'load_list_screen' ] );
+		add_action( 'ac/table_scripts', [ $this, 'scripts' ] );
 	}
 
 	/**
-	 * Output the form that holds the export query arguments
+	 * Load a list screen and potentially attach the proper exporting information to it
+	 *
+	 * @param AC\ListScreen $list_screen List screen for current table screen
+	 *
 	 * @since 1.0
 	 */
-	public function export_form() {
-		?>
-		<form action="" method="post" id="acp-export">
-			<?php wp_nonce_field( 'acp_export_listscreen_export', '_wpnonce', false ); ?>
-			<input type="submit" class="button button-secondary"/>
-		</form>
-		<?php
+	public function load_list_screen( AC\ListScreen $list_screen ) {
+		if ( $list_screen instanceof ListScreen ) {
+			$list_screen->export()->attach();
+		}
+	}
+
+	public function scripts() {
+		$style = new AC\Asset\Style( 'acp-export-listscreen', $this->location->with_suffix( 'assets/export/css/listscreen.css' ) );
+		$style->enqueue();
+
+		$script = new Script\Table( 'acp-export-listscreen', $this->location->with_suffix( 'assets/export/js/listscreen.js' ) );
+		$script->enqueue();
 	}
 
 }

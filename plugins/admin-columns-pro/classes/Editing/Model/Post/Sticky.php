@@ -7,13 +7,13 @@ use ACP\Editing\Model;
 class Sticky extends Model\Post {
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'    => 'togglable',
-			'options' => array(
+			'options' => [
 				'no'  => __( 'No', 'codepress-admin-columns' ),
 				'yes' => __( 'Yes', 'codepress-admin-columns' ),
-			),
-		);
+			],
+		];
 	}
 
 	public function get_edit_value( $id ) {

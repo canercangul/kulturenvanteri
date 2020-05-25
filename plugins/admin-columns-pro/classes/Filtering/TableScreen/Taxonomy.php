@@ -13,7 +13,7 @@ class Taxonomy extends TableScreen {
 		$filter_button = FilterButtonFactory::create( FilterButtonFactory::SCREEN_TAXONOMY );
 		$filter_button->register();
 
-		add_action( 'in_admin_footer', array( $this, 'render_markup' ), 1 );
+		add_action( 'in_admin_footer', [ $this, 'render_markup' ], 1 );
 	}
 
 	public function render_markup() {
@@ -35,7 +35,7 @@ class Taxonomy extends TableScreen {
 	}
 
 	private function get_active_filters() {
-		$filters = array();
+		$filters = [];
 
 		foreach ( $this->models as $model ) {
 			if ( $model->is_active() ) {

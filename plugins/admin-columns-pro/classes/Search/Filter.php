@@ -16,9 +16,9 @@ abstract class Filter {
 	protected $label;
 
 	/**
-	 * @param string $name
-	 * @param Comparison  $comparison
-	 * @param string $label
+	 * @param string     $name
+	 * @param Comparison $comparison
+	 * @param string     $label
 	 */
 	public function __construct( $name, Comparison $comparison, $label ) {
 		$this->name = $name;

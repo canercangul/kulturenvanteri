@@ -52,7 +52,7 @@ use AC\Form\Element\Select; ?>
 				<div class="ac-setbox__row__fields__inner">
 					<div class="checkbox-labels checkbox-labels vertical">
 
-						<?= implode( $this->checkboxes_hide ); ?>
+						<?= $this->hide_on_screen; ?>
 
 					</div>
 				</div>

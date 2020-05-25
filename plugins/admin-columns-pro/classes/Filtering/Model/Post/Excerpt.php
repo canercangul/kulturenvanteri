@@ -7,12 +7,12 @@ use ACP\Filtering\Model;
 class Excerpt extends Model {
 
 	public function get_filtering_data() {
-		return array(
-			'options' => array(
+		return [
+			'options' => [
 				'without_excerpt' => __( 'Without Excerpt', 'codepress-admin-columns' ),
 				'has_excerpt'     => __( 'Has Excerpt', 'codepress-admin-columns' ),
-			),
-		);
+			],
+		];
 	}
 
 	public function filter_by_excerpt( $where ) {
@@ -28,7 +28,7 @@ class Excerpt extends Model {
 	}
 
 	public function get_filtering_vars( $vars ) {
-		add_filter( 'posts_where', array( $this, 'filter_by_excerpt' ) );
+		add_filter( 'posts_where', [ $this, 'filter_by_excerpt' ] );
 
 		return $vars;
 	}

@@ -46,7 +46,6 @@ abstract class Mapping {
 
 	/**
 	 * Return array of properties with the response side first
-	 *
 	 * @return array
 	 */
 	protected abstract function get_properties();

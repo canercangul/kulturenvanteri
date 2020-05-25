@@ -38,7 +38,7 @@ abstract class Query
 	 * @return array
 	 */
 	protected function get_meta_query() {
-		$meta_query = array();
+		$meta_query = [];
 
 		foreach ( $this->bindings as $binding ) {
 			$meta_query[] = $binding->get_meta_query();

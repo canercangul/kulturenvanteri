@@ -15,7 +15,7 @@ class Date extends Model {
 	}
 
 	public function get_filtering_vars( $vars ) {
-		add_filter( 'comments_clauses', array( $this, 'filter_by_date' ) );
+		add_filter( 'comments_clauses', [ $this, 'filter_by_date' ] );
 
 		return $vars;
 	}

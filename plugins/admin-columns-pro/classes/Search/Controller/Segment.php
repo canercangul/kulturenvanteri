@@ -4,9 +4,11 @@ namespace ACP\Search\Controller;
 
 use AC;
 use AC\Exception;
+use AC\ListScreenRepository\Storage;
 use AC\Preferences;
 use AC\Request;
 use AC\Response;
+use AC\Type\ListScreenId;
 use ACP\Controller;
 use ACP\Search;
 use ACP\Search\Segments;
@@ -28,23 +30,19 @@ class Segment extends Controller {
 	 */
 	protected $segments;
 
-	/**
-	 * @param Request                 $request
-	 * @param Search\Middleware\Rules $rules
-	 */
-	public function __construct( Request $request, Search\Middleware\Rules $rules ) {
+	public function __construct( Storage $storage, Request $request, Search\Middleware\Rules $rules ) {
 		parent::__construct( $request );
 
 		$id = $request->get( 'layout' );
 
-		if ( $id ) {
-			$this->list_screen = AC()->get_listscreen_repository()->find( $id );
+		if ( ListScreenId::is_valid_id( $id ) ) {
+			$this->list_screen = $storage->find( new ListScreenId( $id ) );
 		} else {
 			$this->list_screen = AC\ListScreenTypes::instance()->get_list_screen_by_key( $request->get( 'list_screen' ) );
 		}
 
 		if ( ! $this->list_screen instanceof AC\ListScreen ) {
-			throw Exception\Request::from_invalid_parameters();
+			throw Exception\RequestException::parameters_invalid();
 		}
 
 		$layout_id = $this->list_screen->get_layout_id();
@@ -58,14 +56,14 @@ class Segment extends Controller {
 	/**
 	 * @param array $data
 	 */
-	protected function handle_segments_response( $data = array() ) {
+	protected function handle_segments_response( $data = [] ) {
 		$response = new Response\Json();
 
-		$errors = array(
+		$errors = [
 			Segments::ERROR_DUPLICATE_NAME => __( 'A segment with this name already exists.', 'codepress-admin-columns' ),
 			Segments::ERROR_NAME_NOT_FOUND => __( 'Could not find current segment.', 'codepress-admin-columns' ),
 			Segments::ERROR_SAVING         => __( 'Could save the segment.', 'codepress-admin-columns' ),
-		);
+		];
 
 		if ( $this->segments->has_errors() ) {
 			$response
@@ -86,24 +84,24 @@ class Segment extends Controller {
 	protected function get_segment_response( Segments\Segment $segment ) {
 		$rules = $this->rules;
 		$url = add_query_arg(
-			array(
+			[
 				'ac-rules'   => urlencode( json_encode( $rules( (array) $segment->get_value( 'rules' ) ) ) ),
 				'order'      => $segment->get_value( 'order' ),
 				'orderby'    => $segment->get_value( 'orderby' ),
 				'ac-segment' => urlencode( $segment->get_name() ),
-			),
+			],
 			$this->list_screen->get_screen_link()
 		);
 
-		return array(
+		return [
 			'name' => $segment->get_name(),
 			'url'  => $url,
-		);
+		];
 	}
 
 	public function read_action() {
 		$response = new Response\Json();
-		$data = array();
+		$data = [];
 
 		foreach ( $this->segments->get_segments() as $segment ) {
 			$data[] = $this->get_segment_response( $segment );
@@ -117,33 +115,33 @@ class Segment extends Controller {
 	public function create_action() {
 		$data = filter_var_array(
 			$this->request->get_parameters()->all(),
-			array(
+			[
 				'name'    => FILTER_SANITIZE_STRING,
-				'rules'   => array(
+				'rules'   => [
 					'filter' => FILTER_DEFAULT,
 					'flags'  => FILTER_REQUIRE_ARRAY,
-				),
+				],
 				'order'   => FILTER_SANITIZE_STRING,
 				'orderby' => FILTER_SANITIZE_STRING,
-			)
+			]
 		);
 
 		$segment = new Segments\Segment(
 			$data['name'],
-			array(
+			[
 				'rules'   => $data['rules'],
 				'order'   => $data['order'],
 				'orderby' => $data['orderby'],
-			)
+			]
 		);
 
 		$this->segments
 			->add_segment( $segment )
 			->save();
 
-		$this->handle_segments_response( array(
+		$this->handle_segments_response( [
 			'segment' => $this->get_segment_response( $segment ),
-		) );
+		] );
 	}
 
 	public function delete_action() {

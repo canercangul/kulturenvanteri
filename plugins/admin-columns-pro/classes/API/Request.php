@@ -17,7 +17,7 @@ class Request {
 	/**
 	 * @param array $body
 	 */
-	public function __construct( array $body = array() ) {
+	public function __construct( array $body = [] ) {
 		$this->set_body( $body )
 		     ->set_format( 'json' )
 		     ->set_arg( 'timeout', 15 );

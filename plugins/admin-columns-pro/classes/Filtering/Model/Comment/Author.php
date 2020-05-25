@@ -15,13 +15,13 @@ class Author extends Model {
 	}
 
 	public function get_filtering_vars( $vars ) {
-		add_filter( 'comments_clauses', array( $this, 'filter_by_author' ) );
+		add_filter( 'comments_clauses', [ $this, 'filter_by_author' ] );
 
 		return $vars;
 	}
 
 	public function get_filtering_data() {
-		$data = array();
+		$data = [];
 
 		foreach ( $this->strategy->get_values_by_db_field( 'comment_author' ) as $_value ) {
 			$data['options'][ $_value ] = $_value;

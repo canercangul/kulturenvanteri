@@ -8,9 +8,9 @@ use ACP\Editing;
 use ACP\Export;
 use ACP\Filtering;
 use ACP\Sorting;
+use ReflectionException;
 
-class Post extends AC\ListScreen\Post
-	implements Sorting\ListScreen, Editing\ListScreen, Filtering\ListScreen, Export\ListScreen {
+class Post extends AC\ListScreen\Post implements Sorting\ListScreen, Editing\ListScreen, Filtering\ListScreen, Export\ListScreen {
 
 	public function sorting( $model ) {
 		return new Sorting\Strategy\Post( $model );
@@ -29,7 +29,7 @@ class Post extends AC\ListScreen\Post
 	}
 
 	/**
-	 * @throws \ReflectionException
+	 * @throws ReflectionException
 	 */
 	protected function register_column_types() {
 		parent::register_column_types();

@@ -16,7 +16,7 @@ final class ComparisonFactory {
 	 * @return Comparison
 	 */
 	public static function create( $column, $operator, Value $value ) {
-		$operators = array(
+		$operators = [
 			Operators::EQ           => '=',
 			Operators::NEQ          => '!=',
 			Operators::LT           => '<',
@@ -25,13 +25,13 @@ final class ComparisonFactory {
 			Operators::GTE          => '>=',
 			Operators::IS_EMPTY     => '=',
 			Operators::NOT_IS_EMPTY => '!=',
-		);
+		];
 
 		if ( array_key_exists( $operator, $operators ) ) {
 			return new Comparison( $column, $operators[ $operator ], $value );
 		}
 
-		$operators = array(
+		$operators = [
 			Operators::CONTAINS     => 'Contains',
 			Operators::NOT_CONTAINS => 'NotContains',
 			Operators::BEGINS_WITH  => 'BeginsWith',
@@ -45,7 +45,7 @@ final class ComparisonFactory {
 			Operators::LT_DAYS_AGO  => 'LtDaysAgo',
 			Operators::GT_DAYS_AGO  => 'GtDaysAgo',
 			Operators::WITHIN_DAYS  => 'WithinDays',
-		);
+		];
 
 		if ( ! array_key_exists( $operator, $operators ) ) {
 			throw new LogicException( 'Invalid operator found.' );

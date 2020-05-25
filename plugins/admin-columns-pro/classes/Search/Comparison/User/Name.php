@@ -19,11 +19,11 @@ class Name extends Comparison {
 	 * @param array $meta_keys
 	 */
 	public function __construct( array $meta_keys ) {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::CONTAINS,
 			Operators::BEGINS_WITH,
 			Operators::ENDS_WITH,
-		) );
+		] );
 
 		$this->meta_keys = $meta_keys;
 
@@ -43,9 +43,9 @@ class Name extends Comparison {
 	}
 
 	protected function get_meta_query( $operator, Value $value ) {
-		$meta_query = array(
+		$meta_query = [
 			'relation' => 'OR',
-		);
+		];
 
 		foreach ( $this->meta_keys as $key ) {
 			$mq = ComparisonFactory::create(

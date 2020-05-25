@@ -21,19 +21,19 @@ class CustomField extends Model\Meta {
 		$query->select( 'id, meta_value' )
 		      ->where_in( $ids );
 
-		if ( acp_sorting()->show_all_results() ) {
+		if ( acp_sorting_show_all_results() ) {
 			$query->left_join();
 		}
 
-		$values = array();
+		$values = [];
 
 		foreach ( $query->get() as $result ) {
 			$values[ $result->id ] = maybe_unserialize( $result->meta_value );
 		}
 
-		return array(
+		return [
 			'ids' => $this->sort( $values ),
-		);
+		];
 	}
 
 }

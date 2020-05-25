@@ -12,13 +12,16 @@ class Column extends AC\Settings\Column {
 	 * @return array
 	 */
 	protected function define_options() {
-		return array(
+		return [
 			'search',
-		);
+		];
 	}
 
-	private function get_tooltip() {
-		return new ACP\Search\Tooltip\SmartFiltering( $this->column->get_name() );
+	private function get_instructions() {
+		$view = new View();
+		$view->set_template( 'tooltip/smart-filtering' );
+
+		return $view->render();
 	}
 
 	/**
@@ -27,9 +30,9 @@ class Column extends AC\Settings\Column {
 	public function create_view() {
 		$view = new View();
 		$view->set( 'label', __( 'Smart Filtering', 'codepress-admin-columns' ) )
-		     ->set( 'tooltip', __( 'Smart filtering is always enabled.', 'codepress-admin-columns' ) )
+		     ->set( 'instructions', $this->get_instructions() )
 		     ->set( 'setting',
-			     sprintf( '<em>%s</em> %s', __( 'Enabled', 'codepress-admin-columns' ), $this->get_tooltip()->get_label() . $this->get_tooltip()->get_instructions() )
+			     sprintf( '<em>%s</em>', __( 'Enabled', 'codepress-admin-columns' ) )
 		     );
 
 		return $view;

@@ -2,28 +2,29 @@
 
 namespace ACP\ThirdParty\bbPress\Editing;
 
+use AC;
 use ACP\Editing;
 use ACP\Helper\Select;
 
 class TopicForum extends Editing\Model implements Editing\PaginatedOptions {
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'          => 'select2_dropdown',
 			'ajax_populate' => true,
 			'multiple'      => false,
 			'clear_button'  => true,
-		);
+		];
 	}
 
 	public function get_paginated_options( $s, $paged, $id = null ) {
-		$entities = new Select\Entities\Post( array(
+		$entities = new Select\Entities\Post( [
 			's'         => $s,
 			'paged'     => $paged,
 			'post_type' => 'forum',
-		) );
+		] );
 
-		return new Select\Options\Paginated(
+		return new AC\Helper\Select\Options\Paginated(
 			$entities,
 			new Select\Formatter\PostTitle( $entities )
 		);
@@ -37,9 +38,9 @@ class TopicForum extends Editing\Model implements Editing\PaginatedOptions {
 			return false;
 		}
 
-		return array(
+		return [
 			$post->ID => $post->post_title,
-		);
+		];
 	}
 
 	public function save( $id, $value ) {

@@ -3,18 +3,20 @@
 namespace ACP\Filtering\Strategy;
 
 use ACP\Filtering\Strategy;
+use WP_User_Query;
 
 class User extends Strategy {
 
 	public function handle_request() {
-		add_action( 'pre_get_users', array( $this, 'handle_filter_requests' ), 1 );
+		add_action( 'pre_get_users', [ $this, 'handle_filter_requests' ], 1 );
 	}
 
 	/**
 	 * Handle filter request
-	 * @since 3.5
 	 *
-	 * @param \WP_User_Query $user_query
+	 * @param WP_User_Query $user_query
+	 *
+	 * @since 3.5
 	 */
 	public function handle_filter_requests( $user_query ) {
 		if ( ! isset( $_GET['acp_filter_action'] ) ) {
@@ -37,7 +39,7 @@ class User extends Strategy {
 		" );
 
 		if ( ! $values || is_wp_error( $values ) ) {
-			return array();
+			return [];
 		}
 
 		return $values;

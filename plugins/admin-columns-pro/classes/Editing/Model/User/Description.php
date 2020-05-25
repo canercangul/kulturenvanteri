@@ -7,9 +7,9 @@ use ACP\Editing\Model;
 class Description extends Model {
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type' => 'textarea',
-		);
+		];
 	}
 
 	public function save( $id, $value ) {

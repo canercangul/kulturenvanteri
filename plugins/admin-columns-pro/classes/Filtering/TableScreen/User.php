@@ -10,7 +10,7 @@ class User extends TableScreen {
 	public function __construct( array $models, $assets ) {
 		parent::__construct( $models, $assets );
 
-		add_action( 'restrict_manage_users', array( $this, 'render_markup' ), 1 );
+		add_action( 'restrict_manage_users', [ $this, 'render_markup' ], 1 );
 
 		$filter_button = FilterButtonFactory::create( FilterButtonFactory::SCREEN_USERS );
 		$filter_button->register();
@@ -20,7 +20,7 @@ class User extends TableScreen {
 	 * Run once for Users
 	 */
 	public function render_markup() {
-		remove_action( 'restrict_manage_users', array( $this, 'render_markup' ), 1 );
+		remove_action( 'restrict_manage_users', [ $this, 'render_markup' ], 1 );
 
 		parent::render_markup();
 	}

@@ -11,17 +11,29 @@ class Settings extends AC\Settings\Column
 	private $edit;
 
 	protected function define_options() {
-		return array( 'edit' => 'off' );
+		return [ 'edit' => 'off' ];
+	}
+
+	/**
+	 * @return string
+	 */
+	private function get_instruction() {
+		$view = new View( [
+			'object_type' => $this->column->get_list_screen()->get_singular_label(),
+		] );
+		$view->set_template( 'tooltip/inline-editing' );
+
+		return $view->render();
 	}
 
 	public function create_header_view() {
 		$filter = $this->get_edit();
 
-		$view = new View( array(
+		$view = new View( [
 			'title'    => __( 'Enable Editing', 'codepress-admin-columns' ),
 			'dashicon' => 'dashicons-edit',
 			'state'    => $filter,
-		) );
+		] );
 
 		$view->set_template( 'settings/header-icon' );
 
@@ -31,14 +43,14 @@ class Settings extends AC\Settings\Column
 	public function create_view() {
 		$edit = $this->create_element( 'radio', 'edit' );
 		$edit
-			->set_options( array(
+			->set_options( [
 				'on'  => __( 'Yes' ),
 				'off' => __( 'No' ),
-			) );
+			] );
 
 		$view = new View();
 		$view->set( 'label', __( 'Inline Editing', 'codepress-admin-columns' ) )
-		     ->set( 'tooltip', __( 'This will make the column support inline editing.', 'codepress-admin-columns' ) )
+		     ->set( 'instructions', $this->get_instruction() )
 		     ->set( 'setting', $edit );
 
 		return $view;

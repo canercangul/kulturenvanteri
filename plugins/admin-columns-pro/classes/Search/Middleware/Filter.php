@@ -10,7 +10,7 @@ class Filter extends Search\Filter {
 
 	private function get_labels() {
 		$mapping = new Mapping\Operator( Mapping::RESPONSE );
-		$labels = array();
+		$labels = [];
 
 		foreach ( $this->comparison->get_labels() as $operator => $label ) {
 			$labels[ $mapping->$operator ] = $label;
@@ -30,7 +30,7 @@ class Filter extends Search\Filter {
 		$comparison = $this->comparison;
 		$labels = $this->get_labels();
 
-		$filter = array(
+		$filter = [
 			'id'              => $this->name,
 			'type'            => $this->get_value_type(),
 			'operators'       => array_keys( $labels ),
@@ -39,12 +39,12 @@ class Filter extends Search\Filter {
 			'values'          => false,
 			'use_ajax'        => false,
 			'use_pagination'  => false,
-		);
+		];
 
 		switch ( true ) {
 			case $comparison instanceof Comparison\Values :
 
-				$values = array();
+				$values = [];
 
 				/** @var AC\Helper\Select\Option $value */
 				foreach ( $comparison->get_values() as $value ) {

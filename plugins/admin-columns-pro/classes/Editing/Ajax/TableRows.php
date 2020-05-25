@@ -32,7 +32,7 @@ abstract class TableRows extends Request {
 	public function handle_request() {
 		$this->check_nonce();
 
-		$ids = $this->request->filter( 'ac_ids', array(), FILTER_VALIDATE_INT, FILTER_REQUIRE_ARRAY );
+		$ids = $this->request->filter( 'ac_ids', [], FILTER_VALIDATE_INT, FILTER_REQUIRE_ARRAY );
 
 		$response = new Response\Json();
 
@@ -40,7 +40,7 @@ abstract class TableRows extends Request {
 			$response->error();
 		}
 
-		$rows = array();
+		$rows = [];
 
 		foreach ( $ids as $id ) {
 			$rows[ $id ] = $this->list_screen->get_single_row( $id );

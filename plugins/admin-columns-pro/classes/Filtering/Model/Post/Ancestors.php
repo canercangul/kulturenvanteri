@@ -13,7 +13,7 @@ class Ancestors extends Model {
 
 				break;
 			case 'cpac_nonempty':
-				$vars['post_parent__not_in'] = array( 0 );
+				$vars['post_parent__not_in'] = [ 0 ];
 
 				break;
 		}
@@ -22,9 +22,9 @@ class Ancestors extends Model {
 	}
 
 	public function get_filtering_data() {
-		return array(
+		return [
 			'empty_option' => $this->get_empty_labels(),
-		);
+		];
 	}
 
 }

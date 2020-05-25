@@ -32,7 +32,7 @@ class Sorted {
 	 */
 	private $preference;
 
-	public function __construct( AC\ListScreen $list_screen, Preference $preference, array $request_var = array() ) {
+	public function __construct( AC\ListScreen $list_screen, Preference $preference, array $request_var = [] ) {
 		$this->list_screen = $list_screen;
 		$this->preference = $preference;
 		$this->request = $request_var;

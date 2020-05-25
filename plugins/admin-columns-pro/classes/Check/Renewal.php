@@ -11,6 +11,7 @@ use AC\Storage;
 use ACP\Entity\License;
 use ACP\LicenseKeyRepository;
 use ACP\LicenseRepository;
+use ACP\Type\SiteUrl;
 use DateTime;
 use Exception;
 
@@ -28,18 +29,30 @@ class Renewal
 	private $license_key_repository;
 
 	/**
+	 * @var string
+	 */
+	private $plugin_basename;
+
+	/**
+	 * @var SiteUrl
+	 */
+	private $site_url;
+
+	/**
 	 * @var int[] Intervals to check in ascending order with a max of 90 days
 	 */
 	protected $intervals;
 
-	public function __construct( LicenseRepository $license_repository, LicenseKeyRepository $license_key_repository ) {
+	public function __construct( LicenseRepository $license_repository, LicenseKeyRepository $license_key_repository, $plugin_basename, SiteUrl $site_url ) {
 		$this->license_repository = $license_repository;
 		$this->license_key_repository = $license_key_repository;
+		$this->plugin_basename = $plugin_basename;
+		$this->site_url = $site_url;
 		$this->intervals = [ 1, 7, 21 ];
 	}
 
 	public function register() {
-		add_action( 'ac/screen', array( $this, 'display' ) );
+		add_action( 'ac/screen', [ $this, 'display' ] );
 
 		$this->get_ajax_handler()->register();
 	}
@@ -68,7 +81,7 @@ class Renewal
 	protected function get_ajax_handler() {
 		$handler = new Ajax\Handler();
 		$handler->set_action( 'ac_notice_dismiss_renewal' )
-		        ->set_callback( array( $this, 'ajax_dismiss_notice' ) );
+		        ->set_callback( [ $this, 'ajax_dismiss_notice' ] );
 
 		return $handler;
 	}
@@ -85,21 +98,13 @@ class Renewal
 		);
 	}
 
-	private function is_valid_screen( Screen $screen ) {
-		return $screen->has_screen() && ( $screen->is_admin_screen() || $screen->is_list_screen() || $screen->is_plugin_screen() );
-	}
-
 	/**
 	 * @param Screen $screen
 	 *
 	 * @throws Exception
 	 */
 	public function display( Screen $screen ) {
-		if ( ! $this->is_valid_screen( $screen ) ) {
-			return;
-		}
-
-		if ( ! current_user_can( Capabilities::MANAGE ) ) {
+		if ( ! $screen->has_screen() || ! current_user_can( Capabilities::MANAGE ) ) {
 			return;
 		}
 
@@ -115,33 +120,52 @@ class Renewal
 
 		$license = $this->license_repository->find( $license_key );
 
-		if ( ! $license || $license->is_auto_renewal() || $license->is_expired() || $license->is_cancelled() ) {
+		if ( ! $license
+		     || $license->is_auto_renewal()
+		     || $license->is_expired()
+		     || $license->is_cancelled()
+		     || $license->is_lifetime()
+		     || ! $license->get_expiry_date()->exists()
+		) {
 			return;
 		}
 
-		$days_remaining = $this->get_days_remaining( $license );
+		$days_remaining = $license->get_expiry_date()->get_remaining_days();
 
-		$interval = $this->get_current_interval( $days_remaining );
+		$interval = $days_remaining > 0
+			? $this->get_current_interval( (int) floor( $days_remaining ) )
+			: null;
 
-		if ( false === $interval ) {
-			return;
+		$notice = null;
+
+		if ( $screen->is_plugin_screen() && $license->get_expiry_date()->is_expiring_within_seconds( DAY_IN_SECONDS * 21 ) ) {
+			// Inline message on plugin page
+			$notice = new Message\Plugin( $this->get_message( $license ), $this->plugin_basename );
+		} else if ( $screen->is_admin_screen( 'settings' ) && $license->get_expiry_date()->is_expiring_within_seconds( DAY_IN_SECONDS * 21 ) ) {
+			// Permanent displayed on settings page
+			$notice = new Message\Notice( $this->get_message( $license ) );
+		} else if ( ( $screen->is_list_screen() || $screen->is_admin_screen( 'columns' ) ) && $interval && $this->get_dismiss_option( $interval )->is_expired() ) {
+			// Dismissible
+			$notice = new Message\Notice\Dismissible( $this->get_message( $license ), $this->get_ajax_handler_interval( $interval ) );
 		}
 
-		if ( ! $this->get_dismiss_option( $interval )->is_expired() ) {
-			return;
+		if ( $notice instanceof Message ) {
+			$notice
+				->set_type( $notice::WARNING )
+				->register();
 		}
+	}
 
+	/**
+	 * @param int $interval
+	 *
+	 * @return Ajax\Handler
+	 */
+	private function get_ajax_handler_interval( $interval ) {
 		$ajax_handler = $this->get_ajax_handler();
 		$ajax_handler->set_param( 'interval', $interval );
 
-		$notice = new Message\Notice\Dismissible(
-			$this->get_message( $license ),
-			$ajax_handler
-		);
-
-		$notice
-			->set_type( $notice::WARNING )
-			->register();
+		return $ajax_handler;
 	}
 
 	/**
@@ -163,6 +187,7 @@ class Renewal
 
 	/**
 	 * @param DateTime $date
+	 * @param string   $format
 	 *
 	 * @return string
 	 */
@@ -180,43 +205,34 @@ class Renewal
 	 * @return string
 	 */
 	protected function get_message( License $license ) {
-		$discount = $license->get_renewal_discount();
+		$link = add_query_arg(
+			[
+				'subscription_key' => $license->get_key()->get_value(),
+				'site_url'         => $this->site_url->get_url(),
+			],
+			ac_get_site_utm_url( 'my-account/subscriptions', 'renewal' )
+		);
 
-		$expiry_date = '<strong>' . $this->localize_date( $license->get_expiry_date()->get_value() ) . '</strong>';
+		$renewal_link = sprintf( '<a href="%s">%s</a>', $link, __( 'Renew your license', 'codepress-admin-columns' ) );
+		$remaining_time = sprintf( '<strong>%s</strong>', $license->get_expiry_date()->get_human_time_diff() );
+		$expiry_date = sprintf( '<strong>%s</strong>', $this->localize_date( $license->get_expiry_date()->get_value() ) );
 
-		$remaining = sprintf( '<strong>%s</strong>', $license->get_expiry_date()->get_human_time_diff() );
-		$renewal_link = ac_helper()->html->link( ac_get_site_utm_url( 'my-account/license', 'renewal' ), __( 'Renew your license', 'codepress-admin-columns' ) );
-
-		if ( $discount ) {
+		if ( $license->get_renewal_discount()->get_value() ) {
 			return sprintf(
 				__( "Your Admin Columns Pro license will expire in %s. %s before %s to get a %d%% discount!", 'codepress-admin-columns' ),
-				$remaining,
+				$remaining_time,
 				$renewal_link,
 				$expiry_date,
-				$discount
+				$license->get_renewal_discount()->get_value()
 			);
 		}
 
 		return sprintf(
 			__( "Your Admin Columns Pro license will expire in %s. In order get access to new features and receive security updates, please %s before %s.", 'codepress-admin-columns' ),
-			$remaining,
+			$remaining_time,
 			strtolower( $renewal_link ),
 			$expiry_date
 		);
-	}
-
-	private function get_days_remaining( License $license ) {
-		if ( ! $license->get_expiry_date()->exists() ) {
-			return 0;
-		}
-
-		if ( $license->is_expired() ) {
-			return 0;
-		}
-
-		$days = floor( $license->get_expiry_date()->get_remaining_seconds() / DAY_IN_SECONDS );
-
-		return intval( $days );
 	}
 
 }

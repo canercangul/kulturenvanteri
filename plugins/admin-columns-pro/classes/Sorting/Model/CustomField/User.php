@@ -11,10 +11,10 @@ class User extends Model\CustomField {
 		$setting = $this->column->get_setting( 'user' );
 
 		if ( ! $setting instanceof AC\Settings\Column\User ) {
-			return array();
+			return [];
 		}
 
-		$ids = array();
+		$ids = [];
 
 		foreach ( $this->strategy->get_results() as $id ) {
 			$name = false;
@@ -30,9 +30,9 @@ class User extends Model\CustomField {
 			$ids[ $id ] = $name;
 		}
 
-		return array(
+		return [
 			'ids' => $this->sort( $ids ),
-		);
+		];
 	}
 
 }

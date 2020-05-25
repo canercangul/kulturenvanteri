@@ -6,8 +6,16 @@ use ACA\ACF\Editing;
 use ACA\ACF\Field;
 use ACA\ACF\Filtering;
 use ACP;
+use AC;
 
 class Number extends Field {
+
+	public function get_dependent_settings() {
+		$settings = parent::get_dependent_settings();
+		$settings[] = new AC\Settings\Column\NumberFormat( $this->column );
+
+		return $settings;
+	}
 
 	public function editing() {
 		return new Editing\Number( $this->column );

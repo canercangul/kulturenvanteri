@@ -3,13 +3,14 @@
 namespace ACP\Filtering\Model\User;
 
 use ACP\Filtering\Model;
+use WP_Query;
 
 class Email extends Model {
 
 	/**
 	 * @param $query
 	 *
-	 * @return \WP_Query
+	 * @return WP_Query
 	 */
 	public function filter_by_email( $query ) {
 		global $wpdb;
@@ -25,7 +26,7 @@ class Email extends Model {
 	 * @return array
 	 */
 	public function get_filtering_vars( $vars ) {
-		add_filter( 'pre_user_query', array( $this, 'filter_by_email' ) );
+		add_filter( 'pre_user_query', [ $this, 'filter_by_email' ] );
 
 		return $vars;
 	}
@@ -34,7 +35,7 @@ class Email extends Model {
 	 * @return array
 	 */
 	public function get_filtering_data() {
-		$data = array();
+		$data = [];
 
 		if ( $values = $this->strategy->get_values_by_db_field( 'user_email' ) ) {
 			foreach ( $values as $value ) {

@@ -11,16 +11,16 @@ class Email extends Model\User {
 	}
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'                   => 'email',
 			'required'               => true,
 			'placeholder'            => $this->column->get_label(),
 			self::VIEW_BULK_EDITABLE => false,
-		);
+		];
 	}
 
 	public function save( $id, $value ) {
-		return $this->update_user( $id, array( 'user_email' => $value ) );
+		return $this->update_user( $id, [ 'user_email' => $value ] );
 	}
 
 }

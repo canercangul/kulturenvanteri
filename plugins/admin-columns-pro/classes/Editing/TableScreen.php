@@ -3,8 +3,8 @@
 namespace ACP\Editing;
 
 use AC;
+use AC\Asset\Enqueueable;
 use AC\Preferences;
-use ACP\Asset\Enqueueable;
 use ACP\Editing;
 use LogicException;
 
@@ -41,8 +41,8 @@ class TableScreen implements AC\Registrable {
 	}
 
 	public function register() {
-		add_action( 'ac/table_scripts', array( $this, 'scripts' ) );
-		add_action( 'ac/table/actions', array( $this, 'edit_button' ) );
+		add_action( 'ac/table_scripts', [ $this, 'scripts' ] );
+		add_action( 'ac/table/actions', [ $this, 'edit_button' ] );
 	}
 
 	public function scripts() {

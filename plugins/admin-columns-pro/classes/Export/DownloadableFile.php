@@ -27,9 +27,10 @@ class DownloadableFile {
 
 	/**
 	 * Load the string content to be made downloadable
-	 * @since 1.0
 	 *
 	 * @param string $content String content to be made downloadable
+	 *
+	 * @since 1.0
 	 */
 	public function load_content_string( $content ) {
 		$this->content_string = $content;
@@ -37,8 +38,8 @@ class DownloadableFile {
 
 	/**
 	 * Get the string content to be made downloadable
-	 * @since 1.0
 	 * @return string String content to be made downloadable
+	 * @since 1.0
 	 */
 	public function get_content_string() {
 		return $this->content_string;
@@ -46,9 +47,10 @@ class DownloadableFile {
 
 	/**
 	 * Load the file to be made downloadable
-	 * @since 1.0
 	 *
 	 * @param string $fh File pointer to be made downloadable
+	 *
+	 * @since 1.0
 	 */
 	public function load_content_fh( $fh ) {
 		$this->content_fh = $fh;
@@ -56,8 +58,8 @@ class DownloadableFile {
 
 	/**
 	 * Get the pointer to the file to be made downloadable
-	 * @since 1.0
 	 * @return resource File pointer to be made downloadable
+	 * @since 1.0
 	 */
 	public function get_content_fh() {
 		return $this->content_fh;
@@ -65,10 +67,11 @@ class DownloadableFile {
 
 	/**
 	 * Run the actual exporting of the file, i.e., pass it as a downloadable file to the client
-	 * @since 1.0
 	 *
 	 * @param string $filename Filename of the downloadable. This is the name of the file as the
 	 *                         client downloads it
+	 *
+	 * @since 1.0
 	 */
 	public function export( $filename ) {
 		// Headers

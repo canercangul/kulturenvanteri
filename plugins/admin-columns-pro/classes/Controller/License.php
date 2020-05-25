@@ -7,13 +7,16 @@ use AC\Message\Notice;
 use AC\Registrable;
 use AC\Storage;
 use ACP\API;
+use ACP\API\Cached;
 use ACP\Entity;
 use ACP\LicenseKeyRepository;
 use ACP\LicenseRepository;
+use ACP\Plugins;
 use ACP\RequestDispatcher;
 use ACP\Type;
 use ACP\Type\License\ExpiryDate;
 use ACP\Type\License\Key;
+use ACP\Type\License\RenewalDiscount;
 use ACP\Type\License\RenewalMethod;
 use ACP\Type\License\Status;
 use DateTime;
@@ -51,11 +54,17 @@ class License implements Registrable {
 	 */
 	private $site_url;
 
-	public function __construct( RequestDispatcher $api, LicenseRepository $license_repository, LicenseKeyRepository $license_key_repository, Type\SiteUrl $site_url ) {
+	/**
+	 * @var Plugins
+	 */
+	private $plugins;
+
+	public function __construct( RequestDispatcher $api, LicenseRepository $license_repository, LicenseKeyRepository $license_key_repository, Type\SiteUrl $site_url, Plugins $plugins ) {
 		$this->api = $api;
 		$this->license_repository = $license_repository;
 		$this->license_key_repository = $license_key_repository;
 		$this->site_url = $site_url;
+		$this->plugins = $plugins;
 	}
 
 	public function register() {
@@ -102,13 +111,25 @@ class License implements Registrable {
 	private function handle_update_request() {
 		$response = $this->update_subscription_details();
 
-		if ( $response->has_error() ) {
+		if ( $response && $response->has_error() ) {
 			$this->error_notice( $response->get_error()->get_error_message() );
 
 			return;
 		}
 
 		$this->success_notice( __( 'License information has been updated.', 'codepress-admin-columns' ) );
+	}
+
+	/**
+	 * @return void
+	 */
+	private function force_plugin_update_check() {
+		$api = new API\Cached( $this->api );
+		$api->dispatch( new API\Request\ProductsUpdate( $this->site_url, $this->plugins, $this->license_key_repository->find() ), [
+			Cached::FORCE_UPDATE => true,
+		] );
+
+		wp_clean_plugins_cache();
 	}
 
 	private function handle_activate_request() {
@@ -142,10 +163,8 @@ class License implements Registrable {
 
 		$this->success_notice( $response->get( 'message' ) );
 
-		// force plugin update
-		delete_site_transient( 'update_plugins' );
+		$this->force_plugin_update_check();
 
-		// force license update
 		$this->update_subscription_details();
 	}
 
@@ -166,6 +185,8 @@ class License implements Registrable {
 
 			return;
 		}
+
+		$this->force_plugin_update_check();
 
 		$this->success_notice( $response->get( 'message' ) );
 	}
@@ -240,10 +261,16 @@ class License implements Registrable {
 			return null;
 		}
 
+		$discount = $response->get( 'renewal_discount' );
+
+		if ( ! RenewalDiscount::is_valid( $discount ) ) {
+			$discount = 0;
+		}
+
 		return new Entity\License(
 			$license_key,
 			new Status( $status ),
-			$response->get( 'renewal_discount' ),
+			new RenewalDiscount( $discount ),
 			new RenewalMethod( $method ),
 			new ExpiryDate( $expiry_date )
 		);

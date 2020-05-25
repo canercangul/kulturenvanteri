@@ -23,20 +23,30 @@ class Settings extends AC\Settings\Column
 	}
 
 	protected function define_options() {
-		return array(
+		return [
 			'filter' => 'off', // default Off
 			'filter_label',
-		);
+		];
+	}
+
+	/**
+	 * @return string
+	 */
+	private function get_instruction() {
+		$view = new View();
+		$view->set_template( 'tooltip/filtering' );
+
+		return $view->render();
 	}
 
 	public function create_header_view() {
 		$filter = $this->get_filter();
 
-		$view = new View( array(
+		$view = new View( [
 			'title'    => __( 'Enable Filtering', 'codepress-admin-columns' ),
 			'dashicon' => 'dashicons-filter',
 			'state'    => $filter,
-		) );
+		] );
 
 		$view->set_template( 'settings/header-icon' );
 
@@ -45,15 +55,15 @@ class Settings extends AC\Settings\Column
 
 	public function create_view() {
 		$filter = $this->create_element( 'radio', 'filter' )
-		               ->set_options( array(
+		               ->set_options( [
 			               'on'  => __( 'Yes' ),
 			               'off' => __( 'No' ),
-		               ) );
+		               ] );
 
 		// Main settings
 		$view = new View();
 		$view->set( 'label', __( 'Filtering', 'codepress-admin-columns' ) )
-		     ->set( 'tooltip', __( 'This will make the column support filtering.', 'codepress-admin-columns' ) )
+		     ->set( 'instructions', $this->get_instruction() )
 		     ->set( 'setting', $filter );
 
 		$filter_label = $this->create_element( 'text', 'filter_label' )
@@ -66,7 +76,7 @@ class Settings extends AC\Settings\Column
 		           ->set( 'setting', $filter_label )
 		           ->set( 'for', $filter_label->get_id() );
 
-		$view->set( 'sections', array( $label_view ) );
+		$view->set( 'sections', [ $label_view ] );
 
 		return $view;
 	}

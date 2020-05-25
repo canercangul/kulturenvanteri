@@ -17,7 +17,7 @@ class ChildPages extends AC\Column
 
 	// Display
 	public function get_value( $post_id ) {
-		$titles = array();
+		$titles = [];
 
 		$ids = $this->get_raw_value( $post_id );
 
@@ -37,14 +37,14 @@ class ChildPages extends AC\Column
 	}
 
 	public function get_raw_value( $post_id ) {
-		$ids = get_posts( array(
+		$ids = get_posts( [
 			'post_type'      => $this->get_post_type(),
 			'post_parent'    => $post_id,
 			'fields'         => 'ids',
 			'posts_per_page' => -1,
 			'orderby'        => 'menu_order',
 			'order'          => 'ASC',
-		) );
+		] );
 
 		return $ids;
 	}

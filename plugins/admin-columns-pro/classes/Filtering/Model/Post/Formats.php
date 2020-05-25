@@ -10,9 +10,9 @@ class Formats extends Model\Post\Taxonomy {
 		$options = $this->get_terms_list( $this->column->get_taxonomy() );
 		$options['cpac_empty'] = get_post_format_string( 'standard' );
 
-		return array(
+		return [
 			'options' => $options,
-		);
+		];
 	}
 
 }

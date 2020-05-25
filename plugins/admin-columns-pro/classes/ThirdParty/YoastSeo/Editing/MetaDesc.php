@@ -11,10 +11,10 @@ class MetaDesc extends Editing\Model {
 	}
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'        => 'textarea',
 			'placeholder' => __( 'Enter your SEO Meta Description', 'codepress-admin-columns' ),
-		);
+		];
 	}
 
 	public function save( $id, $value ) {

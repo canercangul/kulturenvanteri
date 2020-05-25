@@ -7,14 +7,14 @@ use ACP\Search\Operators;
 class Content extends PostField {
 
 	public function __construct() {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::CONTAINS,
 			Operators::NOT_CONTAINS,
 			Operators::BEGINS_WITH,
 			Operators::ENDS_WITH,
 			Operators::IS_EMPTY,
 			Operators::NOT_IS_EMPTY,
-		) );
+		] );
 
 		parent::__construct( $operators );
 	}

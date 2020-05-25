@@ -3,12 +3,13 @@
 namespace ACP\Export\Strategy;
 
 use AC;
+use AC\ListTable;
 use ACP\Export\Strategy;
 use WP_User_Query;
 
 /**
  * Exportability class for users list screen
- * @since 1.0
+ * @property AC\ListScreen\User $list_screen
  */
 class User extends Strategy {
 
@@ -19,23 +20,27 @@ class User extends Strategy {
 		parent::__construct( $list_screen );
 	}
 
+	protected function get_list_table() {
+		return new ListTable\User();
+	}
+
 	/**
 	 * @since 1.0
 	 * @see   ACP_Export_ExportableListScreen::ajax_export()
 	 */
 	protected function ajax_export() {
-		// Hooks
-		add_filter( 'users_list_table_query_args', array( $this, 'catch_users_query' ), PHP_INT_MAX - 100 );
+		add_filter( 'users_list_table_query_args', [ $this, 'catch_users_query' ], PHP_INT_MAX - 100 );
 	}
 
 	/**
 	 * Modify the users query to use the correct pagination arguments, and epxort the resulting
 	 * items. This should be attached to the users_list_table_query_args hook when an AJAX request
 	 * is sent
-	 * @since 1.0
-	 * @see   filter:users_list_table_query_args
 	 *
 	 * @param $args
+	 *
+	 * @see   filter:users_list_table_query_args
+	 * @since 1.0
 	 */
 	public function catch_users_query( $args ) {
 		$per_page = $this->get_num_items_per_iteration();

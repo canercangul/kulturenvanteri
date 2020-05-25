@@ -32,7 +32,7 @@ final class RenewalMethod {
 	/**
 	 * @return bool
 	 */
-	public function is_manual() {
+	public function is_manual_renewal() {
 		return self::METHOD_MANUAL === $this->method;
 	}
 

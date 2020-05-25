@@ -7,7 +7,7 @@ use ACP\Sorting\Model;
 class FileSize extends Model {
 
 	public function get_sorting_vars() {
-		$ids = array();
+		$ids = [];
 
 		foreach ( $this->strategy->get_results() as $id ) {
 			$value = false;
@@ -16,13 +16,13 @@ class FileSize extends Model {
 				$value = is_file( $file ) ? filesize( $file ) : false;
 			}
 
-			if ( $value || acp_sorting()->show_all_results() ) {
+			if ( $value || acp_sorting_show_all_results() ) {
 				$ids[ $id ] = $value;
 			}
 		}
 
-		return array(
+		return [
 			'ids' => $this->sort( $ids ),
-		);
+		];
 	}
 }

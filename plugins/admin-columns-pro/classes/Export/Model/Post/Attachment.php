@@ -10,7 +10,7 @@ use ACP\Export\Model;
 class Attachment extends Model {
 
 	public function get_value( $id ) {
-		$urls = array();
+		$urls = [];
 
 		foreach ( $this->get_column()->get_raw_value( $id ) as $media_id ) {
 			$urls[] = wp_get_attachment_url( $media_id );

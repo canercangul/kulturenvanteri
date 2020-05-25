@@ -32,18 +32,18 @@ class Taxonomy extends Settings {
 			if ( $taxonomy ) {
 				$enable_term = $this
 					->create_element( 'radio', 'enable_term_creation' )
-					->set_options( array(
+					->set_options( [
 							'on'  => __( 'Yes' ),
 							'off' => __( 'No' ),
-						)
+						]
 					);
 
 				$new_term = new View();
 				$new_term->set( 'label', sprintf( __( 'Allow new %s?', 'codepress-admin-columns' ), strtolower( $taxonomy->labels->name ) ) )
-					->set( 'tooltip', sprintf( __( 'Allow new %s to be created whilst editing', 'codepress-admin-columns' ), strtolower( $taxonomy->labels->name ) ) )
-					->set( 'setting', $enable_term );
+				         ->set( 'tooltip', sprintf( __( 'Allow new %s to be created whilst editing', 'codepress-admin-columns' ), strtolower( $taxonomy->labels->name ) ) )
+				         ->set( 'setting', $enable_term );
 
-				$view->set( 'sections', array( $new_term ) );
+				$view->set( 'sections', [ $new_term ] );
 			}
 		}
 

@@ -4,16 +4,17 @@ namespace ACP\Controller;
 
 use AC;
 use AC\Registrable;
+use AC\Storage\ListScreenOrder;
 
 class AjaxRequestListScreenOrder implements Registrable {
 
 	/**
-	 * @var AC\Storage\ListScreenOrder
+	 * @var ListScreenOrder
 	 */
 	private $list_screen_order;
 
-	public function __construct() {
-		$this->list_screen_order = new AC\Storage\ListScreenOrder();
+	public function __construct( ListScreenOrder $order ) {
+		$this->list_screen_order = $order;
 	}
 
 	public function register() {

@@ -16,7 +16,7 @@ class Sticky extends Model {
 	public function get_sorting_vars() {
 		$sticky_ids = (array) get_option( 'sticky_posts' );
 		$ids = $this->strategy->get_results();
-		$matched = array();
+		$matched = [];
 
 		foreach ( $sticky_ids as $k => $sticky_id ) {
 			$index = array_search( $sticky_id, $ids );
@@ -27,7 +27,7 @@ class Sticky extends Model {
 			}
 		}
 
-		if ( ! acp_sorting()->show_all_results() ) {
+		if ( ! acp_sorting_show_all_results() ) {
 			$ids = $matched;
 		}
 
@@ -35,9 +35,9 @@ class Sticky extends Model {
 			$ids = array_reverse( $ids );
 		}
 
-		return array(
+		return [
 			'ids' => $ids,
-		);
+		];
 	}
 
 }

@@ -41,7 +41,7 @@ class Meta extends Model {
 	 * @return array Filtered meta values
 	 */
 	public function get_meta_values_filtered() {
-		$values = array();
+		$values = [];
 
 		// SQL ignores whitespace when filtering
 		$filtered = array_map( 'trim', $this->get_meta_values() );
@@ -57,20 +57,20 @@ class Meta extends Model {
 
 	/**
 	 * Get meta query empty_not_empty
-	 * @since 4.0
 	 *
 	 * @param array $vars
 	 *
 	 * @return array Query vars
+	 * @since 4.0
 	 */
 	protected function get_filtering_vars_empty_nonempty( $vars ) {
 		if ( ! isset( $vars['meta_query'] ) ) {
-			$vars['meta_query'] = array();
+			$vars['meta_query'] = [];
 		}
 
 		// Check if empty or nonempty is in string (also check for like operators)
 		foreach ( $vars['meta_query'] as $id => $query ) {
-			if ( isset( $query['value'] ) && in_array( $query['value'], array( 'cpac_empty', 'cpac_nonempty' ) ) ) {
+			if ( isset( $query['value'] ) && in_array( $query['value'], [ 'cpac_empty', 'cpac_nonempty' ] ) ) {
 				unset( $vars['meta_query'][ $id ] );
 			}
 		}
@@ -78,27 +78,27 @@ class Meta extends Model {
 		switch ( $this->get_filter_value() ) {
 
 			case 'cpac_empty' :
-				$vars['meta_query'][] = array(
+				$vars['meta_query'][] = [
 					'relation' => 'OR',
-					array(
+					[
 						'key'     => $this->column->get_meta_key(),
 						'compare' => 'NOT EXISTS',
-					),
-					array(
+					],
+					[
 						'key'   => $this->column->get_meta_key(),
 						'value' => '',
-					),
-				);
+					],
+				];
 				break;
 
 			case 'cpac_nonempty' :
-				$vars['meta_query'][] = array(
-					array(
+				$vars['meta_query'][] = [
+					[
 						'key'     => $this->column->get_meta_key(),
 						'value'   => '',
 						'compare' => '!=',
-					),
-				);
+					],
+				];
 				break;
 		}
 
@@ -106,39 +106,38 @@ class Meta extends Model {
 	}
 
 	/**
-	 * @since 4.0
-	 *
 	 * @param array $vars Query args
 	 * @param array $args Options
 	 *
 	 * @return array
+	 * @since 4.0
 	 */
-	protected function get_filtering_vars_ranged( $vars, $args = array() ) {
-		$defaults = array(
+	protected function get_filtering_vars_ranged( $vars, $args = [] ) {
+		$defaults = [
 			'min'  => false,
 			'max'  => false,
 			'key'  => $this->column->get_meta_key(),
 			'type' => $this->get_data_type(),
-		);
+		];
 
 		$args = array_merge( $defaults, (array) $args );
 
 		if ( $args['min'] ) {
-			$vars['meta_query'][] = array(
+			$vars['meta_query'][] = [
 				'key'     => $args['key'],
 				'value'   => $args['min'],
 				'compare' => '>=',
 				'type'    => $args['type'],
-			);
+			];
 		}
 
 		if ( $args['max'] ) {
-			$vars['meta_query'][] = array(
+			$vars['meta_query'][] = [
 				'key'     => $args['key'],
 				'value'   => $args['max'],
 				'compare' => '<=',
 				'type'    => $args['type'],
-			);
+			];
 		}
 
 		return $vars;
@@ -160,11 +159,11 @@ class Meta extends Model {
 
 		} else {
 			// Exact
-			$vars['meta_query'][] = array(
+			$vars['meta_query'][] = [
 				'key'   => $this->column->get_meta_key(),
 				'value' => $this->get_filter_value(),
 				'type'  => $this->get_data_type(),
-			);
+			];
 		}
 
 		return $this->get_filtering_vars_empty_nonempty( $vars );
@@ -174,23 +173,23 @@ class Meta extends Model {
 	 * @return array
 	 */
 	public function get_filtering_data() {
-		$options = array();
+		$options = [];
 
 		foreach ( $this->get_meta_values() as $value ) {
 			$options[ $value ] = $this->column->get_formatted_value( $value );
 		}
 
-		return array(
+		return [
 			'empty_option' => true,
 			'options'      => $options,
-		);
+		];
 	}
 
 	/**
 	 * @return array
 	 */
 	protected function get_meta_values_unserialized() {
-		$values = array();
+		$values = [];
 
 		foreach ( $this->get_meta_values() as $value ) {
 			if ( is_serialized( $value ) ) {
@@ -212,15 +211,15 @@ class Meta extends Model {
 	 * @return array
 	 */
 	protected function get_filtering_vars_serialized( $vars, $value ) {
-		if ( in_array( $value, array( 'cpac_empty', 'cpac_nonempty' ) ) ) {
+		if ( in_array( $value, [ 'cpac_empty', 'cpac_nonempty' ] ) ) {
 			return $vars;
 		}
 
-		$vars['meta_query'][] = array(
+		$vars['meta_query'][] = [
 			'key'     => $this->column->get_meta_key(),
 			'value'   => serialize( $value ),
 			'compare' => 'LIKE',
-		);
+		];
 
 		return $vars;
 	}

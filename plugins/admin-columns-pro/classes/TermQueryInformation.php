@@ -1,4 +1,5 @@
 <?php
+
 namespace ACP;
 
 use AC\Registrable;
@@ -9,7 +10,7 @@ final class TermQueryInformation implements Registrable {
 	const KEY = 'ac_is_main_term_query';
 
 	public function register() {
-		add_action( 'parse_term_query', array( $this, 'check_if_main_query' ), 1 );
+		add_action( 'parse_term_query', [ $this, 'check_if_main_query' ], 1 );
 	}
 
 	public function check_if_main_query( WP_Term_Query $query ) {

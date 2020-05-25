@@ -6,8 +6,8 @@ use AC\ArrayIterator;
 
 class Labels extends ArrayIterator {
 
-	public function __construct( array $labels = array() ) {
-		$labels = array_merge( array(
+	public function __construct( array $labels = [] ) {
+		$labels = array_merge( [
 			Operators::EQ           => __( 'is', 'codepress-admin-columns' ),
 			Operators::NEQ          => __( 'is not', 'codepress-admin-columns' ),
 			Operators::GT           => __( 'is larger than', 'codepress-admin-columns' ),
@@ -23,7 +23,7 @@ class Labels extends ArrayIterator {
 			Operators::BETWEEN      => __( 'between', 'codepress-admin-columns' ),
 			Operators::IS_EMPTY     => __( 'is not set', 'codepress-admin-columns' ),
 			Operators::NOT_IS_EMPTY => __( 'is set', 'codepress-admin-columns' ),
-		), $labels );
+		], $labels );
 
 		parent::__construct( $labels );
 	}

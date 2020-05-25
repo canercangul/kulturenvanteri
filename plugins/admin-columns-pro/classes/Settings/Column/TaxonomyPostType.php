@@ -13,9 +13,9 @@ class TaxonomyPostType extends AC\Settings\Column {
 	private $post_type;
 
 	protected function define_options() {
-		return array(
+		return [
 			'taxonomy_post_type' => 'any',
-		);
+		];
 	}
 
 	public function create_view() {
@@ -23,10 +23,10 @@ class TaxonomyPostType extends AC\Settings\Column {
 
 		$select->set_options( $this->get_post_types_for_taxonomy( $this->column->get_taxonomy() ) );
 
-		$view = new AC\View( array(
+		$view = new AC\View( [
 			'label'   => __( 'Post Type', 'codepress-admin-columns' ),
 			'setting' => $select,
-		) );
+		] );
 
 		return $view;
 	}
@@ -48,7 +48,7 @@ class TaxonomyPostType extends AC\Settings\Column {
 	 * @return array
 	 */
 	private function get_post_types_for_taxonomy( $taxonomy ) {
-		$post_types = array();
+		$post_types = [];
 		$tax_object = get_taxonomy( $taxonomy );
 
 		if ( empty( $tax_object ) ) {

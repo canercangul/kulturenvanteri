@@ -16,19 +16,19 @@ class Count extends Model\Meta {
 		      ->group_by( 'id' )
 		      ->order_by( 'count, id', $this->get_order() );
 
-		if ( acp_sorting()->show_all_results() ) {
+		if ( acp_sorting_show_all_results() ) {
 			$query->left_join();
 		}
 
-		$values = array();
+		$values = [];
 
 		foreach ( $query->get() as $result ) {
 			$values[] = $result->id;
 		}
 
-		return array(
+		return [
 			'ids' => $values,
-		);
+		];
 	}
 
 }

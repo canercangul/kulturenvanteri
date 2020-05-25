@@ -18,9 +18,9 @@ class Author extends PostField
 	private $post_type;
 
 	public function __construct( $post_type ) {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
-		) );
+		] );
 
 		$this->post_type = $post_type;
 
@@ -46,11 +46,11 @@ class Author extends PostField
 	}
 
 	public function get_values( $search, $paged ) {
-		$entities = new Select\Entities\User( array(
+		$entities = new Select\Entities\User( [
 			'search'  => $search,
 			'paged'   => $paged,
 			'include' => $this->get_author_ids( $this->post_type ),
-		) );
+		] );
 
 		return new AC\Helper\Select\Options\Paginated(
 			$entities,

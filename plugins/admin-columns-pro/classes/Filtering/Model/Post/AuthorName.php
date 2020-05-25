@@ -13,13 +13,13 @@ class AuthorName extends Model {
 	}
 
 	public function get_filtering_vars( $vars ) {
-		add_filter( 'posts_where', array( $this, 'filter_by_author_name' ) );
+		add_filter( 'posts_where', [ $this, 'filter_by_author_name' ] );
 
 		return $vars;
 	}
 
 	public function get_filtering_data() {
-		$options = array();
+		$options = [];
 
 		$values = $this->strategy->get_values_by_db_field( 'post_author' );
 
@@ -29,9 +29,9 @@ class AuthorName extends Model {
 			}
 		}
 
-		return array(
+		return [
 			'options' => array_filter( $options ),
-		);
+		];
 	}
 
 }

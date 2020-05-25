@@ -3,13 +3,19 @@
 namespace ACP\Sorting\Admin;
 
 use AC\Form\Element\Checkbox;
-use AC\Settings\Admin;
+use AC\Renderable;
 use AC\Settings\General;
+use ACP\Sorting\Settings\AllResults;
 
-class ShowAllResults extends Admin\General {
+class ShowAllResults implements Renderable {
+
+	/**
+	 * @var AllResults
+	 */
+	private $option;
 
 	public function __construct() {
-		parent::__construct( 'show_all_results' );
+		$this->option = new AllResults();
 	}
 
 	private function get_label() {
@@ -19,27 +25,13 @@ class ShowAllResults extends Admin\General {
 		);
 	}
 
-	/**
-	 * @return bool
-	 */
-	public function is_enabled() {
-		return '1' === $this->get_value();
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function get_value() {
-		return $this->settings->is_empty() ? '0' : parent::get_value();
-	}
-
 	public function render() {
-		$name = sprintf( '%s[%s]', General::SETTINGS_NAME, $this->name );
+		$name = sprintf( '%s[%s]', General::NAME, $this->option->get_name() );
 
 		$checkbox = new Checkbox( $name );
 
-		$checkbox->set_options( array( '1' => $this->get_label() ) )
-		         ->set_value( $this->get_value() );
+		$checkbox->set_options( [ '1' => $this->get_label() ] )
+		         ->set_value( $this->option->is_enabled() ? 1 : 0 );
 
 		return $checkbox->render();
 	}

@@ -17,7 +17,7 @@ class Taxonomy extends Model {
 	}
 
 	public function get_value( $id ) {
-		$terms = wp_get_post_terms( $id, $this->column->get_taxonomy(), array( 'fields' => 'names' ) );
+		$terms = wp_get_post_terms( $id, $this->column->get_taxonomy(), [ 'fields' => 'names' ] );
 
 		if ( ! $terms || is_wp_error( $terms ) ) {
 			return '';

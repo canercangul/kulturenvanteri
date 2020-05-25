@@ -2,40 +2,39 @@
 
 namespace ACP\Table;
 
+use AC\Asset;
 use AC\Form\Element\Select;
 use AC\ListScreen;
-use AC\ListScreenRepository\FilterStrategy;
-use AC\ListScreenRepository\ListScreenRepository;
-use AC\ListScreenRepository\SortStrategy;
+use AC\ListScreenRepository\Filter;
+use AC\ListScreenRepository\Sort;
+use AC\ListScreenRepository\Storage;
 use AC\PermissionChecker;
 use AC\Registrable;
-use ACP\Asset;
 
 class Switcher implements Registrable {
 
-	/** @var ListScreenRepository */
-	private $list_screen_repository;
+	/** @var Storage */
+	private $storage;
 
 	/** @var Asset\Location\Absolute */
 	private $location;
 
-	public function __construct( ListScreenRepository $list_screen_repository, Asset\Location\Absolute $location ) {
-		$this->list_screen_repository = $list_screen_repository;
+	public function __construct( Storage $storage, Asset\Location\Absolute $location ) {
+		$this->storage = $storage;
 		$this->location = $location;
 	}
 
 	public function register() {
-		add_action( 'ac/table_scripts', array( $this, 'enqueue_scripts' ) );
-		add_action( 'ac/admin_footer', array( $this, 'switcher' ) );
+		add_action( 'ac/admin_footer', [ $this, 'switcher' ] );
 	}
 
 	private function add_filter_args_to_url( $link ) {
 		if ( $post_status = filter_input( INPUT_GET, 'post_status', FILTER_SANITIZE_STRING ) ) {
-			$link = add_query_arg( array( 'post_status' => $post_status ), $link );
+			$link = add_query_arg( [ 'post_status' => $post_status ], $link );
 		}
 
 		if ( $author = filter_input( INPUT_GET, 'author', FILTER_SANITIZE_STRING ) ) {
-			$link = add_query_arg( array( 'author' => $author ), $link );
+			$link = add_query_arg( [ 'author' => $author ], $link );
 		}
 
 		return $link;
@@ -49,10 +48,10 @@ class Switcher implements Registrable {
 			return;
 		}
 
-		$list_screens = $this->list_screen_repository->find_all( [
+		$list_screens = $this->storage->find_all( [
 			'key'    => $list_screen->get_key(),
-			'sort'   => new SortStrategy\ManualOrder(),
-			'filter' => new FilterStrategy\ByPermission( new PermissionChecker( wp_get_current_user() ) ),
+			'filter' => new Filter\Permission( new PermissionChecker() ),
+			'sort'   => new Sort\ManualOrder(),
 		] );
 
 		if ( $list_screens->count() > 1 ) : ?>
@@ -90,17 +89,6 @@ class Switcher implements Registrable {
 			</form>
 		<?php
 		endif;
-	}
-
-	/**
-	 * Loads scripts on the list screen
-	 */
-	public function enqueue_scripts() {
-		$style = new Asset\Style( 'acp-layouts', $this->location->with_suffix( 'assets/core/css/layouts-listings-screen.css' ) );
-		$style->enqueue();
-
-		$script = new Asset\Script( 'acp-layouts', $this->location->with_suffix( 'assets/core/js/layouts-listings-screen.js' ) );
-		$script->enqueue();
 	}
 
 }

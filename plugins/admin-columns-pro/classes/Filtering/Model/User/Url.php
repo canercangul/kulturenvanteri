@@ -22,13 +22,13 @@ class Url extends Model {
 	}
 
 	public function get_filtering_vars( $vars ) {
-		add_action( 'pre_user_query', array( $this, 'filter_by_user_url' ) );
+		add_action( 'pre_user_query', [ $this, 'filter_by_user_url' ] );
 
 		return $vars;
 	}
 
 	public function get_filtering_data() {
-		$options = array();
+		$options = [];
 
 		if ( $values = $this->strategy->get_values_by_db_field( 'user_url' ) ) {
 			$options = array_combine( $values, $values );
@@ -36,11 +36,11 @@ class Url extends Model {
 
 		natcasesort( $options );
 
-		return array(
+		return [
 			'order'        => false,
 			'options'      => $options,
 			'empty_option' => $this->get_empty_labels(),
-		);
+		];
 	}
 
 }

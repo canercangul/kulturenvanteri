@@ -16,11 +16,11 @@ class PageTemplate extends Comparison\Meta
 	private $templates;
 
 	public function __construct( $templates ) {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
 			Operators::IS_EMPTY,
 			Operators::NOT_IS_EMPTY,
-		) );
+		] );
 
 		$this->templates = $templates;
 

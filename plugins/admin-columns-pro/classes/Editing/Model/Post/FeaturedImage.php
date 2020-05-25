@@ -7,15 +7,15 @@ use ACP\Editing\Model;
 class FeaturedImage extends Model\Post {
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'         => 'media',
-			'attachment'   => array(
-				'library' => array(
+			'attachment'   => [
+				'library' => [
 					'type' => 'image',
-				),
-			),
+				],
+			],
 			'clear_button' => true,
-		);
+		];
 	}
 
 	public function save( $id, $value ) {

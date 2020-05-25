@@ -15,11 +15,11 @@ abstract class Meta extends Model\Meta {
 		      ->where_in( $ids )
 		      ->order_by( 'meta_value', $this->get_order() );
 
-		if ( acp_sorting()->show_all_results() ) {
+		if ( acp_sorting_show_all_results() ) {
 			$query->left_join();
 		}
 
-		$values = array();
+		$values = [];
 
 		foreach ( $query->get() as $result ) {
 			if ( $this->column->is_serialized() ) {

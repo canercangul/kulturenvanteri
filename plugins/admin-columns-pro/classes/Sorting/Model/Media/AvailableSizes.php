@@ -10,7 +10,7 @@ use AC;
 class AvailableSizes extends Meta {
 
 	public function get_sorting_vars() {
-		$ids = array();
+		$ids = [];
 
 		foreach ( $this->get_meta_values() as $id => $meta_value ) {
 			$count = 0;
@@ -21,8 +21,8 @@ class AvailableSizes extends Meta {
 			$ids[ $id ] = $count;
 		}
 
-		return array(
+		return [
 			'ids' => $this->sort( $ids ),
-		);
+		];
 	}
 }

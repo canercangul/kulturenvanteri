@@ -70,9 +70,9 @@ abstract class Model extends ACP\Model {
 	 * }
 	 */
 	public function get_view_settings() {
-		return array(
+		return [
 			'type' => 'text',
-		);
+		];
 	}
 
 	/**

@@ -12,7 +12,7 @@ abstract class Comment extends Model {
 	 *
 	 * @return bool
 	 */
-	protected function update_comment( $id, array $args = array() ) {
+	protected function update_comment( $id, array $args = [] ) {
 		$args['comment_ID'] = $id;
 
 		return wp_update_comment( $args ) > 0;

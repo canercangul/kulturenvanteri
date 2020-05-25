@@ -8,11 +8,11 @@ use WP_User_Query;
 class CommentCount extends Model {
 
 	public function get_sorting_vars() {
-		add_action( 'pre_user_query', array( $this, 'pre_user_query_callback' ) );
+		add_action( 'pre_user_query', [ $this, 'pre_user_query_callback' ] );
 
-		return array(
+		return [
 			'ids' => $this->strategy->get_results(),
-		);
+		];
 	}
 
 	public function pre_user_query_callback( WP_User_Query $query ) {
@@ -31,11 +31,11 @@ class CommentCount extends Model {
 		$query->query_from .= $sub_query;
 		$query->query_orderby = "ORDER BY comment_count " . $query->query_vars['order'];
 
-		if ( ! acp_sorting()->show_all_results() ) {
+		if ( ! acp_sorting_show_all_results() ) {
 			$query->query_where .= " AND comment_count IS NOT NULL";
 		}
 
-		remove_action( 'pre_user_query', array( $this, __FUNCTION__ ) );
+		remove_action( 'pre_user_query', [ $this, __FUNCTION__ ] );
 	}
 
 }

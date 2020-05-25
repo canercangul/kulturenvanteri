@@ -8,9 +8,9 @@ use WP_User_Query;
 class PostCount extends Model {
 
 	public function get_sorting_vars() {
-		add_action( 'pre_user_query', array( $this, 'pre_user_query_callback' ) );
+		add_action( 'pre_user_query', [ $this, 'pre_user_query_callback' ] );
 
-		return array();
+		return [];
 	}
 
 	/**
@@ -20,11 +20,11 @@ class PostCount extends Model {
 		global $wpdb;
 
 		$order = $this->get_order();
-		$join_type = acp_sorting()->show_all_results() ? 'LEFT' : 'INNER';
+		$join_type = acp_sorting_show_all_results() ? 'LEFT' : 'INNER';
 
 		$where = ' AND p.post_status = "publish" AND ( p.post_type = %s';
 
-		if ( acp_sorting()->show_all_results() ) {
+		if ( acp_sorting_show_all_results() ) {
 			$where .= ' OR p.post_type IS NULL';
 		}
 
@@ -41,7 +41,7 @@ class PostCount extends Model {
 			ORDER BY n $order, {$wpdb->users}.ID $order
 		";
 
-		remove_action( 'pre_user_query', array( $this, __FUNCTION__ ) );
+		remove_action( 'pre_user_query', [ $this, __FUNCTION__ ] );
 	}
 
 }

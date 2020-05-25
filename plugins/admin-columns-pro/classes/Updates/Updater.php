@@ -2,8 +2,10 @@
 
 namespace ACP\Updates;
 
+use AC\PluginInformation;
 use AC\Registrable;
 use ACP\API;
+use ACP\Plugins;
 use ACP\RequestDispatcher;
 use ACP\Type\License\Key;
 use ACP\Type\SiteUrl;
@@ -13,16 +15,8 @@ use ACP\Type\SiteUrl;
  */
 class Updater implements Registrable {
 
-	/** @var string */
-	private $basename;
-
-	/** @var string */
-	private $slug;
-
-	/**
-	 * @var string
-	 */
-	private $version;
+	/** @var PluginInformation */
+	private $plugin;
 
 	/** @var RequestDispatcher */
 	private $api;
@@ -33,16 +27,20 @@ class Updater implements Registrable {
 	private $site_url;
 
 	/**
+	 * @var Plugins
+	 */
+	private $plugins;
+
+	/**
 	 * @var Key|null
 	 */
 	private $license_key;
 
-	public function __construct( $basename, $version, RequestDispatcher $api, SiteUrl $site_url, Key $license_key = null ) {
-		$this->basename = $basename;
-		$this->slug = dirname( $basename );
-		$this->version = $version;
+	public function __construct( PluginInformation $plugin, RequestDispatcher $api, SiteUrl $site_url, Plugins $plugins, Key $license_key = null ) {
+		$this->plugin = $plugin;
 		$this->api = $api;
 		$this->site_url = $site_url;
+		$this->plugins = $plugins;
 		$this->license_key = $license_key;
 	}
 
@@ -51,13 +49,13 @@ class Updater implements Registrable {
 	}
 
 	public function check_update( $transient ) {
-		$response = $this->api->dispatch( new API\Request\ProductsUpdate( $this->site_url, $this->license_key ) );
+		$response = $this->api->dispatch( new API\Request\ProductsUpdate( $this->site_url, $this->plugins, $this->license_key ) );
 
 		if ( ! $response || $response->has_error() ) {
 			return $transient;
 		}
 
-		$plugin_data = $response->get( $this->slug );
+		$plugin_data = $response->get( $this->plugin->get_dirname() );
 
 		if ( empty( $plugin_data ) ) {
 			return $transient;
@@ -65,8 +63,8 @@ class Updater implements Registrable {
 
 		$plugin_data = (object) $plugin_data;
 
-		if ( version_compare( $this->version, $plugin_data->new_version, '<' ) ) {
-			$transient->response[ $this->basename ] = $plugin_data;
+		if ( version_compare( $this->plugin->get_version(), $plugin_data->new_version, '<' ) ) {
+			$transient->response[ $this->plugin->get_basename() ] = $plugin_data;
 		}
 
 		return $transient;

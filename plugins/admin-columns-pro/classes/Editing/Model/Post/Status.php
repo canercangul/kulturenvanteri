@@ -19,28 +19,28 @@ class Status extends Model\Post {
 			return false;
 		}
 
-		$options = array();
+		$options = [];
 
 		foreach ( $stati as $name => $status ) {
-			if ( in_array( $name, array( 'future', 'trash' ) ) ) {
+			if ( in_array( $name, [ 'future', 'trash' ] ) ) {
 				continue;
 			}
 
 			$options[ $name ] = $status->label;
 		}
 
-		return array(
+		return [
 			'type'    => 'select',
 			'options' => $options,
-		);
+		];
 	}
 
 	private function get_editable_statuses() {
-		return apply_filters( 'acp/editing/post_statuses', get_post_stati( array( 'internal' => 0 ), 'objects' ), $this->column );
+		return apply_filters( 'acp/editing/post_statuses', get_post_stati( [ 'internal' => 0 ], 'objects' ), $this->column );
 	}
 
 	public function save( $id, $value ) {
-		return $this->update_post( $id, array( 'post_status' => $value ) );
+		return $this->update_post( $id, [ 'post_status' => $value ] );
 	}
 
 }

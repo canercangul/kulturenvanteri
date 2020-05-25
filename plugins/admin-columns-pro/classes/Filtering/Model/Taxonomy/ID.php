@@ -30,7 +30,7 @@ class ID extends ACP\Filtering\Model {
 	}
 
 	public function get_filtering_vars( $vars ) {
-		add_filter( 'terms_clauses', array( $this, 'filter_by_id' ) );
+		add_filter( 'terms_clauses', [ $this, 'filter_by_id' ] );
 
 		return $vars;
 	}

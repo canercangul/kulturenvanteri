@@ -13,7 +13,7 @@ class TaxonomyParent extends ACP\Filtering\Model {
 	}
 
 	public function get_filtering_data() {
-		$options = array();
+		$options = [];
 		$terms = get_terms( [
 			'taxonomy'   => $this->column->get_taxonomy(),
 			'hide_empty' => false,
@@ -28,9 +28,9 @@ class TaxonomyParent extends ACP\Filtering\Model {
 			$options[ $term->parent ] = $parent->name;
 		}
 
-		return array(
+		return [
 			'options' => $options,
-		);
+		];
 	}
 
 }

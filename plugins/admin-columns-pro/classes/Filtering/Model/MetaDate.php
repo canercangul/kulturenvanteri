@@ -2,6 +2,7 @@
 
 namespace ACP\Filtering\Model;
 
+use ACP\Filtering\Helper;
 use ACP\Filtering\Settings;
 use DateTime;
 use Exception;
@@ -35,17 +36,17 @@ class MetaDate extends Meta {
 
 	/**
 	 * Adds Meta Query vars for dates
-	 * @since 4.0
 	 *
 	 * @param array $vars Query args
 	 *
 	 * @return array
+	 * @since 4.0
 	 */
 	public function get_filtering_vars( $vars ) {
 		$value = $this->get_filter_value();
 
 		// empty or not empty
-		if ( in_array( $value, array( 'cpac_empty', 'cpac_nonempty' ) ) ) {
+		if ( in_array( $value, [ 'cpac_empty', 'cpac_nonempty' ] ) ) {
 			return $this->get_filtering_vars_empty_nonempty( $vars );
 		}
 
@@ -56,7 +57,7 @@ class MetaDate extends Meta {
 			$filter_format = 'default_ranged';
 		}
 
-		$args = array();
+		$args = [];
 
 		if ( 'U' === $this->get_date_format() ) {
 			$args['type'] = 'numeric';
@@ -67,7 +68,7 @@ class MetaDate extends Meta {
 
 		switch ( $filter_format ) {
 			case 'default_ranged':
-				foreach ( array( 'min', 'max' ) as $key ) {
+				foreach ( [ 'min', 'max' ] as $key ) {
 					if ( $value[ $key ] ) {
 						$args[ $key ] = date( $format, strtotime( $value[ $key ] ) );
 					}
@@ -122,18 +123,19 @@ class MetaDate extends Meta {
 
 	public function get_filtering_data() {
 		$format = $this->get_filter_format();
+		$helper = new Helper();
 
-		$options = acp_filtering_helper()->get_date_options_relative( $format );
+		$options = $helper->get_date_options_relative( $format );
 
 		if ( ! $options ) {
-			$options = acp_filtering_helper()->get_date_options( $this->get_meta_values(), $format, $this->get_date_format() );
+			$options = $helper->get_date_options( $this->get_meta_values(), $format, $this->get_date_format() );
 		}
 
-		return array(
+		return [
 			'empty_option' => true,
 			'order'        => false,
 			'options'      => $options,
-		);
+		];
 	}
 
 	private function get_filter_format() {

@@ -8,6 +8,7 @@ use ACP\LicenseKeyRepository;
 use ACP\LicenseRepository;
 use ACP\Type\License\ExpiryDate;
 use ACP\Type\License\Key;
+use ACP\Type\License\RenewalDiscount;
 use ACP\Type\License\RenewalMethod;
 use ACP\Type\License\Status;
 use DateTime;
@@ -37,9 +38,7 @@ class V5000 extends Update {
 			? ACP_LICENCE
 			: (string) $this->get_license_option();
 
-		try {
-			$license_key = new Key( $license_key_value );
-		} catch ( Exception $e ) {
+		if ( ! Key::is_valid( $license_key_value ) ) {
 			return;
 		}
 
@@ -63,10 +62,16 @@ class V5000 extends Update {
 			$renewal_method = RenewalMethod::METHOD_MANUAL;
 		}
 
+		$discount = (int) $this->get_license_option( '_renewal_discount' );
+
+		if ( ! RenewalDiscount::is_valid( $discount ) ) {
+			$discount = 0;
+		}
+
 		$license = new License(
-			$license_key,
+			new Key( $license_key_value ),
 			new Status( $status ),
-			$this->get_license_option( '_renewal_discount' ),
+			new RenewalDiscount( $discount ),
 			new RenewalMethod( $renewal_method ),
 			new ExpiryDate( $expiry_date )
 		);

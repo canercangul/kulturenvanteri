@@ -8,10 +8,10 @@ use WP_User_Query;
 class User extends Query {
 
 	public function register() {
-		add_filter( 'users_list_table_query_args', array( $this, 'mark_as_table_query' ) );
-		add_action( 'pre_get_users', array( $this, 'callback_meta_query' ), 1 );
-		add_action( 'pre_user_query', array( $this, 'callback_where' ), 1 );
-		add_action( 'pre_user_query', array( $this, 'callback_join' ), 1 );
+		add_filter( 'users_list_table_query_args', [ $this, 'mark_as_table_query' ] );
+		add_action( 'pre_get_users', [ $this, 'callback_meta_query' ], 1 );
+		add_action( 'pre_user_query', [ $this, 'callback_where' ], 1 );
+		add_action( 'pre_user_query', [ $this, 'callback_join' ], 1 );
 	}
 
 	/**

@@ -8,6 +8,7 @@ use ACP\Editing;
 use ACP\Export;
 use ACP\Filtering;
 use ACP\Sorting;
+use ReflectionException;
 
 class Comment extends AC\ListScreen\Comment
 	implements Sorting\ListScreen, Editing\ListScreen, Filtering\ListScreen, Export\ListScreen {
@@ -29,7 +30,7 @@ class Comment extends AC\ListScreen\Comment
 	}
 
 	/**
-	 * @throws \ReflectionException
+	 * @throws ReflectionException
 	 */
 	protected function register_column_types() {
 		parent::register_column_types();

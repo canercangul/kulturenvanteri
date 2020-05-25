@@ -13,7 +13,7 @@ class Taxonomy extends ACP\Sorting\Strategy {
 	private $term_query;
 
 	public function manage_sorting() {
-		add_action( 'pre_get_terms', array( $this, 'handle_sorting_request' ) );
+		add_action( 'pre_get_terms', [ $this, 'handle_sorting_request' ] );
 	}
 
 	/**
@@ -21,7 +21,7 @@ class Taxonomy extends ACP\Sorting\Strategy {
 	 *
 	 * @return array
 	 */
-	public function get_results( array $args = array() ) {
+	public function get_results( array $args = [] ) {
 		return $this->get_terms( $args );
 	}
 
@@ -30,12 +30,12 @@ class Taxonomy extends ACP\Sorting\Strategy {
 	 *
 	 * @return int[]
 	 */
-	protected function get_terms( array $args = array() ) {
-		$defaults = array(
+	protected function get_terms( array $args = [] ) {
+		$defaults = [
 			'fields'     => 'ids',
 			'taxonomy'   => $this->get_column()->get_taxonomy(),
 			'hide_empty' => false,
-		);
+		];
 
 		$args = array_merge( $defaults, $args );
 
@@ -63,7 +63,7 @@ class Taxonomy extends ACP\Sorting\Strategy {
 	 */
 	private function is_main_query() {
 		$term_query = new ACP\TermQueryInformation();
-		
+
 		if ( ! $this->get_query_var( 'orderby' ) || ! $term_query->is_main_query( $this->term_query ) ) {
 			return false;
 		}

@@ -8,8 +8,8 @@ use WP_Query;
 final class Post extends EditableRows {
 
 	public function register() {
-		add_action( 'pre_get_posts', array( $this, 'set_query_vars' ), PHP_INT_MAX - 100 );
-		add_action( 'the_posts', array( $this, 'send_editable_rows' ), 10, 2 );
+		add_action( 'pre_get_posts', [ $this, 'set_query_vars' ], PHP_INT_MAX - 100 );
+		add_action( 'the_posts', [ $this, 'send_editable_rows' ], 10, 2 );
 	}
 
 	/**
@@ -21,7 +21,7 @@ final class Post extends EditableRows {
 			return;
 		}
 
-		$editable_rows = array();
+		$editable_rows = [];
 
 		foreach ( $posts as $post ) {
 			if ( $this->strategy->user_has_write_permission( $post ) ) {

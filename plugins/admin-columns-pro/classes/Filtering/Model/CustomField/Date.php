@@ -13,7 +13,7 @@ class Date extends Model\CustomField {
 	}
 
 	public function get_filtering_data() {
-		$options = array();
+		$options = [];
 
 		foreach ( $this->get_meta_values() as $value ) {
 			$options[ $value ] = $this->column->get_formatted_value( $value );
@@ -21,11 +21,11 @@ class Date extends Model\CustomField {
 
 		krsort( $options );
 
-		return array(
+		return [
 			'empty_option' => true,
 			'order'        => false,
 			'options'      => $options,
-		);
+		];
 	}
 
 }

@@ -8,7 +8,7 @@ use ACP\Search\Operators;
 class Text extends Meta {
 
 	public function __construct( $meta_key, $meta_type ) {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::CONTAINS,
 			Operators::NOT_CONTAINS,
 			Operators::EQ,
@@ -17,7 +17,7 @@ class Text extends Meta {
 			Operators::ENDS_WITH,
 			Operators::IS_EMPTY,
 			Operators::NOT_IS_EMPTY,
-		), false );
+		], false );
 
 		parent::__construct( $operators, $meta_key, $meta_type );
 	}

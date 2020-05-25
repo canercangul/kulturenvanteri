@@ -13,7 +13,7 @@ class Date extends Model\Post {
 			return null;
 		}
 
-		if ( in_array( $post->post_status, array( 'draft', 'inherit' ) ) ) {
+		if ( in_array( $post->post_status, [ 'draft', 'inherit' ] ) ) {
 			return null;
 		}
 
@@ -21,16 +21,16 @@ class Date extends Model\Post {
 	}
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type' => 'date_time',
-		);
+		];
 	}
 
 	public function save( $id, $value ) {
-		return $this->update_post( $id, array(
+		return $this->update_post( $id, [
 			'post_date'     => $value,
 			'post_date_gmt' => get_gmt_from_date( $value ),
-		) );
+		] );
 	}
 
 }

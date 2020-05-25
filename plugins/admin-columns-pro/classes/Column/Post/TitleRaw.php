@@ -25,7 +25,7 @@ class TitleRaw extends AC\Column\Post\TitleRaw
 	}
 
 	public function search() {
-		return new Search\Comparison\Post\Title( );
+		return new Search\Comparison\Post\Title();
 	}
 
 }

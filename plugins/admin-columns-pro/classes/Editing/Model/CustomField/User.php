@@ -19,7 +19,7 @@ class User extends Model\CustomField
 			return false;
 		}
 
-		$value = array();
+		$value = [];
 
 		foreach ( (array) $ids as $id ) {
 			$value[ $id ] = ac_helper()->user->get_display_name( $id );
@@ -29,17 +29,17 @@ class User extends Model\CustomField
 	}
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'          => 'select2_dropdown',
 			'ajax_populate' => true,
-		);
+		];
 	}
 
 	public function get_paginated_options( $s, $paged, $id = null ) {
-		$entities = new Select\Entities\User( array(
+		$entities = new Select\Entities\User( [
 			'search' => $s,
 			'paged'  => $paged,
-		) );
+		] );
 
 		return new AC\Helper\Select\Options\Paginated(
 			$entities,

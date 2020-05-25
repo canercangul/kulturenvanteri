@@ -17,10 +17,10 @@ class PageTemplate extends Model\Post {
 	public function get_view_settings() {
 		$default_label = apply_filters( 'default_page_template_title', __( 'Default Template' ), 'acp-editing' );
 
-		return array(
+		return [
 			'type'    => 'select',
-			'options' => array_merge( array( '' => $default_label ), array_flip( (array) $this->column->get_page_templates() ) ),
-		);
+			'options' => array_merge( [ '' => $default_label ], array_flip( (array) $this->column->get_page_templates() ) ),
+		];
 	}
 
 	public function save( $id, $value ) {

@@ -9,7 +9,7 @@ use WP_Term_Query;
 class Term extends Query {
 
 	public function register() {
-		add_action( 'pre_get_terms', array( $this, 'callback_meta_query' ), 1 );
+		add_action( 'pre_get_terms', [ $this, 'callback_meta_query' ], 1 );
 	}
 
 	/**

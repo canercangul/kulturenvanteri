@@ -18,10 +18,10 @@ class Status extends Model {
 		$values = $this->strategy->get_values_by_db_field( 'post_status' );
 
 		if ( ! $values ) {
-			return array();
+			return [];
 		}
 
-		$data = array();
+		$data = [];
 
 		foreach ( $values as $value ) {
 			if ( isset( $wp_post_statuses[ $value ] ) ) {

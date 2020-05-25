@@ -1,4 +1,5 @@
 <?php
+
 namespace ACP\Editing\Model\Comment;
 
 use ACP\Editing\Model;
@@ -9,15 +10,15 @@ use ACP\Editing\Model;
 class Status extends Model\Comment {
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'    => 'select',
-			'options' => array(
+			'options' => [
 				'1'     => __( 'Approved' ),
 				'0'     => __( 'Pending' ),
 				'spam'  => __( 'Spam' ),
 				'trash' => __( 'Trash' ),
-			),
-		);
+			],
+		];
 	}
 
 	/**

@@ -5,7 +5,9 @@ namespace ACP\ListScreen;
 use AC;
 use ACP\Column;
 use ACP\Editing;
+use ReflectionException;
 use WP_MS_Sites_List_Table;
+use WP_Site;
 
 class MSSite extends AC\ListScreenWP
 	implements Editing\ListScreen {
@@ -25,7 +27,7 @@ class MSSite extends AC\ListScreenWP
 	/**
 	 * @param int $site_id
 	 *
-	 * @return \WP_Site Site object
+	 * @return WP_Site Site object
 	 * @since 4.0
 	 */
 	protected function get_object( $site_id ) {
@@ -38,11 +40,11 @@ class MSSite extends AC\ListScreenWP
 	public function get_list_table() {
 		require_once( ABSPATH . 'wp-admin/includes/class-wp-ms-sites-list-table.php' );
 
-		return new WP_MS_Sites_List_Table( array( 'screen' => $this->get_screen_id() ) );
+		return new WP_MS_Sites_List_Table( [ 'screen' => $this->get_screen_id() ] );
 	}
 
 	public function set_manage_value_callback() {
-		add_action( "manage_sites_custom_column", array( $this, 'manage_value' ), 100, 2 );
+		add_action( "manage_sites_custom_column", [ $this, 'manage_value' ], 100, 2 );
 	}
 
 	/**
@@ -52,17 +54,11 @@ class MSSite extends AC\ListScreenWP
 		return network_admin_url( 'sites.php' );
 	}
 
-	/**
-	 * Settings page is the first subsite instead of one the network page.
-	 * @return string
-	 */
 	public function get_edit_link() {
 		return add_query_arg( [
-			'tab'         => 'columns',
-			'page'        => AC\Admin::PLUGIN_PAGE,
 			'list_screen' => $this->get_key(),
 			'layout_id'   => $this->get_layout_id(),
-		], network_admin_url( 'settings.php' ) );
+		], ac_get_admin_network_url( 'columns' ) );
 	}
 
 	/**
@@ -81,7 +77,7 @@ class MSSite extends AC\ListScreenWP
 
 	/**
 	 * Register custom columns
-	 * @throws \ReflectionException
+	 * @throws ReflectionException
 	 */
 	protected function register_column_types() {
 		$this->register_column_type( new Column\Actions() );

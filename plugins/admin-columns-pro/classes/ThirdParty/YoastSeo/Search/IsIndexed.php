@@ -17,9 +17,9 @@ class IsIndexed extends Meta
 	private $null_value;
 
 	public function __construct( $meta_key, $null_value = null ) {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
-		) );
+		] );
 
 		$this->null_value = $null_value;
 
@@ -31,11 +31,11 @@ class IsIndexed extends Meta
 	}
 
 	public function get_values() {
-		return Options::create_from_array( array(
+		return Options::create_from_array( [
 			0 => __( 'Default for Post Type', 'codepress-admin-columns' ),
 			1 => __( 'No' ),
 			2 => __( 'Yes' ),
-		) );
+		] );
 	}
 
 	protected function get_meta_query( $operator, Value $value ) {
@@ -47,16 +47,16 @@ class IsIndexed extends Meta
 			return parent::get_meta_query( $operator, $value );
 		}
 
-		$query = array(
+		$query = [
 			'relation' => 'OR',
 			$base_query,
-		);
+		];
 
 		if ( $this->null_value === (int) $value->get_value() ) {
-			$query[] = array(
+			$query[] = [
 				'key'     => $this->get_meta_key(),
 				'compare' => 'NOT EXISTS',
-			);
+			];
 		}
 
 		return $query;

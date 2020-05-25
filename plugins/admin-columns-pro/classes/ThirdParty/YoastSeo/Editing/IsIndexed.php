@@ -23,14 +23,14 @@ class IsIndexed extends Editing\Model\Meta {
 		$labels = get_post_type_labels( get_post_type_object( $post_type ) );
 		$currently = $this->default_value ? __( 'Yes' ) : __( 'No' );
 
-		return array(
+		return [
 			'type'    => 'select',
-			'options' => array(
+			'options' => [
 				0 => sprintf( __( 'Default for %s, currently: %s', 'codepress-admin-columns' ), $labels->name, $currently ),
 				1 => __( 'Yes' ),
 				2 => __( 'No' ),
-			),
-		);
+			],
+		];
 	}
 
 }

@@ -3,8 +3,8 @@
 namespace ACP\API\Request;
 
 use ACP\API\Request;
-use ACP\Type\SiteUrl;
 use ACP\Type\License\Key;
+use ACP\Type\SiteUrl;
 
 class Activation extends Request {
 

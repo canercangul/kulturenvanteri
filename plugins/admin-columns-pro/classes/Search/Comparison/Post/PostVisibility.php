@@ -13,9 +13,9 @@ class PostVisibility extends Comparison
 	implements Comparison\Values {
 
 	public function __construct() {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
-		) );
+		] );
 
 		parent::__construct( $operators );
 	}

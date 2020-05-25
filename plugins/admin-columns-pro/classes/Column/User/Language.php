@@ -56,7 +56,7 @@ class Language extends AC\Column\Meta
 	public function get_language_options( $include_default = true ) {
 		$translations = $this->get_translations();
 		$languages = get_available_languages();
-		$options = array();
+		$options = [];
 
 		if ( $include_default ) {
 			$options[''] = _x( 'Site Default', 'default site language' );

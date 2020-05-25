@@ -44,12 +44,12 @@ abstract class Comparison {
 	}
 
 	private function validate_value_type() {
-		$value_types = array(
+		$value_types = [
 			Value::DATE,
 			Value::INT,
 			Value::DECIMAL,
 			Value::STRING,
-		);
+		];
 
 		if ( ! in_array( $this->value_type, $value_types ) ) {
 			throw new LogicException( 'Unsupported value type found.' );
@@ -74,7 +74,7 @@ abstract class Comparison {
 	 * @return array
 	 */
 	public function get_labels() {
-		$labels = array();
+		$labels = [];
 
 		foreach ( $this->get_operators() as $operator ) {
 			$labels[ $operator ] = $this->labels->get_offset( $operator );

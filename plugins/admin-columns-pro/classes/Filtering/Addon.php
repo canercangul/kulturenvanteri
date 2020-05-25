@@ -3,37 +3,57 @@
 namespace ACP\Filtering;
 
 use AC;
+use AC\Asset;
+use AC\Asset\Location;
+use AC\Registrable;
+use AC\Request;
+use AC\Type\ListScreenId;
 use ACP;
-use ACP\Asset\Location;
 
 /**
  * @since 4.0
  */
-class Addon implements AC\Registrable {
+class Addon implements Registrable {
 
 	/**
-	 * @var string
+	 * @var AC\ListScreenRepository\Storage
 	 */
-	private $plugin_file;
+	private $storage;
 
-	public function __construct() {
-		$this->plugin_file = ACP_FILE;
+	/**
+	 * @var Location
+	 */
+	private $location;
+
+	/**
+	 * @var Request
+	 */
+	private $request;
+
+	public function __construct( AC\ListScreenRepository\Storage $storage, Location $location, Request $request ) {
+		$this->storage = $storage;
+		$this->location = $location;
+		$this->request = $request;
 	}
 
 	public function register() {
-		add_action( 'ac/column/settings', array( $this, 'settings' ) );
-		add_action( 'ac/settings/scripts', array( $this, 'settings_scripts' ) );
-		add_action( 'ac/table/list_screen', array( $this, 'table_screen' ) );
-		add_action( 'ac/table/list_screen', array( $this, 'handle_filtering' ) );
-		add_action( 'wp_ajax_acp_update_filtering_cache', array( $this, 'ajax_update_dropdown_cache' ) );
+		add_action( 'ac/column/settings', [ $this, 'settings' ] );
+		add_action( 'ac/admin_scripts/columns', [ $this, 'settings_scripts' ] );
+		add_action( 'ac/table/list_screen', [ $this, 'table_screen' ] );
+		add_action( 'ac/table/list_screen', [ $this, 'handle_filtering' ] );
+		add_action( 'wp_ajax_acp_update_filtering_cache', [ $this, 'ajax_update_dropdown_cache' ] );
 	}
 
 	public function ajax_update_dropdown_cache() {
 		check_ajax_referer( 'ac-ajax' );
 
-		$request = new AC\Request();
+		$layout_id = $this->request->get( 'layout' );
 
-		$list_screen = AC()->get_listscreen_repository()->find( $request->get( 'layout' ) );
+		if ( ! $layout_id ) {
+			wp_die();
+		}
+
+		$list_screen = $this->storage->find( new ListScreenId( $this->request->get( 'layout' ) ) );
 
 		if ( ! $list_screen ) {
 			wp_die();
@@ -87,7 +107,7 @@ class Addon implements AC\Registrable {
 			return false;
 		}
 
-		$models = array();
+		$models = [];
 
 		foreach ( $list_screen->get_columns() as $column ) {
 			$model = $this->get_filtering_model( $column );
@@ -112,12 +132,8 @@ class Addon implements AC\Registrable {
 			return false;
 		}
 
-		$location = new Location\Absolute(
-			plugin_dir_url( $this->plugin_file ),
-			plugin_dir_path( $this->plugin_file )
-		);
-		$assets[] = new ACP\Asset\Style( 'acp-filtering-table', $location->with_suffix( 'assets/filtering/css/table.css' ) );
-		$assets[] = new ACP\Asset\Script( 'acp-filtering-table', $location->with_suffix( 'assets/filtering/js/table.js' ), array( 'jquery', 'jquery-ui-datepicker' ) );
+		$assets[] = new Asset\Style( 'acp-filtering-table', $this->location->with_suffix( 'assets/filtering/css/table.css' ) );
+		$assets[] = new Asset\Script( 'acp-filtering-table', $this->location->with_suffix( 'assets/filtering/js/table.js' ), [ 'jquery', 'jquery-ui-datepicker' ] );
 
 		switch ( true ) {
 			case $list_screen instanceof ACP\ListScreen\MSUser :
@@ -141,12 +157,7 @@ class Addon implements AC\Registrable {
 	}
 
 	public function settings_scripts() {
-		$location = new Location\Absolute(
-			plugin_dir_url( $this->plugin_file ),
-			plugin_dir_path( $this->plugin_file )
-		);
-
-		$script = new ACP\Asset\Script( 'acp-filtering-settings', $location->with_suffix( 'assets/filtering/js/settings.js' ), array( 'jquery' ) );
+		$script = new Asset\Script( 'acp-filtering-settings', $this->location->with_suffix( 'assets/filtering/js/settings.js' ), [ 'jquery' ] );
 		$script->enqueue();
 	}
 

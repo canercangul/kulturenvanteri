@@ -1,11 +1,11 @@
-# Copyright (C) 2019 Admin Columns Pro
+# Copyright (C) 2020 Admin Columns Pro
 # This file is distributed under the same license as the Admin Columns Pro package.
 # Translators:
-# Emre Erkan <kara+transifex@karalamalar.net>, 2018
+# Emre Erkan <kara+transifex@karalamalar.net>, 2018-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Admin Columns Pro\n"
-"PO-Revision-Date: 2019-03-19 08:12+0000\n"
+"PO-Revision-Date: 2020-03-27 16:11+0000\n"
 "Last-Translator: Tobias Schutter <info@codepress.nl>\n"
 "Language-Team: Turkish (http://www.transifex.com/codepress/admin-columns-pro/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -19,127 +19,202 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: admin-columns-pro/admin-columns-pro.php:98
+#: admin-columns-pro/admin-columns-pro.php:102
 msgid ""
 "This plugin is not compatible with %s. We disabled it because it might stop "
 "the WordPress Admin from working properly. Try updating this plugin to the "
 "latest version and then activate it again. "
+msgstr "Eklenti %s ile uyumlu değil. WordPress yönetim panelinin düzgün çalışmamasına sebep olabileceğinden etkisiz hale getirdik. Eklentiyi son sürümüne güncelleyip tekrar etkinleştirmeyi deneyin."
+
+#: admin-columns-pro/classes/PluginActionLinks.php45,
+#: admin-columns-pro/templates/admin/list-screen-settings.php:10
+msgid "Settings"
 msgstr ""
 
-#: admin-columns-pro/classes/Layout.php174,
-#: admin-columns-pro/templates/admin/edit-layout.php27,
-#: admin-columns-pro/classes/Column/User/Roles.php:18
-msgid "Roles"
-msgstr "Roller"
+#: admin-columns-pro/classes/Admin/Settings.php:57
+msgid "(no name)"
+msgstr ""
 
-#: admin-columns-pro/classes/Layout.php181,
-#: admin-columns-pro/classes/Settings/Column/CustomFieldType.php67,
-#: admin-columns-pro/classes/Settings/Column/User.php:19
-msgid "User"
-msgstr "Kullanıcı"
+#: admin-columns-pro/classes/Admin/Settings.php:134
+msgid "Select roles"
+msgstr "Rolleri seç"
 
-#: admin-columns-pro/classes/Admin/Feedback.php:47
-msgid "Please insert a valid email so we can reply to your feedback."
-msgstr "Lütfen geri bildiriminize cevap verebilmemiz için geçerli bir e-posta ekleyin."
+#: admin-columns-pro/classes/Admin/Settings.php:135
+msgid "Select users"
+msgstr "Kullanıcıları seç"
 
-#: admin-columns-pro/classes/Admin/Feedback.php:53
-msgid "Your feedback form is empty."
-msgstr "Geri bildirim formunuz boş."
+#: admin-columns-pro/classes/Admin/Settings.php:144
+msgid "Make horizontal scrolling the default when users visit the table."
+msgstr ""
 
-#: admin-columns-pro/classes/Check/Beta.php:41
+#: admin-columns-pro/classes/Admin/Settings.php:145
+msgid ""
+"Users can change this preference by opening “screen options” on the table "
+"screen."
+msgstr ""
+
+#: admin-columns-pro/classes/Admin/Settings.php:148
+msgid ""
+"This feature will automatically adjust the width of the columns based on the"
+" screen size."
+msgstr ""
+
+#: admin-columns-pro/classes/Admin/Settings.php:149
+msgid ""
+"When the columns do not fit on the screen you can horizontally scroll your "
+"columns by dragging the horizontal scrollbar or by swiping left or right "
+"with the mouse."
+msgstr ""
+
+#: admin-columns-pro/classes/Admin/Settings.php175,
+#: admin-columns-pro/classes/Table/HorizontalScrolling.php87,
+#: admin-columns-pro/templates/admin/list-screen-settings.php:73
+msgid "Horizontal Scrolling"
+msgstr "Yatay kaydırma"
+
+#: admin-columns-pro/classes/Admin/Settings.php:249
+msgid "Sets"
+msgstr "Kümeler"
+
+#: admin-columns-pro/classes/Admin/Settings.php:252
+msgid "Sets allow users to switch between different column views."
+msgstr "Kümeler kullanıcıların farklı sütun görünümleri arasında geçiş yapabilmelerini sağlar."
+
+#: admin-columns-pro/classes/Admin/Settings.php:255
+msgid ""
+"Available sets are selectable from the overview screen. Users can have their"
+" own column view preference."
+msgstr "Genel bakış ekranında uygun durumda olan kümeler arasından seçim yapılabilir. Kullanıcılar kendi sütun görünümü tercihlerine sahip olabilir."
+
+#: admin-columns-pro/classes/Admin/Settings.php:261
+msgid "Online documentation"
+msgstr "Çevrimiçi belgeler"
+
+#: admin-columns-pro/classes/Admin/Settings.php:305
+msgid "Default"
+msgstr "Varsayılan"
+
+#: admin-columns-pro/classes/Admin/Settings.php:370
+msgid "You can make an editable copy of this set by clicking %s on the right."
+msgstr "Sağ taraftaki %s ile bu kümenin düzenlenebilir bir kopyasını oluşturabilirsiniz."
+
+#: admin-columns-pro/classes/Admin/Settings.php370,
+#: admin-columns-pro/templates/admin/list-screens-sidebar.php:18
+msgid "+ Add set"
+msgstr "+ Küme ekle"
+
+#: admin-columns-pro/classes/Check/Beta.php:61
 msgid "You are using a beta version of %s."
 msgstr "%s eklentisinin beta sürümünü kullanıyorsunuz."
 
-#: admin-columns-pro/classes/Check/Beta.php:42
+#: admin-columns-pro/classes/Check/Beta.php:62
 msgid "If you have feedback or have found a bug, please %s."
 msgstr "Geri bildiriminiz varsa veya bir hata bulduysanız, lütfen %s."
 
-#: admin-columns-pro/classes/Check/Beta.php:43
+#: admin-columns-pro/classes/Check/Beta.php:63
 msgid "leave us a message"
 msgstr "bize bir mesaj bırakın"
 
-#: admin-columns-pro/classes/Check/Expired.php:76
-msgid "My Account Page"
-msgstr "Hesabım Sayfası"
-
-#: admin-columns-pro/classes/Check/Expired.php:79
+#: admin-columns-pro/classes/Check/Expired.php:115
 msgid ""
 "Your Admin Columns Pro license has expired on %s. To receive updates, renew "
 "your license on the %s."
 msgstr "%s üzerinde Admin Columns Pro lisansınızın süresi doldu. Güncellemeleri alabilmek için %s üzerindeki lisansınızı yenileyin."
 
-#: admin-columns-pro/classes/Check/Renewal.php:146
-msgid "1 day"
-msgid_plural "%s days"
-msgstr[0] "1 gün"
-msgstr[1] "%s gün"
+#: admin-columns-pro/classes/Check/Expired.php:117
+msgid "My Account Page"
+msgstr "Hesabım Sayfası"
 
-#: admin-columns-pro/classes/Check/Renewal.php:147
+#: admin-columns-pro/classes/Check/Renewal.php:216
 msgid "Renew your license"
 msgstr "Lisansınızı yenileyin"
 
-#: admin-columns-pro/classes/Check/Renewal.php:152
+#: admin-columns-pro/classes/Check/Renewal.php:222
 msgid ""
 "Your Admin Columns Pro license will expire in %s. %s before %s to get a %d%%"
 " discount!"
 msgstr "Admin Columns Pro lisansınız %s tarihinde son bulacak. %s ile %s tarihinden önce %%%d indirim alabilirsiniz!"
 
-#: admin-columns-pro/classes/Check/Renewal.php:161
+#: admin-columns-pro/classes/Check/Renewal.php:231
 msgid ""
-"Your Admin Columns Pro license will expire in %s. %s before %s to get a "
-"discount!"
-msgstr "Admin Columns Pro lisansınız %s tarihinde son bulacak. %s ile %s tarihinden önce indirim alabilirsiniz!"
+"Your Admin Columns Pro license will expire in %s. In order get access to new"
+" features and receive security updates, please %s before %s."
+msgstr ""
 
-#: admin-columns-pro/classes/Editing/Settings.php:21
+#: admin-columns-pro/classes/Controller/AjaxRequestFeedback.php:40
+msgid "Please insert a valid email so we can reply to your feedback."
+msgstr "Lütfen geri bildiriminize cevap verebilmemiz için geçerli bir e-posta ekleyin."
+
+#: admin-columns-pro/classes/Controller/AjaxRequestFeedback.php:46
+msgid "Your feedback form is empty."
+msgstr "Geri bildirim formunuz boş."
+
+#: admin-columns-pro/classes/Controller/License.php:120
+msgid "License information has been updated."
+msgstr ""
+
+#: admin-columns-pro/classes/Controller/License.php:141
+msgid "Empty license."
+msgstr "Boş lisans."
+
+#: admin-columns-pro/classes/Controller/ListScreenCreate.php:74
+msgid "Name can not be empty."
+msgstr ""
+
+#: admin-columns-pro/classes/Controller/ListScreenCreate.php:109
+msgid "Column set %s successfully deleted."
+msgstr ""
+
+#: admin-columns-pro/classes/Editing/Settings.php:33
 msgid "Enable Editing"
 msgstr "Düzenlemeyi etkinleştir"
 
-#: admin-columns-pro/classes/Editing/Settings.php:41
-msgid "This will make the column support inline editing."
-msgstr "Bu sütunun dahili düzenlemeyi desteklemesini sağlar."
-
-#: admin-columns-pro/classes/Editing/Settings.php40,
-#: admin-columns-pro/classes/Editing/Model/CustomField.php:45
+#: admin-columns-pro/classes/Editing/Settings.php52,
+#: admin-columns-pro/classes/Editing/Model/CustomField.php:43
 msgid "Inline Editing"
 msgstr "Dahili düzenleme"
 
 #: admin-columns-pro/classes/Editing/TableScreen.php78,
-#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:87
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php82,
+#: admin-columns-pro/classes/Settings/ListScreen/HideOnScreen/InlineEdit.php:10
 msgid "Inline Edit"
 msgstr "Dahili düzenleme"
 
-#: admin-columns-pro/classes/Export/Addon.php:78
+#: admin-columns-pro/classes/Export/Admin.php:53
+msgid "The requested file does not exist."
+msgstr "İstekte bulunulan dosya mevcut değil."
+
+#: admin-columns-pro/classes/Export/Admin.php:69
+msgid "The requested file could not be processed."
+msgstr "İstekte bulunulan dosya işlenemiyor."
+
+#: admin-columns-pro/classes/Export/ExportDirectory.php:31
 msgid ""
 "Creation of Admin Columns export directory failed. Please make sure that "
 "your uploads folder is writable."
 msgstr "Admin Columns dışarı aktarım klasörü oluşturulması başarısız oldu. Lütfen yükleme klasörünüzün yazılabilir olduğundan emin olun."
 
-#: admin-columns-pro/classes/Export/Admin.php:52
-msgid "The requested file does not exist."
-msgstr "İstekte bulunulan dosya mevcut değil."
-
-#: admin-columns-pro/classes/Export/Admin.php:68
-msgid "The requested file could not be processed."
-msgstr "İstekte bulunulan dosya işlenemiyor."
-
-#: admin-columns-pro/classes/Export/Strategy.php:69
+#: admin-columns-pro/classes/Export/Strategy.php:74
 msgid "Invalid value supplied for export counter."
 msgstr "Dışa aktarım sayacı için geçersiz değer sağlandı."
 
-#: admin-columns-pro/classes/Export/Strategy.php:74
+#: admin-columns-pro/classes/Export/Strategy.php:78
 msgid "Invalid value supplied for export hash."
 msgstr "Dışa aktarım karması için geçersiz değer sağlandı."
 
-#: admin-columns-pro/classes/Export/TableScreenOptions.php:42
+#: admin-columns-pro/classes/Export/TableScreenOptions.php:53
 msgid "Show Export Button"
 msgstr "Dışarı aktarma tuşunu göster"
 
-#: admin-columns-pro/classes/Export/TableScreenOptions.php49,
-#: admin-columns-pro/classes/Export/Asset/Script/Table.php:30
+#: admin-columns-pro/classes/Export/TableScreenOptions.php60,
+#: admin-columns-pro/templates/admin/section-export.php9,
+#: admin-columns-pro/classes/Export/Settings/Column.php52,
+#: admin-columns-pro/classes/Export/Asset/Script/Table.php30,
+#: admin-columns-pro/classes/Settings/ListScreen/HideOnScreen/Export.php:10
 msgid "Export"
 msgstr "Dışa aktar"
 
-#: admin-columns-pro/classes/Export/TableScreenOptions.php48,
+#: admin-columns-pro/classes/Export/TableScreenOptions.php59,
 #: admin-columns-pro/classes/Export/Asset/Script/Table.php:31
 msgid "Export to CSV"
 msgstr "CSV'ye Aktar"
@@ -162,27 +237,23 @@ msgstr "%s olmadan"
 msgid "Has %s"
 msgstr "%s var"
 
-#: admin-columns-pro/classes/Filtering/Settings.php:36
+#: admin-columns-pro/classes/Filtering/Settings.php:46
 msgid "Enable Filtering"
 msgstr "Filtrelemeyi etkinleştir"
 
-#: admin-columns-pro/classes/Filtering/Settings.php:56
-msgid "This will make the column support filtering."
-msgstr "Bu sütunun filtreleme desteklemesini sağlar."
-
-#: admin-columns-pro/classes/Filtering/Settings.php:55
+#: admin-columns-pro/classes/Filtering/Settings.php:65
 msgid "Filtering"
 msgstr "Filtreleme"
 
-#: admin-columns-pro/classes/Filtering/Settings.php:65
+#: admin-columns-pro/classes/Filtering/Settings.php:75
 msgid "Set the name of the label in the filter menu"
 msgstr "Filtre menüsündeki etiketin ismini belirleyin"
 
-#: admin-columns-pro/classes/Filtering/Settings.php:64
+#: admin-columns-pro/classes/Filtering/Settings.php:74
 msgid "Top label"
 msgstr "Üst etiket"
 
-#: admin-columns-pro/classes/Filtering/Settings.php:98
+#: admin-columns-pro/classes/Filtering/Settings.php:108
 msgid "Any %s"
 msgstr "Herhangi %s"
 
@@ -193,203 +264,6 @@ msgstr "Değerler yükleniyor"
 #: admin-columns-pro/classes/Helper/FilterButton.php:37
 msgid "Filter"
 msgstr "Filtre"
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php:44
-msgid "You can make an editable copy of this set by clicking %s on the right."
-msgstr "Sağ taraftaki %s ile bu kümenin düzenlenebilir bir kopyasını oluşturabilirsiniz."
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php97,
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:172
-msgid "Original"
-msgstr "Orijinal"
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php:108
-msgid "Column set not created."
-msgstr "Sütun kümesi oluşturulmadı."
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php:125
-msgid "Set %s succesfully created."
-msgstr "Küme %s başarıyla oluşturuldu."
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php:147
-msgid "Screen does not exist."
-msgstr "Ekran yok."
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php:152
-msgid "Column set %s succesfully deleted."
-msgstr "Sütun kümesi %s başarıyla silindi."
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php:200
-msgid "Select roles"
-msgstr "Rolleri seç"
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php:201
-msgid "Select users"
-msgstr "Kullanıcıları seç"
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php:210
-msgid "+ Add set"
-msgstr "+ Küme ekle"
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php222,
-#: admin-columns-pro/classes/LayoutScreen/Columns.php:487
-msgid "Column Sets"
-msgstr "Sütun kümeleri"
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php225,
-#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:93
-msgid "Cancel"
-msgstr "İptal"
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php:240
-msgid ""
-"Create new sets to switch between different column views on the %s screen."
-msgstr "%s ekranında farklı sütun görünümlerine geçebilmek için yeni kümeler oluşturun."
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php249,
-#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:96
-msgid "Add"
-msgstr "Ekle"
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php:262
-msgid ""
-"Warning! The %s columns data will be deleted. This cannot be undone. 'OK' to"
-" delete, 'Cancel' to stop"
-msgstr "Uyarı %s sütun verileri silinecek. Bu geri alınamaz. Silme işlemi için 'tamam', durdurmak için 'İptal et'"
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php279,
-#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:79
-msgid "Delete"
-msgstr "Sil"
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php:285
-msgid "Select"
-msgstr "Seç"
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php:298
-msgid "Saved"
-msgstr "Kaydedildi"
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php:303
-msgid "This set is loaded via PHP and can therefore not be edited"
-msgstr "Bu küme PHP ile yüklenmiş ve bu sebepten düzenlenemez"
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php318,
-#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:92
-msgid "Update"
-msgstr "Güncelleme"
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php:339
-msgid "Sets"
-msgstr "Kümeler"
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php:342
-msgid "Sets allow users to switch between different column views."
-msgstr "Kümeler kullanıcıların farklı sütun görünümleri arasında geçiş yapabilmelerini sağlar."
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php:345
-msgid ""
-"Available sets are selectable from the overview screen. Users can have their"
-" own column view preference."
-msgstr "Genel bakış ekranında uygun durumda olan kümeler arasından seçim yapılabilir. Kullanıcılar kendi sütun görünümü tercihlerine sahip olabilir."
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php:351
-msgid "Online documentation"
-msgstr "Çevrimiçi belgeler"
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php581,
-#: admin-columns-pro/classes/Search/TableScreen.php142,
-#: admin-columns-pro/classes/Search/TableScreen.php144,
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php674,
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:774
-msgid "Instructions"
-msgstr "Talimatlar"
-
-#: admin-columns-pro/classes/LayoutScreen/Columns.php:601
-msgid "Default"
-msgstr "Varsayılan"
-
-#: admin-columns-pro/classes/LayoutScreen/Table.php74,
-#: admin-columns-pro/classes/LayoutScreen/Table.php:89
-msgid "Switch View"
-msgstr "Görünüm değiştir"
-
-#: admin-columns-pro/classes/License/API.php:129
-msgid "Empty response from API."
-msgstr "API'dan boş yanıt."
-
-#: admin-columns-pro/classes/License/Manager.php:152
-msgid ""
-"Licence not active. Enter your license key on <a href='%s'>the settings "
-"page</a>."
-msgstr "Lisans etkin değil. Lisans anahtarınızı <a href='%s'>ayarlar sayfasından</a> girin."
-
-#: admin-columns-pro/classes/License/Settings.php:21
-msgid "Updates"
-msgstr "Güncellemeler"
-
-#: admin-columns-pro/classes/License/Settings.php:21
-msgid "Enter your license code to receive automatic updates."
-msgstr "Otomatik güncelleştirmeler almak için lisans kodunuzu girin."
-
-#: admin-columns-pro/classes/License/Settings.php:53
-msgid "Empty license."
-msgstr "Boş lisans."
-
-#: admin-columns-pro/classes/License/Settings.php72,
-#: admin-columns-pro/classes/License/Settings.php109,
-#: admin-columns-pro/classes/License/Settings.php:113
-msgid "Wrong response from API."
-msgstr "API'dan yanlış yanıt."
-
-#: admin-columns-pro/classes/License/Settings.php:180
-msgid "network settings page"
-msgstr "ağ ayarları sayfası"
-
-#: admin-columns-pro/classes/License/Settings.php:186
-msgid "The license can be managed on the %s."
-msgstr "Lisans %s üzerinde yönetilebilir."
-
-#: admin-columns-pro/classes/License/Settings.php:205
-msgid "Automatic updates are disabled."
-msgstr "Otomatik güncelleştirmeler devre dışı."
-
-#: admin-columns-pro/classes/License/Settings.php:208
-msgid "Enable automatic updates"
-msgstr "Otomatik güncelleştirmeleri etkinleştir"
-
-#: admin-columns-pro/classes/License/Settings.php:217
-msgid "License has expired on %s"
-msgstr "%s üzerinde lisans süresi doldu"
-
-#: admin-columns-pro/classes/License/Settings.php218,
-#: admin-columns-pro/classes/License/Settings.php:224
-msgid "Deactivate license"
-msgstr "Lisansı devre dışı bırak"
-
-#: admin-columns-pro/classes/License/Settings.php:223
-msgid "Automatic updates are enabled."
-msgstr "Otomatik güncelleştirmeler etkin."
-
-#: admin-columns-pro/classes/License/Settings.php:227
-msgid "License is valid until %s"
-msgstr "Lisans %s tarihine kadar geçerli"
-
-#: admin-columns-pro/classes/License/Settings.php:235
-msgid "Enter your license code"
-msgstr "Lisans kodunuzu girin"
-
-#: admin-columns-pro/classes/License/Settings.php:236
-msgid "Update license"
-msgstr "Lisans güncelle"
-
-#: admin-columns-pro/classes/License/Settings.php:238
-msgid "You can find your license key on your %s."
-msgstr "Lisans anahtarınızı %s içinde bulabilirsiniz."
-
-#: admin-columns-pro/classes/License/Settings.php:238
-msgid "account page"
-msgstr "hesap sayfası"
 
 #: admin-columns-pro/classes/Search/Labels.php:11
 msgid "is"
@@ -421,7 +295,7 @@ msgstr "içeren"
 
 #: admin-columns-pro/classes/Search/Labels.php:18
 msgid "does not contain"
-msgstr ""
+msgstr "içermeyen"
 
 #: admin-columns-pro/classes/Search/Labels.php:19
 msgid "starts with"
@@ -451,72 +325,174 @@ msgstr "belirlenmemiş"
 msgid "is set"
 msgstr "belirlenmiş"
 
-#: admin-columns-pro/classes/Search/TableScreen.php:108
-msgid "Segments"
-msgstr "Segmentler"
+#: admin-columns-pro/classes/Search/TableScreen.php144,
+#: admin-columns-pro/classes/Search/TableScreen.php:167
+msgid "Save Filters"
+msgstr ""
 
-#: admin-columns-pro/classes/Search/TableScreen.php:136
-msgid "Create new Segment"
-msgstr "Yeni segment oluştur"
+#: admin-columns-pro/classes/Search/TableScreen.php150,
+#: admin-columns-pro/classes/Search/TableScreen.php152,
+#: admin-columns-pro/templates/admin/create-list-screen.php:36
+msgid "Instructions"
+msgstr "Talimatlar"
 
-#: admin-columns-pro/classes/Search/TableScreen.php146,
-#: admin-columns-pro/classes/Search/Tooltip/Segments.php:22
+#: admin-columns-pro/classes/Search/TableScreen.php:154
 msgid "Save a set of custom smart filters for later use."
 msgstr "Daha sonra kullanmak için özel akıllı filtrelerden bir küme kaydedin."
 
-#: admin-columns-pro/classes/Search/TableScreen.php149,
-#: admin-columns-pro/classes/Search/Tooltip/Segments.php:25
+#: admin-columns-pro/classes/Search/TableScreen.php:157
 msgid ""
 "This can be useful to group your WordPress content based on different "
-"criteria. Click on a segment in the list to load the segmented list."
+"criteria."
 msgstr ""
 
-#: admin-columns-pro/classes/Search/TableScreen.php:159
-msgid "Create New Segment"
-msgstr "Yeni segment oluştur"
+#: admin-columns-pro/classes/Search/TableScreen.php:157
+msgid "Click on a segment to load the filtered list."
+msgstr ""
 
-#: admin-columns-pro/classes/Search/TableScreen.php165,
-#: admin-columns-pro/templates/admin/edit-layout.php11,
-#: admin-columns-pro/classes/Column/NetworkSite/Name.php:9
+#: admin-columns-pro/classes/Search/TableScreen.php173,
+#: admin-columns-pro/templates/admin/create-list-screen.php22,
+#: admin-columns-pro/classes/Column/NetworkSite/Name.php9,
+#: admin-columns-pro/classes/Migrate/Admin/Table/Export.php:55
 msgid "Name"
 msgstr "Bağlantı ismi"
 
-#: admin-columns-pro/classes/Search/TableScreen.php:175
-msgid "Save segment"
-msgstr "Segmenti kaydet"
+#: admin-columns-pro/classes/Search/TableScreen.php:183
+msgid "Save"
+msgstr ""
 
-#: admin-columns-pro/classes/Search/TableScreenOptions.php:80
+#: admin-columns-pro/classes/Search/TableScreenOptions.php:64
 msgid "Enable Smart Filtering"
 msgstr "Akıllı filtreleme özelliğini etkinleştir"
 
-#: admin-columns-pro/classes/Sorting/Settings.php:21
+#: admin-columns-pro/classes/Sorting/Settings.php:28
 msgid "Enable Sorting"
 msgstr "Sıralamayı etkinleştir"
 
-#: admin-columns-pro/classes/Sorting/Settings.php:40
-msgid "This will make the column support sorting."
-msgstr "Bu sütunun sıralama destekleyebilmesini sağlayacaktır."
-
-#: admin-columns-pro/classes/Sorting/Settings.php:39
+#: admin-columns-pro/classes/Sorting/Settings.php46,
+#: admin-columns-pro/templates/admin/list-screen-settings.php:92
 msgid "Sorting"
 msgstr "Sıralama"
 
-#: admin-columns-pro/classes/Table/HorizontalScrolling.php:69
-msgid "Horizontal Scrolling"
-msgstr "Yatay kaydırma"
+#: admin-columns-pro/classes/Table/HorizontalScrolling.php:90
+msgid "hold down SHIFT key"
+msgstr ""
 
-#: admin-columns-pro/templates/admin/edit-layout.php:16
-msgid "Please enter a name."
-msgstr "Lütfen bir isim girin."
+#: admin-columns-pro/classes/Table/Switcher.php60,
+#: admin-columns-pro/classes/Table/Switcher.php:75
+msgid "Switch View"
+msgstr "Görünüm değiştir"
 
-#: admin-columns-pro/templates/admin/edit-layout.php:23
-msgid "Make this set available only for specific users or roles (optional)"
-msgstr "Bu kümeyi sadece belirli kullanıcı ya da roller (seçime bağlı) için kullanılabilir hale getir"
+#: admin-columns-pro/classes/Table/Switcher.php70,
+#: admin-columns-pro/classes/Storage/ListScreen/LegacyCollectionDecoder/Version332.php:39
+msgid "Original"
+msgstr "Orijinal"
 
-#: admin-columns-pro/templates/admin/edit-layout.php28,
-#: admin-columns-pro/templates/admin/edit-layout.php:37
+#: admin-columns-pro/classes/Updates/AddonInstaller.php:72
+msgid "License is not active."
+msgstr ""
+
+#: admin-columns-pro/classes/Updates/AddonInstaller.php:72
+msgid "Enter your license key on <a href=\"%s\">the settings page</a>."
+msgstr ""
+
+#: admin-columns-pro/classes/Updates/AddonInstaller.php:93
+msgid "Install failed."
+msgstr ""
+
+#: admin-columns-pro/classes/Updates/AddonInstaller.php101,
+#: admin-columns-pro/classes/Settings/Column/NetworkSite/Theme.php:87
+msgid "Active"
+msgstr "Aktif"
+
+#: admin-columns-pro/templates/admin/create-list-screen.php:18
+msgid ""
+"Create new sets to switch between different column views on the %s screen."
+msgstr "%s ekranında farklı sütun görünümlerine geçebilmek için yeni kümeler oluşturun."
+
+#: admin-columns-pro/templates/admin/create-list-screen.php:27
+msgid "Please enter a title."
+msgstr ""
+
+#: admin-columns-pro/templates/admin/create-list-screen.php:30
+msgid "Enter name"
+msgstr ""
+
+#: admin-columns-pro/templates/admin/create-list-screen.php39,
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:91
+msgid "Add"
+msgstr "Ekle"
+
+#: admin-columns-pro/templates/admin/list-screen-settings.php11,
+#: admin-columns-pro/templates/admin/list-screen-settings.php27,
+#: admin-columns-pro/templates/admin/list-screen-settings.php:36
 msgid "optional"
 msgstr "isteğe bağlı"
+
+#: admin-columns-pro/templates/admin/list-screen-settings.php:18
+msgid "Conditionals"
+msgstr ""
+
+#: admin-columns-pro/templates/admin/list-screen-settings.php:19
+msgid "Make this column set available only for specific users or roles."
+msgstr ""
+
+#: admin-columns-pro/templates/admin/list-screen-settings.php26,
+#: admin-columns-pro/templates/admin/list-screens-sidebar.php73,
+#: admin-columns-pro/classes/Column/User/Roles.php:18
+msgid "Roles"
+msgstr "Roller"
+
+#: admin-columns-pro/templates/admin/list-screen-settings.php:48
+msgid "Hide on screen"
+msgstr ""
+
+#: admin-columns-pro/templates/admin/list-screen-settings.php:49
+msgid "Select items to hide from the list table screen."
+msgstr ""
+
+#: admin-columns-pro/templates/admin/list-screen-settings.php:64
+msgid "Preferences"
+msgstr ""
+
+#: admin-columns-pro/templates/admin/list-screen-settings.php:65
+msgid ""
+"Set default settings that users will see when they visit the list table."
+msgstr ""
+
+#: admin-columns-pro/templates/admin/list-screen-title.php:9
+msgid "Add title"
+msgstr ""
+
+#: admin-columns-pro/templates/admin/list-screens-sidebar.php:16
+msgid "Column Sets"
+msgstr "Sütun kümeleri"
+
+#: admin-columns-pro/templates/admin/list-screens-sidebar.php19,
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:88
+msgid "Cancel"
+msgstr "İptal"
+
+#: admin-columns-pro/templates/admin/list-screens-sidebar.php:40
+msgid ""
+"Warning! The %s columns data will be deleted. This cannot be undone. 'OK' to"
+" delete, 'Cancel' to stop"
+msgstr "Uyarı %s sütun verileri silinecek. Bu geri alınamaz. Silme işlemi için 'tamam', durdurmak için 'İptal et'"
+
+#: admin-columns-pro/templates/admin/list-screens-sidebar.php84,
+#: admin-columns-pro/classes/Settings/Column/CustomFieldType.php67,
+#: admin-columns-pro/classes/Settings/Column/User.php:19
+msgid "User"
+msgstr "Kullanıcı"
+
+#: admin-columns-pro/templates/admin/list-screens-sidebar.php109,
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:74
+msgid "Delete"
+msgstr "Sil"
+
+#: admin-columns-pro/templates/admin/list-screens-sidebar.php:115
+msgid "Read Only"
+msgstr ""
 
 #: admin-columns-pro/templates/admin/modal-feedback.php:14
 msgid "Leave your feedback"
@@ -534,13 +510,98 @@ msgstr "Geri besleme"
 msgid "Send feedback"
 msgstr "Geri bildirim gönder"
 
+#: admin-columns-pro/templates/admin/section-export.php:13
+msgid "Select the columns settings you would like to export."
+msgstr ""
+
+#: admin-columns-pro/templates/admin/section-export.php:14
+msgid ""
+"The result is a JSON file that can be imported in any WordPress install that"
+" uses Admin Columns Pro."
+msgstr ""
+
+#: admin-columns-pro/templates/admin/section-export.php:22
+msgid "Export To JSON"
+msgstr ""
+
+#: admin-columns-pro/templates/admin/section-import.php:9
+msgid "Import"
+msgstr "İçeri aktar"
+
+#: admin-columns-pro/templates/admin/section-import.php:13
+msgid ""
+"Select the Admin Columns JSON file you would like to import. When you click "
+"the import button below, Admin Columns will import the column settings."
+msgstr ""
+
+#: admin-columns-pro/templates/admin/section-import.php:20
+msgid "Select File"
+msgstr ""
+
+#: admin-columns-pro/templates/admin/section-import.php:24
+msgid "Import File"
+msgstr ""
+
+#: admin-columns-pro/templates/admin/section-license-network-message.php:3
+msgid "network settings page"
+msgstr "ağ ayarları sayfası"
+
+#: admin-columns-pro/templates/admin/section-license-network-message.php:9
+msgid "The license can be managed on the %s."
+msgstr "Lisans %s üzerinde yönetilebilir."
+
+#: admin-columns-pro/templates/admin/section-license.php18,
+#: admin-columns-pro/templates/admin/section-license.php:29
+msgid "Automatic updates are disabled."
+msgstr "Otomatik güncelleştirmeler devre dışı."
+
+#: admin-columns-pro/templates/admin/section-license.php:22
+msgid "License has expired on %s"
+msgstr "%s üzerinde lisans süresi doldu"
+
+#: admin-columns-pro/templates/admin/section-license.php:34
+msgid "Your subscription is cancelled."
+msgstr ""
+
+#: admin-columns-pro/templates/admin/section-license.php:41
+msgid "Automatic updates are enabled."
+msgstr "Otomatik güncelleştirmeler etkin."
+
+#: admin-columns-pro/templates/admin/section-license.php:46
+msgid "License is valid until %s"
+msgstr "Lisans %s tarihine kadar geçerli"
+
+#: admin-columns-pro/templates/admin/section-license.php:54
+msgid "License key is defined in code."
+msgstr ""
+
+#: admin-columns-pro/templates/admin/section-license.php:61
+msgid "Activate license"
+msgstr ""
+
+#: admin-columns-pro/templates/admin/section-license.php:64
+msgid "License key is defined in code but not yet activated."
+msgstr ""
+
+#: admin-columns-pro/templates/admin/section-license.php:69
+msgid "Enter your license code"
+msgstr "Lisans kodunuzu girin"
+
+#: admin-columns-pro/templates/admin/section-license.php:70
+msgid "Update license"
+msgstr "Lisans güncelle"
+
+#: admin-columns-pro/templates/admin/section-license.php:72
+msgid "You can find your license key on your %s."
+msgstr "Lisans anahtarınızı %s içinde bulabilirsiniz."
+
+#: admin-columns-pro/templates/admin/section-license.php:72
+msgid "account page"
+msgstr "hesap sayfası"
+
 #: ac-addon-acf/classes/Column.php:19
 msgid "Advanced Custom Fields"
 msgstr "Gelişmiş özel alanlar"
-
-#: ac-addon-events-calendar/classes/Import.php:38
-msgid "Enable our predefined column sets for %s?"
-msgstr "%s için ön tanımlı sütun kümeleri etkinleştirilsin mi?"
 
 #: ac-addon-events-calendar/classes/TableScreen.php:90
 msgid "upcoming"
@@ -570,222 +631,113 @@ msgstr "Bu filtreyi kaldır"
 msgid "Pods"
 msgstr "Kapsüller"
 
-#: ac-addon-woocommerce/classes/TableScreen.php:76
+#: ac-addon-woocommerce/classes/Subscriptions.php:44
+msgid "WooCommerce Subscriptions"
+msgstr ""
+
+#: ac-addon-woocommerce/classes/TableScreen.php:78
+msgid "Replace"
+msgstr ""
+
+#: ac-addon-woocommerce/classes/TableScreen.php:79
+msgid "Increase by"
+msgstr ""
+
+#: ac-addon-woocommerce/classes/TableScreen.php:80
+msgid "Decrease by"
+msgstr ""
+
+#: ac-addon-woocommerce/classes/TableScreen.php:81
+msgid "Set New"
+msgstr ""
+
+#: ac-addon-woocommerce/classes/TableScreen.php:82
 msgid "Regular"
 msgstr "Normal"
 
-#: ac-addon-woocommerce/classes/TableScreen.php:78
+#: ac-addon-woocommerce/classes/TableScreen.php:83
+msgid "Regular Price"
+msgstr ""
+
+#: ac-addon-woocommerce/classes/TableScreen.php:86
 msgid "Sale from"
 msgstr "İndirim"
 
-#: ac-addon-woocommerce/classes/TableScreen.php:79
+#: ac-addon-woocommerce/classes/TableScreen.php:87
 msgid "Sale To"
 msgstr "Satılık"
 
-#: ac-addon-woocommerce/classes/TableScreen.php138,
-#: ac-addon-woocommerce/classes/WooCommerce.php96,
+#: ac-addon-woocommerce/classes/TableScreen.php:88
+msgid "Set the sale price based on the regular price"
+msgstr ""
+
+#: ac-addon-woocommerce/classes/TableScreen.php90,
+#: ac-addon-woocommerce/classes/Filtering/Product/Sale.php40,
+#: ac-addon-woocommerce/classes/Search/Product/Sale.php:26
+msgid "Scheduled"
+msgstr "Zamanlandı"
+
+#: ac-addon-woocommerce/classes/TableScreen.php:97
+msgid "No Rounding"
+msgstr ""
+
+#: ac-addon-woocommerce/classes/TableScreen.php:98
+msgid "Round up"
+msgstr ""
+
+#: ac-addon-woocommerce/classes/TableScreen.php:99
+msgid "Round down"
+msgstr ""
+
+#: ac-addon-woocommerce/classes/TableScreen.php:100
+msgid "Example:"
+msgstr ""
+
+#: ac-addon-woocommerce/classes/TableScreen.php154,
+#: ac-addon-woocommerce/classes/WooCommerce.php102,
+#: ac-addon-woocommerce/classes/WooCommerce.php106,
 #: ac-addon-woocommerce/classes/Settings/ShopOrder/Customer.php:24
 msgid "WooCommerce"
 msgstr "WooCommerce"
 
-#: ac-addon-woocommerce/classes/TableScreen.php175,
-#: ac-addon-woocommerce/classes/TableScreen.php:199
+#: ac-addon-woocommerce/classes/TableScreen.php191,
+#: ac-addon-woocommerce/classes/TableScreen.php:216
 msgid "View Variations"
 msgstr "Varyasyonları görüntüle"
 
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:30
-msgid "Export/Import"
-msgstr "Dışarı/içeri aktar"
+#: admin-columns-pro/classes/Admin/Page/Tools.php:27
+msgid "Tools"
+msgstr ""
 
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:63
-msgid "Export field is empty. Please select your types from the left column."
-msgstr "Dışarı aktarma alanı boş. Lütfen sol sütundan tiplerinizi seçin."
+#: admin-columns-pro/classes/Admin/Section/License.php103,
+#: admin-columns-pro/classes/Admin/Section/LicenseNetworkMessage.php:26
+msgid "Updates"
+msgstr "Güncellemeler"
 
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php132,
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:134
-msgid "Sorry, there has been an error."
-msgstr "Üzgünüz, bir hata oluştu."
+#: admin-columns-pro/classes/Admin/Section/License.php104,
+#: admin-columns-pro/classes/Admin/Section/LicenseNetworkMessage.php:27
+msgid "Enter your license code to receive automatic updates."
+msgstr "Otomatik güncelleştirmeler almak için lisans kodunuzu girin."
 
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:134
-msgid ""
-"The export file could not be found at %s. It is likely that this was caused "
-"by a permissions problem."
-msgstr "%s konumunda dışarı aktarma dosyası bulunamadı. Büyük olasılıkla bu durum bir izin probleminden kaynaklanmış olmalı."
+#: admin-columns-pro/classes/Column/Comment/HasReplies.php:13
+msgid "Has Replies"
+msgstr ""
 
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:151
-msgid "Import failed. File does not contain Admin Column settings."
-msgstr "İçeri aktarma başarısız oldu. Dosya Admin Column ayarları içermiyor."
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:160
-msgid "Screen %s does not exist."
-msgstr "%s ekranı mevcut değil."
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:180
-msgid "Imported"
-msgstr "İçeri alındı"
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:208
-msgid "Import failed."
-msgstr "İçe aktarma başarısız oldu."
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:220
-msgid "Succesfully created %s for %s."
-msgstr "%s, %s için başarıyla oluşturuldu."
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:221
-msgid "set"
-msgid_plural "sets"
-msgstr[0] "küme"
-msgstr[1] "küme"
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:335
-msgid "read only"
-msgstr "salt okunur"
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:672
-msgid "Results"
-msgstr "Sonuçlar"
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:677
-msgid "Using the PHP export"
-msgstr "PHP dışarı aktarım kullanma"
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php679,
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:759
-msgid "Copy the generated PHP code in the right column"
-msgstr "Sağ sütunda oluşturulan PHP kodunu kopyalayın"
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php680,
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:760
-msgid ""
-"Insert the code in your themes functions.php or in your plugin (on the init "
-"action)"
-msgstr "Kodu temanızın functions.php dosyasına ya da eklentinize ekleyin (init eylemine)"
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php681,
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:761
-msgid ""
-"Your columns settings are now loaded from your PHP code instead of from your"
-" stored settings!"
-msgstr "Sütun ayarlarınız artık saklanan ayarlar yerine PHP kodundan yükleniyorlar!"
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:694
-msgid "Columns"
-msgstr "Sütunlar"
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:695
-msgid "Select the columns to be exported."
-msgstr "Dışarı aktarılacak sütunları seçin."
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:718
-msgid "select all"
-msgstr "tümünü seç"
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:721
-msgid "deselect all"
-msgstr "hiçbirini seçme"
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:725
-msgid "Export PHP"
-msgstr "PHP dışarı aktar"
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php726,
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:741
-msgid "Download export file"
-msgstr "Dışarı aktarma dosyasını indir"
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:730
-msgid "No stored column settings are found."
-msgstr "Hiç saklanmış sütun ayarı bulunamadı."
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:742
-msgid ""
-"Admin Columns will export to a format compatible with the Admin Columns "
-"import functionality."
-msgstr "Admin Columns, Admin Columns içeri aktarma becerisiyle uyumlu bir biçimde dışarı aktarım yapacak."
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php744,
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:757
-msgid "Select the columns you like to export from the list in the left column"
-msgstr "Sol sütundan dışarı aktarmak istediğiniz sütunları seçin"
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:745
-msgid "Click the &quot;Download export file&quot; button"
-msgstr "&quot;Aktarım dosyasını indir&quot; tuşuna basın"
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:746
-msgid "Save the .json-file when prompted"
-msgstr "Sorulduğunda .json-dosyasını kaydedin"
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:747
-msgid "Go to the Admin Columns import/export page in your other installation"
-msgstr "Diğer kurulumunuzda Admin Columns içe/dışa aktarım sayfasına gidin"
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:748
-msgid "Select the export .json-file"
-msgstr "Aktarım .json-dosyasını seçin"
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:749
-msgid "Click the &quot;Start import&quot; button"
-msgstr "&quot;İçe aktarmaya başla&quot; tuşuna basın"
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:750
-msgid "That's it!"
-msgstr "Hepsi bu kadar!"
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:754
-msgid "Export to PHP"
-msgstr "PHP'ye aktar"
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:755
-msgid ""
-"Admin Columns will export PHP code you can directly insert in your plugin or"
-" theme."
-msgstr "Admin Columns, eklenti ya da temanıza direkt olarak ekleyebileceğiniz PHP kodu dışarı aktaracak."
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:758
-msgid "Click the &quot;Export to PHP&quot; button"
-msgstr "&quot;PHP'ye aktar&quot; tuşuna basın"
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:771
-msgid "Import"
-msgstr "İçeri aktar"
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:772
-msgid "Import your Admin Column settings here."
-msgstr "Admin Column ayarlarınızı buradan içe aktarın."
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:777
-msgid "Import Columns Types"
-msgstr "Sütun tiplerini içeri aktar"
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:779
-msgid "Choose a Admin Columns Export file to upload."
-msgstr "Yüklemek için bir Admin Columns dışa aktarı dosyası seçin."
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:780
-msgid "Click upload file and import."
-msgstr "Dosyayı yükle tuşuna basın ve içe aktarın."
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:781
-msgid "That's it! You imported settings are now active."
-msgstr "Hepsi bu! İçe aktarılan ayarlarınız şu an etkin."
-
-#: admin-columns-pro/classes/Admin/Page/ExportImport.php:792
-msgid "Upload file and import"
-msgstr "Dosya yükle ve içe aktar"
+#: admin-columns-pro/classes/Column/Comment/IsReply.php:13
+msgid "Is Reply"
+msgstr ""
 
 #: admin-columns-pro/classes/Column/Comment/PostType.php17,
-#: admin-columns-pro/classes/Column/Media/PostType.php16,
-#: admin-columns-pro/classes/Settings/Column/TaxonomyPostType.php24,
+#: admin-columns-pro/classes/Column/Media/PostType.php17,
+#: admin-columns-pro/classes/Settings/Column/TaxonomyPostType.php27,
 #: ac-addon-types/classes/Settings/ChildPostType.php31,
 #: ac-addon-types/classes/Settings/ParentPostType.php31,
-#: admin-columns-pro/classes/Settings/Column/NetworkSite/PostCount.php:32
+#: admin-columns-pro/classes/Settings/Column/NetworkSite/PostCount.php:33
 msgid "Post Type"
 msgstr "Yazı türü"
 
 #: admin-columns-pro/classes/Column/Media/Image.php14,
-#: admin-columns-pro/classes/Editing/Asset/Script/Table.php89,
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php84,
 #: ac-addon-woocommerce/classes/Filtering/Product/Thumb.php12,
 #: ac-addon-woocommerce/classes/Filtering/Product/Thumb.php:13
 msgid "Image"
@@ -793,7 +745,7 @@ msgstr "Görsel"
 
 #: admin-columns-pro/classes/Column/Media/UsedAsFeaturedImage.php:15
 msgid "Featured Image"
-msgstr ""
+msgstr "Öne çıkan görsel"
 
 #: admin-columns-pro/classes/Column/NetworkSite/BlogID.php:9
 msgid "Blog ID"
@@ -874,6 +826,10 @@ msgstr "İç bağlantılar"
 msgid "External Links"
 msgstr "Dış bağlantılar"
 
+#: admin-columns-pro/classes/Column/Post/PostVisibility.php:13
+msgid "Post Visibility"
+msgstr ""
+
 #: admin-columns-pro/classes/Column/Post/Revisions.php:15
 msgid "Revisions"
 msgstr "Sürümler"
@@ -889,6 +845,7 @@ msgid "Excerpt"
 msgstr "Özet"
 
 #: admin-columns-pro/classes/Column/Taxonomy/ID.php17,
+#: admin-columns-pro/classes/Migrate/Admin/Table/Export.php56,
 #: ac-addon-buddypress/classes/Column/Group/Id.php:11
 msgid "ID"
 msgstr "No"
@@ -901,39 +858,60 @@ msgstr "Ana"
 msgid "Profile Picture"
 msgstr "Profil fotoğrafı"
 
-#: admin-columns-pro/classes/Editing/Admin/CustomFieldEditing.php:21
+#: admin-columns-pro/classes/Column/User/UserPosts.php:12
+msgid "Posts by Author"
+msgstr ""
+
+#: admin-columns-pro/classes/Editing/Admin/CustomFieldEditing.php:28
 msgid "Inline edit will display all the raw values in an editable text field."
 msgstr "Dahili düzenleme düzenlenebilir metin alanlarındaki ham verileri gösterir."
 
-#: admin-columns-pro/classes/Editing/Admin/CustomFieldEditing.php:23
-msgid ""
-"Please read <a href='%s'>our documentation</a> if you plan to use these "
-"fields."
-msgstr "Bu alanları kullanmayı planlıyorsanız lütfen <a href='%s'>belgelerimizi</a> okuyun."
+#: admin-columns-pro/classes/Editing/Admin/CustomFieldEditing.php:30
+msgid "Please read %s if you plan to use these fields."
+msgstr ""
 
-#: admin-columns-pro/classes/Editing/Admin/CustomFieldEditing.php:33
+#: admin-columns-pro/classes/Editing/Admin/CustomFieldEditing.php:34
+msgid "our documentation"
+msgstr ""
+
+#: admin-columns-pro/classes/Editing/Admin/CustomFieldEditing.php:44
 msgid "Enable inline editing for Custom Fields."
-msgstr ""
+msgstr "Özel alanlar için yerinde düzenlemeyi etkinleştir."
 
-#: admin-columns-pro/classes/Editing/Admin/CustomFieldEditing.php34,
-#: admin-columns-pro/classes/Sorting/Admin/ShowAllResults.php:18
+#: admin-columns-pro/classes/Editing/Admin/CustomFieldEditing.php46,
+#: admin-columns-pro/classes/Sorting/Admin/ShowAllResults.php:24
 msgid "Default is %s."
-msgstr ""
+msgstr "Varsayılan %s."
 
-#: admin-columns-pro/classes/Editing/Admin/CustomFieldEditing.php34,
-#: admin-columns-pro/classes/Sorting/Admin/ShowAllResults.php:18
+#: admin-columns-pro/classes/Editing/Admin/CustomFieldEditing.php47,
+#: admin-columns-pro/classes/Sorting/Admin/ShowAllResults.php:24
 msgid "off"
-msgstr ""
+msgstr "kapalı"
 
-#: admin-columns-pro/classes/Editing/Model/CustomField.php:46
+#: admin-columns-pro/classes/Editing/Model/CustomField.php:44
 msgid ""
 "Inline Editing for Custom Fields is not enabled. Enable inline editing for "
 "Custom Fields on the %s."
 msgstr "Özel alanlar için dahili düzenleme etkinleştirilmemiş. %s sayfasında özel alanlar için dahili düzenlemeyi etkinleştirin."
 
-#: admin-columns-pro/classes/Editing/Model/CustomField.php:46
+#: admin-columns-pro/classes/Editing/Model/CustomField.php:44
 msgid "settings screen"
 msgstr "Ayarlar ekranı"
+
+#: admin-columns-pro/classes/Editing/Settings/BulkEditing.php:35
+msgid "Bulk Editing"
+msgstr ""
+
+#: admin-columns-pro/classes/Editing/Settings/BulkEditing.php46,
+#: admin-columns-pro/classes/Export/Settings/Column.php63,
+#: admin-columns-pro/classes/Search/Settings/Column.php:35
+msgid "Enabled"
+msgstr ""
+
+#: admin-columns-pro/classes/Editing/Settings/BulkEditing.php47,
+#: admin-columns-pro/classes/Export/Settings/Column.php:64
+msgid "Disabled"
+msgstr ""
 
 #: admin-columns-pro/classes/Editing/Settings/Excerpt.php:35
 msgid "Textarea"
@@ -955,7 +933,7 @@ msgstr "Düzenleme yapılırken yeni %s oluşturulmasına izin ver"
 msgid "Allow new %s?"
 msgstr "Yeni %s izin verilsin mi?"
 
-#: admin-columns-pro/classes/Export/Exporter/CSV.php:42
+#: admin-columns-pro/classes/Export/Exporter/CSV.php:48
 msgid "The requested file could not be downloaded."
 msgstr "İstekte bulunulan dosya indirilemiyor."
 
@@ -988,15 +966,58 @@ msgstr "Bu sizin filtre biçimini belirleyebilmenizi sağlar."
 msgid "Filter by"
 msgstr "Filtrele"
 
-#: admin-columns-pro/classes/Search/Controller/Segment.php:57
+#: admin-columns-pro/classes/Migrate/Import/Request.php:90
+msgid "Uploaded file does not have a %s extension."
+msgstr ""
+
+#: admin-columns-pro/classes/Migrate/Import/Request.php:98
+msgid "Uploaded file is empty or not readable."
+msgstr ""
+
+#: admin-columns-pro/classes/Migrate/Import/Request.php:106
+msgid "Error parsing the uploaded file."
+msgstr ""
+
+#: admin-columns-pro/classes/Migrate/Import/Request.php:118
+msgid "Error parsing the contents from the uploaded file."
+msgstr ""
+
+#: admin-columns-pro/classes/Migrate/Import/Request.php:132
+msgid "Column settings with id %s cannot be imported."
+msgstr ""
+
+#: admin-columns-pro/classes/Migrate/Import/Request.php:139
+msgid "The uploaded file does not contain any column settings."
+msgstr ""
+
+#: admin-columns-pro/classes/Migrate/Import/Request.php:148
+msgid "Columns settings with id %s could be saved."
+msgstr ""
+
+#: admin-columns-pro/classes/Migrate/Import/Request.php:168
+msgid "Successfully imported %s for %s."
+msgstr ""
+
+#: admin-columns-pro/classes/Migrate/Import/Request.php:169
+msgid "set"
+msgid_plural "sets"
+msgstr[0] "küme"
+msgstr[1] "küme"
+
+#: admin-columns-pro/classes/QuickAdd/Table/Loader.php70,
+#: admin-columns-pro/classes/QuickAdd/Admin/HideOnScreen/QuickAdd.php:11
+msgid "Quick Add"
+msgstr ""
+
+#: admin-columns-pro/classes/Search/Controller/Segment.php:63
 msgid "A segment with this name already exists."
 msgstr "Bu isimle bir segment hali hazırda mevcut."
 
-#: admin-columns-pro/classes/Search/Controller/Segment.php:58
+#: admin-columns-pro/classes/Search/Controller/Segment.php:64
 msgid "Could not find current segment."
 msgstr "Geçerli segment bulunamadı."
 
-#: admin-columns-pro/classes/Search/Controller/Segment.php:59
+#: admin-columns-pro/classes/Search/Controller/Segment.php:65
 msgid "Could save the segment."
 msgstr "Segment kaydedilebilir."
 
@@ -1010,44 +1031,31 @@ msgstr "öncesinde"
 
 #: admin-columns-pro/classes/Search/Labels/Date.php:14
 msgid "is today"
-msgstr ""
+msgstr "bugün"
 
 #: admin-columns-pro/classes/Search/Labels/Date.php:15
-msgid "in the past"
+msgid "is in the past"
 msgstr ""
 
 #: admin-columns-pro/classes/Search/Labels/Date.php:16
-msgid "in the future"
+msgid "is in the future"
+msgstr ""
+
+#: admin-columns-pro/classes/Search/Labels/Date.php:17
+msgid "is less than"
+msgstr ""
+
+#: admin-columns-pro/classes/Search/Labels/Date.php:18
+msgid "is more than"
+msgstr ""
+
+#: admin-columns-pro/classes/Search/Labels/Date.php:19
+msgid "is within"
 msgstr ""
 
 #: admin-columns-pro/classes/Search/Settings/Column.php:32
-msgid "Enabled."
-msgstr "Etkinleştirildi."
-
-#: admin-columns-pro/classes/Search/Settings/Column.php:30
-msgid "Smart filtering is always enabled."
-msgstr "Akıllı filtreleme her zaman etkindir."
-
-#: admin-columns-pro/classes/Search/Settings/Column.php29,
-#: admin-columns-pro/classes/Search/Tooltip/SmartFiltering.php:13
 msgid "Smart Filtering"
 msgstr "Akıllı filtreleme"
-
-#: admin-columns-pro/classes/Search/Tooltip/SmartFiltering.php:15
-msgid "What is smart filtering?"
-msgstr "Akıllı filtreleme nedir?"
-
-#: admin-columns-pro/classes/Search/Tooltip/SmartFiltering.php:26
-msgctxt "smart filtering help"
-msgid "Smart filtering allows you to segment your data by different criteria."
-msgstr "Akıllı filtreleme verinizi farklı kriterlere göre segmente etmenizi sağlar."
-
-#: admin-columns-pro/classes/Search/Tooltip/SmartFiltering.php:27
-msgctxt "smart filtering help"
-msgid ""
-"Click on the <strong>Add Filter</strong> button and select a column and the "
-"criteria you want to filter on. You can add as many filters as you like. "
-msgstr "<strong>Filtre ekle</strong> tuşuna basın ve filtrelemek istediğiniz sütunu ve kriteri seçin. İstediğiniz kadar filtre ekleyebilirsiniz. "
 
 #: admin-columns-pro/classes/Settings/Column/CustomFieldType.php:66
 msgid "Post"
@@ -1057,15 +1065,15 @@ msgstr "Yazı"
 #: ac-addon-acf/classes/Setting/FlexibleContent.php32,
 #: ac-addon-acf/classes/Setting/RepeaterDisplay.php46,
 #: ac-addon-buddypress/classes/Settings/Group.php56,
-#: ac-addon-events-calendar/classes/Settings/Venue.php16,
 #: ac-addon-woocommerce/classes/Settings/Address.php36,
-#: admin-columns-pro/classes/Settings/Column/NetworkSite/Theme.php24,
-#: ac-addon-woocommerce/classes/Settings/ProductVariation/Variation.php37,
+#: ac-addon-woocommerce/classes/Settings/DateType.php40,
+#: admin-columns-pro/classes/Settings/Column/NetworkSite/Theme.php25,
+#: ac-addon-woocommerce/classes/Settings/ProductVariation/Variation.php38,
 #: ac-addon-woocommerce/classes/Settings/ShopCoupon/Limit.php34,
 #: ac-addon-woocommerce/classes/Settings/ShopOrder/IP.php33,
-#: ac-addon-woocommerce/classes/Settings/ShopOrder/OrderDate.php45,
 #: ac-addon-woocommerce/classes/Settings/ShopOrder/Totals.php30,
 #: ac-addon-woocommerce/classes/Settings/User/AddressType.php51,
+#: ac-addon-woocommerce/classes/Settings/User/Country.php50,
 #: ac-addon-woocommerce/classes/Settings/User/Order.php44,
 #: ac-addon-woocommerce/classes/Settings/User/Products.php33,
 #: ac-addon-woocommerce/classes/Settings/User/Ratings.php:33
@@ -1095,36 +1103,54 @@ msgstr "Gravatar"
 msgid "Custom Field"
 msgstr "Özel alan"
 
-#: admin-columns-pro/classes/Sorting/Admin/ShowAllResults.php:17
+#: admin-columns-pro/classes/Sorting/Admin/ShowAllResults.php:23
 msgid "Show all results when sorting."
 msgstr "Sıralamada tüm sonuçları göster."
 
-#: admin-columns-pro/classes/Sorting/Table/Screen.php:82
+#: admin-columns-pro/classes/Sorting/Controller/ResetSorting.php:30
+msgid "All sorting preferences have been reset."
+msgstr "Tüm sıralama tercihleri sıfırlandı."
+
+#: admin-columns-pro/classes/Sorting/Table/Screen.php:83
 msgid "Reset Sorting"
 msgstr "Sıralamayı sıfırla"
 
-#: admin-columns-pro/classes/Sorting/Table/Screen.php:80
+#: admin-columns-pro/classes/Sorting/Table/Screen.php:81
 msgid "Sorted by "
 msgstr "Sıralama kriteri "
 
-#: admin-columns-pro/classes/ThirdParty/bbPress/Addon.php:83
+#: admin-columns-pro/classes/ThirdParty/bbPress/Addon.php:84
 msgid "bbPress"
 msgstr "bbPress"
+
+#: admin-columns-pro/templates/admin/page/settings-section-sorting.php:3
+msgid "Reset sorting preferences"
+msgstr "Sıralama tercihlerini sıfırla"
+
+#: admin-columns-pro/templates/admin/partials/license-form-buttons.php:3
+msgid "Deactivate license"
+msgstr "Lisansı devre dışı bırak"
+
+#: admin-columns-pro/templates/admin/partials/license-form-buttons.php:5
+msgid "Check license"
+msgstr ""
 
 #: ac-addon-acf/classes/Editing/TrueFalse.php14,
 #: ac-addon-acf/classes/Filtering/TrueFalse.php39,
 #: ac-addon-pods/classes/Editing/TrueFalse.php13,
 #: ac-addon-pods/classes/Filtering/TrueFalse.php39,
-#: ac-addon-types/classes/Search/Checkbox.php27,
+#: ac-addon-types/classes/Search/Checkbox.php28,
 #: admin-columns-pro/classes/Editing/Model/CustomField/Checkmark.php13,
 #: admin-columns-pro/classes/Editing/Model/User/RichEditing.php14,
 #: admin-columns-pro/classes/Editing/Model/User/ShowToolbar.php14,
 #: admin-columns-pro/classes/Filtering/Model/CustomField/Checkmark.php13,
+#: admin-columns-pro/classes/Search/Comparison/Comment/HasReplies.php41,
+#: admin-columns-pro/classes/Search/Comparison/Comment/IsReply.php41,
 #: admin-columns-pro/classes/Search/Comparison/Meta/Checkmark.php25,
 #: ac-addon-events-calendar/classes/Editing/Event/Featured.php14,
 #: ac-addon-events-calendar/classes/Search/Event/Featured.php32,
 #: ac-addon-events-calendar/classes/Search/Event/Sticky.php28,
-#: ac-addon-woocommerce/classes/Search/Comment/ProductReview.php:46
+#: ac-addon-woocommerce/classes/Search/Comment/ProductReview.php:45
 msgid "False"
 msgstr "Yanlış"
 
@@ -1132,16 +1158,18 @@ msgstr "Yanlış"
 #: ac-addon-acf/classes/Filtering/TrueFalse.php42,
 #: ac-addon-pods/classes/Editing/TrueFalse.php14,
 #: ac-addon-pods/classes/Filtering/TrueFalse.php42,
-#: ac-addon-types/classes/Search/Checkbox.php26,
+#: ac-addon-types/classes/Search/Checkbox.php27,
 #: admin-columns-pro/classes/Editing/Model/CustomField/Checkmark.php14,
 #: admin-columns-pro/classes/Editing/Model/User/RichEditing.php13,
 #: admin-columns-pro/classes/Editing/Model/User/ShowToolbar.php13,
 #: admin-columns-pro/classes/Filtering/Model/CustomField/Checkmark.php12,
+#: admin-columns-pro/classes/Search/Comparison/Comment/HasReplies.php40,
+#: admin-columns-pro/classes/Search/Comparison/Comment/IsReply.php40,
 #: admin-columns-pro/classes/Search/Comparison/Meta/Checkmark.php24,
 #: ac-addon-events-calendar/classes/Editing/Event/Featured.php15,
 #: ac-addon-events-calendar/classes/Search/Event/Featured.php33,
 #: ac-addon-events-calendar/classes/Search/Event/Sticky.php27,
-#: ac-addon-woocommerce/classes/Search/Comment/ProductReview.php:45
+#: ac-addon-woocommerce/classes/Search/Comment/ProductReview.php:44
 msgid "True"
 msgstr "Doğru"
 
@@ -1149,40 +1177,40 @@ msgstr "Doğru"
 msgid "Invalid attachment"
 msgstr "Geçersiz ek"
 
-#: ac-addon-acf/classes/Setting/Date.php:25
+#: ac-addon-acf/classes/Setting/Date.php:24
 msgid "ACF Date Format"
 msgstr "ACF tarih biçimi"
 
-#: ac-addon-acf/classes/Setting/Date.php31,
-#: ac-addon-acf/classes/Setting/Time.php:31
+#: ac-addon-acf/classes/Setting/Date.php30,
+#: ac-addon-acf/classes/Setting/Time.php:30
 msgid "%s uses the %s from it's field settings."
 msgstr "%s, alan ayarlarında %s kullanır."
 
-#: ac-addon-acf/classes/Setting/Date.php31,
-#: ac-addon-acf/classes/Setting/Time.php31,
+#: ac-addon-acf/classes/Setting/Date.php30,
+#: ac-addon-acf/classes/Setting/Time.php30,
 #: admin-columns-pro/classes/Settings/Column/NetworkSite/Plugins.php:25
 msgid "Display Format"
 msgstr "Gösterim biçimi"
 
-#: ac-addon-acf/classes/Setting/Field.php32,
-#: ac-addon-buddypress/classes/Settings/Profile.php28,
+#: ac-addon-acf/classes/Setting/Field.php33,
+#: ac-addon-buddypress/classes/Settings/Profile.php29,
 #: ac-addon-pods/classes/Setting/Field.php30,
 #: ac-addon-types/classes/Settings/Field.php:31
 msgid "No %s fields available."
 msgstr "Kullanılabilir %s alanı yok."
 
-#: ac-addon-acf/classes/Setting/Field.php40,
-#: ac-addon-buddypress/classes/Settings/Profile.php34,
+#: ac-addon-acf/classes/Setting/Field.php41,
+#: ac-addon-buddypress/classes/Settings/Profile.php35,
 #: ac-addon-pods/classes/Setting/Field.php40,
 #: ac-addon-types/classes/Settings/Field.php:37
 msgid "Field"
 msgstr "Alan"
 
-#: ac-addon-acf/classes/Setting/Field.php:83
+#: ac-addon-acf/classes/Setting/Field.php:91
 msgid "The previous selected option %s no longer exists."
 msgstr "Önceden seçilmiş olan %s seçeneği artık yok."
 
-#: ac-addon-acf/classes/Setting/Field.php153,
+#: ac-addon-acf/classes/Setting/Field.php161,
 #: ac-addon-pods/classes/Setting/Field.php89,
 #: ac-addon-acf/classes/Free/Setting/Field.php:29
 msgid "empty label"
@@ -1217,7 +1245,7 @@ msgstr "%s alt alanı yok."
 msgid "Select a repeater sub field."
 msgstr "Tekrarlayıcı alt alan seçin."
 
-#: ac-addon-acf/classes/Setting/Time.php:25
+#: ac-addon-acf/classes/Setting/Time.php:24
 msgid "ACF Time Format"
 msgstr "ACF zaman biçimi"
 
@@ -1232,23 +1260,23 @@ msgid ""
 "Filtering and Inline Editing are disabled for this field."
 msgstr "Bu özel ACF alanı tipi, bu tümleştirmede desteklenmiyor. Yine de sütun çalışsa bile, beklenmedik durumlar ortaya çıkabilir. Sıralama, filtreleme ve dahili düzenleme bu alan için devre dışıdır."
 
-#: ac-addon-buddypress/classes/ListScreen/Group.php:18
+#: ac-addon-buddypress/classes/ListScreen/Group.php:19
 msgid "Groups"
 msgstr "Gruplar"
 
-#: ac-addon-buddypress/classes/Settings/ActivityType.php:36
+#: ac-addon-buddypress/classes/Settings/ActivityType.php:35
 msgid "Activity Type"
 msgstr "Etkinlik tipi"
 
-#: ac-addon-buddypress/classes/Settings/Date.php:17
+#: ac-addon-buddypress/classes/Settings/Date.php:16
 msgid "BuddyPress Difference"
 msgstr "BuddyPress farkı"
 
-#: ac-addon-buddypress/classes/Settings/Date.php:20
+#: ac-addon-buddypress/classes/Settings/Date.php:19
 msgid "The difference is returned in a human readable format."
 msgstr "Fark insan tarafından okunabilir bir biçimde geri gönderilir."
 
-#: ac-addon-buddypress/classes/Settings/Date.php:20
+#: ac-addon-buddypress/classes/Settings/Date.php:19
 msgid "For example: %s."
 msgstr "Örnek: %s."
 
@@ -1256,16 +1284,16 @@ msgstr "Örnek: %s."
 msgid "Link To"
 msgstr "Bağlantı ver"
 
-#: ac-addon-buddypress/classes/Settings/Profile.php:28
+#: ac-addon-buddypress/classes/Settings/Profile.php:29
 msgid "BuddyPress"
 msgstr "BuddyPress"
 
-#: ac-addon-buddypress/classes/Settings/Profile.php35,
+#: ac-addon-buddypress/classes/Settings/Profile.php36,
 #: ac-addon-types/classes/Settings/Field.php:38
 msgid "Select your %s field."
 msgstr "%s alanınızı seçin."
 
-#: ac-addon-buddypress/classes/Settings/Profile.php:35
+#: ac-addon-buddypress/classes/Settings/Profile.php:36
 msgid "BuddyPress profile"
 msgstr "BuddyPress profili"
 
@@ -1273,13 +1301,17 @@ msgstr "BuddyPress profili"
 msgid "Upcoming Event"
 msgstr "Yaklaşan etkinlik"
 
-#: ac-addon-events-calendar/classes/Filtering/UpcomingEvent.php:57
+#: ac-addon-events-calendar/classes/Filtering/UpcomingEvent.php:58
 msgid "Has Upcoming Event"
 msgstr "Yaklaşan etkinliği var"
 
-#: ac-addon-events-calendar/classes/Filtering/UpcomingEvent.php:58
+#: ac-addon-events-calendar/classes/Filtering/UpcomingEvent.php:59
 msgid "Has No Upcoming Event"
 msgstr "Yaklaşan etkinliği yok"
+
+#: ac-addon-events-calendar/classes/ImportListscreens/Message.php:43
+msgid "Enable our predefined column sets for %s?"
+msgstr "%s için ön tanımlı sütun kümeleri etkinleştirilsin mi?"
 
 #: ac-addon-events-calendar/classes/Settings/EventDates.php:40
 msgid "Event Date"
@@ -1329,7 +1361,7 @@ msgid "Types"
 msgstr "Tipler"
 
 #: ac-addon-types/classes/Settings/Field.php38,
-#: ac-addon-woocommerce/classes/Column/Product/ProductType.php:16
+#: ac-addon-woocommerce/classes/Column/Product/ProductType.php:17
 msgid "Type"
 msgstr "Tür"
 
@@ -1350,125 +1382,179 @@ msgstr "İlişki"
 msgid "None"
 msgstr "Yok"
 
-#: ac-addon-woocommerce/classes/ListTable/ProductVariation.php:105
+#: ac-addon-woocommerce/classes/ListTable/ProductVariation.php:106
 msgid "Back to products"
 msgstr "Ürünlere geri dön"
 
-#: ac-addon-woocommerce/classes/ListTable/ProductVariation.php:279
+#: ac-addon-woocommerce/classes/ListTable/ProductVariation.php:280
 msgid "Search Variable Product"
 msgstr "Varyasyon ürün ara"
 
-#: ac-addon-woocommerce/classes/ListTable/ProductVariation.php:295
+#: ac-addon-woocommerce/classes/ListTable/ProductVariation.php:296
 msgid "When you create a product variation, it will appear here."
 msgstr "Bir ürün varyasyonu oluşturduğunuzda burada görüntülenir."
+
+#: ac-addon-woocommerce/classes/PostType/ProductVariation.php45,
+#: ac-addon-woocommerce/classes/PostType/ProductVariation.php:47
+msgid "Product Variations"
+msgstr ""
+
+#: ac-addon-woocommerce/classes/PostType/ProductVariation.php:46
+msgid "Product Variation"
+msgstr ""
+
+#: ac-addon-woocommerce/classes/PostType/ProductVariation.php:48
+msgid "Add New"
+msgstr ""
+
+#: ac-addon-woocommerce/classes/PostType/ProductVariation.php:49
+msgid "Add new variation"
+msgstr ""
+
+#: ac-addon-woocommerce/classes/PostType/ProductVariation.php:50
+msgid "Edit"
+msgstr ""
+
+#: ac-addon-woocommerce/classes/PostType/ProductVariation.php:51
+msgid "Edit variation"
+msgstr ""
+
+#: ac-addon-woocommerce/classes/PostType/ProductVariation.php:52
+msgid "New variation"
+msgstr ""
+
+#: ac-addon-woocommerce/classes/PostType/ProductVariation.php53,
+#: ac-addon-woocommerce/classes/PostType/ProductVariation.php:54
+msgid "View variation"
+msgstr ""
+
+#: ac-addon-woocommerce/classes/PostType/ProductVariation.php:56
+msgid "No variations found"
+msgstr ""
+
+#: ac-addon-woocommerce/classes/PostType/ProductVariation.php:57
+msgid "No variations found in trash"
+msgstr ""
+
+#: ac-addon-woocommerce/classes/PostType/ProductVariation.php:58
+msgid "Insert into variation"
+msgstr ""
 
 #: ac-addon-woocommerce/classes/Settings/Address.php:45
 msgid "Full Address"
 msgstr "Açık adres"
 
-#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:74
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:69
 msgid "Select author"
 msgstr "Yazar seç"
 
-#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:76
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:71
 msgid "Redo"
 msgstr "Yinele"
 
-#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:77
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:72
 msgid "Undo"
 msgstr "Geri al"
 
-#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:80
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:75
 msgid "Download"
 msgstr "İndir"
 
-#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:82
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:77
 msgid "This field is required."
 msgstr "Bu alan zorunlu."
 
-#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:83
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:78
 msgid "Please enter a valid float value."
 msgstr "Lütfen geçerli bir reel sayı girin."
 
-#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:84
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:79
 msgid "Please enter valid float values."
 msgstr "Lütfen geçerli reel sayılar girin."
 
-#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:85
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:80
 msgid "Something went wrong."
-msgstr ""
+msgstr "Bir şeyler ters gitti."
 
-#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:88
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:83
 msgid "Media"
 msgstr "Ortam dosyası"
 
-#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:90
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:85
 msgid "Audio"
 msgstr "Ses"
 
-#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:91
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:86
 msgid "Time"
 msgstr "Zaman"
 
-#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:94
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:87
+msgid "Update"
+msgstr "Güncelleme"
+
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:89
 msgid "Done"
-msgstr ""
+msgstr "Tamamlandı"
+
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:90
+msgid "Replace with"
+msgstr "Şununla değiştir"
+
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:92
+msgid "Remove"
+msgstr "Kaldır"
 
 #: admin-columns-pro/classes/Editing/Asset/Script/Table.php:95
-msgid "Replace with"
-msgstr ""
+msgid "Select all {0} entries"
+msgstr "Tüm {0} girdiyi seç"
+
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:96
+msgid "<strong>{0} entries</strong> selected for Bulk Edit."
+msgstr "Toplu düzenleme için <strong>{0} girdi</strong> girdi seçildi."
 
 #: admin-columns-pro/classes/Editing/Asset/Script/Table.php:97
-msgid "Remove"
+msgid "Done & Deselect All"
 msgstr ""
 
 #: admin-columns-pro/classes/Editing/Asset/Script/Table.php:100
-msgid "Select all {0} entries"
-msgstr ""
+msgid "This will update {0} entries."
+msgstr "Bu, {0} girdiyi güncelleyecektir."
 
 #: admin-columns-pro/classes/Editing/Asset/Script/Table.php:101
-msgid "<strong>{0} entries</strong> selected for Bulk Edit."
-msgstr ""
+msgid "You are about to clear {0} entries."
+msgstr "{0} girdiyi temizlemek üzeresiniz."
+
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:102
+msgid "You are about to update {0} entries."
+msgstr "{0} girdiyi güncellemek üzeresiniz."
+
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:103
+msgid "Are you sure?"
+msgstr "Emin misiniz?"
 
 #: admin-columns-pro/classes/Editing/Asset/Script/Table.php:104
-msgid "This will update {0} entries."
-msgstr ""
-
-#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:105
-msgid "You are about to clear {0} entries."
-msgstr ""
-
-#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:106
-msgid "You are about to update {0} entries."
-msgstr ""
+msgid "Yes, Update"
+msgstr "Evet, güncelle"
 
 #: admin-columns-pro/classes/Editing/Asset/Script/Table.php:107
-msgid "Are you sure?"
-msgstr ""
+msgid "Processed {0} entries"
+msgstr "{0} girdi işlendi"
 
 #: admin-columns-pro/classes/Editing/Asset/Script/Table.php:108
-msgid "Yes, Update"
-msgstr ""
+msgid "Updating entries."
+msgstr "Girdiler güncelleniyor."
+
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:109
+msgid "Processed {0} of {1} entries."
+msgstr "{0} / {1} girdi işlendi."
+
+#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:110
+msgid "Updating failed. Please try again."
+msgstr "Güncelleme başarısız. Lütfen tekrar deneyin."
 
 #: admin-columns-pro/classes/Editing/Asset/Script/Table.php:111
-msgid "Processed {0} entries"
-msgstr ""
-
-#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:112
-msgid "Updating entries."
-msgstr ""
-
-#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:113
-msgid "Processed {0} of {1} entries."
-msgstr ""
-
-#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:114
-msgid "Updating failed. Please try again."
-msgstr ""
-
-#: admin-columns-pro/classes/Editing/Asset/Script/Table.php:115
 msgid "We have found <strong>{0} errors</strong> while processing."
-msgstr ""
+msgstr "İşleme sırasında <strong>{0} hata</strong> bulduk."
 
 #: admin-columns-pro/classes/Editing/Model/Post/CommentStatus.php13,
 #: admin-columns-pro/classes/Editing/Model/Post/PingStatus.php11,
@@ -1490,7 +1576,7 @@ msgstr "Özet, içerikten otomatik olarak oluşturulur."
 
 #: admin-columns-pro/classes/Editing/Model/Post/Slug.php:16
 msgid "Enter slug"
-msgstr ""
+msgstr "Kısa ismi girin"
 
 #: admin-columns-pro/classes/Editing/Model/Post/Sticky.php13,
 #: ac-addon-events-calendar/classes/Editing/Event/AllDayEvent.php28,
@@ -1500,7 +1586,7 @@ msgstr ""
 #: ac-addon-woocommerce/classes/Editing/ProductVariation/Virtual.php15,
 #: ac-addon-woocommerce/classes/Editing/ShopCoupon/FreeShipping.php:14
 msgid "No"
-msgstr ""
+msgstr "Hayır"
 
 #: admin-columns-pro/classes/Editing/Model/Post/Sticky.php14,
 #: ac-addon-events-calendar/classes/Editing/Event/AllDayEvent.php29,
@@ -1510,7 +1596,7 @@ msgstr ""
 #: ac-addon-woocommerce/classes/Editing/ProductVariation/Virtual.php14,
 #: ac-addon-woocommerce/classes/Editing/ShopCoupon/FreeShipping.php:15
 msgid "Yes"
-msgstr ""
+msgstr "Evet"
 
 #: admin-columns-pro/classes/Editing/Model/User/Username.php:36
 msgid "The username already exists."
@@ -1590,50 +1676,63 @@ msgstr "Sabit değil"
 msgid "Sticky"
 msgstr "Sabit"
 
-#: admin-columns-pro/classes/Helper/Select/Group/MimeType.php:32
+#: admin-columns-pro/classes/Helper/Select/Group/MimeType.php:31
 msgctxt "mediatype"
 msgid "Image"
 msgstr "Görsel"
 
-#: admin-columns-pro/classes/Helper/Select/Group/MimeType.php:33
+#: admin-columns-pro/classes/Helper/Select/Group/MimeType.php:32
 msgctxt "mediatype"
 msgid "Audio"
 msgstr "Ses"
 
-#: admin-columns-pro/classes/Helper/Select/Group/MimeType.php:34
+#: admin-columns-pro/classes/Helper/Select/Group/MimeType.php:33
 msgctxt "mediatype"
 msgid "Video"
 msgstr "Video"
 
-#: admin-columns-pro/classes/Helper/Select/Group/MimeType.php:35
+#: admin-columns-pro/classes/Helper/Select/Group/MimeType.php:34
 msgctxt "mediatype"
 msgid "Document"
 msgstr "Belge"
 
-#: admin-columns-pro/classes/Helper/Select/Group/MimeType.php:36
+#: admin-columns-pro/classes/Helper/Select/Group/MimeType.php:35
 msgctxt "mediatype"
 msgid "Spreadsheet"
 msgstr "Çizelge"
 
-#: admin-columns-pro/classes/Helper/Select/Group/MimeType.php:37
+#: admin-columns-pro/classes/Helper/Select/Group/MimeType.php:36
 msgctxt "mediatype"
 msgid "Interactive"
 msgstr "Etkileşimli"
 
-#: admin-columns-pro/classes/Helper/Select/Group/MimeType.php:38
+#: admin-columns-pro/classes/Helper/Select/Group/MimeType.php:37
 msgctxt "mediatype"
 msgid "Text"
 msgstr "Metin"
 
-#: admin-columns-pro/classes/Helper/Select/Group/MimeType.php:39
+#: admin-columns-pro/classes/Helper/Select/Group/MimeType.php:38
 msgctxt "mediatype"
 msgid "Archive"
 msgstr "Arşiv"
 
-#: admin-columns-pro/classes/Helper/Select/Group/MimeType.php:40
+#: admin-columns-pro/classes/Helper/Select/Group/MimeType.php:39
 msgctxt "mediatype"
 msgid "Code"
 msgstr "Kod"
+
+#: admin-columns-pro/classes/Migrate/Admin/Table/Export.php:54
+msgid "List Table"
+msgstr ""
+
+#: admin-columns-pro/classes/Migrate/Export/Response/File.php41,
+#: admin-columns-pro/classes/Migrate/Export/Response/Screen.php:33
+msgid "No screens selected for export."
+msgstr ""
+
+#: admin-columns-pro/classes/QuickAdd/Table/Checkbox/ShowButton.php:11
+msgid "Show Quick Add Button"
+msgstr ""
 
 #: admin-columns-pro/classes/Search/Asset/Script/Table.php:41
 msgctxt "select placeholder"
@@ -1642,13 +1741,21 @@ msgstr "Seç"
 
 #: admin-columns-pro/classes/Search/Asset/Script/Table.php:42
 msgid "Add Filter"
+msgstr "Filtre ekle"
+
+#: admin-columns-pro/classes/Search/Asset/Script/Table.php:43
+msgid "days ago"
 msgstr ""
 
-#: admin-columns-pro/classes/Search/Comparison/Media/UsedAsFeaturedImage.php:46
+#: admin-columns-pro/classes/Search/Asset/Script/Table.php:44
+msgid "days"
+msgstr ""
+
+#: admin-columns-pro/classes/Search/Comparison/Media/UsedAsFeaturedImage.php:47
 msgid "In use"
 msgstr "Kullanımda"
 
-#: admin-columns-pro/classes/Search/Comparison/Media/UsedAsFeaturedImage.php:47
+#: admin-columns-pro/classes/Search/Comparison/Media/UsedAsFeaturedImage.php:48
 msgid "Not used"
 msgstr "Kullanımda değil"
 
@@ -1668,69 +1775,81 @@ msgstr "Liste"
 msgid "Include network plugins"
 msgstr "Ağ eklentilerini dahil et"
 
-#: admin-columns-pro/classes/Settings/Column/NetworkSite/PostCount.php:43
+#: admin-columns-pro/classes/Settings/Column/NetworkSite/PostCount.php:44
 msgid "Does not include %s"
 msgstr "%s eklentisi dahil değil"
 
-#: admin-columns-pro/classes/Settings/Column/NetworkSite/PostCount.php:47
+#: admin-columns-pro/classes/Settings/Column/NetworkSite/PostCount.php:48
 msgid "Post Status"
 msgstr "Yazı durumu"
 
-#: admin-columns-pro/classes/Settings/Column/NetworkSite/PostCount.php:53
+#: admin-columns-pro/classes/Settings/Column/NetworkSite/PostCount.php:54
 msgid "Display Options"
 msgstr "Görüntü seçenekleri"
 
-#: admin-columns-pro/classes/Settings/Column/NetworkSite/PostCount.php:116
+#: admin-columns-pro/classes/Settings/Column/NetworkSite/PostCount.php:117
 msgid "All post types"
 msgstr "Tüm yazı tipleri"
 
-#: admin-columns-pro/classes/Settings/Column/NetworkSite/PostCount.php:146
+#: admin-columns-pro/classes/Settings/Column/NetworkSite/PostCount.php:147
 msgid "Any post status"
 msgstr "Herhangi bir yazı durumu"
 
-#: admin-columns-pro/classes/Settings/Column/NetworkSite/PostCount.php:147
+#: admin-columns-pro/classes/Settings/Column/NetworkSite/PostCount.php:148
 msgid "Any post status without Trash"
 msgstr "Çöp hariç herhangi bir yazı durumu"
 
-#: admin-columns-pro/classes/Settings/Column/NetworkSite/Theme.php:33
+#: admin-columns-pro/classes/Settings/Column/NetworkSite/Theme.php:34
 msgid "Active Theme"
 msgstr "Etkin tema"
 
-#: admin-columns-pro/classes/Settings/Column/NetworkSite/Theme.php:34
+#: admin-columns-pro/classes/Settings/Column/NetworkSite/Theme.php:35
 msgid "Allowed Themes"
 msgstr "İzin verilen temalar"
 
-#: admin-columns-pro/classes/Settings/Column/NetworkSite/Theme.php:35
+#: admin-columns-pro/classes/Settings/Column/NetworkSite/Theme.php:36
 msgid "Available Themes"
 msgstr "Mevcut temalar"
 
-#: admin-columns-pro/classes/Settings/Column/NetworkSite/Theme.php:86
-msgid "Active"
-msgstr "Aktif"
-
-#: admin-columns-pro/classes/Settings/Column/NetworkSite/Theme.php:90
+#: admin-columns-pro/classes/Settings/Column/NetworkSite/Theme.php:91
 msgid "Network Enabled"
 msgstr "Ağ etkinleştirme"
 
-#: admin-columns-pro/classes/Settings/Column/NetworkSite/Theme.php:92
+#: admin-columns-pro/classes/Settings/Column/NetworkSite/Theme.php:93
 msgid "Site Enabled"
 msgstr "Site etkin"
 
-#: admin-columns-pro/classes/Sorting/Admin/Section/ResetSorting.php:14
+#: admin-columns-pro/classes/Settings/ListScreen/HideOnScreen/BulkActions.php:10
+msgid "Bulk Actions"
+msgstr ""
+
+#: admin-columns-pro/classes/Settings/ListScreen/HideOnScreen/BulkEdit.php:10
+msgid "Bulk Edit"
+msgstr ""
+
+#: admin-columns-pro/classes/Settings/ListScreen/HideOnScreen/Filters.php:10
+msgid "Filters"
+msgstr ""
+
+#: admin-columns-pro/classes/Settings/ListScreen/HideOnScreen/SavedFilters.php:10
+msgid "Saved Filters"
+msgstr ""
+
+#: admin-columns-pro/classes/Settings/ListScreen/HideOnScreen/Search.php:10
+msgid "Search"
+msgstr ""
+
+#: admin-columns-pro/classes/Sorting/Admin/Section/ResetSorting.php:20
 msgid "Sorting Preferences"
 msgstr "Sıralama tercihleri"
 
-#: admin-columns-pro/classes/Sorting/Admin/Section/ResetSorting.php:14
+#: admin-columns-pro/classes/Sorting/Admin/Section/ResetSorting.php:21
 msgid "This will reset the sorting preference for all users."
 msgstr "Bu, tüm kullanıcılar için sıralama tercihini sıfırlayacak."
 
-#: admin-columns-pro/classes/Sorting/Admin/Section/ResetSorting.php:35
-msgid "All sorting preferences have been reset."
-msgstr "Tüm sıralama tercihleri sıfırlandı."
-
-#: admin-columns-pro/classes/Sorting/Admin/Section/ResetSorting.php:43
-msgid "Reset sorting preferences"
-msgstr "Sıralama tercihlerini sıfırla"
+#: admin-columns-pro/classes/ThirdParty/YoastSeo/Column/IsIndexed.php:27
+msgid "Implicit"
+msgstr ""
 
 #: admin-columns-pro/classes/ThirdParty/YoastSeo/Column/PrimaryTaxonomy.php:15
 msgid "Primary Taxonomy"
@@ -1739,6 +1858,10 @@ msgstr "Birincil taksonomi"
 #: admin-columns-pro/classes/ThirdParty/YoastSeo/Editing/FocusKW.php:16
 msgid "Enter your SEO Focus Keywords"
 msgstr "SEO odak anahtar kelimelerinizi girin"
+
+#: admin-columns-pro/classes/ThirdParty/YoastSeo/Editing/IsIndexed.php:29
+msgid "Default for %s, currently: %s"
+msgstr ""
 
 #: admin-columns-pro/classes/ThirdParty/YoastSeo/Editing/MetaDesc.php:16
 msgid "Enter your SEO Meta Description"
@@ -1755,6 +1878,10 @@ msgstr "Varsayılan başlığı var"
 #: admin-columns-pro/classes/ThirdParty/YoastSeo/Filtering/Title.php:13
 msgid "Has Custom SEO Title"
 msgstr "Özel SEO başlığı var"
+
+#: admin-columns-pro/classes/ThirdParty/YoastSeo/Search/IsIndexed.php:35
+msgid "Default for Post Type"
+msgstr ""
 
 #: ac-addon-buddypress/classes/Column/Group/Avatar.php:11
 msgid "Avatar"
@@ -1780,7 +1907,7 @@ msgstr "Son etkinlik"
 msgid "Last Seen"
 msgstr "Son görülme"
 
-#: ac-addon-buddypress/classes/Filtering/User/Groups.php:50
+#: ac-addon-buddypress/classes/Filtering/User/Groups.php:51
 msgid "Group"
 msgstr "Grup"
 
@@ -1788,7 +1915,8 @@ msgstr "Grup"
 msgid "Costs"
 msgstr "Masraflar"
 
-#: ac-addon-events-calendar/classes/Column/Event/DisplayDate.php:17
+#: ac-addon-events-calendar/classes/Column/Event/DisplayDate.php17,
+#: ac-addon-woocommerce/classes/Column/ShopSubscription/SubscriptionDate.php:21
 msgid "Date"
 msgstr "Tarih"
 
@@ -1887,13 +2015,13 @@ msgstr "Sabit olmayan etkinlikler"
 msgid "Product Review"
 msgstr "Ürün inceleme"
 
-#: ac-addon-woocommerce/classes/Column/Product/Attributes.php:86
+#: ac-addon-woocommerce/classes/Column/Product/Attributes.php:154
 msgid "Is a taxonomy"
 msgstr "Bir taksonomi"
 
-#: ac-addon-woocommerce/classes/Column/Product/AvgOrderInterval.php:19
-msgid "Avarage Order Interval"
-msgstr "Ortalama sipariş aralığı"
+#: ac-addon-woocommerce/classes/Column/Product/AvgOrderInterval.php:20
+msgid "Average Order Interval"
+msgstr ""
 
 #: ac-addon-woocommerce/classes/Column/Product/BackordersAllowed.php:18
 msgid "Backorders Allowed"
@@ -1923,7 +2051,16 @@ msgstr "Genişlik"
 msgid "Height"
 msgstr "Ağırlık"
 
-#: ac-addon-woocommerce/classes/Column/Product/OrderTotal.php:14
+#: ac-addon-woocommerce/classes/Column/Product/LowOnStock.php:14
+msgid "Low on Stock"
+msgstr ""
+
+#: ac-addon-woocommerce/classes/Column/Product/LowOnStock.php:35
+msgid "Current stock of %s is lower than the set threshold of  %s"
+msgstr ""
+
+#: ac-addon-woocommerce/classes/Column/Product/OrderTotal.php14,
+#: ac-addon-woocommerce/classes/Column/ShopSubscription/TotalRevenue.php:15
 msgid "Total Revenue"
 msgstr "Toplam gelir"
 
@@ -1935,16 +2072,16 @@ msgstr "Gruplandırılmış"
 msgid "Reviews Enabled"
 msgstr "İncelemeler etkin"
 
-#: ac-addon-woocommerce/classes/Column/Product/Sale.php:22
+#: ac-addon-woocommerce/classes/Column/Product/Sale.php:24
 msgid "Sale"
 msgstr "Satış"
 
-#: ac-addon-woocommerce/classes/Column/Product/Sale.php:61
+#: ac-addon-woocommerce/classes/Column/Product/Sale.php:98
 msgctxt "Product on sale from (date)"
 msgid "From"
 msgstr "Başlangıç"
 
-#: ac-addon-woocommerce/classes/Column/Product/Sale.php:62
+#: ac-addon-woocommerce/classes/Column/Product/Sale.php:99
 msgctxt "Product on sale until (date)"
 msgid "Until"
 msgstr "Bitiş tarihi"
@@ -1954,12 +2091,12 @@ msgid "Sales"
 msgstr "Satışlar"
 
 #: ac-addon-woocommerce/classes/Column/Product/StockStatus.php40,
-#: ac-addon-woocommerce/classes/Search/Product/StockStatus.php:24
+#: ac-addon-woocommerce/classes/Search/Product/StockStatus.php:23
 msgid "In stock"
 msgstr "Stokta"
 
 #: ac-addon-woocommerce/classes/Column/Product/StockStatus.php44,
-#: ac-addon-woocommerce/classes/Search/Product/StockStatus.php:25
+#: ac-addon-woocommerce/classes/Search/Product/StockStatus.php:24
 msgid "Out of stock"
 msgstr "Stokta yok"
 
@@ -1970,6 +2107,10 @@ msgstr "Kampanyalar"
 #: ac-addon-woocommerce/classes/Column/Product/Visibility.php:19
 msgid "Catalog Visiblity"
 msgstr "Katalok görünürlüğü"
+
+#: ac-addon-woocommerce/classes/Column/ProductSubscription/Period.php:21
+msgid "Price Period"
+msgstr ""
 
 #: ac-addon-woocommerce/classes/Column/ProductVariation/Stock.php:38
 msgid "Stock managed by product"
@@ -2029,7 +2170,7 @@ msgstr "Kullanım"
 msgid "Not a registered user"
 msgstr "Kayıtlı kullanıcı değil"
 
-#: ac-addon-woocommerce/classes/Column/ShopOrder/CouponsUsed.php19,
+#: ac-addon-woocommerce/classes/Column/ShopOrder/CouponsUsed.php18,
 #: ac-addon-woocommerce/classes/Column/User/CouponsUsed.php:14
 msgid "Coupons Used"
 msgstr "Kupon kullanılmış"
@@ -2038,7 +2179,7 @@ msgstr "Kupon kullanılmış"
 msgid "Customer Note"
 msgstr "Müşteri notu"
 
-#: ac-addon-woocommerce/classes/Column/ShopOrder/Discount.php:16
+#: ac-addon-woocommerce/classes/Column/ShopOrder/Discount.php:15
 msgid "Order Discount"
 msgstr "Sipariş indirimi"
 
@@ -2050,7 +2191,7 @@ msgstr "Müşteri IP adresi"
 msgid "Order Number"
 msgstr "Sipariş numarası"
 
-#: ac-addon-woocommerce/classes/Column/ShopOrder/PaymentMethod.php:15
+#: ac-addon-woocommerce/classes/Column/ShopOrder/PaymentMethod.php:16
 msgid "Payment Method"
 msgstr "Ödeme yöntemi"
 
@@ -2058,11 +2199,11 @@ msgstr "Ödeme yöntemi"
 msgid "Product Categories"
 msgstr "Ürün kategorileri"
 
-#: ac-addon-woocommerce/classes/Column/ShopOrder/Purchased.php:18
+#: ac-addon-woocommerce/classes/Column/ShopOrder/Purchased.php:19
 msgid "Purchased"
 msgstr "Satın Alınan"
 
-#: ac-addon-woocommerce/classes/Column/ShopOrder/Purchased.php:33
+#: ac-addon-woocommerce/classes/Column/ShopOrder/Purchased.php:34
 msgid "%d item"
 msgid_plural "%d items"
 msgstr[0] "%d öğe"
@@ -2076,7 +2217,11 @@ msgstr "Toplamlar"
 msgid "Total Order Weight"
 msgstr "Toplam sipariş ağırlığı"
 
-#: ac-addon-woocommerce/classes/Column/User/CustomerSince.php18,
+#: ac-addon-woocommerce/classes/Column/ShopSubscription/AutoRenewal.php:17
+msgid "Auto Renewal"
+msgstr ""
+
+#: ac-addon-woocommerce/classes/Column/User/CustomerSince.php17,
 #: ac-addon-woocommerce/classes/Settings/ShopOrder/Customer.php:15
 msgid "Customer Since"
 msgstr "Müşteri olma tarihi"
@@ -2089,11 +2234,11 @@ msgstr "İlk sipariş"
 msgid "Last Order"
 msgstr "Son sipariş"
 
-#: ac-addon-woocommerce/classes/Column/User/Orders.php:75
+#: ac-addon-woocommerce/classes/Column/User/Orders.php:76
 msgid "items"
 msgstr "ogeler"
 
-#: ac-addon-woocommerce/classes/Column/User/Products.php:17
+#: ac-addon-woocommerce/classes/Column/User/Products.php:18
 msgid "Products"
 msgstr "Ürünler"
 
@@ -2102,9 +2247,9 @@ msgstr "Ürünler"
 msgid "Total Sales"
 msgstr "Toplam Satış"
 
-#: ac-addon-woocommerce/classes/Editing/Product/Attributes.php:111
+#: ac-addon-woocommerce/classes/Editing/Product/Attributes.php:69
 msgid "Non existing attribute."
-msgstr ""
+msgstr "Var omayan öznitelik."
 
 #: ac-addon-woocommerce/classes/Editing/Product/ShippingClass.php:31
 msgid "No shipping class"
@@ -2112,13 +2257,13 @@ msgstr "Kargo sınıfı yok"
 
 #: ac-addon-woocommerce/classes/Editing/Product/SoldIndividually.php16,
 #: ac-addon-woocommerce/classes/Filtering/Product/SoldIndividually.php30,
-#: ac-addon-woocommerce/classes/Search/Product/SoldIndividually.php:25
+#: ac-addon-woocommerce/classes/Search/Product/SoldIndividually.php:24
 msgid "Sold Individually"
 msgstr "Tekil satılır"
 
 #: ac-addon-woocommerce/classes/Editing/Product/SoldIndividually.php17,
 #: ac-addon-woocommerce/classes/Filtering/Product/SoldIndividually.php31,
-#: ac-addon-woocommerce/classes/Search/Product/SoldIndividually.php:26
+#: ac-addon-woocommerce/classes/Search/Product/SoldIndividually.php:25
 msgid "Not Sold Individually"
 msgstr "Tekil satılmaz"
 
@@ -2128,13 +2273,13 @@ msgstr "Standart"
 
 #: ac-addon-woocommerce/classes/Editing/ProductVariation/Enabled.php:16
 msgid "Private"
-msgstr ""
+msgstr "Özel"
 
 #: ac-addon-woocommerce/classes/Editing/ProductVariation/Enabled.php:17
 msgid "Published"
-msgstr ""
+msgstr "Yayımlanmış"
 
-#: ac-addon-woocommerce/classes/Export/ShopCoupon/Usage.php:21
+#: ac-addon-woocommerce/classes/Export/ShopCoupon/Usage.php:20
 msgid "Infinity"
 msgstr "Sonsuzluk"
 
@@ -2147,19 +2292,14 @@ msgid "Only Product Reviews"
 msgstr "Sadece ürün incelemeleri"
 
 #: ac-addon-woocommerce/classes/Filtering/Product/Sale.php38,
-#: ac-addon-woocommerce/classes/Search/Product/Sale.php:25
+#: ac-addon-woocommerce/classes/Search/Product/Sale.php:24
 msgid "On Sale"
 msgstr "İndirimde"
 
 #: ac-addon-woocommerce/classes/Filtering/Product/Sale.php39,
-#: ac-addon-woocommerce/classes/Search/Product/Sale.php:26
+#: ac-addon-woocommerce/classes/Search/Product/Sale.php:25
 msgid "Not on Sale"
 msgstr "İndirimde değil"
-
-#: ac-addon-woocommerce/classes/Filtering/Product/Sale.php40,
-#: ac-addon-woocommerce/classes/Search/Product/Sale.php:27
-msgid "Scheduled"
-msgstr "Zamanlandı"
 
 #: ac-addon-woocommerce/classes/Filtering/Product/ShortDescription.php:15
 msgid "Without Short Description"
@@ -2182,12 +2322,12 @@ msgstr "Hariç tut: %s"
 msgid "Is Virtual"
 msgstr "Sanal"
 
-#: ac-addon-woocommerce/classes/Filtering/Settings/ShowVariableProducts.php:50
+#: ac-addon-woocommerce/classes/Filtering/Settings/ShowVariableProducts.php:49
 msgid ""
 "This will allow you to include variable products in the filter drop down."
 msgstr "Bu, filtreleme açılır menüsünde varyasyon ürünlerin dahil edilebilmesine olanak sağlar."
 
-#: ac-addon-woocommerce/classes/Filtering/Settings/ShowVariableProducts.php:49
+#: ac-addon-woocommerce/classes/Filtering/Settings/ShowVariableProducts.php:48
 msgid "Show variable products"
 msgstr "Varyasyon ürünleri göster"
 
@@ -2251,11 +2391,11 @@ msgstr "Simge kullanılsın mı?"
 msgid "Use an icon instead of text for displaying the note."
 msgstr "Notu görüntülemek için metin yerine bir simge kullanın."
 
-#: ac-addon-woocommerce/classes/Settings/ProductVariation/Variation.php:47
+#: ac-addon-woocommerce/classes/Settings/ProductVariation/Variation.php:48
 msgid "Without label"
 msgstr "Etiket olmadan"
 
-#: ac-addon-woocommerce/classes/Settings/ProductVariation/Variation.php:104
+#: ac-addon-woocommerce/classes/Settings/ProductVariation/Variation.php:105
 msgid "Any"
 msgstr "Herhangi bir"
 
@@ -2304,11 +2444,13 @@ msgstr "İndirimler"
 msgid "Paid"
 msgstr "Ödeme"
 
-#: ac-addon-woocommerce/classes/Settings/User/AddressType.php:60
+#: ac-addon-woocommerce/classes/Settings/User/AddressType.php60,
+#: ac-addon-woocommerce/classes/Settings/User/Country.php:37
 msgid "Shipping"
 msgstr "Nakliye"
 
-#: ac-addon-woocommerce/classes/Settings/User/AddressType.php:61
+#: ac-addon-woocommerce/classes/Settings/User/AddressType.php61,
+#: ac-addon-woocommerce/classes/Settings/User/Country.php:38
 msgid "Billing"
 msgstr "Faturalama"
 
@@ -2340,6 +2482,18 @@ msgstr "Fatura Adresi"
 msgid "Shipping Address"
 msgstr "Teslimat Adresi"
 
+#: ac-addon-woocommerce/classes/Editing/StorageModel/Product/Price.php:40
+msgid "Price can not be zero or lower."
+msgstr ""
+
+#: ac-addon-woocommerce/classes/Editing/StorageModel/Product/SalePrice.php:33
+msgid "Sale price can not be zero or lower."
+msgstr ""
+
+#: ac-addon-woocommerce/classes/Editing/StorageModel/Product/SalePrice.php:37
+msgid "Sale price can not be higher than the regular price."
+msgstr ""
+
 #: ac-addon-woocommerce/classes/Field/ShopOrder/OrderDate/Completed.php:16
 msgid "Completed"
 msgstr "Tamamlanmış"
@@ -2351,3 +2505,7 @@ msgstr "Oluşturuldu"
 #: ac-addon-woocommerce/classes/Field/ShopOrder/OrderDate/Modified.php:15
 msgid "Modified"
 msgstr "Değiştirildi"
+
+#: ac-addon-woocommerce/classes/Field/ShopSubscription/SubscriptionDate/NextPayment.php:13
+msgid "Next Payment"
+msgstr ""

@@ -1,4 +1,5 @@
 <?php
+
 namespace ACP\Helper\Select\Entities;
 
 use AC;
@@ -7,7 +8,7 @@ use ACP\Helper\Select\Value;
 class MimeType extends AC\Helper\Select\Entities
 	implements AC\Helper\Select\Paginated {
 
-	public function __construct( array $args = array(), AC\Helper\Select\Value $value = null ) {
+	public function __construct( array $args = [], AC\Helper\Select\Value $value = null ) {
 		if ( null === $value ) {
 			$value = new Value\MimeType();
 		}
@@ -48,7 +49,7 @@ class MimeType extends AC\Helper\Select\Entities
 		$values = $wpdb->get_col( $wpdb->prepare( $sql, $post_type ) );
 
 		if ( empty( $values ) ) {
-			return array();
+			return [];
 		}
 
 		return $values;

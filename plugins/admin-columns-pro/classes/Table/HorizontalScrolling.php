@@ -3,30 +3,32 @@
 namespace ACP\Table;
 
 use AC;
+use AC\Asset;
 use AC\ListScreen;
-use ACP\Asset;
+use AC\ListScreenRepository\Storage;
+use AC\Type\ListScreenId;
 
 /**
  * @since 4.0
  */
 class HorizontalScrolling implements AC\Registrable {
 
-	/** @var AC\ListScreenRepository\Aggregate */
-	private $repository;
+	/** @var Storage */
+	private $storage;
 
 	/** @var Asset\Location\Absolute */
 	private $location;
 
-	public function __construct( AC\ListScreenRepository\Aggregate $repository, Asset\Location\Absolute $location ) {
-		$this->repository = $repository;
+	public function __construct( Storage $storage, Asset\Location\Absolute $location ) {
+		$this->storage = $storage;
 		$this->location = $location;
 	}
 
 	public function register() {
-		add_action( 'ac/table', array( $this, 'register_screen_option' ) );
-		add_action( 'ac/table_scripts', array( $this, 'scripts' ) );
-		add_filter( 'ac/table/body_class', array( $this, 'add_horizontal_scrollable_class' ), 10, 2 );
-		add_action( 'wp_ajax_acp_update_table_option_overflow', array( $this, 'update_table_option_overflow' ) );
+		add_action( 'ac/table', [ $this, 'register_screen_option' ] );
+		add_action( 'ac/table_scripts', [ $this, 'scripts' ] );
+		add_filter( 'ac/table/body_class', [ $this, 'add_horizontal_scrollable_class' ], 10, 2 );
+		add_action( 'wp_ajax_acp_update_table_option_overflow', [ $this, 'update_table_option_overflow' ] );
 	}
 
 	/**
@@ -42,7 +44,7 @@ class HorizontalScrolling implements AC\Registrable {
 	public function update_table_option_overflow() {
 		check_ajax_referer( 'ac-ajax' );
 
-		$list_screen = $this->repository->find( filter_input( INPUT_POST, 'layout' ) );
+		$list_screen = $this->storage->find( new ListScreenId( filter_input( INPUT_POST, 'layout' ) ) );
 
 		if ( ! $list_screen ) {
 			wp_die();
@@ -89,9 +91,9 @@ class HorizontalScrolling implements AC\Registrable {
 		}
 
 		$check_box->set_id( 'acp_overflow_list_screen_table' )
-		          ->set_options( array(
+		          ->set_options( [
 			          'yes' => $label,
-		          ) )
+		          ] )
 		          ->set_value( $this->is_overflow_table( $table->get_list_screen() ) ? 'yes' : '' );
 
 		$table->register_screen_option( $check_box );
@@ -109,9 +111,6 @@ class HorizontalScrolling implements AC\Registrable {
 	 * Load scripts
 	 */
 	public function scripts() {
-		$style = new Asset\Style( 'ac-table-screen-option', $this->location->with_suffix( 'assets/core/css/table-screen-options.css' ) );
-		$style->enqueue();
-
 		$script = new Asset\Script( 'ac-horizontal-scrolling', $this->location->with_suffix( 'assets/core/js/horizontal-scrolling.js' ) );
 		$script->enqueue();
 

@@ -8,7 +8,7 @@ use ACP\Search\Operators;
 class Operator extends Mapping {
 
 	protected function get_properties() {
-		return array(
+		return [
 			Operators::EQ           => 'equal',
 			Operators::NEQ          => 'not_equal',
 			Operators::GT           => 'greater',
@@ -30,7 +30,7 @@ class Operator extends Mapping {
 			Operators::LT_DAYS_AGO  => 'lt_days_ago',
 			Operators::GT_DAYS_AGO  => 'gt_days_ago',
 			Operators::WITHIN_DAYS  => 'within_days',
-		);
+		];
 	}
 
 }

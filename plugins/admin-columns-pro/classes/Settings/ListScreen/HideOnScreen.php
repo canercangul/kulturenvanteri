@@ -1,4 +1,5 @@
 <?php
+
 namespace ACP\Settings\ListScreen;
 
 use AC\ListScreen;

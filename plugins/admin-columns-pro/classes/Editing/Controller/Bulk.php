@@ -61,16 +61,16 @@ class Bulk extends Column {
 		}
 
 		$strategy = $list_screen->editing();
-		$results = array();
-		$statuses = array();
+		$results = [];
+		$statuses = [];
 
 		foreach ( $ids as $id ) {
 			$result = $this->save_single_value( $id, $value, $strategy, $model );
 
-			$data = array(
+			$data = [
 				'id'     => $id,
 				'result' => $result,
-			);
+			];
 
 			if ( ! isset( $statuses[ $result ] ) ) {
 				$statuses[ $result ] = 0;

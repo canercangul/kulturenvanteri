@@ -1,4 +1,5 @@
 <?php
+
 namespace ACP;
 
 use AC\Column;
@@ -8,7 +9,7 @@ use ACP\Settings\Column\Label;
 class IconPicker implements Registrable {
 
 	public function register() {
-		add_action( 'ac/column/settings', array( $this, 'register_column_settings' ) );
+		add_action( 'ac/column/settings', [ $this, 'register_column_settings' ] );
 	}
 
 	/**

@@ -21,7 +21,7 @@ class Dropdown extends Select {
 	 */
 	private $order;
 
-	public function __construct( $name, array $options = array() ) {
+	public function __construct( $name, array $options = [] ) {
 		parent::__construct( $name, $options );
 
 		$this->set_id( 'acp-filter-' . $name )
@@ -98,7 +98,7 @@ class Dropdown extends Select {
 	}
 
 	private function sanitize_options() {
-		$sanitized = array();
+		$sanitized = [];
 
 		foreach ( $this->options as $value => $label ) {
 			if ( ! is_scalar( $label ) ) {
@@ -177,7 +177,7 @@ class Dropdown extends Select {
 		}
 
 		if ( $this->get_label() ) {
-			$this->options = array( '' => esc_html( $this->get_label() ) ) + $this->options;
+			$this->options = [ '' => esc_html( $this->get_label() ) ] + $this->options;
 		}
 
 		if ( empty( $this->options ) ) {

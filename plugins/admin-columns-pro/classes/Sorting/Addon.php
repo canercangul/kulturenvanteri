@@ -3,8 +3,10 @@
 namespace ACP\Sorting;
 
 use AC;
-use ACP\Asset\Location;
-use ACP\Sorting\Admin\ShowAllResults;
+use AC\Asset\Location;
+use AC\ListScreenRepository\Storage;
+use ACP\Sorting\Admin;
+use ACP\Sorting\Controller;
 
 /**
  * Sorting Addon class
@@ -13,63 +15,58 @@ use ACP\Sorting\Admin\ShowAllResults;
 class Addon implements AC\Registrable {
 
 	/**
-	 * @var string
+	 * @var Storage
 	 */
-	private $plugin_file;
+	private $storage;
 
-	public function __construct() {
-		$this->plugin_file = ACP_FILE;
+	/**
+	 * @var Location\Absolute
+	 */
+	private $location;
+
+	/**
+	 * @var AC\Admin
+	 */
+	private $admin;
+
+	public function __construct( Storage $storage, Location\Absolute $location, AC\Admin $admin ) {
+		$this->storage = $storage;
+		$this->location = $location;
+		$this->admin = $admin;
 	}
 
 	public function register() {
-		add_action( 'ac/table/list_screen', array( $this, 'init_table' ), 11 ); // After filtering
-		add_action( 'ac/column/settings', array( $this, 'register_column_settings' ) );
-		add_action( 'wp_ajax_acp_reset_sorting', array( $this, 'ajax_reset_sorting' ) );
+		add_action( 'ac/table/list_screen', [ $this, 'init_table' ], 11 ); // After filtering
+		add_action( 'ac/column/settings', [ $this, 'register_column_settings' ] );
+
+		$services = [
+			new Controller\ResetSorting(),
+			new Controller\AjaxResetSorting( $this->storage ),
+		];
+
+		foreach ( $services as $service ) {
+			if ( $service instanceof AC\Registrable ) {
+				$service->register();
+			}
+		}
+
+		$this->register_admin_elements();
+	}
+
+	private function register_admin_elements() {
+		$this->admin->get_page( 'settings' )->add_section( new Admin\Section\ResetSorting() );
+
+		/** @var AC\Admin\Section\General $general */
+		$general = $this->admin->get_page( 'settings' )->get_section( 'general' );
+		$general->add_option( new Admin\ShowAllResults() );
 	}
 
 	/**
 	 * @param AC\ListScreen $list_screen
 	 */
 	public function init_table( AC\ListScreen $list_screen ) {
-		$table = $this->get_table_screen( $list_screen );
+		$table = new Table\Screen( $list_screen, $this->location );
 		$table->register();
-	}
-
-	private function get_table_screen( $list_screen ) {
-		$location = new Location\Absolute(
-			plugin_dir_url( $this->plugin_file ),
-			plugin_dir_path( $this->plugin_file )
-		);
-
-		return new Table\Screen( $list_screen, $location );
-	}
-
-	/**
-	 * Ajax reset sorting
-	 */
-	public function ajax_reset_sorting() {
-		check_ajax_referer( 'ac-ajax' );
-
-		$list_screen = AC()->get_listscreen_repository()->find( filter_input( INPUT_POST, 'layout' ) );
-
-		if ( ! $list_screen ) {
-			wp_die();
-		}
-
-		$table = $this->get_table_screen( $list_screen );
-
-		wp_send_json_success( $table->reset_sorting() );
-	}
-
-	/**
-	 * Hide or show empty results
-	 * @since 4.0
-	 * @return boolean
-	 */
-	public function show_all_results() {
-		$setting = new ShowAllResults();
-
-		return $setting->is_enabled();
 	}
 
 	/**
@@ -93,6 +90,18 @@ class Addon implements AC\Registrable {
 
 			$column->add_setting( $setting );
 		}
+	}
+
+	/**
+	 * Hide or show empty results
+	 * @return boolean
+	 * @since      4.0
+	 * @deprecated 5.1
+	 */
+	public function show_all_results() {
+		_deprecated_function( __METHOD__, '5.1', 'acp_sorting_show_all_results()' );
+
+		return acp_sorting_show_all_results();
 	}
 
 }

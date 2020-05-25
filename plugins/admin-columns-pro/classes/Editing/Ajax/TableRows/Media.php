@@ -8,7 +8,7 @@ use WP_Query;
 final class Media extends TableRows {
 
 	public function register() {
-		add_action( 'pre_get_posts', array( $this, 'pre_handle_request' ) );
+		add_action( 'pre_get_posts', [ $this, 'pre_handle_request' ] );
 	}
 
 	/**

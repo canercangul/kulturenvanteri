@@ -1,5 +1,13 @@
 <?php
 
+use AC\Asset;
+use AC\Request;
+use ACP\Editing;
+use ACP\Export;
+use ACP\Filtering;
+use ACP\Search;
+use ACP\Sorting;
+
 /**
  * @return ACP\AdminColumnsPro
  */
@@ -8,50 +16,11 @@ function ACP() {
 }
 
 /**
- * Editing instance
- * @return ACP\Editing\Addon
- * @since 4.0
+ * @return bool
+ * @since 5.1
  */
-function acp_editing() {
-	return new ACP\Editing\Addon();
-}
-
-/**
- * Filtering instance
- * @return ACP\Filtering\Addon
- * @since 4.0
- */
-function acp_filtering() {
-	return new ACP\Filtering\Addon();
-}
-
-/**
- * @return ACP\Filtering\Helper
- * @since 4.2
- */
-function acp_filtering_helper() {
-	return acp_filtering()->helper();
-}
-
-/**
- * @return ACP\Sorting\Addon
- */
-function acp_sorting() {
-	return new ACP\Sorting\Addon();
-}
-
-/**
- * @return ACP\Export\Addon
- */
-function ac_addon_export() {
-	return new ACP\Export\Addon();
-}
-
-/**
- * @return ACP\Search\Addon
- */
-function ac_addon_search() {
-	return new ACP\Search\Addon();
+function acp_sorting_show_all_results() {
+	return ( new Sorting\Settings\AllResults() )->is_enabled();
 }
 
 /**
@@ -71,7 +40,7 @@ function acp_support_email() {
  * @return bool
  */
 function acp_is_addon_compatible( $namespace, $version ) {
-	$addons = array(
+	$addons = [
 		'ACA\ACF'   => '2.4',
 		'ACA\BP'    => '1.3.2',
 		'ACA\EC'    => '1.2.3',
@@ -79,7 +48,7 @@ function acp_is_addon_compatible( $namespace, $version ) {
 		'ACA\Pods'  => '1.2.1',
 		'ACA\Types' => '1.3.3',
 		'ACA\WC'    => '3.2',
-	);
+	];
 
 	$namespace = rtrim( $namespace, '\\' );
 
@@ -92,22 +61,81 @@ function acp_is_addon_compatible( $namespace, $version ) {
 }
 
 /**
- * @return \ACP\Editing\Helper
- * @deprecated 4.5
- */
-function acp_editing_helper() {
-	_deprecated_function( __FUNCTION__, '4.5' );
-
-	return ACP()->editing()->helper();
-}
-
-/**
  * @return string
  */
 function acp_get_license_page_url() {
 	if ( is_multisite() && ACP()->is_network_active() ) {
-		return ACP()->network_admin()->get_url( 'settings' );
+		return ac_get_admin_network_url( 'settings' );
 	}
 
 	return ac_get_admin_url( 'settings' );
+}
+
+/**
+ * @return Filtering\Helper
+ * @since      4.2
+ * @deprecated 4.5
+ */
+function acp_filtering_helper() {
+	_deprecated_function( __FUNCTION__, '4.5', 'ACP\Filtering\Helper' );
+
+	return new Filtering\Helper();
+}
+
+/**
+ * @return Editing\Helper
+ * @deprecated 4.5
+ */
+function acp_editing_helper() {
+	_deprecated_function( __FUNCTION__, '4.5', 'ACP\Editing\Helper' );
+
+	return new Editing\Helper();
+}
+
+/**
+ * @since      4.0
+ * @deprecated 5.1
+ */
+function acp_editing() {
+	_deprecated_function( __FUNCTION__, '5.1' );
+
+	return new Editing\Addon( AC()->get_storage(), new Asset\Location\Absolute( ACP()->get_url(), ACP()->get_dir() ), new Request() );
+}
+
+/**
+ * @deprecated 5.1
+ * @since      4.0
+ */
+function acp_filtering() {
+	_deprecated_function( __FUNCTION__, '5.1' );
+
+	return new Filtering\Addon( AC()->get_storage(), new Asset\Location\Absolute( ACP()->get_url(), ACP()->get_dir() ), new Request() );
+}
+
+/**
+ * @deprecated 5.1
+ * @since      4.0
+ */
+function acp_sorting() {
+	_deprecated_function( __FUNCTION__, '5.1' );
+
+	return new Sorting\Addon( AC()->get_storage(), new Asset\Location\Absolute( ACP()->get_url(), ACP()->get_dir() ), AC()->admin() );
+}
+
+/**
+ * @deprecated 5.1
+ */
+function ac_addon_export() {
+	_deprecated_function( __FUNCTION__, '5.1' );
+
+	return new Export\Addon( new Asset\Location\Absolute( ACP()->get_url(), ACP()->get_dir() ) );
+}
+
+/**
+ * @deprecated 5.1
+ */
+function ac_addon_search() {
+	_deprecated_function( __FUNCTION__, '5.1' );
+
+	return new Search\Addon( AC()->get_storage(), new Asset\Location\Absolute( ACP()->get_url(), ACP()->get_dir() ) );
 }

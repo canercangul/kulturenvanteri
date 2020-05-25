@@ -24,11 +24,11 @@ class Date extends Model\Meta {
 		$query->select( 'id, meta_value' )
 		      ->where_in( $ids );
 
-		if ( acp_sorting()->show_all_results() ) {
+		if ( acp_sorting_show_all_results() ) {
 			$query->left_join();
 		}
 
-		$values = array();
+		$values = [];
 
 		foreach ( $query->get() as $result ) {
 			$timestamp = ac_helper()->date->strtotime( maybe_unserialize( $result->meta_value ) );
@@ -38,9 +38,9 @@ class Date extends Model\Meta {
 			}
 		}
 
-		return array(
+		return [
 			'ids' => $this->sort( $values ),
-		);
+		];
 	}
 
 }

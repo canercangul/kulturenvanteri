@@ -19,12 +19,12 @@ final class Segments {
 	/**
 	 * @var Segment[]
 	 */
-	private $segments = array();
+	private $segments = [];
 
 	/**
 	 * @var array
 	 */
-	private $errors = array();
+	private $errors = [];
 
 	/**
 	 * @param Preferences $preferences
@@ -164,16 +164,16 @@ final class Segments {
 			return false;
 		}
 
-		$data = array();
+		$data = [];
 
 		// Sort natural by name
 		uksort( $this->segments, 'strnatcmp' );
 
 		foreach ( $this->segments as $segment ) {
-			$data[] = array(
+			$data[] = [
 				'name' => $segment->get_name(),
 				'data' => serialize( $segment->get_data() ),
-			);
+			];
 		}
 
 		$result = $this->preferences->set( 'segments', $data );

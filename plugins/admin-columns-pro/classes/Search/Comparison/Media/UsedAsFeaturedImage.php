@@ -1,4 +1,5 @@
 <?php
+
 namespace ACP\Search\Comparison\Media;
 
 use AC;
@@ -10,9 +11,9 @@ use ACP\Search\Value;
 class UsedAsFeaturedImage extends Comparison implements Comparison\Values {
 
 	public function __construct() {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
-		) );
+		] );
 
 		parent::__construct( $operators );
 	}
@@ -42,10 +43,10 @@ class UsedAsFeaturedImage extends Comparison implements Comparison\Values {
 	}
 
 	public function get_values() {
-		return AC\Helper\Select\Options::create_from_array( array(
+		return AC\Helper\Select\Options::create_from_array( [
 			'true'  => __( 'In use', 'codepress-admin-columns' ),
 			'false' => __( 'Not used', 'codepress-admin-columns' ),
-		) );
+		] );
 	}
 
 }

@@ -15,7 +15,7 @@ class Disabled extends Model {
 	}
 
 	public function get_filtering_data() {
-		return array();
+		return [];
 	}
 
 	public function register_settings() {

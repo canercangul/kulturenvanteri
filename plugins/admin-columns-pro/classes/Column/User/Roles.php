@@ -27,7 +27,7 @@ class Roles extends AC\Column\Meta
 	public function get_value( $user_id ) {
 		$user = new WP_User( $user_id );
 
-		$roles = array();
+		$roles = [];
 		foreach ( ac_helper()->user->translate_roles( $user->roles ) as $role => $label ) {
 			$roles[] = ac_helper()->html->tooltip( $label, $role );
 		}

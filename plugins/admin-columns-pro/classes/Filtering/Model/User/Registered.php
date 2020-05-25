@@ -2,6 +2,7 @@
 
 namespace ACP\Filtering\Model\User;
 
+use ACP\Filtering\Helper;
 use ACP\Filtering\Model;
 use ACP\Filtering\Settings;
 use DateTime;
@@ -56,7 +57,7 @@ class Registered extends Model {
 	}
 
 	public function get_filtering_vars( $vars ) {
-		add_filter( 'pre_user_query', array( $this, 'filter_by_user_registered' ) );
+		add_filter( 'pre_user_query', [ $this, 'filter_by_user_registered' ] );
 
 		return $vars;
 	}
@@ -71,10 +72,10 @@ class Registered extends Model {
 			$format = 'daily';
 		}
 
-		return array(
+		return [
 			'order'   => false,
-			'options' => acp_filtering_helper()->get_date_options( $this->strategy->get_values_by_db_field( 'user_registered' ), $format, 'Y-m-d H:i:s' ),
-		);
+			'options' => ( new Helper() )->get_date_options( $this->strategy->get_values_by_db_field( 'user_registered' ), $format, 'Y-m-d H:i:s' ),
+		];
 	}
 
 	private function get_filter_format() {

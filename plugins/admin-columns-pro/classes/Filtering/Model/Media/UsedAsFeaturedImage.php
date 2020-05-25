@@ -26,18 +26,18 @@ class UsedAsFeaturedImage extends Model {
 	}
 
 	public function get_filtering_vars( $vars ) {
-		add_filter( 'posts_clauses', array( $this, 'filter_by_ids' ) );
+		add_filter( 'posts_clauses', [ $this, 'filter_by_ids' ] );
 
 		return $vars;
 	}
 
 	public function get_filtering_data() {
-		$data = array();
+		$data = [];
 
-		$data['empty_option'] = array(
+		$data['empty_option'] = [
 			__( 'Not used as Featured Image', 'codepress-admin-columns' ),
 			__( 'Used as Featured Image', 'codepress-admin-columns' ),
-		);
+		];
 
 		return $data;
 	}

@@ -36,7 +36,7 @@ class Activation
 	}
 
 	public function register() {
-		add_action( 'ac/screen', array( $this, 'register_notice' ) );
+		add_action( 'ac/screen', [ $this, 'register_notice' ] );
 
 		$this->get_ajax_handler()->register();
 	}
@@ -122,7 +122,7 @@ class Activation
 		$handler = new Ajax\Handler();
 		$handler
 			->set_action( 'ac_notice_dismiss_activation' )
-			->set_callback( array( $this, 'ajax_dismiss_notice' ) );
+			->set_callback( [ $this, 'ajax_dismiss_notice' ] );
 
 		return $handler;
 	}

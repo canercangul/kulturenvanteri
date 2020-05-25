@@ -9,7 +9,7 @@ class Post extends Bindings {
 	/**
 	 * @var array
 	 */
-	protected $tax_query = array();
+	protected $tax_query = [];
 
 	/**
 	 * @return array

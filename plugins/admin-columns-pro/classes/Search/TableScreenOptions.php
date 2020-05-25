@@ -3,7 +3,7 @@
 namespace ACP\Search;
 
 use AC;
-use ACP\Asset\Enqueueable;
+use AC\Asset\Enqueueable;
 use ACP\Search\Preferences;
 use ACP\Settings\ListScreen\HideOnScreen;
 
@@ -27,9 +27,9 @@ class TableScreenOptions {
 	}
 
 	public function register() {
-		add_action( 'ac/table_scripts', array( $this, 'scripts' ) );
-		add_action( 'ac/table', array( $this, 'register_screen_option' ) );
-		add_action( 'wp_ajax_' . self::INPUT_NAME, array( $this, 'update_smart_filtering_preference' ) );
+		add_action( 'ac/table_scripts', [ $this, 'scripts' ] );
+		add_action( 'ac/table', [ $this, 'register_screen_option' ] );
+		add_action( 'wp_ajax_' . self::INPUT_NAME, [ $this, 'update_smart_filtering_preference' ] );
 	}
 
 	/**
@@ -61,7 +61,7 @@ class TableScreenOptions {
 
 		$check_box = new AC\Form\Element\Checkbox( self::INPUT_NAME );
 
-		$check_box->set_options( array( 1 => __( 'Enable Smart Filtering', 'codepress-admin-columns' ) ) )
+		$check_box->set_options( [ 1 => __( 'Enable Smart Filtering', 'codepress-admin-columns' ) ] )
 		          ->set_value( $this->is_active( $list_screen ) ? 1 : 0 );
 
 		$table->register_screen_option( $check_box );

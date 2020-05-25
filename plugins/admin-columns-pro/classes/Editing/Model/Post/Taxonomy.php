@@ -18,7 +18,7 @@ class Taxonomy extends Model implements PaginatedOptions {
 	 * @return array
 	 */
 	public function get_edit_value( $id ) {
-		$values = array();
+		$values = [];
 
 		$terms = get_the_terms( $id, $this->column->get_taxonomy() );
 		if ( $terms && ! is_wp_error( $terms ) ) {
@@ -41,19 +41,19 @@ class Taxonomy extends Model implements PaginatedOptions {
 			return false;
 		}
 
-		$data = array(
+		$data = [
 			'multiple'      => true,
 			'ajax_populate' => true,
-		);
+		];
 
 		if ( 'on' === $this->column->get_option( 'enable_term_creation' ) ) {
 			$data['tags'] = true;
 		}
 
 		if ( 'post_format' === $taxonomy->name ) {
-			$data = array(
+			$data = [
 				'multiple' => false,
-			);
+			];
 		}
 
 		$data['type'] = 'taxonomy';
@@ -62,11 +62,11 @@ class Taxonomy extends Model implements PaginatedOptions {
 	}
 
 	public function get_paginated_options( $search, $page, $id = null ) {
-		$entities = new Select\Entities\Taxonomy( array(
+		$entities = new Select\Entities\Taxonomy( [
 			'search'   => $search,
 			'page'     => $page,
 			'taxonomy' => $this->column->get_taxonomy(),
-		) );
+		] );
 
 		return new AC\Helper\Select\Options\Paginated(
 			$entities,
@@ -79,17 +79,17 @@ class Taxonomy extends Model implements PaginatedOptions {
 	 * @return array
 	 */
 	protected function get_term_options() {
-		$entities = new Select\Entities\Taxonomy( array(
+		$entities = new Select\Entities\Taxonomy( [
 			'number'   => 200,
 			'taxonomy' => $this->column->get_taxonomy(),
-		) );
+		] );
 
 		$results = new AC\Helper\Select\Options\Paginated(
 			$entities,
 			new Select\Formatter\TermName( $entities )
 		);
 
-		$options = array();
+		$options = [];
 
 		foreach ( $results as $result ) {
 			$options[ $result->get_value() ] = $result->get_label();
@@ -100,10 +100,10 @@ class Taxonomy extends Model implements PaginatedOptions {
 
 	public function save( $id, $value ) {
 		if ( ! isset( $value['save_strategy'] ) ) {
-			$value = array(
+			$value = [
 				'save_strategy' => false,
 				'terms'         => $value,
-			);
+			];
 		}
 
 		switch ( $value['save_strategy'] ) {
@@ -121,13 +121,16 @@ class Taxonomy extends Model implements PaginatedOptions {
 	 * Register editing settings
 	 */
 	public function register_settings() {
+		parent::register_settings();
+
 		$this->column->add_setting( new Settings\Taxonomy( $this->column ) );
 	}
 
 	/**
-	 * @param           $post
-	 * @param int[]|int $term_ids Term ID's
-	 * @param string    $taxonomy Taxonomy name
+	 * @param int       $post
+	 * @param int[]|int $term_ids
+	 * @param string    $taxonomy
+	 * @param bool      $append
 	 *
 	 * @return array|false
 	 */
@@ -135,12 +138,12 @@ class Taxonomy extends Model implements PaginatedOptions {
 		$post = get_post( $post );
 
 		if ( ! $post || ! taxonomy_exists( $taxonomy ) ) {
-			return array();
+			return [];
 		}
 
 		// Filter list of terms
 		if ( empty( $term_ids ) ) {
-			$term_ids = array();
+			$term_ids = [];
 		}
 
 		$transaction = new Transaction();
@@ -148,7 +151,7 @@ class Taxonomy extends Model implements PaginatedOptions {
 		$term_ids = array_unique( (array) $term_ids );
 
 		// maybe create terms?
-		$created_term_ids = array();
+		$created_term_ids = [];
 
 		foreach ( (array) $term_ids as $index => $term_id ) {
 			if ( is_numeric( $term_id ) ) {
@@ -195,7 +198,7 @@ class Taxonomy extends Model implements PaginatedOptions {
 			return false;
 		}
 
-		$result = wp_update_post( array( 'ID' => $post->ID ) );
+		$result = wp_update_post( [ 'ID' => $post->ID ] );
 
 		if ( is_wp_error( $result ) ) {
 			$this->set_error( $result );

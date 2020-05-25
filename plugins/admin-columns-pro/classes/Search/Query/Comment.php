@@ -8,9 +8,9 @@ use WP_Comment_Query;
 class Comment extends Query {
 
 	public function register() {
-		add_action( 'pre_get_comments', array( $this, 'callback_meta_query' ), 1 );
-		add_action( 'pre_get_comments', array( $this, 'callback_parent' ), 1 );
-		add_filter( 'comments_clauses', array( $this, 'callback_clauses' ), 20 );
+		add_action( 'pre_get_comments', [ $this, 'callback_meta_query' ], 1 );
+		add_action( 'pre_get_comments', [ $this, 'callback_parent' ], 1 );
+		add_filter( 'comments_clauses', [ $this, 'callback_clauses' ], 20 );
 	}
 
 	/**

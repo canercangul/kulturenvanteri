@@ -9,22 +9,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 
-<div class="sidebox layouts" data-type="<?php echo $this->list_screen->get_key(); ?>">
+<div class="sidebox layouts" data-type="<?= $this->list_screen->get_key(); ?>">
 
 	<div class="header">
 		<h3>
 			<span class="header-content"><?php _e( 'Column Sets', 'codepress-admin-columns' ); ?></span>
 			<a class="button add-new">
-				<span class="add"><?php echo esc_html( __( '+ Add set', 'codepress-admin-columns' ) ); ?></span>
-				<span class="close"><?php echo esc_html( __( 'Cancel', 'codepress-admin-columns' ) ); ?></span>
+				<span class="add"><?= esc_html( __( '+ Add set', 'codepress-admin-columns' ) ); ?></span>
+				<span class="close"><?= esc_html( __( 'Cancel', 'codepress-admin-columns' ) ); ?></span>
 			</a>
 		</h3>
 	</div>
 	<?php
-	$view = new View( array(
+	$view = new View( [
 		'list_screen' => $this->list_screen,
 		'nonce_field' => wp_nonce_field( 'create-layout', '_ac_nonce', false, false ),
-	) );
+	] );
 
 	$view->set_template( 'admin/create-list-screen' );
 
@@ -37,9 +37,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php foreach ( $this->list_screens as $list_screen ) : ?>
 				<?php /** @var ListScreen $list_screen */; ?>
 				<?php $is_current = $this->list_screen->get_layout_id() == $list_screen->get_layout_id(); ?>
-				<?php $onclick = AC()->use_delete_confirmation() ? ' onclick="return confirm(\'' . esc_attr( addslashes( sprintf( __( "Warning! The %s columns data will be deleted. This cannot be undone. 'OK' to delete, 'Cancel' to stop", 'codepress-admin-columns' ), "'" . $list_screen->get_label() . "'" ) ) ) . '\');"' : ''; ?>
+				<?php $onclick = apply_filters( 'ac/delete_confirmation', true ) ? ' onclick="return confirm(\'' . esc_attr( addslashes( sprintf( __( "Warning! The %s columns data will be deleted. This cannot be undone. 'OK' to delete, 'Cancel' to stop", 'codepress-admin-columns' ), "'" . $list_screen->get_label() . "'" ) ) ) . '\');"' : ''; ?>
 
-				<div class="layouts__item<?php echo $is_current ? ' -current' : ''; ?><?php echo $list_screen->is_read_only() ? ' -read_only' : ''; ?>" data-screen="<?php echo esc_attr( $list_screen->get_layout_id() ); ?>">
+				<div class="layouts__item<?= $is_current ? ' -current' : ''; ?><?= $list_screen->is_read_only() ? ' -read_only' : ''; ?>" data-screen="<?= esc_attr( $list_screen->get_layout_id() ); ?>">
 					<div class="layouts__item__move">
 						<span class="cpacicon-move"></span>
 					</div>
@@ -104,15 +104,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<form method="post" class="delete">
 								<?= wp_nonce_field( 'delete-layout', '_ac_nonce', false, false ); ?>
 								<input type="hidden" name="acp_action" value="delete_layout">
-								<input type="hidden" name="layout_id" value="<?php echo esc_attr( $list_screen->get_layout_id() ); ?>">
-								<input type="hidden" name="list_screen" value="<?php echo esc_attr( $list_screen->get_key() ); ?>">
-								<input type="submit" class="delete" value="<?php echo esc_attr( __( 'Delete', 'codepress-admin-columns' ) ); ?>"<?php echo $onclick; ?>/>
+								<input type="hidden" name="layout_id" value="<?= esc_attr( $list_screen->get_layout_id() ); ?>">
+								<input type="hidden" name="list_screen" value="<?= esc_attr( $list_screen->get_key() ); ?>">
+								<input type="submit" class="delete" value="<?= esc_attr( __( 'Delete', 'codepress-admin-columns' ) ); ?>"<?= $onclick; ?>/>
 							</form>
 						<?php endif; ?>
 					</div>
 					<?php if ( $list_screen->is_read_only() ): ?>
 						<div class="layouts__item__readonly">
-							<?php echo ac_helper()->html->tooltip( ac_helper()->icon->dashicon( [ 'icon' => 'lock', 'class' => 'gray' ] ), __( 'Read Only', 'codepress-admin-columns' ) ); ?>
+							<?= ac_helper()->html->tooltip( ac_helper()->icon->dashicon( [ 'icon' => 'lock', 'class' => 'gray' ] ), __( 'Read Only', 'codepress-admin-columns' ) ); ?>
 						</div>
 					<?php endif; ?>
 				</div>

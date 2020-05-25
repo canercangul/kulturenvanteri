@@ -7,10 +7,10 @@ use ACP\Editing\Model;
 class Excerpt extends Model\Post {
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'        => 'textarea',
 			'placeholder' => __( 'Excerpt automatically generated from content.', 'codepress-admin-columns' ),
-		);
+		];
 	}
 
 	public function get_edit_value( $id ) {
@@ -24,7 +24,7 @@ class Excerpt extends Model\Post {
 	}
 
 	public function save( $id, $value ) {
-		return $this->update_post( $id, array( 'post_excerpt' => $value ) );
+		return $this->update_post( $id, [ 'post_excerpt' => $value ] );
 	}
 
 }

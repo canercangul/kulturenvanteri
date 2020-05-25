@@ -11,11 +11,11 @@ class User extends Model\Comment
 	implements PaginatedOptions {
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'               => 'select2_dropdown',
 			'ajax_populate'      => true,
 			'store_single_value' => true,
-		);
+		];
 	}
 
 	public function get_edit_value( $id ) {
@@ -25,9 +25,9 @@ class User extends Model\Comment
 			return false;
 		}
 
-		return array(
+		return [
 			$user->ID => ac_helper()->user->get_display_name( $user ),
-		);
+		];
 	}
 
 	public function get_paginated_options( $search, $page, $id = null ) {
@@ -42,7 +42,7 @@ class User extends Model\Comment
 	}
 
 	public function save( $id, $value ) {
-		return $this->update_comment( $id, array( 'user_id' => $value ) );
+		return $this->update_comment( $id, [ 'user_id' => $value ] );
 	}
 
 }

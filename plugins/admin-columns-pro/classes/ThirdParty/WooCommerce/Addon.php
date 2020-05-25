@@ -8,7 +8,7 @@ use AC\Registrable;
 class Addon implements Registrable {
 
 	public function register() {
-		add_filter( 'acp/editing/post_statuses', array( $this, 'remove_woocommerce_statuses_for_editing' ), 10, 2 );
+		add_filter( 'acp/editing/post_statuses', [ $this, 'remove_woocommerce_statuses_for_editing' ], 10, 2 );
 	}
 
 	/**

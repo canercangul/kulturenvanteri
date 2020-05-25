@@ -21,7 +21,7 @@ final class Comment extends EditableRows {
 	public function __construct( AC\Request $request, Strategy $strategy ) {
 		$handler = new AC\Ajax\Handler( false );
 		$handler->set_action( 'pre_get_comments' )
-		        ->set_callback( array( $this, 'send_editable_rows' ) )
+		        ->set_callback( [ $this, 'send_editable_rows' ] )
 		        ->set_priority( PHP_INT_MAX - 100 );
 
 		$this->handler = $handler;
@@ -33,9 +33,6 @@ final class Comment extends EditableRows {
 		$this->handler->register();
 	}
 
-	/**
-	 * @param array $args
-	 */
 	public function send_editable_rows( WP_Comment_Query $query ) {
 		$this->check_nonce();
 
@@ -45,7 +42,7 @@ final class Comment extends EditableRows {
 		$query->query_vars['number'] = $this->get_editable_rows_per_iteration();
 		$query->query_vars['offset'] = $this->get_offset();
 
-		$editable_rows = array();
+		$editable_rows = [];
 
 		foreach ( $query->get_comments() as $comment ) {
 

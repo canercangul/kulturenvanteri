@@ -9,12 +9,12 @@ use ACP\Search\Comparison\Meta;
 class Image extends Meta\Media {
 
 	public function get_values( $s, $paged ) {
-		$entities = array();
+		$entities = [];
 
 		$ids = AC\Helper\Select\MetaValuesFactory::create( $this->meta_type, $this->meta_key, $this->post_type );
 
 		if ( $ids ) {
-			$entities = new Select\Entities\Post( array(
+			$entities = new Select\Entities\Post( [
 				's'              => $s,
 				'paged'          => $paged,
 				'post_type'      => 'attachment',
@@ -22,7 +22,7 @@ class Image extends Meta\Media {
 				'orderby'        => 'date',
 				'order'          => 'DESC',
 				'post__in'       => $ids,
-			) );
+			] );
 		}
 
 		return new AC\Helper\Select\Options\Paginated(

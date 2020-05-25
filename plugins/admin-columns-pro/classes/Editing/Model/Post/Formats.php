@@ -7,10 +7,10 @@ use ACP\Editing\Model;
 class Formats extends Model\Post {
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'    => 'select',
 			'options' => get_post_format_strings(),
-		);
+		];
 	}
 
 	public function save( $id, $value ) {

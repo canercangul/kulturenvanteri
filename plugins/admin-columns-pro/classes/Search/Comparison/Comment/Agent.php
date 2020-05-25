@@ -7,12 +7,12 @@ use ACP\Search\Operators;
 class Agent extends Field {
 
 	public function __construct() {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::CONTAINS,
 			Operators::NOT_CONTAINS,
 			Operators::BEGINS_WITH,
 			Operators::ENDS_WITH,
-		) );
+		] );
 
 		parent::__construct( $operators );
 	}

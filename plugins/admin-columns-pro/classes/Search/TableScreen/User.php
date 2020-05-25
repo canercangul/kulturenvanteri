@@ -8,7 +8,7 @@ use ACP\Search\TableScreen;
 class User extends TableScreen {
 
 	public function register() {
-		add_action( 'restrict_manage_users', array( $this, 'filters_markup' ), 1 );
+		add_action( 'restrict_manage_users', [ $this, 'filters_markup' ], 1 );
 
 		$filter_button = FilterButtonFactory::create( FilterButtonFactory::SCREEN_USERS );
 		$filter_button->register();
@@ -20,7 +20,7 @@ class User extends TableScreen {
 	 * @inheritDoc
 	 */
 	public function filters_markup() {
-		remove_action( 'restrict_manage_users', array( $this, __FUNCTION__ ), 1 );
+		remove_action( 'restrict_manage_users', [ $this, __FUNCTION__ ], 1 );
 
 		return parent::filters_markup();
 	}

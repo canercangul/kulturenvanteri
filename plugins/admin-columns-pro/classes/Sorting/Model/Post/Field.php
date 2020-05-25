@@ -3,6 +3,7 @@
 namespace ACP\Sorting\Model\Post;
 
 use ACP\Sorting\Model;
+use wpdb;
 
 class Field extends Model {
 
@@ -22,14 +23,14 @@ class Field extends Model {
 	 * @return array
 	 */
 	public function get_sorting_vars() {
-		add_filter( 'posts_fields', array( $this, 'posts_fields_callback' ) );
+		add_filter( 'posts_fields', [ $this, 'posts_fields_callback' ] );
 
-		$args = array(
+		$args = [
 			'suppress_filters' => false,
-			'fields'           => array(),
-		);
+			'fields'           => [],
+		];
 
-		$ids = array();
+		$ids = [];
 
 		foreach ( $this->strategy->get_results( $args ) as $object ) {
 			$ids[ $object->id ] = $this->format( $object->value );
@@ -37,9 +38,9 @@ class Field extends Model {
 			wp_cache_delete( $object->id, 'posts' );
 		}
 
-		return array(
+		return [
 			'ids' => $this->sort( $ids ),
-		);
+		];
 	}
 
 	/**
@@ -53,13 +54,13 @@ class Field extends Model {
 
 	/**
 	 * Only return fields required for sorting
-	 * @global \wpdb $wpdb
 	 * @return string
+	 * @global wpdb $wpdb
 	 */
 	public function posts_fields_callback() {
 		global $wpdb;
 
-		remove_filter( 'posts_fields', array( $this, __FUNCTION__ ) );
+		remove_filter( 'posts_fields', [ $this, __FUNCTION__ ] );
 
 		return "$wpdb->posts.ID AS id, $wpdb->posts.`" . esc_sql( $this->field ) . '` AS value';
 	}

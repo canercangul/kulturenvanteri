@@ -16,7 +16,7 @@ class StrippedValue extends Value {
 	 * @return string
 	 */
 	public function get_value( $id ) {
-		return strip_tags( str_replace( array( '<br/>', '<br>' ), ' ', parent::get_value( $id ) ) );
+		return strip_tags( str_replace( [ '<br/>', '<br>' ], ' ', parent::get_value( $id ) ) );
 	}
 
 }

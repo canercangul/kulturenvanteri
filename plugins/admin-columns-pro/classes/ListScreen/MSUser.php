@@ -2,7 +2,6 @@
 
 namespace ACP\ListScreen;
 
-use AC;
 use ACP\ListScreen;
 use WP_MS_Users_List_Table;
 
@@ -26,25 +25,18 @@ class MSUser extends ListScreen\User {
 	public function get_list_table() {
 		require_once( ABSPATH . 'wp-admin/includes/class-wp-ms-users-list-table.php' );
 
-		return new WP_MS_Users_List_Table( array( 'screen' => $this->get_screen_id() ) );
+		return new WP_MS_Users_List_Table( [ 'screen' => $this->get_screen_id() ] );
 	}
 
 	protected function get_admin_url() {
 		return network_admin_url( 'users.php' );
 	}
 
-
-	/**
-	 * Settings page is the first subsite instead of one the network page.
-	 * @return string
-	 */
 	public function get_edit_link() {
 		return add_query_arg( [
-			'tab'         => 'columns',
-			'page'        => AC\Admin::PLUGIN_PAGE,
 			'list_screen' => $this->get_key(),
 			'layout_id'   => $this->get_layout_id(),
-		], network_admin_url( 'settings.php' ) );
+		], ac_get_admin_network_url( 'columns' ) );
 	}
 
 	/**

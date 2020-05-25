@@ -7,13 +7,13 @@ use ACP\Editing\Model;
 class RichEditing extends Model {
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'    => 'togglable',
-			'options' => array(
+			'options' => [
 				'true'  => __( 'True', 'codepress-admin-columns' ),
 				'false' => __( 'False', 'codepress-admin-columns' ),
-			),
-		);
+			],
+		];
 	}
 
 	public function save( $id, $value ) {

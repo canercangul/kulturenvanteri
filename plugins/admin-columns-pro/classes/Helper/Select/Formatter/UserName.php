@@ -12,11 +12,11 @@ class UserName extends AC\Helper\Select\Formatter {
 	 */
 	private $properties;
 
-	public function __construct( AC\Helper\Select\Entities $entities, $properties = array() ) {
-		$this->properties = array_merge( array(
+	public function __construct( AC\Helper\Select\Entities $entities, $properties = [] ) {
+		$this->properties = array_merge( [
 			'first_name',
 			'last_name',
-		), $properties );
+		], $properties );
 
 		parent::__construct( $entities );
 	}
@@ -27,7 +27,7 @@ class UserName extends AC\Helper\Select\Formatter {
 	 * @return string
 	 */
 	public function get_label( $user ) {
-		$name_parts = array();
+		$name_parts = [];
 
 		foreach ( $this->properties as $key ) {
 			if ( $user->$key ) {
@@ -43,7 +43,7 @@ class UserName extends AC\Helper\Select\Formatter {
 
 		$suffix = $user->user_email ? $user->user_email : $user->user_login;
 
-		$label .= sprintf( esc_html__(' (#%1$s &ndash; %2$s )'), $user->ID, $suffix );
+		$label .= sprintf( esc_html__( ' (#%1$s &ndash; %2$s )' ), $user->ID, $suffix );
 
 		return $label;
 	}

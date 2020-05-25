@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 2.5.6 =
+Release Date: March 30th, 2020
+
+* [Added] Number Formatting for Numeric fields
+* [Dependency] Requires Admin Columns Pro 5.1
+
 = 2.5.5 =
 Release Date: August 26th, 2019
 

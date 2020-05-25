@@ -24,7 +24,7 @@ final class HideSearch implements Registrable {
 		}
 		?>
 		<style>
-			<?php echo $selector; ?> { display: none; }
+			<?= sprintf( '%s { display: none; }', $selector ); ?>
 		</style>
 		<?php
 	}

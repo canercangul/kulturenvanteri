@@ -13,17 +13,17 @@ class Title extends Model\Post {
 	}
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'         => 'text',
-			'js'           => array(
+			'js'           => [
 				'selector' => 'strong > a',
-			),
+			],
 			'display_ajax' => false,
-		);
+		];
 	}
 
 	public function save( $id, $value ) {
-		return $this->update_post( $id, array( 'post_title' => $value ) );
+		return $this->update_post( $id, [ 'post_title' => $value ] );
 	}
 
 }

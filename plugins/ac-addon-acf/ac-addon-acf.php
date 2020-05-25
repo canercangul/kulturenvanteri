@@ -1,12 +1,13 @@
 <?php
 /*
 Plugin Name: 	Admin Columns Pro - Advanced Custom Fields (ACF)
-Version: 		2.5.5
-Description: 	Supercharges Admin Columns Pro with very cool ACF columns.
-Author: 		Admin Columns
-Author URI: 	https://www.admincolumns.com
-Plugin URI: 	https://www.admincolumns.com
+Version: 		2.5.6
+Description: 	Supercharges Admin Columns Pro with columns for Advanced Custom Fields (ACF)
+Author:         AdminColumns.com
+Author URI:     https://www.admincolumns.com
+Plugin URI:     https://www.admincolumns.com
 Text Domain: 	codepress-admin-columns
+Requires PHP:   5.6.20
 */
 
 use AC\Autoloader;
@@ -24,9 +25,9 @@ if ( ! is_admin() ) {
 require_once __DIR__ . '/classes/Dependencies.php';
 
 add_action( 'after_setup_theme', function () {
-	$dependencies = new Dependencies( plugin_basename( __FILE__ ), '2.5.5' );
-	$dependencies->requires_acp( '4.7.1' );
-	$dependencies->requires_php( '5.3.6' );
+	$dependencies = new Dependencies( plugin_basename( __FILE__ ), '2.5.6' );
+	$dependencies->requires_acp( '5.1' );
+	$dependencies->requires_php( '5.6.20' );
 
 	if ( ! class_exists( 'acf', false ) ) {
 		$dependencies->add_missing_plugin( 'Advanced Custom Fields', 'https://www.advancedcustomfields.com/' );

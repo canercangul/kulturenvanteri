@@ -7,7 +7,7 @@ class Bindings {
 	/**
 	 * @var int
 	 */
-	private static $aliases = array();
+	private static $aliases = [];
 
 	/**
 	 * @var string
@@ -27,7 +27,7 @@ class Bindings {
 	/**
 	 * @var array
 	 */
-	protected $meta_query = array();
+	protected $meta_query = [];
 
 	/**
 	 * @param string $column

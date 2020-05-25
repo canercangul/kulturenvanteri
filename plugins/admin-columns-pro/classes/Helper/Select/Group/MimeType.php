@@ -27,7 +27,7 @@ class MimeType extends AC\Helper\Select\Group {
 	}
 
 	private function get_translated_label( $type ) {
-		$translations = array(
+		$translations = [
 			'image'       => _x( 'Image', 'mediatype', 'codepress-admin-columns' ),
 			'audio'       => _x( 'Audio', 'mediatype', 'codepress-admin-columns' ),
 			'video'       => _x( 'Video', 'mediatype', 'codepress-admin-columns' ),
@@ -37,7 +37,7 @@ class MimeType extends AC\Helper\Select\Group {
 			'text'        => _x( 'Text', 'mediatype', 'codepress-admin-columns' ),
 			'archive'     => _x( 'Archive', 'mediatype', 'codepress-admin-columns' ),
 			'code'        => _x( 'Code', 'mediatype', 'codepress-admin-columns' ),
-		);
+		];
 
 		if ( isset( $translations[ $type ] ) ) {
 			$type = $translations[ $type ];

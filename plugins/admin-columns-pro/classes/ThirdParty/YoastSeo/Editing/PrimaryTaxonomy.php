@@ -33,27 +33,27 @@ class PrimaryTaxonomy extends Editing\Model\Meta
 
 		$term = get_term( $term, $this->column->get_taxonomy() );
 
-		return array(
+		return [
 			$term->term_id => $term->name,
-		);
+		];
 	}
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'                   => 'select2_dropdown',
 			'multiple'               => false,
 			'ajax_populate'          => true,
 			self::VIEW_BULK_EDITABLE => false,
-		);
+		];
 	}
 
 	public function get_paginated_options( $search, $page, $id = null ) {
-		$entities = new Select\Entities\Taxonomy( array(
+		$entities = new Select\Entities\Taxonomy( [
 			'search'     => $search,
 			'page'       => $page,
 			'taxonomy'   => $this->column->get_taxonomy(),
-			'object_ids' => array( $id ),
-		) );
+			'object_ids' => [ $id ],
+		] );
 
 		return new AC\Helper\Select\Options\Paginated(
 			$entities,

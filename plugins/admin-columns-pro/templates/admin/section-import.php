@@ -1,3 +1,9 @@
+<?php
+
+use ACP\Migrate\Import;
+
+?>
+
 <div class="ac-section -import">
 	<div class="ac-section__header">
 		<h2 class="ac-section__header__title"><?php _e( 'Import', 'codepress-admin-columns' ); ?></h2>
@@ -8,6 +14,8 @@
 		</p>
 		<form method="post" action="" enctype="multipart/form-data" class="ac-import">
 			<?php wp_nonce_field( 'file-import', '_ac_nonce', false ); ?>
+			<?php wp_nonce_field( Import\Request::ACTION, Import\Request::NONCE_NAME ); ?>
+			<input type="hidden" name="action" value="<?= Import\Request::ACTION ?>">
 			<div class="ac-import__field">
 				<label for=""><?php _e( 'Select File', 'codepress-admin-columns' ); ?></label>
 				<input type="file" size="25" name="import" id="upload" accept=".json">

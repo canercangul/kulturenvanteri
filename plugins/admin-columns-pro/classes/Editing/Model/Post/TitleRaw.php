@@ -11,7 +11,7 @@ class TitleRaw extends Model\Post {
 	}
 
 	public function save( $id, $value ) {
-		return $this->update_post( $id, array( 'post_title' => $value ) );
+		return $this->update_post( $id, [ 'post_title' => $value ] );
 	}
 
 }

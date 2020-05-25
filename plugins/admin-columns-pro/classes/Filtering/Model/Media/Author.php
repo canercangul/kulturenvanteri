@@ -13,7 +13,7 @@ class Author extends Model {
 	}
 
 	public function get_filtering_data() {
-		$data = array();
+		$data = [];
 
 		$values = $this->strategy->get_values_by_db_field( 'post_author' );
 

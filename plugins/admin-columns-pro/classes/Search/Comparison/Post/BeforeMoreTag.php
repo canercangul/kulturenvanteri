@@ -11,10 +11,10 @@ use ACP\Search\Value;
 class BeforeMoreTag extends Comparison {
 
 	public function __construct() {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::IS_EMPTY,
 			Operators::NOT_IS_EMPTY,
-		) );
+		] );
 
 		parent::__construct( $operators );
 	}

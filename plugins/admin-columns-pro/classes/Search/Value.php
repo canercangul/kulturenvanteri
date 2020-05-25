@@ -37,7 +37,7 @@ final class Value {
 	}
 
 	private function validate_type() {
-		$types = array( self::INT, self::DECIMAL, self::STRING, self::DATE );
+		$types = [ self::INT, self::DECIMAL, self::STRING, self::DATE ];
 
 		if ( ! in_array( $this->type, $types ) ) {
 			throw new LogicException( 'Invalid type found.' );

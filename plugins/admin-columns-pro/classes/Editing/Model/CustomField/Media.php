@@ -7,10 +7,10 @@ use ACP\Editing\Model;
 class Media extends Model\CustomField {
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'         => 'attachment',
 			'clear_button' => true,
-		);
+		];
 	}
 
 }

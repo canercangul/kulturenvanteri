@@ -13,7 +13,7 @@ class ReplyTo extends Model {
 	}
 
 	public function get_filtering_data() {
-		$data = array();
+		$data = [];
 
 		foreach ( $this->strategy->get_values_by_db_field( 'comment_parent' ) as $_value ) {
 			$data['options'][ $_value ] = get_comment_author( $_value ) . ' (' . $_value . ')';

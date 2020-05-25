@@ -25,13 +25,13 @@ class BeforeMoreTag extends Model {
 	}
 
 	public function get_filtering_vars( $vars ) {
-		add_filter( 'posts_where', array( $this, 'filter_by_before_moretag' ) );
+		add_filter( 'posts_where', [ $this, 'filter_by_before_moretag' ] );
 
 		return $vars;
 	}
 
 	public function get_filtering_data() {
-		return array( 'empty_option' => true );
+		return [ 'empty_option' => true ];
 	}
 
 }

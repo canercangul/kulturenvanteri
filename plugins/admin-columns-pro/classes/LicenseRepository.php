@@ -3,9 +3,9 @@
 namespace ACP;
 
 use ACP\Entity\License;
-use ACP\Type;
 use ACP\Type\License\ExpiryDate;
 use ACP\Type\License\Key;
+use ACP\Type\License\RenewalDiscount;
 use ACP\Type\License\RenewalMethod;
 use ACP\Type\License\Status;
 use DateTime;
@@ -47,17 +47,22 @@ final class LicenseRepository {
 			return null;
 		}
 
-		// Fetch and check license data
 		$data = $this->get_option( self::STORAGE_LICENSE );
 
 		if ( empty( $data ) ) {
 			return null;
 		}
 
-		$params = [ self::PARAM_STATUS, self::PARAM_RENEWAL_DISCOUNT, self::PARAM_RENEWAL_METHOD, self::PARAM_EXPIRY_DATE ];
+		// Check required params
+		$params = [
+			self::PARAM_STATUS,
+			self::PARAM_RENEWAL_DISCOUNT,
+			self::PARAM_RENEWAL_METHOD,
+			self::PARAM_EXPIRY_DATE,
+		];
 
-		foreach ( $data as $key => $value ) {
-			if ( ! in_array( $key, $params, true ) ) {
+		foreach ( $params as $param ) {
+			if ( ! array_key_exists( $param, $data ) ) {
 				return null;
 			}
 		}
@@ -68,6 +73,12 @@ final class LicenseRepository {
 
 		if ( ! RenewalMethod::is_valid( $data[ self::PARAM_RENEWAL_METHOD ] ) ) {
 			return null;
+		}
+
+		$discount = 0;
+
+		if ( RenewalDiscount::is_valid( $data[ self::PARAM_RENEWAL_DISCOUNT ] ) ) {
+			$discount = $data[ self::PARAM_RENEWAL_DISCOUNT ];
 		}
 
 		if ( null === $data[ self::PARAM_EXPIRY_DATE ] ) {
@@ -84,7 +95,7 @@ final class LicenseRepository {
 		return new License(
 			$stored_license_key,
 			new Status( $data[ self::PARAM_STATUS ] ),
-			$data[ self::PARAM_RENEWAL_DISCOUNT ],
+			new RenewalDiscount( $discount ),
 			new RenewalMethod( $data[ self::PARAM_RENEWAL_METHOD ] ),
 			new ExpiryDate( $expire_date )
 		);
@@ -93,7 +104,7 @@ final class LicenseRepository {
 	public function save( License $license ) {
 		$data = [
 			self::PARAM_STATUS           => $license->get_status()->get_value(),
-			self::PARAM_RENEWAL_DISCOUNT => $license->get_renewal_discount(),
+			self::PARAM_RENEWAL_DISCOUNT => $license->get_renewal_discount()->get_value(),
 			self::PARAM_RENEWAL_METHOD   => $license->get_renewal_method()->get_value(),
 			self::PARAM_EXPIRY_DATE      => $license->get_expiry_date()->exists() ? $license->get_expiry_date()->get_value()->getTimestamp() : null,
 		];

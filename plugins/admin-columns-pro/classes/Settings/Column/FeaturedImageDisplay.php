@@ -13,25 +13,25 @@ class FeaturedImageDisplay extends AC\Settings\Column
 	private $featured_image_display;
 
 	protected function define_options() {
-		return array(
+		return [
 			'featured_image_display' => 'true_false',
-		);
+		];
 	}
 
 	public function create_view() {
 		$select = $this->create_element( 'select' );
 
 		$select->set_attribute( 'data-refresh', 'column' )
-		       ->set_options( array(
+		       ->set_options( [
 			       'count'      => _x( 'Count', 'Number/count of items' ),
 			       'title'      => __( 'Title' ),
 			       'true_false' => __( 'True / False', 'codepress-admin-columns' ),
-		       ) );
+		       ] );
 
-		$view = new AC\View( array(
+		$view = new AC\View( [
 			'label'   => __( 'Field Type', 'codepress-admin-columns' ),
 			'setting' => $select,
-		) );
+		] );
 
 		return $view;
 	}
@@ -57,7 +57,7 @@ class FeaturedImageDisplay extends AC\Settings\Column
 				return count( $value );
 
 			case 'title':
-				$values = array();
+				$values = [];
 
 				foreach ( $value as $id ) {
 					$post = get_post( $id );

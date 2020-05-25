@@ -10,7 +10,7 @@ class Statement {
 	/**
 	 * @var Value[]
 	 */
-	protected $values = array();
+	protected $values = [];
 
 	/**
 	 * @var string
@@ -52,7 +52,7 @@ class Statement {
 		}
 
 		$statement = $this->statement;
-		$values = array();
+		$values = [];
 
 		foreach ( $this->values as $value ) {
 			$type = $value->get_type() === Value::INT

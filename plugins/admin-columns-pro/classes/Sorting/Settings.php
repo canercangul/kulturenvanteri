@@ -8,20 +8,28 @@ use AC\View;
 class Settings extends AC\Settings\Column
 	implements AC\Settings\Header {
 
+	/**
+	 * @var string
+	 */
 	private $sort;
 
 	protected function define_options() {
-		return array( 'sort' => 'on' );
+		return [ 'sort' => 'on' ];
+	}
+
+	private function get_instructions() {
+		$view = new View();
+		$view->set_template( 'tooltip/sorting' );
+
+		return $view->render();
 	}
 
 	public function create_header_view() {
-		$sort = $this->get_sort();
-
-		$view = new View( array(
+		$view = new View( [
 			'title'    => __( 'Enable Sorting', 'codepress-admin-columns' ),
 			'dashicon' => 'dashicons-sort',
-			'state'    => $sort,
-		) );
+			'state'    => $this->get_sort(),
+		] );
 
 		$view->set_template( 'settings/header-icon' );
 
@@ -30,14 +38,14 @@ class Settings extends AC\Settings\Column
 
 	public function create_view() {
 		$sort = $this->create_element( 'radio', 'sort' )
-		             ->set_options( array(
+		             ->set_options( [
 			             'on'  => __( 'Yes' ),
 			             'off' => __( 'No' ),
-		             ) );
+		             ] );
 
 		$view = new View();
 		$view->set( 'label', __( 'Sorting', 'codepress-admin-columns' ) )
-		     ->set( 'tooltip', __( 'This will make the column support sorting.', 'codepress-admin-columns' ) )
+		     ->set( 'instructions', $this->get_instructions() )
 		     ->set( 'setting', $sort );
 
 		return $view;

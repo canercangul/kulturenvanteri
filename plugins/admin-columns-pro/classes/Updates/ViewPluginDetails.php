@@ -24,7 +24,7 @@ class ViewPluginDetails implements Registrable {
 	}
 
 	public function register() {
-		add_filter( 'plugins_api', array( $this, 'get_plugin_information' ), 10, 3 );
+		add_filter( 'plugins_api', [ $this, 'get_plugin_information' ], 10, 3 );
 	}
 
 	/**

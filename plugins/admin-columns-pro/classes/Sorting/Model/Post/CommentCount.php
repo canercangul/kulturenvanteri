@@ -8,7 +8,7 @@ use ACP\Sorting\Model;
 class CommentCount extends Model {
 
 	public function get_sorting_vars() {
-		$ids = array();
+		$ids = [];
 
 		/* @var AC\Settings\Column\CommentCount $setting */
 		$setting = $this->column->get_setting( 'comment_count' );
@@ -17,9 +17,9 @@ class CommentCount extends Model {
 			$ids[ $id ] = $setting->get_comment_count( $id );
 		}
 
-		return array(
+		return [
 			'ids' => $this->sort( $ids ),
-		);
+		];
 	}
 
 }

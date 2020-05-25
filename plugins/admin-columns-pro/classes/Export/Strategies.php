@@ -15,20 +15,19 @@ class Strategies {
 	protected static $strategies;
 
 	/**
-	 * @since 1.0
-	 *
 	 * @param Strategy $strategy
+	 *
+	 * @since 1.0
 	 */
 	public static function register_strategy( Strategy $strategy ) {
 		self::$strategies[ $strategy->get_list_screen()->get_key() ] = $strategy;
 	}
 
 	/**
-	 * @since 1.0
-	 *
 	 * @param $key
 	 *
 	 * @return Strategy|null
+	 * @since 1.0
 	 */
 	public static function get_strategy( $key ) {
 		if ( isset( self::$strategies[ $key ] ) ) {

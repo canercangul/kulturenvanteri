@@ -19,7 +19,7 @@ class PostType extends Model {
 	}
 
 	public function get_filtering_vars( $vars ) {
-		add_filter( 'comments_clauses', array( $this, 'filter_on_post_type' ) );
+		add_filter( 'comments_clauses', [ $this, 'filter_on_post_type' ] );
 
 		return $vars;
 	}
@@ -34,18 +34,18 @@ class PostType extends Model {
 	}
 
 	public function get_filtering_data() {
-		return array(
+		return [
 			'options' => $this->get_available_post_types(),
-		);
+		];
 	}
 
 	/**
 	 * @return array
 	 */
 	private function get_available_post_types() {
-		$options = array();
+		$options = [];
 
-		foreach ( get_post_types( array(), 'object' ) as $post_type ) {
+		foreach ( get_post_types( [], 'object' ) as $post_type ) {
 			if ( post_type_supports( $post_type->name, 'comments' ) ) {
 				$options[ $post_type->name ] = $post_type->labels->singular_name;
 			}

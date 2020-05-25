@@ -14,7 +14,7 @@ class RawValue extends Model {
 		$raw_value = $this->get_column()->get_raw_value( $id );
 
 		if ( ! is_scalar( $raw_value ) ) {
-			return false;
+			return null;
 		}
 
 		return $raw_value;

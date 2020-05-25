@@ -2,7 +2,7 @@
 
 namespace ACP\Filtering;
 
-use ACP\Asset\Enqueueable;
+use AC\Asset\Enqueueable;
 
 abstract class TableScreen {
 
@@ -24,9 +24,9 @@ abstract class TableScreen {
 		$this->models = $models;
 		$this->assets = $assets;
 
-		add_action( 'ac/table_scripts', array( $this, 'scripts' ) );
-		add_action( 'ac/admin_head', array( $this, 'add_indicator' ), 10, 0 );
-		add_action( 'ac/admin_head', array( $this, 'hide_default_dropdowns' ), 10, 0 );
+		add_action( 'ac/table_scripts', [ $this, 'scripts' ] );
+		add_action( 'ac/admin_head', [ $this, 'add_indicator' ], 10, 0 );
+		add_action( 'ac/admin_head', [ $this, 'hide_default_dropdowns' ], 10, 0 );
 	}
 
 	public function scripts() {
@@ -41,7 +41,7 @@ abstract class TableScreen {
 	 * Colors the column label orange on the listing screen when it is being filtered
 	 */
 	public function add_indicator() {
-		$classes = array();
+		$classes = [];
 
 		foreach ( $this->models as $model ) {
 			if ( ! $model->is_active() || ! $model->get_filter_value() ) {
@@ -71,7 +71,7 @@ abstract class TableScreen {
 	 * @since 3.8
 	 */
 	public function hide_default_dropdowns() {
-		$disabled = array();
+		$disabled = [];
 
 		foreach ( $this->models as $model ) {
 			if ( $model instanceof Model\Delegated && ! $model->is_active() ) {
@@ -97,19 +97,19 @@ abstract class TableScreen {
 		$data = $cache->get();
 
 		if ( ! $data ) {
-			$data = array(
-				'options' => array(
+			$data = [
+				'options' => [
 					Markup\Dropdown::get_disabled_prefix() . 'loading' => __( 'Loading values', 'codepress-admin-columns' ) . ' ...',
-				),
-			);
+				],
+			];
 		}
 
 		return $data;
 	}
 
 	/**
-	 * @since 3.6
 	 * @return string
+	 * @since 3.6
 	 */
 	public function update_dropdown_cache() {
 		ob_start();
@@ -187,13 +187,13 @@ abstract class TableScreen {
 				? $this->get_data_from_cache( $model )
 				: $model->get_filtering_data();
 
-			$defaults = array(
+			$defaults = [
 				'order'        => true,
-				'options'      => array(),
+				'options'      => [],
 				'empty_option' => false,
 				'label'        => $label, // backcompat
 				'limit'        => 5000,
-			);
+			];
 
 			$data = array_merge( $defaults, $data );
 

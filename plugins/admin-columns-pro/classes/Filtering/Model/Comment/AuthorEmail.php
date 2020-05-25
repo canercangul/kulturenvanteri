@@ -13,7 +13,7 @@ class AuthorEmail extends Model {
 	}
 
 	public function get_filtering_data() {
-		$data = array();
+		$data = [];
 		foreach ( $this->strategy->get_values_by_db_field( 'comment_author_email' ) as $_value ) {
 			$data['options'][ $_value ] = $_value;
 		}

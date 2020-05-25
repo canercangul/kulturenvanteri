@@ -7,7 +7,7 @@ class Media extends Post {
 	/**
 	 * @var array
 	 */
-	protected $mime_types = array();
+	protected $mime_types = [];
 
 	/**
 	 * @return array

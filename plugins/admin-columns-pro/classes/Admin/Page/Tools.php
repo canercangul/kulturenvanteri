@@ -3,32 +3,30 @@
 namespace ACP\Admin\Page;
 
 use AC\Admin\Page;
-use AC\Registrable;
+use AC\Asset;
+use AC\Asset\Location;
+use AC\Renderable;
+use AC\View;
 use ACP;
-use ACP\Admin\Assets;
-use ACP\Admin\Renderable;
-use ACP\Asset;
 
-class Tools extends Page
-	implements Registrable {
+class Tools extends Page implements Asset\Enqueueables {
 
 	const NAME = 'import-export';
 
-	/** @var Renderable[] */
+	/**
+	 * @var Renderable[]
+	 */
 	private $sections = [];
 
 	/**
-	 * @var Asset\Location\Absolute
+	 * @var Location\Absolute
 	 */
 	private $location;
 
-	/**
-	 * @since 1.4.6.5
-	 */
-	public function __construct( Asset\Location\Absolute $location ) {
-		$this->location = $location;
-
+	public function __construct( Location\Absolute $location ) {
 		parent::__construct( self::NAME, __( 'Tools', 'codepress-admin-columns' ) );
+
+		$this->location = $location;
 	}
 
 	/**
@@ -42,48 +40,29 @@ class Tools extends Page
 		return $this;
 	}
 
-	/**
-	 * Register Hooks
-	 */
-	public function register() {
-		add_action( 'admin_enqueue_scripts', [ $this, 'admin_scripts' ] );
-	}
-
-	/**
-	 * @since 1.0
-	 */
-	public function admin_scripts() {
-		$global_assets = [
+	public function get_assets() {
+		$assets = new Asset\Assets( [
 			new Asset\Style( 'acp-style-tools', $this->location->with_suffix( 'assets/core/css/admin-tools.css' ) ),
 			new Asset\Script( 'acp-script-tools', $this->location->with_suffix( 'assets/core/js/tools.js' ) ),
-		];
-
-		foreach ( $global_assets as $asset ) {
-			$asset->enqueue();
-		}
+		] );
 
 		foreach ( $this->sections as $section ) {
-			if ( $section instanceof Assets ) {
-				foreach ( $section->get_assets() as $asset ) {
-					$asset->enqueue();
-				}
+			if ( $section instanceof Asset\Enqueueables ) {
+				$assets->add_collection( $section->get_assets() );
 			}
 		}
+
+		return $assets;
 	}
 
-	/**
-	 * @since 1.4.6.5
-	 */
 	public function render() {
-		?>
-		<div class="ac-section-group -tools">
-			<?php
-			foreach ( $this->sections as $section ) {
-				$section->render();
-			}
-			?>
-		</div>
-		<?php
+		$view = new View( [
+			'sections' => $this->sections,
+		] );
+
+		$view->set_template( 'admin/page/tools' );
+
+		return $view->render();
 	}
 
 }

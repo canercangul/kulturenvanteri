@@ -31,7 +31,7 @@ final class Taxonomy
 	}
 
 	private function validate() {
-		$properties = array( self::ID, self::SLUG );
+		$properties = [ self::ID, self::SLUG ];
 
 		if ( ! in_array( $this->property, $properties ) ) {
 			throw new LogicException( 'Invalid property found.' );

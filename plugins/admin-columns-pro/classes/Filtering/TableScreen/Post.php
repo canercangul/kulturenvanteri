@@ -10,7 +10,7 @@ class Post extends TableScreen {
 	public function __construct( array $models, $assets ) {
 		parent::__construct( $models, $assets );
 
-		add_action( 'restrict_manage_posts', array( $this, 'render_markup' ), 11 );
+		add_action( 'restrict_manage_posts', [ $this, 'render_markup' ], 11 );
 	}
 
 	public function hide_default_dropdowns() {

@@ -2,9 +2,9 @@
 
 namespace ACP\Search\Asset\Script;
 
+use AC\Asset\Location;
+use AC\Asset\Script;
 use AC\Request;
-use ACP\Asset\Location;
-use ACP\Asset\Script;
 
 final class Table extends Script {
 
@@ -25,7 +25,7 @@ final class Table extends Script {
 	 * @param Request  $request
 	 */
 	public function __construct( $handle, Location $location, array $filters, Request $request ) {
-		parent::__construct( $handle, $location, array( 'aca-search-querybuilder', 'wp-pointer' ) );
+		parent::__construct( $handle, $location, [ 'aca-search-querybuilder', 'wp-pointer' ] );
 
 		$this->filters = $filters;
 		$this->request = $request;
@@ -34,16 +34,16 @@ final class Table extends Script {
 	public function register() {
 		parent::register();
 
-		wp_localize_script( 'aca-search-table', 'ac_search', array(
+		wp_localize_script( 'aca-search-table', 'ac_search', [
 			'rules'   => json_decode( $this->request->get( 'ac-rules-raw' ) ),
 			'filters' => $this->filters,
-			'i18n'    => array(
+			'i18n'    => [
 				'select'     => _x( 'Select', 'select placeholder', 'codepress-admin-columns' ),
 				'add_filter' => __( 'Add Filter', 'codepress-admin-columns' ),
 				'days_ago'   => __( 'days ago', 'codepress-admin-columns' ),
 				'days'       => __( 'days', 'codepress-admin-columns' ),
-			),
-		) );
+			],
+		] );
 	}
 
 }

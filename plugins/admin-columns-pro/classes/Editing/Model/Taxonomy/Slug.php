@@ -11,7 +11,7 @@ class Slug extends Model\Taxonomy {
 	}
 
 	public function save( $id, $value ) {
-		return $this->update_term( $id, array( 'slug' => $value ) );
+		return $this->update_term( $id, [ 'slug' => $value ] );
 	}
 
 }

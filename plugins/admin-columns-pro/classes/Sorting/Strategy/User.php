@@ -13,7 +13,7 @@ final class User extends Strategy {
 	private $user_query;
 
 	public function manage_sorting() {
-		add_action( 'pre_get_users', array( $this, 'handle_sorting_request' ) );
+		add_action( 'pre_get_users', [ $this, 'handle_sorting_request' ] );
 	}
 
 	/**
@@ -21,7 +21,7 @@ final class User extends Strategy {
 	 *
 	 * @return array
 	 */
-	public function get_results( array $args = array() ) {
+	public function get_results( array $args = [] ) {
 		return $this->get_users( $args );
 	}
 
@@ -30,10 +30,10 @@ final class User extends Strategy {
 	 *
 	 * @return int[]
 	 */
-	protected function get_users( array $args = array() ) {
-		$defaults = array(
+	protected function get_users( array $args = [] ) {
+		$defaults = [
 			'fields' => 'ID',
-		);
+		];
 
 		$args = array_merge( $defaults, $args );
 
@@ -58,11 +58,11 @@ final class User extends Strategy {
 
 	/**
 	 * Handle the sorting request on the user listing screen
-	 * @since 1.0
 	 *
 	 * @param WP_User_Query $query
 	 *
 	 * @return void
+	 * @since 1.0
 	 */
 	public function handle_sorting_request( WP_User_Query $query ) {
 		// check query conditions
@@ -71,7 +71,7 @@ final class User extends Strategy {
 		}
 
 		// run only once
-		remove_action( 'pre_get_users', array( $this, __FUNCTION__ ) );
+		remove_action( 'pre_get_users', [ $this, __FUNCTION__ ] );
 
 		$this->set_user_query( $query );
 

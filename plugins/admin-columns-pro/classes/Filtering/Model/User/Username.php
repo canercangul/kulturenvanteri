@@ -15,13 +15,13 @@ class Username extends Model {
 	}
 
 	public function get_filtering_vars( $vars ) {
-		add_filter( 'pre_user_query', array( $this, 'filter_by_username' ) );
+		add_filter( 'pre_user_query', [ $this, 'filter_by_username' ] );
 
 		return $vars;
 	}
 
 	public function get_filtering_data() {
-		$data = array();
+		$data = [];
 
 		if ( $values = $this->strategy->get_values_by_db_field( 'user_login' ) ) {
 			foreach ( $values as $value ) {

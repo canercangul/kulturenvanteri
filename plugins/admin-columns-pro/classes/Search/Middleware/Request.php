@@ -27,22 +27,22 @@ class Request
 
 		$operator = new Mapping\Operator( Mapping::REQUEST );
 		$value_type = new Mapping\ValueType( Mapping::REQUEST );
-		$rules = array();
+		$rules = [];
 
 		foreach ( $input->rules as $rule ) {
-			$rules[] = array(
+			$rules[] = [
 				'name'        => $rule->id,
 				'operator'    => $operator->{$rule->operator},
 				'value'       => $rule->value,
 				'value_type'  => $value_type->{$rule->type},
 				'value_label' => isset( $rule->formatted_value ) ? $rule->formatted_value : null,
-			);
+			];
 		}
 
-		$request->get_parameters()->merge( array(
+		$request->get_parameters()->merge( [
 			$rules_key          => $rules,
 			$rules_key . '-raw' => $input_raw,
-		) );
+		] );
 	}
 
 }

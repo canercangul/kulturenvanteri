@@ -22,7 +22,7 @@ final class Taxonomy extends EditableRows {
 	public function __construct( AC\Request $request, Strategy $strategy ) {
 		$handler = new AC\Ajax\Handler( false );
 		$handler->set_action( 'parse_term_query' )
-		        ->set_callback( array( $this, 'send_editable_rows' ) )
+		        ->set_callback( [ $this, 'send_editable_rows' ] )
 		        ->set_priority( PHP_INT_MAX - 100 );
 
 		$this->handler = $handler;
@@ -48,7 +48,7 @@ final class Taxonomy extends EditableRows {
 
 		$query = new WP_Term_Query( $query->query_vars );
 
-		$editable_rows = array();
+		$editable_rows = [];
 
 		foreach ( $query->get_terms() as $term ) {
 			if ( $this->strategy->user_has_write_permission( $term ) ) {

@@ -19,39 +19,38 @@ class Taxonomy extends Model {
 	}
 
 	public function get_filtering_data() {
-		return array(
+		return [
 			'order'        => false,
 			'empty_option' => $this->get_empty_labels(),
 			'options'      => $this->get_terms_list( $this->column->get_taxonomy() ),
-		);
+		];
 	}
 
 	/**
-	 * @since 4.0
-	 *
 	 * @param string $taxonomy
 	 *
 	 * @return array Term options
+	 * @since 4.0
 	 */
 	public function get_terms_list( $taxonomy ) {
-		$args = array();
+		$args = [];
 
 		// Indenting only works if all terms are retrieved
 		if ( is_taxonomy_hierarchical( $taxonomy ) ) {
-			$args = array( 'hide_empty' => false );
+			$args = [ 'hide_empty' => false ];
 		}
 
 		/**
-		 * @since 4.0
-		 *
 		 * @param array $args
+		 *
+		 * @since 4.0
 		 */
 		$args = apply_filters( 'acp/filtering/terms_args', $args );
 
 		$terms = get_terms( $taxonomy, $args );
 
 		if ( ! $terms || is_wp_error( $terms ) ) {
-			return array();
+			return [];
 		}
 
 		return $this->apply_indenting_markup( ac_helper()->array->indent( $terms, 0, 'parent', 'term_id' ) );
@@ -59,16 +58,16 @@ class Taxonomy extends Model {
 
 	/**
 	 * Applies indenting markup for taxonomy dropdown
-	 * @since 1.0
 	 *
 	 * @param array $array
 	 * @param int   $level
 	 * @param array $output
 	 *
 	 * @return array Output
+	 * @since 1.0
 	 */
-	private function apply_indenting_markup( $array, $level = 0, $output = array() ) {
-		$processed = array();
+	private function apply_indenting_markup( $array, $level = 0, $output = [] ) {
+		$processed = [];
 
 		foreach ( $array as $v ) {
 			$prefix = '';

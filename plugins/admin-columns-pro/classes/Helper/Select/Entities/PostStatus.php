@@ -1,4 +1,5 @@
 <?php
+
 namespace ACP\Helper\Select\Entities;
 
 use AC;
@@ -7,7 +8,7 @@ use ACP\Helper\Select\Value;
 class PostStatus extends AC\Helper\Select\Entities
 	implements AC\Helper\Select\Paginated {
 
-	public function __construct( array $args = array(), AC\Helper\Select\Value $value = null ) {
+	public function __construct( array $args = [], AC\Helper\Select\Value $value = null ) {
 		if ( null === $value ) {
 			$value = new Value\PostStatus();
 		}
@@ -41,12 +42,12 @@ class PostStatus extends AC\Helper\Select\Entities
 		$status_count = array_filter( $status_count );
 
 		if ( empty( $status_count ) ) {
-			return array();
+			return [];
 		}
 
 		$statuses = array_keys( $status_count );
 
-		$stati = get_post_stati( array( 'internal' => 0 ), 'objects' );
+		$stati = get_post_stati( [ 'internal' => 0 ], 'objects' );
 
 		foreach ( $stati as $k => $status ) {
 			if ( ! in_array( $status->name, $statuses ) ) {

@@ -15,10 +15,10 @@ class Language extends Model\Meta {
 	}
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'    => 'select',
 			'options' => $this->column->get_language_options(),
-		);
+		];
 	}
 
 }

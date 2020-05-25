@@ -210,6 +210,15 @@ final class Dependencies {
 	}
 
 	/**
+	 * @return bool
+	 */
+	private function is_plugin_active() {
+		return is_multisite() && is_network_admin()
+			? is_plugin_active_for_network( $this->basename )
+			: is_plugin_active( $this->basename );
+	}
+
+	/**
 	 * Show a warning when dependencies are not met
 	 */
 	public function display_notice() {
@@ -217,7 +226,7 @@ final class Dependencies {
 
 		?>
 
-		<tr class="plugin-update-tr active">
+		<tr class="plugin-update-tr <?= $this->is_plugin_active() ? 'active' : 'inactive'; ?>">
 			<td colspan="3" class="plugin-update colspanchange">
 				<div class="update-message notice inline notice-error notice-alt">
 					<?php if ( count( $this->messages ) > 1 )  : ?>

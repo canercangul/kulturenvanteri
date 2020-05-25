@@ -15,15 +15,15 @@ class Post extends AC\Helper\Select\Entities
 	protected $query;
 
 	/**
-	 * @param array $args
+	 * @param array                  $args
 	 * @param AC\Helper\Select\Value $value
 	 */
-	public function __construct( array $args = array(), AC\Helper\Select\Value $value = null ) {
+	public function __construct( array $args = [], AC\Helper\Select\Value $value = null ) {
 		if ( null === $value ) {
 			$value = new Value\Post();
 		}
 
-		$args = array_merge( array(
+		$args = array_merge( [
 			'posts_per_page' => 30,
 			'post_type'      => 'any',
 			'orderby'        => 'title',
@@ -31,7 +31,7 @@ class Post extends AC\Helper\Select\Entities
 			'paged'          => 1,
 			's'              => null,
 			'post_status'    => 'any',
-		), $args );
+		], $args );
 
 		$this->query = new WP_Query( $args );
 

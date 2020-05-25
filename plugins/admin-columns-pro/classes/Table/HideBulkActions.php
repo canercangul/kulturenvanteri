@@ -8,19 +8,12 @@ use ACP\Settings\ListScreen\HideOnScreen;
 
 final class HideBulkActions implements Registrable {
 
-	/** @var HideOnScreen\BulkActions */
-	private $hide_on_screen;
-
-	public function __construct() {
-		$this->hide_on_screen = new HideOnScreen\BulkActions();
-	}
-
 	public function register() {
 		add_action( 'ac/admin_head', [ $this, 'admin_head' ] );
 	}
 
 	public function admin_head( ListScreen $list_screen ) {
-		if ( ! $this->hide_on_screen->is_hidden( $list_screen ) ) {
+		if ( ! ( new HideOnScreen\BulkActions() )->is_hidden( $list_screen ) ) {
 			return;
 		}
 
@@ -31,7 +24,7 @@ final class HideBulkActions implements Registrable {
 		}
 		?>
 		<style>
-			<?php echo $selector; ?> { display: none; }
+			<?= sprintf( '%s { display: none; }', $selector ); ?>
 		</style>
 		<?php
 	}

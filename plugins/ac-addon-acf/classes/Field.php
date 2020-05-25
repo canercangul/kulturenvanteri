@@ -87,14 +87,6 @@ class Field
 		return $this->column->get_acf_field_option( $property );
 	}
 
-	/**
-	 * Get link to field's group settings
-	 * @return false|string
-	 */
-	public function get_edit_link() {
-		return get_edit_post_link( acf_get_field_group_id( $this->get( 'parent' ) ) );
-	}
-
 	protected function is_serialized() {
 		return $this->column->is_serialized();
 	}

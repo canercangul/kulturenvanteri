@@ -1,4 +1,5 @@
 <?php
+
 namespace ACP\Search\Comparison\Comment;
 
 use AC;
@@ -12,10 +13,10 @@ class PostType extends Comparison
 	implements Comparison\Values {
 
 	public function __construct() {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
 			Operators::NEQ,
-		) );
+		] );
 
 		parent::__construct( $operators );
 	}
@@ -37,9 +38,9 @@ class PostType extends Comparison
 	}
 
 	public function get_values() {
-		$options = array();
+		$options = [];
 
-		foreach ( get_post_types( array(), 'object' ) as $post_type ) {
+		foreach ( get_post_types( [], 'object' ) as $post_type ) {
 			if ( post_type_supports( $post_type->name, 'comments' ) ) {
 				$options[] = new AC\Helper\Select\Option( $post_type->name, $post_type->labels->singular_name );
 			}

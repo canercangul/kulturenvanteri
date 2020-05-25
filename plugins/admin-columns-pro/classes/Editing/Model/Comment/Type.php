@@ -7,7 +7,7 @@ use ACP\Editing\Model;
 class Type extends Model\Comment {
 
 	public function save( $id, $value ) {
-		return $this->update_comment( $id, array( 'comment_type' => $value ) );
+		return $this->update_comment( $id, [ 'comment_type' => $value ] );
 	}
 
 }

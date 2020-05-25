@@ -17,13 +17,13 @@ class FeaturedImage extends AC\Settings\Column
 	}
 
 	protected function define_options() {
-		return array(
+		return [
 			'featured_image_display' => 'image',
-		);
+		];
 	}
 
 	public function get_dependent_settings() {
-		$setting = array();
+		$setting = [];
 
 		switch ( $this->get_featured_image_display() ) {
 			case 'image' :
@@ -68,19 +68,19 @@ class FeaturedImage extends AC\Settings\Column
 		               ->set_attribute( 'data-refresh', 'column' )
 		               ->set_options( $this->get_display_options() );
 
-		$view = new AC\View( array(
+		$view = new AC\View( [
 			'label'   => __( 'Display', 'codepress-admin-columns' ),
 			'setting' => $select,
-		) );
+		] );
 
 		return $view;
 	}
 
 	protected function get_display_options() {
-		$options = array(
+		$options = [
 			'image'    => __( 'Image' ),
 			'filesize' => __( 'Filesize', 'codepress-admin-columns' ),
-		);
+		];
 
 		return $options;
 	}

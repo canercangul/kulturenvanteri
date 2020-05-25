@@ -22,7 +22,7 @@ class Slug extends AC\Column\Post\Slug
 	}
 
 	public function search() {
-		return new Search\Comparison\Post\PostName( );
+		return new Search\Comparison\Post\PostName();
 	}
 
 }

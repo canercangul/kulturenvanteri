@@ -23,18 +23,18 @@ class TaxonomyParent extends Model\Taxonomy
 			return false;
 		}
 
-		return array(
+		return [
 			$parent->term_id => $parent->name,
-		);
+		];
 	}
 
 	public function get_paginated_options( $search, $page, $id = null ) {
-		$entities = new Select\Entities\Taxonomy( array(
+		$entities = new Select\Entities\Taxonomy( [
 			'search'       => $search,
 			'page'         => $page,
 			'exclude_tree' => $id,
 			'taxonomy'     => $this->column->get_taxonomy(),
-		) );
+		] );
 
 		return new AC\Helper\Select\Options\Paginated(
 			$entities,
@@ -44,16 +44,16 @@ class TaxonomyParent extends Model\Taxonomy
 	}
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'          => 'select2_dropdown',
 			'ajax_populate' => true,
 			'multiple'      => false,
 			'clear_button'  => true,
-		);
+		];
 	}
 
 	public function save( $id, $value ) {
-		return $this->update_term( $id, array( 'parent' => $value ) );
+		return $this->update_term( $id, [ 'parent' => $value ] );
 	}
 
 	private function get_term( $id ) {

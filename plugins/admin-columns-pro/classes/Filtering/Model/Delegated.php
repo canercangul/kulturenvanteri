@@ -28,7 +28,7 @@ class Delegated extends Model {
 	}
 
 	public function get_filtering_data() {
-		return array();
+		return [];
 	}
 
 	public function register_settings() {
@@ -40,9 +40,9 @@ class Delegated extends Model {
 	}
 
 	/**
-	 * @deprecated 4.2.3
-	 *
 	 * @param string $dropdown_attr_id
+	 *
+	 * @deprecated 4.2.3
 	 */
 	public function set_dropdown_attr_id( $dropdown_attr_id ) {
 		_deprecated_function( __METHOD__, '4.2.3' );

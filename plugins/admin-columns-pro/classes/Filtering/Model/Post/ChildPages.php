@@ -21,17 +21,17 @@ class ChildPages extends Model {
 	}
 
 	public function get_filtering_vars( $vars ) {
-		add_filter( 'posts_where', array( $this, 'filter_by_description' ) );
+		add_filter( 'posts_where', [ $this, 'filter_by_description' ] );
 
 		return $vars;
 	}
 
 	public function get_filtering_data() {
-		return array(
-			'options' => array(
+		return [
+			'options' => [
 				'has_child_page' => 'Has Child Pages',
-			),
-		);
+			],
+		];
 	}
 
 }

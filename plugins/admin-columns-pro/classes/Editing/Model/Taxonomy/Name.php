@@ -7,10 +7,10 @@ use ACP\Editing\Model;
 class Name extends Model\Taxonomy {
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'         => 'text',
 			'display_ajax' => false,
-		);
+		];
 	}
 
 	public function get_edit_value( $id ) {
@@ -18,7 +18,7 @@ class Name extends Model\Taxonomy {
 	}
 
 	public function save( $id, $value ) {
-		return $this->update_term( $id, array( 'name' => $value ) );
+		return $this->update_term( $id, [ 'name' => $value ] );
 	}
 
 }

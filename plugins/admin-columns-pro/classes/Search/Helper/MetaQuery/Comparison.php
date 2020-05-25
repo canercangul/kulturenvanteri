@@ -53,12 +53,12 @@ class Comparison {
 				$type = 'CHAR';
 		}
 
-		return array(
+		return [
 			'key'     => $this->key,
 			'value'   => $this->value->get_value(),
 			'compare' => $this->operator,
 			'type'    => $type,
-		);
+		];
 	}
 
 }

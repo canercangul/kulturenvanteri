@@ -31,17 +31,17 @@ class Excerpt extends Settings {
 
 			$type = $this
 				->create_element( 'select', 'editable_type' )
-				->set_options( array(
+				->set_options( [
 						'textarea' => __( 'Textarea', 'codepress-admin-columns' ),
 						'text'     => __( 'Text', 'codepress-admin-columns' ),
-					)
+					]
 				);
 
 			$editable_type = new View();
 			$editable_type->set( 'label', __( 'Input Type', 'codepress-admin-columns' ) )
 			              ->set( 'setting', $type );
 
-			$view->set( 'sections', array( $editable_type ) );
+			$view->set( 'sections', [ $editable_type ] );
 		}
 
 		return $view;

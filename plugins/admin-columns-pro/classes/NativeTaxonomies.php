@@ -1,4 +1,5 @@
 <?php
+
 namespace ACP;
 
 use AC\ListScreen;
@@ -8,7 +9,7 @@ use AC\Registrable;
 class NativeTaxonomies implements Registrable {
 
 	public function register() {
-		add_action( 'ac/column_types', array( $this, 'register_columns' ) );
+		add_action( 'ac/column_types', [ $this, 'register_columns' ] );
 	}
 
 	/**
@@ -27,9 +28,10 @@ class NativeTaxonomies implements Registrable {
 	 * Register Taxonomy columns that are set by WordPress. These native columns are registered
 	 * by setting 'show_admin_column' to 'true' as an argument in register_taxonomy();
 	 * Only supports Post Types.
-	 * @see register_taxonomy
 	 *
 	 * @param ListScreen $list_screen
+	 *
+	 * @see register_taxonomy
 	 */
 	private function register_column_native_taxonomies( ListScreen $list_screen ) {
 		if ( ! $list_screen instanceof ListScreenPost ) {
@@ -37,11 +39,11 @@ class NativeTaxonomies implements Registrable {
 		}
 
 		$taxonomies = get_taxonomies(
-			array(
+			[
 				'show_ui'           => 1,
 				'show_admin_column' => 1,
 				'_builtin'          => 0,
-			),
+			],
 			'object'
 		);
 

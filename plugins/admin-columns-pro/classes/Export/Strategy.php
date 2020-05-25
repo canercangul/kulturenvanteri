@@ -4,6 +4,8 @@ namespace ACP\Export;
 
 use AC;
 use AC\Column;
+use AC\ListTable;
+use AC\ListTableFactory;
 
 /**
  * Base class for governing exporting for a list screen that is exportable. This class should be
@@ -18,7 +20,22 @@ abstract class Strategy {
 	 * @since 1.0
 	 * @var ListScreen
 	 */
-	private $list_screen;
+	protected $list_screen;
+
+	/**
+	 * @var ExportDirectory
+	 */
+	protected $export_dir;
+
+	/**
+	 * @var ListTableFactory
+	 */
+	protected $list_table_factory;
+
+	/**
+	 * @var ExportableColumnFactory
+	 */
+	private $exportable_columns_factory;
 
 	/**
 	 * Perform all required actions for when an AJAX export is requested. The parent class (this
@@ -30,6 +47,11 @@ abstract class Strategy {
 	abstract protected function ajax_export();
 
 	/**
+	 * @return ListTable
+	 */
+	abstract protected function get_list_table();
+
+	/**
 	 * Constructor
 	 *
 	 * @param AC\ListScreen $list_screen Associated Admin Columns list screen object
@@ -38,6 +60,9 @@ abstract class Strategy {
 	 */
 	public function __construct( AC\ListScreen $list_screen ) {
 		$this->list_screen = $list_screen;
+		$this->export_dir = new ExportDirectory();
+		$this->list_table_factory = new ListTableFactory();
+		$this->exportable_columns_factory = new ExportableColumnFactory( $list_screen );
 	}
 
 	/**
@@ -107,6 +132,13 @@ abstract class Strategy {
 	}
 
 	/**
+	 * @return Column[]
+	 */
+	private function get_exportable_columns() {
+		return $this->exportable_columns_factory->create( $this->get_hidden_columns() );
+	}
+
+	/**
 	 * Retrieve the rows to export based on a set of item IDs. The rows contain the column data to
 	 * export for each item
 	 *
@@ -116,17 +148,18 @@ abstract class Strategy {
 	 * @since 1.0
 	 */
 	public function get_rows( $ids ) {
-		// Retrieve list screen columns
-		$columns = $this->get_list_screen()->get_columns();
+		$table = $this->get_list_table();
+
+		$exportable_columns = $this->get_exportable_columns();
 
 		// Construct CSV rows
-		$rows = array();
-		$headers = $this->get_headers( $columns );
+		$rows = [];
+		$headers = $this->get_headers( $exportable_columns );
 
 		foreach ( $ids as $id ) {
-			$row = array();
+			$row = [];
 
-			foreach ( $columns as $column ) {
+			foreach ( $exportable_columns as $column ) {
 				$header = $column->get_name();
 
 				if ( ! isset( $headers[ $header ] ) ) {
@@ -138,6 +171,10 @@ abstract class Strategy {
 					: new Model\RawValue( $column );
 
 				$value = $model->get_value( $id );
+
+				if ( null === $value && $column->is_original() ) {
+					$value = $table->get_column_value( $column->get_name(), $id );
+				}
 
 				/**
 				 * Filter the column value exported to CSV or another file format in the
@@ -176,7 +213,7 @@ abstract class Strategy {
 	/**
 	 * @return array
 	 */
-	public function get_hidden_columns() {
+	private function get_hidden_columns() {
 		return get_hidden_columns( $this->get_list_screen()->get_screen_id() );
 	}
 
@@ -186,34 +223,18 @@ abstract class Strategy {
 	 * @param Column[] $columns
 	 *
 	 * @return string[] Associative array of header labels for the columns.
-	 * @since 1.0
 	 */
-	public function get_headers( array $columns ) {
-		$headers = array();
-		$hidden_columns = $this->get_hidden_columns();
+	protected function get_headers( array $columns ) {
+		$headers = [];
 
 		foreach ( $columns as $column ) {
-			// Don't add columns that are not active
-			if ( $column instanceof Exportable && ! $column->export()->is_active() ) {
-				continue;
-			}
-
-			if ( in_array( $column->get_name(), $hidden_columns ) ) {
-				continue;
-			}
-
-			if ( apply_filters( 'ac/export/column/disable', false, $column ) ) {
-				continue;
-			}
-
-			$header = $column->get_name();
 			$label = strip_tags( $column->get_setting( 'label' )->get_value() );
 
 			if ( empty( $label ) ) {
 				$label = $column->get_type();
 			}
 
-			$headers[ $header ] = $label;
+			$headers[ $column->get_name() ] = $label;
 		}
 
 		/**
@@ -236,8 +257,12 @@ abstract class Strategy {
 	 * @since 1.0
 	 */
 	public function export( $ids ) {
+		$ids = array_map( 'intval', $ids );
+
 		// Retrieve list screen items and columns
 		$rows = $this->get_rows( $ids );
+
+		$exportable_columns = $this->get_exportable_columns();
 
 		if ( count( $rows ) > 0 ) {
 			// Create CSV exporter
@@ -245,13 +270,12 @@ abstract class Strategy {
 			$exporter->load_data( $rows );
 
 			if ( $this->get_export_counter() === 0 ) {
-				$exporter->load_column_labels( $this->get_headers( $this->get_list_screen()->get_columns() ) );
+				$exporter->load_column_labels( $this->get_headers( $exportable_columns ) );
 			}
 
 			// Base of file name path
-			$export_dir = ac_addon_export()->get_export_dir();
 			$fname = md5( get_current_user_id() . $this->get_export_hash() ) . '.csv';
-			$fpath = $export_dir['path'] . $fname;
+			$fpath = $this->export_dir->get_path() . $fname;
 			$fpath .= '-' . $this->get_export_counter() . '.csv';
 
 			// Write CSV output to file
@@ -260,15 +284,15 @@ abstract class Strategy {
 			fclose( $fh );
 		}
 
-		$download_url = add_query_arg( array(
+		$download_url = add_query_arg( [
 			'acp-export-download'        => $this->get_export_hash(),
 			'acp-export-filename-prefix' => $this->get_list_screen()->get_label(),
-		), admin_url( '/' ) );
+		], admin_url( '/' ) );
 
-		wp_send_json_success( array(
+		wp_send_json_success( [
 			'num_rows_processed' => count( $rows ),
 			'download_url'       => $download_url,
-		) );
+		] );
 	}
 
 	/**

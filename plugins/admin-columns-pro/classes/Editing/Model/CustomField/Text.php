@@ -11,12 +11,11 @@ class Text extends Model\CustomField {
 		/* @var Settings\Excerpt $setting */
 		$setting = $this->column->get_setting( 'edit' );
 
-		return array(
+		return [
 			'type' => $setting->get_editable_type(),
-		);
+		];
 	}
 
-	// todo
 	public function register_settings() {
 		$this->column->add_setting( new Settings\Excerpt( $this->column ) );
 	}

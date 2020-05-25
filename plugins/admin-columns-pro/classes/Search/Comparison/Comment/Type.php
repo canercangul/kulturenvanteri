@@ -1,4 +1,5 @@
 <?php
+
 namespace ACP\Search\Comparison\Comment;
 
 use AC;
@@ -9,12 +10,12 @@ class Type extends Field
 	implements Values {
 
 	public function __construct() {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
 			Operators::NEQ,
 			Operators::IS_EMPTY,
 			Operators::NOT_IS_EMPTY,
-		) );
+		] );
 
 		parent::__construct( $operators );
 	}
@@ -24,7 +25,7 @@ class Type extends Field
 	}
 
 	public function get_values() {
-		$options = array();
+		$options = [];
 
 		foreach ( $this->get_comment_types() as $type ) {
 			$label = $type;

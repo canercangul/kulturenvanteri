@@ -1,4 +1,5 @@
 <?php
+
 namespace ACP\Search\Comparison\Meta;
 
 use AC;
@@ -14,11 +15,11 @@ class Media extends Meta
 	protected $post_type;
 
 	public function __construct( $meta_key, $meta_type, $post_type = false ) {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
 			Operators::IS_EMPTY,
 			Operators::NOT_IS_EMPTY,
-		) );
+		] );
 
 		$this->post_type = $post_type;
 
@@ -26,19 +27,19 @@ class Media extends Meta
 	}
 
 	public function get_values( $s, $paged ) {
-		$entities = array();
+		$entities = [];
 
 		$ids = AC\Helper\Select\MetaValuesFactory::create( $this->meta_type, $this->meta_key, $this->post_type );
 
 		if ( $ids ) {
-			$entities = new Select\Entities\Post( array(
+			$entities = new Select\Entities\Post( [
 				's'         => $s,
 				'paged'     => $paged,
 				'post_type' => 'attachment',
 				'orderby'   => 'date',
 				'order'     => 'DESC',
 				'post__in'  => $ids,
-			) );
+			] );
 		}
 
 		return new AC\Helper\Select\Options\Paginated(

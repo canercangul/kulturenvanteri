@@ -10,14 +10,14 @@ class Roles extends Model\Meta {
 	public function get_sorting_vars() {
 		global $wp_roles;
 
-		$values = array();
+		$values = [];
 
-		add_action( 'pre_user_query', array( $this, 'pre_user_query_callback' ) );
+		add_action( 'pre_user_query', [ $this, 'pre_user_query_callback' ] );
 
 		$results = $this->strategy->get_results( parent::get_sorting_vars() );
 
 		// cache translated roles
-		$translated = array();
+		$translated = [];
 
 		foreach ( $results as $row ) {
 			$roles = maybe_unserialize( $row->meta_value );
@@ -43,18 +43,18 @@ class Roles extends Model\Meta {
 			$values[ $row->ID ] = $role;
 		}
 
-		return array(
+		return [
 			'ids' => $this->sort( $values ),
-		);
+		];
 	}
 
 	public function pre_user_query_callback( WP_User_Query $query ) {
 		global $wpdb;
 
 		$query->query_fields .= ", $wpdb->usermeta.meta_value";
-		$query->query_vars['fields'] = array();
+		$query->query_vars['fields'] = [];
 
-		remove_action( 'pre_user_query', array( $this, __FUNCTION__ ) );
+		remove_action( 'pre_user_query', [ $this, __FUNCTION__ ] );
 	}
 
 }

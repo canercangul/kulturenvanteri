@@ -10,14 +10,14 @@ class MimeType extends Model\Post {
 		$mime_types = wp_get_mime_types();
 		$options = array_combine( $mime_types, $mime_types );
 
-		return array(
+		return [
 			'type'    => 'select',
 			'options' => $options,
-		);
+		];
 	}
 
 	public function save( $id, $value ) {
-		return $this->update_post( $id, array( 'post_mime_type' => $value ) );
+		return $this->update_post( $id, [ 'post_mime_type' => $value ] );
 	}
 
 }

@@ -18,13 +18,13 @@ class Comment extends Model\Comment {
 	}
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type' => 'textarea',
-		);
+		];
 	}
 
 	public function save( $id, $value ) {
-		return $this->update_comment( $id, array( 'comment_content' => $value ) );
+		return $this->update_comment( $id, [ 'comment_content' => $value ] );
 	}
 
 }

@@ -8,6 +8,8 @@ use ACP\Editing;
 use ACP\Export;
 use ACP\Filtering;
 use ACP\Sorting;
+use ReflectionException;
+use WP_Term;
 use WP_Terms_List_Table;
 
 class Taxonomy extends AC\ListScreenWP
@@ -20,17 +22,18 @@ class Taxonomy extends AC\ListScreenWP
 
 	/**
 	 * Constructor
-	 * @since 1.2.0
 	 *
 	 * @param $taxonomy
+	 *
+	 * @since 1.2.0
 	 */
 	public function __construct( $taxonomy ) {
 		$this->set_taxonomy( $taxonomy )
-			->set_meta_type( AC\MetaType::TERM )
-			->set_screen_base( 'edit-tags' )
-			->set_screen_id( 'edit-' . $taxonomy )
-			->set_key( 'wp-taxonomy_' . $taxonomy )
-			->set_group( 'taxonomy' );
+		     ->set_meta_type( AC\MetaType::TERM )
+		     ->set_screen_base( 'edit-tags' )
+		     ->set_screen_id( 'edit-' . $taxonomy )
+		     ->set_key( 'wp-taxonomy_' . $taxonomy )
+		     ->set_group( 'taxonomy' );
 	}
 
 	/**
@@ -55,7 +58,7 @@ class Taxonomy extends AC\ListScreenWP
 	 * @see WP_Terms_List_Table::column_default
 	 */
 	public function set_manage_value_callback() {
-		add_action( "manage_" . $this->get_taxonomy() . "_custom_column", array( $this, 'manage_value' ), 10, 3 );
+		add_action( "manage_" . $this->get_taxonomy() . "_custom_column", [ $this, 'manage_value' ], 10, 3 );
 	}
 
 	/**
@@ -64,15 +67,14 @@ class Taxonomy extends AC\ListScreenWP
 	public function get_list_table() {
 		require_once( ABSPATH . 'wp-admin/includes/class-wp-terms-list-table.php' );
 
-		return new WP_Terms_List_Table( array( 'screen' => $this->get_screen_id() ) );
+		return new WP_Terms_List_Table( [ 'screen' => $this->get_screen_id() ] );
 	}
 
 	/**
-	 * @since 4.0
-	 *
 	 * @param int $term_id
 	 *
-	 * @return \WP_Term
+	 * @return WP_Term
+	 * @since 4.0
 	 */
 	protected function get_object( $term_id ) {
 		return get_term_by( 'id', $term_id, $this->get_taxonomy() );
@@ -93,11 +95,10 @@ class Taxonomy extends AC\ListScreenWP
 	}
 
 	/**
-	 * @since 3.7.3
-	 *
 	 * @param $wp_screen
 	 *
 	 * @return bool
+	 * @since 3.7.3
 	 */
 	public function is_current_screen( $wp_screen ) {
 		return parent::is_current_screen( $wp_screen ) && $this->get_taxonomy() === filter_input( INPUT_GET, 'taxonomy' );
@@ -105,8 +106,8 @@ class Taxonomy extends AC\ListScreenWP
 
 	/**
 	 * Get screen link
-	 * @since 1.2.0
 	 * @return string Link
+	 * @since 1.2.0
 	 */
 	public function get_screen_link() {
 		$post_type = null;
@@ -117,18 +118,18 @@ class Taxonomy extends AC\ListScreenWP
 			}
 		}
 
-		return add_query_arg( array( 'taxonomy' => $this->get_taxonomy(), 'post_type' => $post_type ), parent::get_screen_link() );
+		return add_query_arg( [ 'taxonomy' => $this->get_taxonomy(), 'post_type' => $post_type ], parent::get_screen_link() );
 	}
 
 	/**
 	 * Manage value
-	 * @since 1.2.0
 	 *
 	 * @param string $value
 	 * @param string $column_name
 	 * @param int    $term_id
 	 *
 	 * @return string
+	 * @since 1.2.0
 	 */
 	public function manage_value( $value, $column_name, $term_id ) {
 		return $this->get_display_value_by_column_name( $column_name, $term_id, $value );
@@ -152,7 +153,7 @@ class Taxonomy extends AC\ListScreenWP
 	}
 
 	/**
-	 * @throws \ReflectionException
+	 * @throws ReflectionException
 	 */
 	protected function register_column_types() {
 		$this->register_column_type( new Column\CustomField );

@@ -2,16 +2,16 @@
 
 namespace ACP;
 
+use AC;
 use AC\Admin;
-use AC\AdminColumns;
 use AC\Groups;
 use AC\Registrable;
 
 class ListScreens implements Registrable {
 
 	public function register() {
-		add_action( 'ac/list_screen_groups', array( $this, 'register_list_screen_groups' ) );
-		add_action( 'ac/list_screens', array( $this, 'register_list_screens' ) );
+		add_action( 'ac/list_screen_groups', [ $this, 'register_list_screen_groups' ] );
+		add_action( 'ac/list_screens', [ $this, 'register_list_screens' ] );
 	}
 
 	/**
@@ -28,19 +28,19 @@ class ListScreens implements Registrable {
 	private function is_settings_screen() {
 		$tab = filter_input( INPUT_GET, 'tab' );
 
-		return Admin::PLUGIN_PAGE === filter_input( INPUT_GET, 'page' ) && in_array( $tab, [ null, 'columns' ], true );
+		return Admin::NAME === filter_input( INPUT_GET, 'page' ) && in_array( $tab, [ null, 'columns' ], true );
 	}
 
 	/**
-	 * @param AdminColumns $admin_columns
+	 * @param AC\ListScreens $register
 	 *
 	 * @since 4.0
 	 */
-	public function register_list_screens( $admin_columns ) {
-		$list_screens = array();
+	public function register_list_screens( AC\ListScreens $register ) {
+		$list_screens = [];
 
 		// Post types
-		foreach ( AC()->get_post_types() as $post_type ) {
+		foreach ( $register->get_post_types() as $post_type ) {
 			$list_screens[] = new ListScreen\Post( $post_type );
 		}
 
@@ -72,7 +72,7 @@ class ListScreens implements Registrable {
 		}
 
 		foreach ( $list_screens as $list_screen ) {
-			$admin_columns->register_list_screen( $list_screen );
+			AC\ListScreenTypes::instance()->register_list_screen( $list_screen );
 		}
 	}
 
@@ -82,7 +82,7 @@ class ListScreens implements Registrable {
 	 * @since 1.0
 	 */
 	private function get_taxonomies() {
-		$taxonomies = get_taxonomies( array( 'show_ui' => true ) );
+		$taxonomies = get_taxonomies( [ 'show_ui' => true ] );
 
 		if ( isset( $taxonomies['post_format'] ) ) {
 			unset( $taxonomies['post_format'] );

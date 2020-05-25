@@ -3,11 +3,11 @@
 namespace ACP\Search;
 
 use AC;
+use AC\Asset\Enqueueable;
 use AC\Registrable;
 use AC\Request;
 use ACP;
-use ACP\Asset\Enqueueable;
-use ACP\Settings\ListScreen\HideOnScreen;
+use ACP\Search\Settings\HideOnScreen;
 
 abstract class TableScreen
 	implements Registrable {
@@ -46,21 +46,21 @@ abstract class TableScreen
 	}
 
 	public function register() {
-		add_action( 'ac/table_scripts', array( $this, 'scripts' ) );
+		add_action( 'ac/table_scripts', [ $this, 'scripts' ] );
 		add_action( 'admin_head', [ $this, 'hide_segments' ] );
-		add_action( 'admin_footer', array( $this, 'add_segment_modal' ) );
+		add_action( 'admin_footer', [ $this, 'add_segment_modal' ] );
 
 		$this->register_query();
 	}
 
 	public function register_query() {
-		$rules = $this->request->filter( 'ac-rules', array(), FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
+		$rules = $this->request->filter( 'ac-rules', [], FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
 
 		if ( ! $rules ) {
 			return;
 		}
 
-		$bindings = array();
+		$bindings = [];
 
 		foreach ( $rules as $rule ) {
 			$column = $this->list_screen->get_column_by_name( $rule['name'] );

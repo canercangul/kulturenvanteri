@@ -15,20 +15,20 @@ class User extends Meta
 	implements SearchableValues {
 
 	public function __construct( $meta_key, $meta_type ) {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
 			Operators::IS_EMPTY,
 			Operators::NOT_IS_EMPTY,
-		) );
+		] );
 
 		parent::__construct( $operators, $meta_key, $meta_type, Value::INT );
 	}
 
 	public function get_values( $s, $paged ) {
-		$entities = new Select\Entities\User( array(
+		$entities = new Select\Entities\User( [
 			'search' => $s,
 			'paged'  => $paged,
-		) );
+		] );
 
 		return new AC\Helper\Select\Options\Paginated(
 			$entities,

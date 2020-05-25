@@ -73,7 +73,7 @@ class CSV extends Exporter {
 
 		// Output all items
 		foreach ( $data as $item ) {
-			fputcsv( $fh, array_map( array( $this, 'format_output' ), $item ), $delimiter );
+			fputcsv( $fh, array_map( [ $this, 'format_output' ], $item ), $delimiter );
 		}
 	}
 
@@ -98,7 +98,7 @@ class CSV extends Exporter {
 		}
 
 		if ( is_array( $value ) ) {
-			return implode( ', ', array_map( array( $this, 'format_output' ), $value ) );
+			return implode( ', ', array_map( [ $this, 'format_output' ], $value ) );
 		}
 
 		return '';

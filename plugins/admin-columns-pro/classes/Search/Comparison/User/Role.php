@@ -13,10 +13,10 @@ class Role extends Meta
 	implements Values {
 
 	public function __construct( $meta_key, $meta_type ) {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
 			Operators::NEQ,
-		) );
+		] );
 
 		parent::__construct( $operators, $meta_key, $meta_type );
 	}
@@ -32,7 +32,7 @@ class Role extends Meta
 	}
 
 	public function get_values() {
-		$options = array();
+		$options = [];
 
 		foreach ( wp_roles()->roles as $key => $role ) {
 			$options[ $key ] = translate_user_role( $role['name'] );

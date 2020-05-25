@@ -10,6 +10,8 @@ use AC\Screen;
 use AC\Storage;
 use ACP\LicenseKeyRepository;
 use ACP\LicenseRepository;
+use ACP\Type\License\Key;
+use ACP\Type\SiteUrl;
 use DateTime;
 use Exception;
 
@@ -25,9 +27,21 @@ class Expired implements Registrable {
 	 */
 	private $license_key_repository;
 
-	public function __construct( LicenseRepository $license_repository, LicenseKeyRepository $license_key_repository ) {
+	/**
+	 * @var string
+	 */
+	private $plugin_basename;
+
+	/**
+	 * @var SiteUrl
+	 */
+	private $site_url;
+
+	public function __construct( LicenseRepository $license_repository, LicenseKeyRepository $license_key_repository, $plugin_basename, SiteUrl $site_url ) {
 		$this->license_repository = $license_repository;
 		$this->license_key_repository = $license_key_repository;
+		$this->plugin_basename = $plugin_basename;
+		$this->site_url = $site_url;
 	}
 
 	public function register() {
@@ -58,20 +72,17 @@ class Expired implements Registrable {
 			return;
 		}
 
-		$expiry_date = $license->get_expiry_date()->get_value();
+		$message = $this->get_message( $license->get_expiry_date()->get_value(), $license->get_key() );
 
 		if ( $screen->is_plugin_screen() ) {
 			// Inline message on plugin page
-			$notice = new Message\Plugin( $this->get_message( $expiry_date ), ACP()->get_basename() );
-		} else if ( $screen->is_admin_screen( 'settings' ) ) {
+			$notice = new Message\Plugin( $message, $this->plugin_basename );
+		} else if ( $screen->is_admin_screen() ) {
 			// Permanent displayed on settings page
-			$notice = new Message\Notice( $this->get_message( $expiry_date ) );
-		} else if ( $screen->is_admin_screen( 'columns' ) && $this->get_dismiss_option()->is_expired() ) {
-			// Dismissible on columns page
-			$notice = new Message\Notice\Dismissible( $this->get_message( $expiry_date ), $this->get_ajax_handler() );
+			$notice = new Message\Notice( $message );
 		} else if ( $screen->is_list_screen() && $this->get_dismiss_option()->is_expired() ) {
 			// Dismissible on list table
-			$notice = new Message\Notice\Dismissible( $this->get_message( $expiry_date ), $this->get_ajax_handler() );
+			$notice = new Message\Notice\Dismissible( $message, $this->get_ajax_handler() );
 		} else {
 			$notice = false;
 		}
@@ -85,17 +96,25 @@ class Expired implements Registrable {
 
 	/**
 	 * @param DateTime $expiration_date
+	 * @param Key      $license_key
 	 *
 	 * @return string
 	 */
-	private function get_message( DateTime $expiration_date ) {
+	private function get_message( DateTime $expiration_date, Key $license_key ) {
 		$expired_on = ac_format_date( get_option( 'date_format' ), $expiration_date->getTimestamp() );
-		$my_account_link = ac_helper()->html->link( ac_get_site_utm_url( 'my-account/license', 'renewal' ), __( 'My Account Page', 'codepress-admin-columns' ) );
+
+		$link = add_query_arg(
+			[
+				'subscription_key' => $license_key->get_value(),
+				'site_url'         => $this->site_url->get_url(),
+			],
+			ac_get_site_utm_url( 'my-account/subscriptions', 'renewal' )
+		);
 
 		return sprintf(
 			__( 'Your Admin Columns Pro license has expired on %s. To receive updates, renew your license on the %s.', 'codepress-admin-columns' ),
 			'<strong>' . $expired_on . '</strong>',
-			$my_account_link
+			sprintf( '<a href="%s">%s</a>', $link, __( 'My Account Page', 'codepress-admin-columns' ) )
 		);
 	}
 

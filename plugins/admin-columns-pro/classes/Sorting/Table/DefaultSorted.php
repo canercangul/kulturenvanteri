@@ -1,4 +1,5 @@
 <?php
+
 namespace ACP\Sorting\Table;
 
 use AC\ListScreen;

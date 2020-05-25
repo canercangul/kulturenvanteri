@@ -12,13 +12,13 @@ class Username extends Model {
 	}
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'         => 'text',
-			'js'           => array(
+			'js'           => [
 				'selector' => 'strong > a',
-			),
+			],
 			'display_ajax' => false,
-		);
+		];
 	}
 
 	/**
@@ -38,10 +38,10 @@ class Username extends Model {
 
 		$result = $wpdb->update(
 			$wpdb->users,
-			array( 'user_login' => $value ),
-			array( 'ID' => $id ),
-			array( '%s' ),
-			array( '%d' )
+			[ 'user_login' => $value ],
+			[ 'ID' => $id ],
+			[ '%s' ],
+			[ '%d' ]
 		);
 
 		clean_user_cache( $id );

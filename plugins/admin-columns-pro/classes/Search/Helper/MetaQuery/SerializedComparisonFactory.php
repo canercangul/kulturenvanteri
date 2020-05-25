@@ -21,20 +21,19 @@ final class SerializedComparisonFactory {
 			$value->get_type()
 		);
 
-		// TODO: implement likes using quotes
-		$operators = array(
+		$operators = [
 			Operators::EQ  => 'LIKE',
 			Operators::NEQ => 'NOT LIKE',
-		);
+		];
 
 		if ( array_key_exists( $operator, $operators ) ) {
 			return new Comparison( $key, $operators[ $operator ], $value );
 		}
 
-		$operators = array(
+		$operators = [
 			Operators::IS_EMPTY     => 'IsEmpty',
 			Operators::NOT_IS_EMPTY => 'NotEmpty',
-		);
+		];
 
 		if ( ! array_key_exists( $operator, $operators ) ) {
 			throw new LogicException( 'Unsupported operator found.' );

@@ -7,9 +7,9 @@ use ACP\Editing\Model;
 class Order extends Model\Post {
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type' => 'number',
-		);
+		];
 	}
 
 	public function get_edit_value( $id ) {
@@ -17,7 +17,7 @@ class Order extends Model\Post {
 	}
 
 	public function save( $id, $value ) {
-		return $this->update_post( $id, array( 'menu_order' => $value ) );
+		return $this->update_post( $id, [ 'menu_order' => $value ] );
 	}
 
 }

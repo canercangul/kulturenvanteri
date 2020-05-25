@@ -38,7 +38,7 @@ abstract class Strategy extends ACP\Strategy {
 	 *
 	 * @return array
 	 */
-	abstract public function get_results( array $data = array() );
+	abstract public function get_results( array $data = [] );
 
 	abstract public function manage_sorting();
 

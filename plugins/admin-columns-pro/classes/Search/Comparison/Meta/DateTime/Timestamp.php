@@ -10,7 +10,7 @@ use ACP\Search\Value;
 class Timestamp extends Meta {
 
 	public function __construct( $meta_key, $type ) {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
 			Operators::GT,
 			Operators::LT,
@@ -20,7 +20,7 @@ class Timestamp extends Meta {
 			Operators::FUTURE,
 			Operators::IS_EMPTY,
 			Operators::NOT_IS_EMPTY,
-		), false );
+		], false );
 
 		parent::__construct( $operators, $meta_key, $type, Value::DATE, new Labels\Date() );
 	}

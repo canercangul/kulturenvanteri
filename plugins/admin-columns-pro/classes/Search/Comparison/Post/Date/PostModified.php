@@ -8,7 +8,7 @@ use ACP\Search\Operators;
 class PostModified extends Post\Date {
 
 	public function operators() {
-		return new Operators( array(
+		return new Operators( [
 			Operators::EQ,
 			Operators::GT,
 			Operators::LT,
@@ -17,7 +17,7 @@ class PostModified extends Post\Date {
 			Operators::PAST,
 			Operators::LT_DAYS_AGO,
 			Operators::GT_DAYS_AGO,
-		), false );
+		], false );
 	}
 
 	public function get_field() {

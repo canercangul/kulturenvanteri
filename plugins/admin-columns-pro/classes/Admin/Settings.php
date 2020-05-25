@@ -3,34 +3,32 @@
 namespace ACP\Admin;
 
 use AC;
+use AC\Asset;
+use AC\Asset\Location;
 use AC\ListScreen;
 use AC\ListScreenCollection;
-use AC\ListScreenRepository;
-use AC\ListScreenRepository\SortStrategy\ManualOrder;
-use AC\ListScreenTypes;
+use AC\ListScreenRepository\Sort;
+use AC\ListScreenRepository\Storage;
 use AC\Registrable;
-use AC\Storage\ListScreenOrder;
 use AC\View;
-use ACP\Asset;
-use ACP\Editing;
-use ACP\Export;
 use ACP\Settings\ListScreen\HideOnScreen;
+use ACP\Settings\ListScreen\HideOnScreenCollection;
 use WP_User;
 
 class Settings implements Registrable {
 
-	/** @var ListScreenOrder(); */
-	private $list_screen_order;
+	/**
+	 * @var Storage
+	 */
+	private $storage;
 
-	/** @var ListScreenRepository\Aggregate */
-	private $list_screen_repository;
-
-	/** @var Asset\Location\Absolute */
+	/**
+	 * @var Location\Absolute
+	 */
 	private $location;
 
-	public function __construct( ListScreenRepository\Aggregate $list_screen_repository, Asset\Location\Absolute $location ) {
-		$this->list_screen_order = new ListScreenOrder();
-		$this->list_screen_repository = $list_screen_repository;
+	public function __construct( Storage $storage, Location\Absolute $location ) {
+		$this->storage = $storage;
 		$this->location = $location;
 	}
 
@@ -38,11 +36,10 @@ class Settings implements Registrable {
 		add_action( 'ac/settings/before_columns', [ $this, 'render_title' ] );
 		add_action( 'ac/settings/sidebox', [ $this, 'render_sidebar' ] );
 		add_action( 'ac/settings/sidebox', [ $this, 'render_sidebar_help' ] );
-		add_action( 'ac/settings/scripts', [ $this, 'admin_scripts' ] );
+		add_action( 'ac/admin_scripts/columns', [ $this, 'admin_scripts' ] );
 		add_action( 'ac/settings/after_title', [ $this, 'render_submenu_view' ] );
 		add_action( 'ac/settings/after_columns', [ $this, 'render_settings' ] );
 		add_filter( 'ac/read_only_message', [ $this, 'read_only_message' ], 10, 2 );
-		add_action( 'admin_init', [ $this, 'handle_request' ] );
 	}
 
 	public function render_submenu_view( ListScreen $current_list_screen ) {
@@ -54,16 +51,16 @@ class Settings implements Registrable {
 
 		ob_start();
 		foreach ( $list_screens as $list_screen ) : ?>
-			<li data-screen="<?php echo esc_attr( $list_screen->get_layout_id() ); ?>">
-				<a class="<?php echo $list_screen->get_layout_id() === $current_list_screen->get_layout_id() ? 'current' : ''; ?>" href="<?= add_query_arg( [ 'layout_id' => $list_screen->get_layout_id() ], $current_list_screen->get_edit_link() ); ?>"><?php echo esc_html( $list_screen->get_title() ? $list_screen->get_title() : __( '(no name)', 'codepress-admin-columns' ) ); ?></a>
+			<li data-screen="<?= esc_attr( $list_screen->get_layout_id() ); ?>">
+				<a class="<?= $list_screen->get_layout_id() === $current_list_screen->get_layout_id() ? 'current' : ''; ?>" href="<?= add_query_arg( [ 'layout_id' => $list_screen->get_layout_id() ], $current_list_screen->get_edit_link() ); ?>"><?php echo esc_html( $list_screen->get_title() ? $list_screen->get_title() : __( '(no name)', 'codepress-admin-columns' ) ); ?></a>
 			</li>
 		<?php endforeach;
 
 		$items = ob_get_clean();
 
-		$menu = new View( array(
+		$menu = new View( [
 			'items' => $items,
-		) );
+		] );
 
 		echo $menu->set_template( 'admin/edit-submenu' );
 	}
@@ -77,9 +74,9 @@ class Settings implements Registrable {
 		static $list_screen_types;
 
 		if ( null === $list_screen_types ) {
-			$list_screen_types = $this->list_screen_repository->find_all( [
+			$list_screen_types = $this->storage->find_all( [
 				'key'  => $key,
-				'sort' => new ManualOrder(),
+				'sort' => new Sort\ManualOrder(),
 			] );
 		}
 
@@ -102,9 +99,6 @@ class Settings implements Registrable {
 		echo $view->render();
 	}
 
-	/**
-	 * @param ListScreen $list_screen
-	 */
 	public function render_sidebar( ListScreen $current_list_screen ) {
 		$list_screens = $this->get_list_screens( $current_list_screen->get_key() );
 
@@ -176,17 +170,17 @@ class Settings implements Registrable {
 		$tooltip_horizontal_scrolling = new AC\Admin\Tooltip( 'horizontal_scrolling', [
 			'content'    => $this->get_tooltip_hs_content(),
 			'link_label' => '<img src="' . AC()->get_url() . 'assets/images/question.svg" alt="?" class="ac-setbox__row__th__info">',
-			'title' => __( 'Horizontal Scrolling', 'codepress-admin-columns' ),
-			'position' => 'right_bottom',
+			'title'      => __( 'Horizontal Scrolling', 'codepress-admin-columns' ),
+			'position'   => 'right_bottom',
 		] );
 
 		$view = new AC\View( [
-			'list_screen'     => $list_screen,
-			'preferences'     => $list_screen->get_preferences(),
-			'checkboxes_hide' => $this->get_checkboxes( $list_screen ),
-			'select_roles'    => $this->select_roles( $roles, $list_screen->is_read_only() ),
-			'select_users'    => $this->select_users( $users, $list_screen->is_read_only() ),
-			'tooltip_hs'      => $tooltip_horizontal_scrolling,
+			'list_screen'    => $list_screen,
+			'preferences'    => $list_screen->get_preferences(),
+			'hide_on_screen' => $this->get_checkboxes( $list_screen ),
+			'select_roles'   => $this->select_roles( $roles, $list_screen->is_read_only() ),
+			'select_users'   => $this->select_users( $users, $list_screen->is_read_only() ),
+			'tooltip_hs'     => $tooltip_horizontal_scrolling,
 		] );
 
 		$view->set_template( 'admin/list-screen-settings' );
@@ -197,39 +191,42 @@ class Settings implements Registrable {
 	/**
 	 * @param ListScreen $list_screen
 	 *
-	 * @return string[] HTML
+	 * @return string HTML
 	 */
 	private function get_checkboxes( ListScreen $list_screen ) {
+
+		$collection = new HideOnScreenCollection();
+
+		$collection->add( new HideOnScreen\Filters(), 30 )
+		           ->add( new HideOnScreen\Search(), 40 )
+		           ->add( new HideOnScreen\BulkActions(), 100 );
+
+		do_action( 'acp/admin/settings/hide_on_screen', $collection, $list_screen );
+
 		$checkboxes = [];
 
-		/** @var HideOnScreen[] $options */
-		$options = [];
+		/** @var HideOnScreen $hide_on_screen */
+		foreach ( $collection->all() as $hide_on_screen ) {
 
-		if ( $list_screen instanceof Export\ListScreen ) {
-			$options[] = new HideOnScreen\Export();
-		}
-		if ( $list_screen instanceof Editing\ListScreen ) {
-			$options[] = new HideOnScreen\BulkEdit();
-			$options[] = new HideOnScreen\InlineEdit();
-		}
-
-		$options[] = new HideOnScreen\Filters();
-		$options[] = new HideOnScreen\SavedFilters();
-		$options[] = new HideOnScreen\Search();
-		$options[] = new HideOnScreen\BulkActions();
-
-		foreach ( $options as $option ) {
-			$checkboxes[] = $this->render_checkbox( $option->get_name(), $option->get_label(), $option->is_hidden( $list_screen ) );
+			$checkboxes[] = $this->render_checkbox(
+				$hide_on_screen->get_name(),
+				$hide_on_screen->get_label(),
+				$hide_on_screen->is_hidden( $list_screen )
+			);
 		}
 
-		return $checkboxes;
+		return implode( $checkboxes );
 	}
 
 	private function render_checkbox( $name, $label, $is_checked ) {
 		ob_start();
+		// the hidden field makes sure we also save the 'off' state. This allows us to set a 'default' value.
+
+		$attr_name = sprintf( 'settings[%s]', $name );
 		?>
 		<label>
-			<input name="settings[<?= $name; ?>]" type="checkbox" <?php checked( $is_checked ); ?>> <?= $label; ?>
+			<input name="<?= $attr_name; ?>" type="hidden" value="off">
+			<input name="<?= $attr_name; ?>" type="checkbox" <?php checked( $is_checked ); ?>> <?= esc_html( $label ); ?>
 		</label>
 		<?php
 		return ob_get_clean();
@@ -290,7 +287,7 @@ class Settings implements Registrable {
 		$roles = [];
 
 		foreach ( get_editable_roles() as $name => $role ) {
-			$group = 'other';
+			$group = __( 'Other', 'codepress-admin-columns' );
 
 			// Core roles
 			if ( in_array( $name, [ 'super_admin', 'administrator', 'editor', 'author', 'contributor', 'subscriber' ] ) ) {
@@ -363,78 +360,6 @@ class Settings implements Registrable {
 		}
 
 		return $message;
-	}
-
-	/**
-	 * @param string $action
-	 *
-	 * @return bool
-	 */
-	private function verify_nonce( $action ) {
-		return wp_verify_nonce( filter_input( INPUT_POST, '_ac_nonce' ), $action );
-	}
-
-	public function handle_request() {
-		if ( ! current_user_can( AC\Capabilities::MANAGE ) ) {
-			return;
-		}
-
-		switch ( filter_input( INPUT_POST, 'acp_action' ) ) {
-
-			case 'create_layout':
-				if ( ! $this->verify_nonce( 'create-layout' ) ) {
-					return;
-				}
-
-				$request = new AC\Request();
-
-				$current_list_screen = $this->list_screen_repository->find( $request->get( 'list_id' ) );
-
-				if ( ! $current_list_screen ) {
-					$current_list_screen = ListScreenTypes::instance()->get_list_screen_by_key( $request->get( 'list_key' ) );
-				}
-
-				$title = trim( $request->get( 'title' ) );
-
-				if ( empty( $title ) ) {
-					$notice = new AC\Message\Notice( __( 'Name can not be empty.', 'codepress-admin-columns' ) );
-					$notice->set_type( AC\Message\Notice::ERROR )->register();
-
-					return;
-				}
-
-				$list_screen = ListScreenTypes::instance()->get_list_screen_by_key( $request->get( 'list_key' ) );
-
-				$list_screen->set_layout_id( uniqid() )
-				            ->set_title( $title )
-				            ->set_settings( $current_list_screen->get_settings() )
-				            ->set_preferences( $current_list_screen->get_preferences() );
-
-				$this->list_screen_repository->save( $list_screen );
-
-				$this->list_screen_order->add( $list_screen->get_key(), $list_screen->get_layout_id() );
-
-				wp_redirect( $list_screen->get_edit_link() );
-				exit;
-
-			case 'delete_layout' :
-				if ( ! $this->verify_nonce( 'delete-layout' ) ) {
-					return;
-				}
-
-				$request = new AC\Request();
-
-				$list_screen = $this->list_screen_repository->find( $request->get( 'layout_id' ) );
-
-				if ( $list_screen ) {
-					$this->list_screen_repository->delete( $list_screen );
-				}
-
-				$notice = new AC\Message\Notice( sprintf( __( 'Column set %s successfully deleted.', 'codepress-admin-columns' ), sprintf( '<strong>"%s"</strong>', esc_html( $list_screen->get_title() ) ) ) );
-				$notice->register();
-
-				break;
-		}
 	}
 
 }

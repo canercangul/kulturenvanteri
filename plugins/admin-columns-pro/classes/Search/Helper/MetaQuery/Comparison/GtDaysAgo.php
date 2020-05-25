@@ -7,6 +7,7 @@ use ACP\Search\Helper\MetaQuery;
 use ACP\Search\Operators;
 use ACP\Search\Value;
 use DateTime;
+use Exception;
 
 class GtDaysAgo extends MetaQuery\Date {
 
@@ -14,7 +15,7 @@ class GtDaysAgo extends MetaQuery\Date {
 	 * @param string $key
 	 * @param Value  $value
 	 *
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function __construct( $key, Value $value ) {
 		$date = new DateTime();

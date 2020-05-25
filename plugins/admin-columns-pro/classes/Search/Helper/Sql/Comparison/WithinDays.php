@@ -6,6 +6,7 @@ use ACP\Search\Helper\DateValueFactory;
 use ACP\Search\Helper\Sql\Comparison;
 use ACP\Search\Value;
 use DateTime;
+use Exception;
 
 class WithinDays extends Between {
 
@@ -13,7 +14,7 @@ class WithinDays extends Between {
 	 * @param Value $value
 	 *
 	 * @return Comparison
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function bind_value( Value $value ) {
 		$date = new DateTime();

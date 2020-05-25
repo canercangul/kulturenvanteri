@@ -49,12 +49,12 @@ class Cryptor {
 
 	/**
 	 * Constructor
-	 * @since 1.0
 	 *
 	 * @param string $cipher_algorithm Cypher algorithm supported by openssl_encrypt()
 	 * @param string $hash_algorithm   Hash algorithm supported by openssl_digest()
 	 *
 	 * @throws Exception
+	 * @since 1.0
 	 */
 	public function __construct( $cipher_algorithm = 'aes-256-ctr', $hash_algorithm = 'sha256' ) {
 		if ( ! in_array( $cipher_algorithm, openssl_get_cipher_methods( true ) ) ) {
@@ -72,7 +72,6 @@ class Cryptor {
 
 	/**
 	 * Encrypt a string using a key
-	 * @since 1.0
 	 *
 	 * @param string $data Input data to encrypt
 	 * @param bool   $key
@@ -81,6 +80,7 @@ class Cryptor {
 	 *   initialization vector (with array key "result"), and the encryption key used for
 	 *   encryption (with array key "key")
 	 * @throws Exception
+	 * @since 1.0
 	 */
 	public function encrypt( $data, $key = false ) {
 		// Generate initialization vector
@@ -101,21 +101,21 @@ class Cryptor {
 		}
 
 		// Return the resulting string and the key used for encryption
-		return array(
+		return [
 			'result' => $iv . $data_encrypted,
 			'key'    => $key_use,
-		);
+		];
 	}
 
 	/**
 	 * Decrypt a piece of encrypted data
-	 * @since 1.0
 	 *
 	 * @param string $input Encrypted data to decrypt (prefixed by the initialization vector)
 	 * @param string $key   Key to use for decryption
 	 *
 	 * @return string Decrypted data
 	 * @throws Exception
+	 * @since 1.0
 	 */
 	public function decrypt( $input, $key ) {
 		// Retrieve initialization vector
@@ -140,11 +140,11 @@ class Cryptor {
 
 	/**
 	 * Prepare an encryption key for use
-	 * @since 1.0
 	 *
 	 * @param string $key Encryption key
 	 *
 	 * @return string Prepared (hashed) encryption key
+	 * @since 1.0
 	 */
 	private function prepare_key( $key ) {
 		return openssl_digest( $key, $this->hash_algorithm, true );

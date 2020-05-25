@@ -14,10 +14,10 @@ class Status extends PostField
 	private $post_type;
 
 	public function __construct( $post_type ) {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
 			Operators::NEQ,
-		) );
+		] );
 
 		$this->post_type = $post_type;
 
@@ -35,11 +35,11 @@ class Status extends PostField
 	 * @return AC\Helper\Select\Options
 	 */
 	public function get_values() {
-		$entities = new Select\Entities\PostStatus( array(
+		$entities = new Select\Entities\PostStatus( [
 			'post_type' => $this->post_type,
-		) );
+		] );
 
-		$results = array();
+		$results = [];
 		foreach ( $entities as $value => $entity ) {
 			$results[] = new AC\Helper\Select\Option( $value, $entity->label );
 		}

@@ -20,17 +20,17 @@ class Author extends Model\Post implements PaginatedOptions {
 			return false;
 		}
 
-		return array(
+		return [
 			$user->ID => $user->display_name,
-		);
+		];
 	}
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'               => 'select2_dropdown',
 			'ajax_populate'      => true,
 			'store_single_value' => true,
-		);
+		];
 	}
 
 	public function get_paginated_options( $search, $paged, $id = null ) {
@@ -45,7 +45,7 @@ class Author extends Model\Post implements PaginatedOptions {
 	}
 
 	public function save( $id, $value ) {
-		return $this->update_post( $id, array( 'post_author' => $value ) );
+		return $this->update_post( $id, [ 'post_author' => $value ] );
 	}
 
 }

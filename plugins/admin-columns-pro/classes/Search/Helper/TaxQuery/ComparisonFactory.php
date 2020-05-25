@@ -17,12 +17,12 @@ final class ComparisonFactory {
 	 * @return Comparison
 	 */
 	public static function create( $taxonomy, $operator, Value $terms, $field = 'term_id' ) {
-		$operators = array(
+		$operators = [
 			Operators::EQ           => 'IN',
 			Operators::NEQ          => 'NOT IN',
 			Operators::IS_EMPTY     => 'NOT EXISTS',
 			Operators::NOT_IS_EMPTY => 'EXISTS',
-		);
+		];
 
 		if ( ! array_key_exists( $operator, $operators ) ) {
 			throw new LogicException( 'Invalid operator found.' );

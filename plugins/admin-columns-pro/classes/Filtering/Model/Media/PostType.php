@@ -20,14 +20,14 @@ class PostType extends Model {
 	}
 
 	public function get_filtering_vars( $vars ) {
-		add_filter( 'posts_where', array( $this, 'filter_by_post_type' ), 10, 2 );
+		add_filter( 'posts_where', [ $this, 'filter_by_post_type' ], 10, 2 );
 
 		return $vars;
 	}
 
 	public function get_filtering_data() {
 		$parents = $this->strategy->get_values_by_db_field( 'post_parent' );
-		$post_types = array();
+		$post_types = [];
 
 		foreach ( $parents as $post ) {
 			$post_type_object = get_post_type_object( get_post_type( $post ) );
@@ -41,9 +41,9 @@ class PostType extends Model {
 
 		unset( $post_types['attachment'] );
 
-		return array(
+		return [
 			'options' => $post_types,
-		);
+		];
 	}
 
 }

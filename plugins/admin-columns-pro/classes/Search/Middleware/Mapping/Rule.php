@@ -10,13 +10,13 @@ class Rule extends Mapping {
 	 * @inheritDoc
 	 */
 	protected function get_properties() {
-		return array(
+		return [
 			'name'        => 'id',
 			'operator'    => 'operator',
 			'value'       => 'value',
 			'value_type'  => 'type',
 			'value_label' => 'formatted_value',
-		);
+		];
 	}
 
 }

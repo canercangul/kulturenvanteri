@@ -17,12 +17,12 @@ class Language extends Model\Meta {
 	public function get_filtering_data() {
 		$options = $this->column->get_language_options( false );
 
-		$options = array( 'cpac_empty' => _x( 'Site Default', 'default site language' ) ) + $options;
+		$options = [ 'cpac_empty' => _x( 'Site Default', 'default site language' ) ] + $options;
 
-		return array(
+		return [
 			'options' => $options,
 			'order'   => false,
-		);
+		];
 	}
 
 }

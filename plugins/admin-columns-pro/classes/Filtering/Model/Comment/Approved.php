@@ -15,18 +15,18 @@ class Approved extends Model {
 	}
 
 	public function get_filtering_vars( $vars ) {
-		add_filter( 'comments_clauses', array( $this, 'filter_by_approved' ) );
+		add_filter( 'comments_clauses', [ $this, 'filter_by_approved' ] );
 
 		return $vars;
 	}
 
 	public function get_filtering_data() {
-		return array(
-			'options' => array(
+		return [
+			'options' => [
 				0 => __( 'No' ),
 				1 => __( 'Yes' ),
-			),
-		);
+			],
+		];
 	}
 
 }

@@ -13,13 +13,13 @@ class MimeType extends Model {
 	}
 
 	public function get_filtering_vars( $vars ) {
-		add_filter( 'posts_where', array( $this, 'filter_by_mime_type' ) );
+		add_filter( 'posts_where', [ $this, 'filter_by_mime_type' ] );
 
 		return $vars;
 	}
 
 	public function get_filtering_data() {
-		$data = array();
+		$data = [];
 		$mime_types = array_flip( wp_get_mime_types() );
 
 		foreach ( $this->strategy->get_values_by_db_field( 'post_mime_type' ) as $_value ) {

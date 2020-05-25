@@ -11,7 +11,7 @@ use WP_Term_Query;
 final class Taxonomy extends ACP\Filtering\Strategy {
 
 	public function handle_request() {
-		add_action( 'pre_get_terms', array( $this, 'handle_filter_requests' ), 1 );
+		add_action( 'pre_get_terms', [ $this, 'handle_filter_requests' ], 1 );
 	}
 
 	/**
@@ -35,7 +35,7 @@ final class Taxonomy extends ACP\Filtering\Strategy {
 		}
 
 		if ( ! is_array( $query->query_vars['meta_query'] ) ) {
-			$query->query_vars['meta_query'] = array();
+			$query->query_vars['meta_query'] = [];
 		}
 
 		$query->query_vars = $this->model->get_filtering_vars( $query->query_vars );
@@ -61,7 +61,7 @@ final class Taxonomy extends ACP\Filtering\Strategy {
 		" );
 
 		if ( ! $values || is_wp_error( $values ) ) {
-			return array();
+			return [];
 		}
 
 		return $values;

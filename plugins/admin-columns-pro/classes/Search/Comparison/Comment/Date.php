@@ -16,7 +16,7 @@ abstract class Date extends Comparison\Date {
 	 * @return Operators
 	 */
 	public function operators() {
-		return new Operators( array(
+		return new Operators( [
 			Operators::EQ,
 			Operators::GT,
 			Operators::LT,
@@ -24,7 +24,7 @@ abstract class Date extends Comparison\Date {
 			Operators::TODAY,
 			Operators::GT_DAYS_AGO,
 			Operators::LT_DAYS_AGO,
-		) );
+		] );
 	}
 
 	/**

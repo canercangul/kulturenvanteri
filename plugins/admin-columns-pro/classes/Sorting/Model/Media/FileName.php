@@ -14,21 +14,21 @@ class FileName extends Model\Meta {
 		$query->select( 'id, meta_value' )
 		      ->where_in( $ids );
 
-		if ( acp_sorting()->show_all_results() ) {
+		if ( acp_sorting_show_all_results() ) {
 			$query->left_join();
 		} else {
 			$query->where( 'meta_value', '!=', '' );
 		}
 
-		$values = array();
+		$values = [];
 
 		foreach ( $query->get() as $value ) {
 			$values[ $value->id ] = strtolower( basename( $value->meta_value ) );
 		}
 
-		return array(
+		return [
 			'ids' => $this->sort( $values ),
-		);
+		];
 	}
 
 }

@@ -13,10 +13,10 @@ class ChildPages extends Comparison {
 	private $post_type;
 
 	public function __construct( $post_type ) {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::IS_EMPTY,
 			Operators::NOT_IS_EMPTY,
-		) );
+		] );
 
 		$this->post_type = $post_type;
 

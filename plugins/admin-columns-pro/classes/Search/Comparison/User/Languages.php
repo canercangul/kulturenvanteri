@@ -14,10 +14,10 @@ class Languages extends Comparison\Meta
 	private $languages;
 
 	public function __construct( $languages ) {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
 			Operators::IS_EMPTY,
-		) );
+		] );
 
 		$this->languages = $languages;
 

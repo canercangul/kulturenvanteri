@@ -7,16 +7,16 @@ use ACP\Filtering\Model;
 class Link extends Model\CustomField {
 
 	public function get_filtering_data() {
-		$options = array();
+		$options = [];
 
 		foreach ( $this->get_meta_values() as $value ) {
 			$options[ $value ] = $value;
 		}
 
-		return array(
+		return [
 			'options'      => $options,
 			'empty_option' => true,
-		);
+		];
 	}
 
 }

@@ -11,14 +11,14 @@ class Url extends Model\User {
 	}
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'        => 'text',
 			'placeholder' => $this->column->get_label(),
-		);
+		];
 	}
 
 	public function save( $id, $value ) {
-		return $this->update_user( $id, array( 'user_url' => $value ) );
+		return $this->update_user( $id, [ 'user_url' => $value ] );
 	}
 
 }

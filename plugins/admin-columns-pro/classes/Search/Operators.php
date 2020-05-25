@@ -45,7 +45,7 @@ final class Operators extends Config {
 	 * @return array
 	 */
 	protected function get_operators() {
-		return array(
+		return [
 			self::EQ,
 			self::NEQ,
 			self::GT,
@@ -67,7 +67,7 @@ final class Operators extends Config {
 			self::LT_DAYS_AGO,
 			self::GT_DAYS_AGO,
 			self::WITHIN_DAYS,
-		);
+		];
 	}
 
 	/**

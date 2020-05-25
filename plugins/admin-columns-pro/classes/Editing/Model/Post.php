@@ -12,7 +12,7 @@ abstract class Post extends Model {
 	 *
 	 * @return bool
 	 */
-	protected function update_post( $id, array $args = array() ) {
+	protected function update_post( $id, array $args = [] ) {
 		$args['ID'] = $id;
 
 		$result = wp_update_post( $args );

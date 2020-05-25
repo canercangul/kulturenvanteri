@@ -7,7 +7,7 @@ use ACP\Filtering\Model;
 class LastModifiedAuthor extends Model\Meta {
 
 	public function get_filtering_data() {
-		$data = array();
+		$data = [];
 
 		if ( $values = $this->get_meta_values() ) {
 			foreach ( $values as $user_id ) {

@@ -17,17 +17,17 @@ class CommentStatus extends Model {
 	}
 
 	public function get_filtering_vars( $vars ) {
-		add_filter( 'posts_where', array( $this, 'filter_by_comment_status' ) );
+		add_filter( 'posts_where', [ $this, 'filter_by_comment_status' ] );
 
 		return $vars;
 	}
 
 	public function get_filtering_data() {
-		$data = array();
-		$data['options'] = array(
+		$data = [];
+		$data['options'] = [
 			'open'   => __( 'Open' ),
 			'closed' => __( 'Closed' ),
-		);
+		];
 
 		return $data;
 	}

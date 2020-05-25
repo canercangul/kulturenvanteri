@@ -10,21 +10,21 @@ use ACP\Helper\Select;
 class PostParent extends Model\Post implements PaginatedOptions {
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'               => 'select2_dropdown',
 			'ajax_populate'      => true,
 			'multiple'           => false,
 			'clear_button'       => true,
 			'store_single_value' => true,
-		);
+		];
 	}
 
 	public function get_paginated_options( $s, $paged, $id = null ) {
-		$entities = new Select\Entities\Post( array(
+		$entities = new Select\Entities\Post( [
 			's'         => $s,
 			'paged'     => $paged,
 			'post_type' => $this->column->get_post_type(),
-		) );
+		] );
 
 		return new AC\Helper\Select\Options\Paginated(
 			$entities,
@@ -39,13 +39,13 @@ class PostParent extends Model\Post implements PaginatedOptions {
 			return false;
 		}
 
-		return array(
+		return [
 			$post->ID => $post->post_title,
-		);
+		];
 	}
 
 	public function save( $id, $value ) {
-		return $this->update_post( $id, array( 'post_parent' => $value ) );
+		return $this->update_post( $id, [ 'post_parent' => $value ] );
 	}
 
 }

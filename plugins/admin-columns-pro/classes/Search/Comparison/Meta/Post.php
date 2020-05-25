@@ -17,15 +17,15 @@ class Post extends Meta
 	private $post_type = 'any';
 
 	/** @var WP_Term[] */
-	private $terms = array();
+	private $terms = [];
 
-	public function __construct( $meta_key, $meta_type, $post_type = false, array $terms = array() ) {
-		$operators = new Operators( array(
+	public function __construct( $meta_key, $meta_type, $post_type = false, array $terms = [] ) {
+		$operators = new Operators( [
 			Operators::EQ,
 			Operators::NEQ,
 			Operators::IS_EMPTY,
 			Operators::NOT_IS_EMPTY,
-		) );
+		] );
 
 		$this->set_post_type( $post_type );
 		$this->set_terms( $terms );
@@ -35,12 +35,12 @@ class Post extends Meta
 
 	public function get_values( $search, $page ) {
 
-		$entities = new Select\Entities\Post( array(
+		$entities = new Select\Entities\Post( [
 			's'         => $search,
 			'paged'     => $page,
 			'post_type' => $this->post_type,
 			'tax_query' => $this->get_tax_query(),
-		) );
+		] );
 
 		return new AC\Helper\Select\Options\Paginated(
 			$entities,
@@ -70,14 +70,14 @@ class Post extends Meta
 	 * @return array
 	 */
 	protected function get_tax_query() {
-		$tax_query = array();
+		$tax_query = [];
 
 		foreach ( $this->terms as $term ) {
-			$tax_query[] = array(
+			$tax_query[] = [
 				'taxonomy' => $term->taxonomy,
 				'field'    => 'slug',
 				'terms'    => $term->slug,
-			);
+			];
 		}
 
 		return $tax_query;

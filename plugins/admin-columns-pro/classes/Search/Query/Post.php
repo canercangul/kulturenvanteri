@@ -11,12 +11,12 @@ class Post extends Query {
 	 * Register post callback functions
 	 */
 	public function register() {
-		add_filter( 'posts_where', array( $this, 'cast_decimal_precision' ), 20, 2 );
-		add_filter( 'posts_where', array( $this, 'callback_where' ), 20, 2 );
-		add_filter( 'posts_join', array( $this, 'callback_join' ), 20, 2 );
-		add_action( 'pre_get_posts', array( $this, 'callback_meta_query' ), 20 );
-		add_action( 'pre_get_posts', array( $this, 'callback_tax_query' ), 20 );
-		add_action( 'pre_get_posts', array( $this, 'callback_mime_type_query' ), 20 );
+		add_filter( 'posts_where', [ $this, 'cast_decimal_precision' ], 20, 2 );
+		add_filter( 'posts_where', [ $this, 'callback_where' ], 20, 2 );
+		add_filter( 'posts_join', [ $this, 'callback_join' ], 20, 2 );
+		add_action( 'pre_get_posts', [ $this, 'callback_meta_query' ], 20 );
+		add_action( 'pre_get_posts', [ $this, 'callback_tax_query' ], 20 );
+		add_action( 'pre_get_posts', [ $this, 'callback_mime_type_query' ], 20 );
 	}
 
 	/**
@@ -108,7 +108,7 @@ class Post extends Query {
 			return;
 		}
 
-		$tax_query = array();
+		$tax_query = [];
 
 		foreach ( $this->bindings as $binding ) {
 			if ( $binding instanceof Query\Bindings\Post && $binding->get_tax_query() ) {
@@ -141,7 +141,7 @@ class Post extends Query {
 			return;
 		}
 
-		$mime_types = array();
+		$mime_types = [];
 
 		foreach ( $this->bindings as $binding ) {
 			if ( $binding instanceof Query\Bindings\Media && $binding->get_mime_types() ) {

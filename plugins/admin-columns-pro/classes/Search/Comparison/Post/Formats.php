@@ -18,10 +18,10 @@ class Formats extends Comparison
 	protected $taxonomy;
 
 	public function __construct( $taxonomy ) {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
 			Operators::NEQ,
-		) );
+		] );
 
 		$this->taxonomy = $taxonomy;
 
@@ -29,7 +29,7 @@ class Formats extends Comparison
 	}
 
 	public function get_values() {
-		$options = array();
+		$options = [];
 
 		foreach ( get_post_format_strings() as $slug => $label ) {
 			$options[ 'post-format-' . $slug ] = $label;

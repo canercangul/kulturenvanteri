@@ -4,8 +4,10 @@ namespace ACP\Search\Controller;
 
 use AC;
 use AC\Exception;
+use AC\ListScreenRepository\Storage;
 use AC\Request;
 use AC\Response;
+use AC\Type\ListScreenId;
 use ACP\Controller;
 use ACP\Search;
 use ACP\Search\Searchable;
@@ -14,26 +16,30 @@ use DomainException;
 class Comparison extends Controller {
 
 	/**
+	 * @var Storage
+	 */
+	private $storage;
+
+	/**
 	 * @var AC\ListScreen;
 	 */
 	protected $list_screen;
 
-	/**
-	 * @param Request $request
-	 */
-	public function __construct( Request $request ) {
+	public function __construct( Storage $storage, Request $request ) {
 		parent::__construct( $request );
+
+		$this->storage = $storage;
 
 		$id = $request->get( 'layout' );
 
 		if ( $id ) {
-			$this->list_screen = AC()->get_listscreen_repository()->find( $id );
+			$this->list_screen = $this->storage->find( new ListScreenId( $id ) );
 		} else {
 			$this->list_screen = AC\ListScreenTypes::instance()->get_list_screen_by_key( $request->get( 'list_screen' ) );
 		}
 
 		if ( ! $this->list_screen instanceof AC\ListScreen ) {
-			throw Exception\Request::from_invalid_parameters();
+			throw Exception\RequestException::parameters_invalid();
 		}
 	}
 

@@ -18,21 +18,21 @@ class User extends AC\Helper\Select\Entities
 	private $searchterm;
 
 	/**
-	 * @param array $args
+	 * @param array                  $args
 	 * @param AC\Helper\Select\Value $value
 	 */
-	public function __construct( array $args = array(), AC\Helper\Select\Value $value = null ) {
+	public function __construct( array $args = [], AC\Helper\Select\Value $value = null ) {
 		if ( null === $value ) {
 			$value = new Value\User();
 		}
 
-		$args = array_merge( array(
+		$args = array_merge( [
 			'orderby'        => 'display_name',
-			'search_columns' => array( 'ID', 'user_login', 'user_nicename', 'user_email' ),
+			'search_columns' => [ 'ID', 'user_login', 'user_nicename', 'user_email' ],
 			'number'         => 30,
 			'paged'          => 1,
 			'search'         => null,
-		), $args );
+		], $args );
 
 		$this->searchterm = $args['search'];
 
@@ -40,7 +40,7 @@ class User extends AC\Helper\Select\Entities
 			$args['search'] = sprintf( '*%s*', trim( $args['search'], '*' ) );
 		}
 
-		add_action( 'pre_user_query', array( $this, 'callback_meta_query' ), 1 );
+		add_action( 'pre_user_query', [ $this, 'callback_meta_query' ], 1 );
 
 		$this->query = new WP_User_Query( $args );
 

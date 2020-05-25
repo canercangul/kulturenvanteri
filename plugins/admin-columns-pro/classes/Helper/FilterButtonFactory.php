@@ -10,7 +10,7 @@ final class FilterButtonFactory {
 	const SCREEN_TAXONOMY = 'taxonomy';
 
 	/** @var FilterButton[] */
-	private static $instances = array();
+	private static $instances = [];
 
 	/**
 	 * @param string $screen

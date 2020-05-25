@@ -36,11 +36,11 @@ class Single extends Column {
 		}
 
 		$response
-			->set_parameters( array(
+			->set_parameters( [
 				'id'            => $id,
 				'value'         => $model->get_value( $id ),
 				'display_value' => $list_screen->get_display_value_by_column_name( $column->get_name(), $id ),
-			) )
+			] )
 			->success();
 	}
 
@@ -65,7 +65,7 @@ class Single extends Column {
 	}
 
 	public function get_editable_values_action() {
-		$ids = $this->request->filter( 'ids', array(), FILTER_VALIDATE_INT, FILTER_REQUIRE_ARRAY );
+		$ids = $this->request->filter( 'ids', [], FILTER_VALIDATE_INT, FILTER_REQUIRE_ARRAY );
 		$list_screen = $this->get_list_screen_from_request();
 		$column_name = $this->request->get( 'column' );
 
@@ -83,7 +83,7 @@ class Single extends Column {
 			}
 		}
 
-		$values = array();
+		$values = [];
 
 		foreach ( $list_screen->get_columns() as $column ) {
 			if ( ! $column instanceof Editable ) {
@@ -114,11 +114,11 @@ class Single extends Column {
 					$value = '';
 				}
 
-				$values[] = array(
+				$values[] = [
 					'id'          => $id,
 					'column_name' => $column->get_name(),
 					'value'       => $value,
-				);
+				];
 			}
 		}
 

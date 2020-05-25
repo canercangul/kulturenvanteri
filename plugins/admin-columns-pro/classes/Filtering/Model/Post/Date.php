@@ -2,6 +2,7 @@
 
 namespace ACP\Filtering\Model\Post;
 
+use ACP\Filtering\Helper;
 use ACP\Filtering\Model;
 use ACP\Filtering\Settings;
 
@@ -29,31 +30,31 @@ class Date extends Model {
 			case 'monthly' :
 				$timestamp = strtotime( $this->get_filter_value() . '01' );
 
-				$vars['date_query'][] = array(
+				$vars['date_query'][] = [
 					'year'  => date( 'Y', $timestamp ),
 					'month' => date( 'm', $timestamp ),
-				);
+				];
 
 				break;
 			case 'yearly' :
-				$vars['date_query'][] = array(
+				$vars['date_query'][] = [
 					'year' => $this->get_filter_value(),
-				);
+				];
 
 				break;
 			case 'future_past' :
 				$date = date( 'Y-m-d' );
 
 				if ( 'future' == $this->get_filter_value() ) {
-					$vars['date_query'][] = array(
+					$vars['date_query'][] = [
 						'inclusive' => true,
 						'after'     => $date,
-					);
+					];
 				} else {
-					$vars['date_query'][] = array(
+					$vars['date_query'][] = [
 						'inclusive' => true,
 						'before'    => $date,
-					);
+					];
 				}
 
 				break;
@@ -61,11 +62,11 @@ class Date extends Model {
 				$value = $this->get_filter_value();
 
 				if ( $value ) {
-					$vars['date_query'][] = array(
+					$vars['date_query'][] = [
 						'inclusive' => true,
 						'before'    => $value['max'],
 						'after'     => $value['min'],
-					);
+					];
 				}
 
 				break;
@@ -73,11 +74,11 @@ class Date extends Model {
 			default :
 				$timestamp = strtotime( $this->get_filter_value() );
 
-				$vars['date_query'][] = array(
+				$vars['date_query'][] = [
 					'year'  => date( 'Y', $timestamp ),
 					'month' => date( 'm', $timestamp ),
 					'day'   => date( 'd', $timestamp ),
-				);
+				];
 
 				break;
 		}
@@ -97,16 +98,18 @@ class Date extends Model {
 			$format = 'daily';
 		}
 
-		$options = acp_filtering_helper()->get_date_options_relative( $format );
+		$helper = new Helper();
+
+		$options = $helper->get_date_options_relative( $format );
 
 		if ( ! $options ) {
-			$options = acp_filtering_helper()->get_date_options( $this->get_dates( $this->get_date_field() ), $format, 'Y-m-d H:i:s' );
+			$options = $helper->get_date_options( $this->get_dates( $this->get_date_field() ), $format, 'Y-m-d H:i:s' );
 		}
 
-		return array(
+		return [
 			'order'   => false,
 			'options' => $options,
-		);
+		];
 	}
 
 	/**

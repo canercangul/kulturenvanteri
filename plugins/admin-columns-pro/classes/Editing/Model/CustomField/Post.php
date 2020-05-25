@@ -34,17 +34,17 @@ class Post extends Model\CustomField
 	}
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'          => 'select2_dropdown',
 			'ajax_populate' => true,
-		);
+		];
 	}
 
 	public function get_paginated_options( $s, $paged, $id = null ) {
-		$entities = new Select\Entities\Post( array(
+		$entities = new Select\Entities\Post( [
 			's'     => $s,
 			'paged' => $paged,
-		) );
+		] );
 
 		return new AC\Helper\Select\Options\Paginated(
 			$entities,

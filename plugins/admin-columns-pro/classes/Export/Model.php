@@ -13,9 +13,10 @@ abstract class Model extends ACP\Model {
 
 	/**
 	 * Retrieve the value to be exported by the column for a specific item
-	 * @since 1.0
 	 *
 	 * @param int $id Item ID
+	 *
+	 * @since 1.0
 	 */
 	abstract public function get_value( $id );
 

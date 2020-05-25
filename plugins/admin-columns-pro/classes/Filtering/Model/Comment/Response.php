@@ -2,6 +2,7 @@
 
 namespace ACP\Filtering\Model\Comment;
 
+use ACP\Filtering\Helper;
 use ACP\Filtering\Model;
 
 class Response extends Model {
@@ -14,15 +15,15 @@ class Response extends Model {
 	}
 
 	public function get_filtering_vars( $vars ) {
-		add_filter( 'comments_clauses', array( $this, 'filter_by_post_id' ) );
+		add_filter( 'comments_clauses', [ $this, 'filter_by_post_id' ] );
 
 		return $vars;
 	}
 
 	public function get_filtering_data() {
-		return array(
-			'options' => acp_filtering()->helper()->get_post_titles( $this->strategy->get_values_by_db_field( 'comment_post_ID' ) ),
-		);
+		return [
+			'options' => ( new Helper() )->get_post_titles( $this->strategy->get_values_by_db_field( 'comment_post_ID' ) ),
+		];
 	}
 
 }

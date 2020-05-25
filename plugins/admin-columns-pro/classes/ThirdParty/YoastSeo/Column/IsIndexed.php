@@ -6,6 +6,7 @@ use AC\Column;
 use ACP\Editing;
 use ACP\Search;
 use ACP\ThirdParty\YoastSeo;
+use WPSEO_Post_Type;
 
 class IsIndexed extends Column\Meta
 	implements Editing\Editable, Search\Searchable {
@@ -39,7 +40,7 @@ class IsIndexed extends Column\Meta
 			return false;
 		}
 
-		return \WPSEO_Post_Type::is_post_type_indexable( $this->get_post_type() );
+		return WPSEO_Post_Type::is_post_type_indexable( $this->get_post_type() );
 	}
 
 	public function get_meta_key() {

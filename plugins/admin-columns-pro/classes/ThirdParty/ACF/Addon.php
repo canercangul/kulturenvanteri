@@ -7,7 +7,7 @@ use AC\Registrable;
 class Addon implements Registrable {
 
 	public function register() {
-		add_filter( 'acp/editing/post_statuses', array( $this, 'remove_acf_statuses_for_editing' ) );
+		add_filter( 'acp/editing/post_statuses', [ $this, 'remove_acf_statuses_for_editing' ] );
 	}
 
 	/**

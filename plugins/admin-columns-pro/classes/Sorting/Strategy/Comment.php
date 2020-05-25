@@ -13,7 +13,7 @@ final class Comment extends Strategy {
 	protected $query;
 
 	public function manage_sorting() {
-		add_action( 'pre_get_comments', array( $this, 'handle_sorting_request' ) );
+		add_action( 'pre_get_comments', [ $this, 'handle_sorting_request' ] );
 	}
 
 	private function set_comment_query( WP_Comment_Query $query ) {
@@ -38,10 +38,10 @@ final class Comment extends Strategy {
 		return null;
 	}
 
-	public function get_results( array $args = array() ) {
-		$defaults = array(
+	public function get_results( array $args = [] ) {
+		$defaults = [
 			'fields' => 'ids',
-		);
+		];
 
 		$query = new WP_Comment_Query( array_merge( $defaults, $args ) );
 
@@ -60,7 +60,7 @@ final class Comment extends Strategy {
 		}
 
 		// run only once
-		remove_action( 'pre_get_comments', array( $this, __FUNCTION__ ) );
+		remove_action( 'pre_get_comments', [ $this, __FUNCTION__ ] );
 
 		foreach ( $this->model->get_sorting_vars() as $key => $value ) {
 			if ( $this->is_universal_id( $key ) ) {

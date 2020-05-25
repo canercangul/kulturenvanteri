@@ -18,11 +18,11 @@ class DisplayName extends Model
 	}
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'               => 'select2_dropdown',
 			'ajax_populate'      => true,
 			'store_single_value' => true,
-		);
+		];
 	}
 
 	public function get_paginated_options( $s, $paged, $id = null ) {
@@ -71,10 +71,10 @@ class DisplayName extends Model
 
 		$result = $wpdb->update(
 			$wpdb->users,
-			array( 'display_name' => $value ),
-			array( 'ID' => $id ),
-			array( '%s' ),
-			array( '%d' )
+			[ 'display_name' => $value ],
+			[ 'ID' => $id ],
+			[ '%s' ],
+			[ '%d' ]
 		);
 
 		clean_user_cache( $id );

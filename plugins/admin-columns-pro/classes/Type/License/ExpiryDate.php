@@ -67,6 +67,22 @@ class ExpiryDate {
 	}
 
 	/**
+	 * @return float
+	 */
+	public function get_remaining_days() {
+		return $this->get_remaining_seconds() / DAY_IN_SECONDS;
+	}
+
+	/**
+	 * @param int $seconds
+	 *
+	 * @return bool
+	 */
+	public function is_expiring_within_seconds( $seconds ) {
+		return $this->get_remaining_seconds() < $seconds;
+	}
+
+	/**
 	 * @return string
 	 */
 	public function get_human_time_diff() {
