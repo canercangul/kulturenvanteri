@@ -1,8 +1,8 @@
 <?php
 /**
- * Single Actor Template
- * Template Name: Actor
- * Template Post Type: actor
+ * Single Place Template
+ * Template Name: Place
+ * Template Post Type: place
  *
  * @package understrap
  */

@@ -35,7 +35,7 @@
 	<aside>
 
 	<?php if ($object_name == 'post'): ?>
-		<p><?php _e( 'Yakındaki Eserler', 'GeoMashup' ); ?></p>
+		<p><?php _e( 'Yakındaki Yerler', 'GeoMashup' ); ?></p>
 	<?php elseif ($object_name == 'user'):?>
 		<p><?php _e( 'Users Nearby', 'GeoMashup' ); ?></p>
 	<?php endif; ?>
