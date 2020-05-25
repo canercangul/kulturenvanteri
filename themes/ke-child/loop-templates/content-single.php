@@ -8,11 +8,11 @@
 ?>
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
-	<header class="entry-header">
+	<header class="entry-header pt-5">
 
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
-		<div class="entry-meta">
+		<div class="entry-meta pt-5 pb-5">
 
 			<?php understrap_posted_on(); ?>
 
@@ -35,7 +35,7 @@
 
 	</div><!-- .entry-content -->
 
-	<footer class="entry-footer">
+	<footer class="entry-footer pt-5 pb-5">
 
 		<?php understrap_entry_footer(); ?>
 

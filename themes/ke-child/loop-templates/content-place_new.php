@@ -57,6 +57,7 @@
 						</li>
 
 						<!-- <li><b>Koordinat:</b> <?php if (function_exists('geo_mashup_map')) $coords = GeoMashup::post_coordinates(); if ($coords) { echo $coords['lat'] . ',' . $coords['lng']; } ?></small></li> -->
+						
 						<!-- See more: //https://gearside.com/easily-link-to-locations-and-directions-using-the-new-google-maps/ -->
 					 	<?php if (function_exists('geo_mashup_map')) 
 						$coords = GeoMashup::post_coordinates(); 
@@ -160,7 +161,6 @@
 					</script>
 				<?php endif; ?>
 
-
 				<?php $place_related = get_field( 'place_related' ); ?>
 				<?php if ( $place_related ): ?>
 
@@ -195,15 +195,87 @@
 
 			</div>
 
-			<div class="col-lg-6 col-md-6 col-12 nopadding">
+			<div class="col-lg-6 col-md-6 col-12 nopadding map-default">
+				
 				<?php
-				// This template code will work only in the WordPress Loop to include a map if the Geo Mashup plugin is active and the current post has a location.
-				// https://snipplr.com/view/29558/conditional-geo-mashup-map-template-code
-				$coordinates = GeoMashup::post_coordinates();
-					if ( class_exists( 'GeoMashup' ) and ! empty( $coordinates ) ) {
-						echo GeoMashup::map();
-					}
+				// // This template code will work only in the WordPress Loop to include a map if the Geo Mashup plugin is active and the current post has a location.
+				// // https://snipplr.com/view/29558/conditional-geo-mashup-map-template-code
+				// $coordinates = GeoMashup::post_coordinates();
+				// 	if ( class_exists( 'GeoMashup' ) and ! empty( $coordinates ) ) {
+				// 		echo GeoMashup::map();
+				// 	}
 				?>
+
+				<?php 
+				// Try only if Geo Mashup plugin is active
+				// if ( class_exists( 'GeoMashup' ) ) {
+				// 	$current_location = GeoMashupDB::get_post_location( get_the_ID() );
+				// 	if ( $current_location ) {
+				// 		// The current post has a location, so include the map
+
+				// 		$map_arguments = array (
+				// 			'map_content' => 'global',
+				// 			'near_lat' => $current_location->lat,
+				// 			'near_lng' => $current_location->lng,
+				// 			'radius_km' => 10,
+				// 			'limit' => 50,
+				// 			'zoom' => 'auto',
+				// 			//'center_lat' => $current_location->lat,
+				// 			//'center_lng' => $current_location->lng,
+				// 			'marker_select_center' => 'false',
+				// 			'marker_select_info_window' => 'true',
+				// 			'marker_select_highlight' => 'true',
+				// 			'auto_info_open' => 'true',
+				// 			'open_object_id' => $current_location->object_id
+				// 		);
+
+				// 		echo GeoMashup::map( $map_arguments );
+				// 	}
+				// }
+				?>
+
+				<?php
+
+				$related_articles = array(
+					'post_type' => 'place',
+					'meta_query' => array(
+						array(
+							'key' => 'place_related', // İlgili Yerler Custom Fields
+							'value' => '"' . get_the_ID() . '"',
+							'compare' => 'LIKE'
+						)
+					)
+				);
+
+				$show_on_map = new WP_Query($related_articles);
+
+				$map_arguments = array (
+					'map_content' => $show_on_map,
+					'zoom' => 'auto',
+					'marker_select_center' => 'false',
+					'marker_select_info_window' => 'true',
+					'marker_select_highlight' => 'true',
+					'auto_info_open' => 'true',
+					'open_object_id' => $current_location->object_id
+				);
+
+				echo GeoMashup::map( $map_arguments );
+
+				// if( $related_articles ): 
+				// 	foreach( $related_articles as $article ): 
+
+				// 	// Do something to display the articles. Each article is a WP_Post object.
+				// 	// Example:
+
+				// 	echo $article->post_title;  // The post title
+				// 	echo $article->post_excerpt;  // The excerpt
+				// 	echo get_the_post_thumbnail( $article->ID );  // The thumbnail
+
+				// 	endforeach;
+				// endif;
+
+				?>
+
 			</div>
 
 		</div>

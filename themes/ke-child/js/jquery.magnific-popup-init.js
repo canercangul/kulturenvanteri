@@ -5,6 +5,16 @@ jQuery(document).ready(function($) {
 	if ($(this).parents('.gallery').length == 0) {
 			$(this).magnificPopup({
 			type:'image',
+
+			image: {
+				// titleSrc: 'title', // Attribute of the target element that contains caption for the slide.
+				// Or the function that should return the title. For example:
+				titleSrc: function(item) {
+				  return item.el.attr('title') + '<small>Kültür Envanteri Atlası</small>';
+				}
+
+			},
+
 			showCloseBtn: false,
 			mainClass: 'mfp-with-zoom',
 			zoom: {enabled:true, duration:300}
@@ -28,6 +38,7 @@ jQuery(document).ready(function($) {
 	$(document).ready(function() {
 		$('.iframe-popup').magnificPopup({
 			type: 'iframe',
+			mainClass: 'mfp-with-zoom',
 			showCloseBtn: false
 		});
 	});

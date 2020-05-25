@@ -1,41 +1,135 @@
+/* Scrollbar Style  */
 
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #FFF; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #53f; 
+}
+
+/* Page Loading Fade  http://jsfiddle.net/SO_AMK/VV2ek/ */
+
+html {
+  animation: fadein 0.2s;
+  -moz-animation: fadein 0.2s; /* Firefox */
+  -webkit-animation: fadein 0.2s; /* Safari and Chrome */
+  -o-animation: fadein 0.2s; /* Opera */
+}
+@keyframes fadein {
+  from {
+      opacity:0;
+  }
+  to {
+      opacity:1;
+  }
+}
+@-moz-keyframes fadein { /* Firefox */
+  from {
+      opacity:0;
+  }
+  to {
+      opacity:1;
+  }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+  from {
+      opacity:0;
+  }
+  to {
+      opacity:1;
+  }
+}
+@-o-keyframes fadein { /* Opera */
+  from {
+      opacity:0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+/* Typography  */
+
+@import url('https://fonts.googleapis.com/css?family=Inter:300,400,700,900&display=swap&subset=latin-ext');
 
 a {
-  color: #000 !important;
+  color: #000;
   text-decoration: none;
 }
 
 a:focus,
 a:hover {
-  color: rgba(121, 109, 73, 1);
+  color: rgba(121, 109, 73, 1) !important;
   text-decoration: none;
   cursor: pointer;
 }
 
+b,
+strong {
+  font-weight: 600;
+}
+
+.h2, h2 {
+  font-size: 2.3rem;
+}
+
+.h4, h4 {
+  font-size: 1.6rem;
+}
+
+.small, small {
+  font-size: 75%;
+}
+
 dl, ol, ul {
-  list-style: none;
+  margin-bottom: 0rem !important;
 }
 
 body {
-  font-size: 1.30rem;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 1.1rem;
   font-weight: 400;
-  line-height: normal;
-  color: #444;
-  text-align: left;
-  /* letter-spacing: 0.03rem; */
+  letter-spacing: 0.02rem;
+  color: #5e5e5e;
+  letter-spacing: 0.03rem;
   background-color: #EEE;
 }
 
-.bg-primary {
-  background-color: rgba(121, 109, 73, 0.85) !important;
+.text-dark {
+  color: #000 !important;
 }
+
+.tag-cloud-link {
+  font-size: 1rem !important; 
+}
+
+/* Color  */
+
+.bg-primary {
+  background-color: #8a7f61 !important;
+}
+
+/* Structure  */
 
 .wrapper {
   padding: 0px 0;
 }
 
 .container-fluid {
-  padding-top: 56px !important;
+  padding-top: 62px !important;
 }
 
 .nopadding {
@@ -44,7 +138,24 @@ body {
 }
 
 .pt-6 {
-  padding-top: 5rem!important;
+  padding-top: 5rem;
+}
+.mt-6 {
+  margin-top: 5rem;
+}
+
+.border-right {
+  border-right: 0.5px solid black !important;
+}
+
+.border-dark {
+  border-color: black !important;
+}
+
+/* Navigation */
+
+.navbar-brand {
+  font-size: 1.50rem;
 }
 
 .navbar-toggler {
@@ -53,184 +164,593 @@ body {
   border-radius: 0;
 }
 
+.navbar {
+  border-bottom: 1px black solid;
+  z-index: 9 !important;
+}
+
+/* Masonry */
+
 .ms-item {
-padding: 8px !important;
+  padding: 8px !important;
+  line-height: 1;
+  font-size: 80%;
 }
-/* Button */
 
-.btn-outline-primary,
-input[type=submit] {
-  color: black;
-  background-image: none;
+/* Menu */
+
+.dropdown-menu {
+  right: 0;
+  left: auto !important;
+  min-width: 10rem;
+  padding: .5rem 0;
+  margin: .750rem 0 0;
+  background-color: #fff;
+  border: 0;
+  border-radius: 0;
+}
+
+/**
+ * Navigation menu Hover
+ */
+ .dropdown:hover>.dropdown-menu {
+  display: block;
+  /* For animation */
+  max-height: 400px;
+  opacity: 1;
+}
+.dropdown>.dropdown-menu {
+  /* For animation */
+  transition: all 0.2s;
+  max-height: 0;
+  display: block;
+  overflow: hidden;
+  opacity: 0;
+}
+
+
+/* Accordeon Filter */
+.card{
+  border-radius: 0 !important;
+  border: 1px solid black;
+}
+
+.page-item:first-child .page-link {
+  border-top-left-radius: .0rem;
+  border-bottom-left-radius: .0rem;
+}
+
+.page-item:last-child .page-link {
+  border-top-right-radius: .0rem;
+  border-bottom-right-radius: .0rem;
+}
+
+.page-link {
   background-color: transparent;
+  border: 1px solid black;
+}
+
+.page-item.active .page-link {
   border-color: black;
 }
 
-.btn-outline-primary:hover,
-input[type=submit]:hover {
-  color: #fff;
-  background-color: black;
-  border-color: black;
+/* Geo Mashup */
+.gm-latest {
+  border-top: 1px solid black;
 }
-
-.btn-outline-primary:focus,
-input[type=submit]:focus,
-.btn-outline-primary.focus,
-input.focus[type=submit] {
-  box-shadow: 0 0 0 2px rgba(121, 109, 73, 0.85);
-}
-
-.btn-outline-primary.disabled,
-input.disabled[type=submit],
-.btn-outline-primary:disabled,
-input[type=submit]:disabled {
-  color: black;
-  background-color: transparent;
-}
-
-.btn-outline-primary:active,
-input[type=submit]:active,
-.btn-outline-primary.active,
-input.active[type=submit],
-.show>.btn-outline-primary.dropdown-toggle,
-.show>input.dropdown-toggle[type=submit] {
-  color: #fff;
-  background-color: black;
-  border-color: black;
-}
-
-/* Map Elements */
 
 .gm-map {
-  height: calc(100vh - 56px) !important;
-}
-gm-visible-list dl, ol, ul {
-  padding-left: 10px;
+  /* top: 62px;
+  height: calc(100vh - 62px) !important; */
+  height: calc(100vh - 62px) !important;
+  
 }
 
-gm-visible-list dl, ol, ul a:hover {
-  color: #2600e6 !important;
+#gm-post {
+    width: auto !important;
+    position: absolute;
+    z-index: 8;
+    right: 0;
+    background-color: white;
 }
-gm-visible-list dl, ol, ul img {
-  height: 20px;
+
+.gm-visible-list dl,
+ol,
+ul {
+  padding-left: 0px;
+  list-style: none;
+}
+
+.gm-visible-list a:hover {
+  color: #53f !important;
+}
+
+.gm-visible-list img {
+  height: 1.25rem;
   padding-right: 10px;
+  padding-bottom: 5px;
+}
+
+.map-default {
+  display: block;
+  /* background-color: rgba(0, 0, 0, 1); */
+  background-image: url('https://kulturenvanteri.com/wp-content/uploads/mapbg.jpg');
+  background-size: cover;
+  height: calc(100vh - 62px) !important;
+}
+
+.selections-area{
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
 .scroll-area {
-  height: calc(100vh - 56px);
+  height: calc(100vh - 62px) !important;
   overflow: auto;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
 }
 
-.fixed-map {
+.scroll-area-test {
+  width: 50vw;
+  /* height: calc(100vh - 232px) !important; */
+  height: calc(100vh - 62px) !important;
+  overflow: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scroll-area-wiki {
   position: fixed;
-  right:0;
-  top: 56px;
+  right: 0;
+  top: 62px;
+  z-index: 2;
+  width: 25vw;
+  height: 25vh !important;
+  overflow: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* .fixed-right {
+  position: fixed;
+  right: 0;
+  top: 62px;
+  z-index: 2;
+} */
+
+.fixed-top-right {
+  position: fixed;
+  right: 0;
+  top: 0;
   z-index: 2;
 }
-.fixed-list{
-  position: fixed;
-  right:0;
-  top: 56px;
-  z-index: 3;
-}
-.fixed-mapglobal {
-  position: fixed;
-  right:0;
-  top: 56px;
-  z-index: 1;
+
+.fixed-top {
+  z-index: 2;
 }
 
-@media all and (max-width:992px) {
-  .gm-map {
-    height: 300px !important;
-  }
-  .fixed-map {
+.fixed-right-single {
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 2;
+}
+
+.masonry-cols {  
+  -moz-column-count:3;
+  -moz-column-gap: 1em;
+  -moz-column-width: auto;
+
+  -webkit-column-count:3;
+  -webkit-column-gap: 1em;
+  -webkit-column-width: auto;
+  
+  column-count: 2;
+  column-gap: 1em;
+  column-width: auto;
+}
+
+/* Mobile */
+
+@media all and (max-width:767px) {
+
+
+  .fixed-right-single {
     position: static !important;
   }
-  .fixed-mapglobal {
-    position: static !important;
+  .scroll-area {
+    height: 100% !important;
+    overflow: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: auto;
   }
+  .scroll-area-test {
+    overflow: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    width: 75vw;
+  }
+  /* body {
+    font-size: .9rem;
+  } */
+
+  .modal-filter, .modal-list {
+    max-width: 75vw !important;
+  }
+
+  .modal-wiki {
+    max-width: 100vw !important;
+  }
+  
+  .modal-search {
+    max-width: 100% !important;
+  }
+  .dropdown-menu {
+    background-color: transparent;
+  }
+  .navbar-brand {
+    font-size: 1rem;
+    padding-top: .7rem;
+    padding-bottom: .7rem;
+  }
+
 }
 
-.mapglobal { display: none; }
-.mapglobal.visible { display: block; background-image: url('https://www.kulturenvanteri.com/wp-content/uploads/2020/02/map2.jpg'); }
+.image-filter {
+  filter: grayscale(100%);
+}
 
+.form-control, textarea {
+  border: 1px solid black !important;
+  border-radius: 0 !important;
+  height: 42px;
+}
+
+/* Buttons */
+
+.btn {
+  border-radius: 0 !important;
+}
+
+.btn-link {
+  color: black;
+}
+
+.btn-link:hover {
+  color: #2600e6;
+  text-decoration: none;
+}
+
+.btn-circle {
+  border-radius: 25px !important;
+}
+
+/* Modal */
+
+/* .modal {
+  pointer-events: none !important;
+}
+.modal-backdrop {
+  display: none !important;
+} */
+
+.modal {
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal-header{
+  padding: 1.2rem 1rem !important;
+}
+
+.modal-search {
+  max-width: auto;
+  margin: 4rem 0 0 0;
+  max-width: 50%;
+}
+
+.modal-filter, .modal-list {
+  margin: 0 !important;
+  z-index: 99999;
+  max-width: 25vw;
+  left: 1rem;
+  top: 5rem;
+}
+
+.modal-wiki {
+  margin: 0 !important;
+  z-index: 99999;
+  max-width: 50vw;
+  left: 1rem;
+  top: 5rem;
+}
+
+.modal-content {
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* Leaflet */
+
+.leaflet-container .leaflet-overlay-pane svg,
+.leaflet-container .leaflet-marker-pane img,
+.leaflet-container .leaflet-shadow-pane img,
+.leaflet-container .leaflet-tile-pane img,
+.leaflet-container img.leaflet-image-layer {
+  padding: 0px !important;
+}
+
+.leafletphp {
+  height: 450px !important;
+  border: 0.5px solid black;
+}
 
 /* Facet */
-.facetwp-facet {margin-bottom: 0px !important;}
-.facetwp-template { display: none; }
-.facetwp-template.visible { display: block; }
-.facetwp-search { width: 100%; height: 41px; }
-.facetwp-facet.facetwp-facet-search { border: 1px solid black !important; }
-.facetwp-selections li { line-height: 1.5 !important; }
-.facetwp-selections ul { padding: 0 !important; padding-top:12px !important; }
-.facetwp-selections .facetwp-selection-value {padding-right: 20px !important;background-size: 13px 13px !important;}
-.facetwp-checkbox {background: none !important;padding-left: 0px !important;}
-.facetwp-checkbox.checked {font-weight: bold;color: black;}
-.facetwp-checkbox:hover {color:rgba(121, 109, 73, 0.85);}
-.facetwp-btn {right: 15px;}
+
+.facetwp-facet {
+  margin-bottom: 0px !important;
+}
+
+.facetwp-template {
+  display: none;
+}
+
+.facetwp-search {
+  width: 100%;
+  height: 42px;
+  padding-left: 12px;
+}
+
+.facetwp-facet.facetwp-facet-ara {
+  border: 1px solid black !important;
+  margin-bottom: 15px !important;
+}
+
+.facetwp-selections li {
+  line-height: 1.5 !important;
+}
+
+.facetwp-selections ul {
+  padding: 0 !important;
+}
+
+span.facetwp-selection-label {
+  padding-right: 1rem;
+}
+
+.facetwp-selections .facetwp-selection-value {
+  padding-right: 1.25rem !important;
+  background-size: 0px !important;
+}
+
+.facetwp-selections .facetwp-selection-value:hover {
+  color: black;
+  padding-right: 1.25rem !important;
+  background-size: 13px 13px !important;
+}
+
+.facetwp-checkbox {
+  background: none !important;
+  padding-left: 0px !important;
+}
+
+.facetwp-checkbox.checked {
+  font-weight: bold;
+  color: black;
+}
+
+.facetwp-checkbox:hover {
+  color: rgba(121, 109, 73, 0.85);
+}
+
+.facetwp-btn {
+  right: 15px;
+}
+
 .facetwp-selection-value:hover {
-  color:red;
+  color: #5533ff;
 }
 
-.coblocks-lightbox__background {
-
-    background-repeat: no-repeat;
-    background-size: cover;
-    bottom: -10em;
-    -webkit-filter: blur(50px) saturate(70%) brightness(90%);
-    filter: blur(50px) saturate(70%) brightness(90%);
-    left: -10em;
-    position: absolute;
-    right: -10em;
-    top: -10em;
-
+.facetwp-btn {
+  display: none;
 }
 
-.wp-block-coblocks-accordion-item__title {
-  border-radius: 0px;
+.facetwp-type-fselect .fs-wrap, .facetwp-type-fselect .fs-dropdown {
+  width: 100% !important;
 }
-.wp-block-coblocks-accordion-item__content {
-  border: 0px;
-  border-radius: 0px;
+
+.facetwp-autocomplete-update{
+  display: none;
 }
-.wp-block-coblocks-accordion-item__title::after {
+
+.facetwp-autocomplete {
+  width: 100%;
   border: 1px solid black;
-  border-radius: 0px;
+  padding-left: 10px;
+  height: 42px;
+  margin-bottom: 1.25rem;
 }
 
-.latest-images {filter: grayscale(100%);}
+.facetwp-type-pager {
+  margin: 1.25rem 0 1.25rem 0 !important;
+}
+
+/* FacetWP Proximity */
+
+.location-results {
+  position: relative !important;
+  z-index: 9;
+}
+
+.location-result.active {
+  background-color: #8a7f61 !important;
+  color: white;
+}
+
+input.facetwp-location {
+  min-width: 100% !important;
+  border: 1px solid black;
+  height: 40px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+.location-wrap {
+  width: 100%;
+}
+
+.facetwp-radius {
+  width: 100%;
+}
+
+.locate-me {
+  top: 22px !important;
+  right: 10px !important;
+  opacity: 1 !important;
+}
+
+/* Filter Container and Facets*/
+
+.facetwp-counts{
+  margin: 1.25rem 0 1.25rem 0;
+  padding: 1.25rem 0 0rem 0;
+  border-top: 1px solid white;
+}
+
+
+.facetwp-facet-grup {
+  margin-bottom: 10px !important;
+}
+
+.facetwp-selections li {
+  line-height: 2 !important;
+}
+
+.facetwp-facet-grup .facetwp-checkbox {
+  margin-bottom: 4px !important;
+  padding-left: 1.25rem !important;
+}
+
+.facetwp-facet-grup .facetwp-checkbox:nth-child(1) {
+  background: url('https://kulturenvanteri.com/wp-content/plugins/geo-mashup/images/mm_36_black.png') 0 50% no-repeat !important;
+  background-size: 15px 15px !important;
+}
+
+.facetwp-facet-grup .facetwp-checkbox:nth-child(2) {
+  background: url('https://kulturenvanteri.com/wp-content/plugins/geo-mashup/images/mm_36_silver.png') 0 50% no-repeat !important;
+  background-size: 15px 15px !important;
+}
+
+.facetwp-facet-grup .facetwp-checkbox:nth-child(3) {
+  background: url('https://kulturenvanteri.com/wp-content/plugins/geo-mashup/images/mm_36_olive.png') 0 50% no-repeat !important;
+  background-size: 15px 15px !important;
+}
+
+.facetwp-facet-grup .facetwp-checkbox:nth-child(4) {
+  background: url('https://kulturenvanteri.com/wp-content/plugins/geo-mashup/images/mm_36_aqua.png') 0 50% no-repeat !important;
+  background-size: 15px 15px !important;
+}
+
+.facetwp-facet-grup .facetwp-checkbox:nth-child(5) {
+  background: url('https://kulturenvanteri.com/wp-content/plugins/geo-mashup/images/mm_36_maroon.png') 0 50% no-repeat !important;
+  background-size: 15px 15px !important;
+}
+
+.facetwp-facet-grup .facetwp-checkbox:nth-child(6) {
+  background: url('https://kulturenvanteri.com/wp-content/plugins/geo-mashup/images/mm_36_green.png') 0 50% no-repeat !important;
+  background-size: 15px 15px !important;
+}
+
+.facetwp-facet-grup .facetwp-checkbox:nth-child(7) {
+  background: url('https://kulturenvanteri.com/wp-content/plugins/geo-mashup/images/mm_36_yellow.png') 0 50% no-repeat !important;
+  background-size: 15px 15px !important;
+}
+
+.facetwp-facet-grup .facetwp-checkbox:nth-child(8) {
+  background: url('https://kulturenvanteri.com/wp-content/plugins/geo-mashup/images/mm_36_orange.png') 0 50% no-repeat !important;
+  background-size: 15px 15px !important;
+}
+
+.facetwp-facet-grup .facetwp-checkbox:nth-child(9) {
+  background: url('https://kulturenvanteri.com/wp-content/plugins/geo-mashup/images/mm_36_red.png') 0 50% no-repeat !important;
+  background-size: 15px 15px !important;
+}
+
+.facetwp-facet-grup .facetwp-checkbox:nth-child(10) {
+  background: url('https://kulturenvanteri.com/wp-content/plugins/geo-mashup/images/mm_36_blue.png') 0 50% no-repeat !important;
+  background-size: 15px 15px !important;
+}
+
+.facetwp-facet-grup .facetwp-checkbox:nth-child(11) {
+  background: url('https://kulturenvanteri.com/wp-content/plugins/geo-mashup/images/mm_36_teal.png') 0 50% no-repeat !important;
+  background-size: 15px 15px !important;
+}
+
+/* Gutenberg */
+
+.abt-bibliography .abt-bibliography__body {
+  margin: 50px 0 50px 0 !important;
+  font-size: .9rem;
+}
+
 
 /* Gravity Form */
 
-
 .gform_wrapper textarea {
-  border: 1px solid;
+  border: .5px solid black;
   background-color: white;
 }
-.gform_wrapper ul.gfield_checkbox li label, .gform_wrapper ul.gfield_radio li label {
+
+.gform_wrapper ul.gfield_checkbox li label,
+.gform_wrapper ul.gfield_radio li label {
   display: unset !important;
   padding: 3px;
 }
-.gform_wrapper ul.gfield_checkbox li input[type="checkbox"], .gform_wrapper ul.gfield_radio li input[type="radio"] {
+
+.gform_wrapper ul.gfield_checkbox li input[type="checkbox"],
+.gform_wrapper ul.gfield_radio li input[type="radio"] {
   display: none;
 }
+
 body .gform_wrapper ul li.gfield {
   margin-bottom: 16px;
 }
-.gform_wrapper .gfield_checkbox li label, .gform_wrapper .gfield_radio li label {
+
+.gform_wrapper .gfield_checkbox li label,
+.gform_wrapper .gfield_radio li label {
   line-height: 1;
 }
-.gform_wrapper .gfield_checkbox li label, .gform_wrapper .gfield_radio li label {
+
+.gform_wrapper .gfield_checkbox li label,
+.gform_wrapper .gfield_radio li label {
   font-size: normal;
 }
-button, input, optgroup, select, textarea {
-  border: none;
-}
-label:hover {color:rgba(121, 109, 73, 0.85); line-height: normal;}
 
+button,
+input,
+optgroup,
+select,
+textarea {
+  border: none;
+  border-radius: 0 !important;
+}
+
+label:hover {
+  color: rgba(121, 109, 73, 0.85);
+  line-height: normal;
+}
+
+.gform_wrapper .gform_fileupload_multifile .gform_drop_area {
+  padding: 46px !important;
+}
+
+.gform_wrapper input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=button]):not([type=image]):not([type=file]) {
+  border: .5px solid black;
+}
+
+.gform_wrapper .ginput_complex .ginput_left {
+  padding-right: 1.25rem !important;
+}
 
 /* Magnific popup style */
 
@@ -245,6 +765,7 @@ label:hover {color:rgba(121, 109, 73, 0.85); line-height: normal;}
   background: #0b0b0b;
   opacity: 0.2;
 }
+
 .mfp-wrap {
   top: 0;
   left: 0;
@@ -255,6 +776,7 @@ label:hover {color:rgba(121, 109, 73, 0.85); line-height: normal;}
   outline: none !important;
   -webkit-backface-visibility: hidden;
 }
+
 .mfp-container {
   text-align: center;
   position: absolute;
@@ -262,18 +784,20 @@ label:hover {color:rgba(121, 109, 73, 0.85); line-height: normal;}
   height: 100%;
   left: 0;
   top: 0;
-  padding: 0 8px;
   box-sizing: border-box;
 }
+
 .mfp-container:before {
   content: '';
   display: inline-block;
   height: 100%;
   vertical-align: middle;
 }
+
 .mfp-align-top .mfp-container:before {
   display: none;
 }
+
 .mfp-content {
   position: relative;
   display: inline-block;
@@ -282,26 +806,31 @@ label:hover {color:rgba(121, 109, 73, 0.85); line-height: normal;}
   text-align: left;
   z-index: 1045;
 }
+
 .mfp-inline-holder .mfp-content,
 .mfp-ajax-holder .mfp-content {
   width: 100%;
   cursor: auto;
 }
+
 .mfp-ajax-cur {
   cursor: progress;
 }
+
 .mfp-zoom-out-cur,
 .mfp-zoom-out-cur .mfp-image-holder .mfp-close {
   cursor: -moz-zoom-out;
   cursor: -webkit-zoom-out;
   cursor: zoom-out;
 }
+
 .mfp-zoom {
   cursor: pointer;
   cursor: -webkit-zoom-in;
   cursor: -moz-zoom-in;
   cursor: zoom-in;
 }
+
 .mfp-auto-cursor .mfp-content {
   cursor: auto;
 }
@@ -495,14 +1024,14 @@ button::-moz-focus-inner {
 }
 
 .mfp-iframe-holder {
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding: 62px 0 0 50%;
 }
 
 .mfp-iframe-holder .mfp-content {
   line-height: 0;
   width: 100%;
-  max-width: 900px;
+  height: 100%;
+  max-width: 100%;
 }
 
 .mfp-iframe-holder .mfp-close {
@@ -513,7 +1042,7 @@ button::-moz-focus-inner {
   width: 100%;
   height: 0;
   overflow: hidden;
-  padding-top: 56.25%;
+  padding-top: 62.25%;
 }
 
 .mfp-iframe-scaler iframe {
@@ -523,8 +1052,8 @@ button::-moz-focus-inner {
   left: 0;
   width: 100%;
   height: 100%;
-  box-shadow: 0 0 120px rgba(0, 0, 0, 0.5);
-  background: #444;
+  box-shadow: 0 0 11.25rem rgba(0, 0, 0, 0.5);
+  background: black;
 }
 
 img.mfp-img {
@@ -553,7 +1082,7 @@ img.mfp-img {
   width: auto;
   height: auto;
   z-index: -1;
-  box-shadow: 0 0 120px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 11.25rem rgba(0, 0, 0, 0.5);
   background: #444;
 }
 
@@ -597,10 +1126,10 @@ img.mfp-img {
 .mfp-with-zoom.mfp-bg {
   opacity: 0;
   -webkit-backface-visibility: hidden;
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  -o-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
 }
 
 .mfp-with-zoom.mfp-ready .mfp-container {
@@ -619,74 +1148,98 @@ img.mfp-img {
 @media screen and (max-width:800px) and (orientation:landscape),
 screen and (max-height:300px) {
   .mfp-img-mobile .mfp-image-holder {
-      padding-left: 0;
-      padding-right: 0;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .mfp-img-mobile img.mfp-img {
-      padding: 0;
+    padding: 0;
   }
 
   .mfp-img-mobile .mfp-figure:after {
-      top: 0;
-      bottom: 0;
+    top: 0;
+    bottom: 0;
   }
 
   .mfp-img-mobile .mfp-figure small {
-      display: inline;
-      margin-left: 5px;
+    display: inline;
+    margin-left: 5px;
   }
 
   .mfp-img-mobile .mfp-bottom-bar {
-      background: rgba(0, 0, 0, 0.6);
-      bottom: 0;
-      margin: 0;
-      top: auto;
-      padding: 3px 5px;
-      position: fixed;
-      box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.6);
+    bottom: 0;
+    margin: 0;
+    top: auto;
+    padding: 3px 5px;
+    position: fixed;
+    box-sizing: border-box;
   }
 
   .mfp-img-mobile .mfp-bottom-bar:empty {
-      padding: 0;
+    padding: 0;
   }
 
   .mfp-img-mobile .mfp-counter {
-      right: 5px;
-      top: 3px;
+    right: 5px;
+    top: 3px;
   }
 
   .mfp-img-mobile .mfp-close {
-      top: 0;
-      right: 0;
-      width: 35px;
-      height: 35px;
-      line-height: 35px;
-      background: rgba(0, 0, 0, 0.6);
-      position: fixed;
-      text-align: center;
-      padding: 0;
+    top: 0;
+    right: 0;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    background: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    text-align: center;
+    padding: 0;
   }
 }
 
 @media all and (max-width:900px) {
   .mfp-arrow {
-      -webkit-transform: scale(0.75);
-      transform: scale(0.75);
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75);
   }
 
   .mfp-arrow-left {
-      -webkit-transform-origin: 0;
-      transform-origin: 0;
+    -webkit-transform-origin: 0;
+    transform-origin: 0;
   }
 
   .mfp-arrow-right {
-      -webkit-transform-origin: 100%;
-      transform-origin: 100%;
+    -webkit-transform-origin: 100%;
+    transform-origin: 100%;
   }
 
   .mfp-container {
-      padding-left: 6px;
-      padding-right: 6px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
   }
+}
+
+/* Disable auto zom in iput text https://stackoverflow.com/questions/2989263/disable-auto-zoom-in-input-text-tag-safari-on-iphone */
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+  select,
+  textarea,
+  input {
+    font-size: 16px;
+  }
+}
+
+/* Wiki */
+
+table, #coordinates, .infobox, .error, .metadata, .thumb, .hatnote, .nowraplinks, .reference, .references, .mw-references-wrap, .mbox-small {
+  display: none !important;
+}
+
+/* KE BLOG */
+
+.ke-post-text {
+  font-family: 'Lora', serif !important;
+  font-size: 1.2rem;
+  line-height: 1.6;
 }
