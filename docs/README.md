@@ -14,11 +14,11 @@ Harita sayfasında filtreleme kutusunda yer alan Grup, Tür, Kültür, Yüzyıl 
 
 ## Harita kullanımı
 
-–
+Hazırlanıyor...
 
 ## Kültür Varlığı Ekleme veya Düzenleme
 
-Eğer haritada var olmayan bir kültür varlığını Kültür Elçisi olmadan eklemek veya düzenlemek isterseniz, Yer ekle formunu kullanabilirsiniz. Daha detaylı bilgi için Katılım başlığını okuyun.
+Bir Kültür varlığı ile ilgili eksik veya hatalı bir bilgi gördüğünüzde, ilgili sayfanın sağ altında yer alan "Hata bildir veya katkıda bulun" bağlantısı ile bize e-posta gönderebilirsiniz. Eğer haritada var olmayan bir kültür varlığını bize bildirmek isterseniz, [Yer Ekle](https://kulturenvanteri.com/ekle) sayfasından size uygun iletişim kanalını belirleyerek bize ulaşın. Daha detaylı bilgi için Katılım başlığını okuyun.
 
 ## Yol Tarifi Alma
 
@@ -33,6 +33,142 @@ Etrafta ne var? bağlantısı ile çevrenizde yer alan kültür varlıklarını 
 Haritanın sağ altında yer alan konumumu göster işaretine tıklayarak, var olan konumunuzu harita üzerinde görebilirisiniz. Cihazınızın pusula özelliği açık ise, konumunuz ile birlikte bakış yönünüzü de harita üzerinde göreceksiniz.
 
 # Katılım Rehberi
+
+Kültür Envanteri Atlası, katılımcılık ve işbirliğine dayalı bir anlayışla geliştirilmektedir. Eğer projemize dahil olmak isterseniz, bu başlığı okuyarak neler yapabileceğiniz hakkında fikir sahibi olabilirsiniz.
+
+## Yer ekleme, eksik bilgi tamamlama ve hata düzeltme
+
+Veri tabanımızda yer almayan bir kültür varlığı hakkında bilgi sahibi iseniz, eklenmiş bir kültür varlığında eksik ya da hata görmüşseniz bize bildirebilirsiniz. Katkılarınızdan memnuniyet duyacağız. Lütfen paylaşacağınız bilgiye dair mümkün olduğunca kaynak göstermeye çalışın. Yer ekle sayfamızdan forma ulaşabilirsiniz.
+
+Eğer detaylı konum bilgisine sahipseniz mümkün olduğunca isabetli koordinat paylaşmanızı rica ediyoruz. Kesin noktayı bilmediğiniz durumlarda en yakın yerleşim birimini paylaşmanız yeterlidir. Bir noktanın isabetli koordinat bilgisine ulaşmak için Google Maps, OpenStreetMaps gibi harita servislerinden faydalanabilirsiniz.
+
+Başvurunuz editör ekibimizce incelenerek onaylandıktan sonra yayınlanacaktır.
+
+## Vikipedi sayfası düzenleme
+
+Sitemizde yer alan kültür varlıkları ile ilgili eğer bir Vikipedi makalesi bulunuyor ise, eşleştirme yaparak içeriği sayfalarımızda yayınlıyoruz. Vikipedi makalelerini düzenleyerek veya daha önce yayınlanmamış bir konuda Vikipedi’ye katkıda bulunarak da katılım sağlayabilirsiniz. Kültür varlığı sayfasında yayınlanan Vikipedi makalelerini hızlıca düzenlemek için metnin hemen altındaki “Düzenle” bağlantısı ile, sayfadan ayrılmadan içeriği düzenleyebilirsiniz. Katkılarınız, Vikipedi yöneticileri tarafından kurallarına uygunluğu doğrultusunda işleme alınarak yayınlanır.
+Editör ekibimize katılın
+
+Ben daha fazlasını yapmak istiyorum, belirli bir tür ya da şehrin kültür varlıkları üzerine çalışmak istiyorum diyorsanız o halde bize katılın. Detaylı bilgi için Kültür Elçileri sayfasına bakın.
+
+## Bizi takip edin!
+
+Hem kültür elçileri olarak sürekli haberleşiyoruz, hem de yaptığımız çalışmalarla alakalı sık bilgilendirme yapmaya gayret ediyoruz. Telegram kanalımızdan veya Twitter hesabımızdan bize ulaşabilir, sohbetlerimize katılabilir ve güncellemelerden haberdar olabilirsiniz.
+
+Eğer bir sorunuz olursa veya bir problem ile karşılaşırsanız bize e.posta yoluyla da ulaşabilirsiniz: kulturenvanteri@gmail.com
+
 # Editör Rehberi
 
-> An awesome project.
+Kültür Envanteri Atlası’nda yer alan tüm varlıkların içeriğini zenginleştirmek ve kapsamlı bir kaynak sunmayı amaçlıyoruz. Bunun için belirlediğimiz standartları ve editörlerin dikkate alması gereken noktaları bu başlık altında okuyabilirsiniz.
+
+## Kültür Varlığının Adı
+
+Kültür varlığının adını belirlerken, resmi kaynaklarda nasıl adlandırıldığını dikkate alarak, en bilinen ve sık kullanılan halini belirlemeye çalışıyoruz. Bunun için Kültür Bakanlığı web sitesi, Vikipedi, ansiklopediler … gibi kaynaklardan karşılaştırma yapabilirsiniz.
+
+Eğer kültür varlığının adı sık kullanılan isimlerden ise, birbirinden ayırmak için başına yerleşim bilgisini ekliyoruz.
+
+Örnek: “Beypazarı İmaret Camii”, “Karacabey İmaret Camii”
+
+Aynı isimli aynı yerde birden fazla yer varsa: Parantez içinde sıra numarası veriyoruz. “Hüsrev Ağa Camii Çeşmesi (1)” gibi.
+
+Aynı isimli farklı yerde birden fazla varsa: İsimden sonra semt-ilçe-şehir adı belirtiyoruz. “Kurşunlu Han, Alaşehir”, “Bezmialem Valide Sultan Çeşmesi, Topkapı”
+
+## Diğer adları – Alternatif isimleri
+
+Bilinen ve halk arasında kullanılan diğer adlarını bu bölüme aralarında virgül bırakarak yazıyoruz. Örnek olarak aynı cami için Ulu Camii, Alaeddin Camii, Çarşı Camii gibi isimlendirmeler.
+
+## Grup
+
+Burada tek bir grup belirliyoruz. Kültür varlığı hangi gruba ait ise onu seçiyoruz. Örneğin hamamlar, çeşmeler su yapısı değil sivil yapıdır.
+
+## Tür
+
+Kültür varlığının niteliğine bağlı olarak türü hakkında sınıflandırma yapıyoruz. Şu anda var olan tür seçeneklerinden birini seçebilir veya yeni bir tür önerisinde bulunabilirsiniz. Bir kültür varlığı ile ilgili birden fazla tür seçebilirsiniz.
+
+## Konum
+
+Kültür varlığı hangi idari yönetim sınırlarında yer alıyor ise, Ülke / Bölge / İl / İlçe / Mahalle veya Köy ilişkisi kurarak 5 aşamalı şekilde sınıflandırıyoruz. Bir konum belirlerken en alt idari birimi eklemeniz yeterlidir. Konumla ilişkili üst bilgiler otomatik eklenecektir.
+
+Örnek: Konum olarak “Gelemiş” köyünü eklerseniz, “Türkiye, Akdeniz Bölgesi, Antalya, Kaş” üst bilgileri de otomatik eklenecektir. Eğer eklemek istediğiniz konum veritabanımızda bulunmuyor ise önce “Konum” taksonomi sayfasından alt-üst ilişkisine uygun olarak yeni bir konum oluşturmanız gerekmektedir.
+
+Özellikle büyük şehirlerde 5. aşamayı eklemek önem kazanmaktadır. Mahalle ismini bilmiyorsanız google haritalarda ilgili noktayı tıklayabilirsiniz.
+Not: İstanbul gibi şehirlerde semt adını değil mahalle adını girmekteyiz. Yani Edirnekapı, Eminönü, Galata, Karaköy gibi isimler yerine bağlı olduğu mahalli idare adını kullanıyoruz.
+
+## Yüzyıl
+
+Her kültür varlığını tarihlendirmeyi hedefliyoruz. Yapıldığı yüzyıla göre, gerekirse birden fazla yüzyıl seçerek tarihlendiriyoruz. Tarihlendirme için belirlediğimiz format şu şekilde: “18. yy”.
+
+Eğer milattan önce ise başına MÖ ekleyerek şu şekilde yazıyoruz: “MÖ 8.yy”. Eğer tarihlendirme araştırdığınız kaynaklarda kesinleşmemiş veya soru işaretli ise “?” etiketini de ekleyebilirsiniz.
+
+## Kültür
+
+Bir kültür varlığını, yapıldığı dönemdeki ait olduğu kültüre göre sınıflandırıyoruz. Eğer bir kültür varlığı yıllar içinde farklı kültürler tarafından değişime uğratılmış ise, diğer kültürleri de dahil ediyoruz.
+
+Örnek: Ayasofya kültür varlığı için; Kültür: “Bizans, Osmanlı”
+
+## Tematik haritalar
+
+Kültür varlıkları için tematik haritalar da oluşturuyoruz. Eğer yeni eklenen bir kültür varlığı mevcut temalardan birine ait ise bunu da tanımlıyoruz. Örnek: Kadın Baniler, Mimar Sinan Eserleri, Kiliseden Camiye Dönenler
+
+Ayrıca sürekli olarak yeni temalar oluşturuyoruz. Tema önerilerinizi iletebilirsiniz.
+
+## Coğrafi konum
+
+Kültür varlığının haritada yer alabilmesi için coğrafi konum bilgisine ihtiyacımız var. Bir noktanın isabetli koordinat bilgisine ulaşmak için Google Maps, OpenStreetMaps gibi harita servislerinden faydalanabilirsiniz.. Veritabanımızda geçerli konum formatı “lat, long” şeklindedir.
+
+Örnek: 36.9504356, 35.9239426
+
+## Galeri ve görsel ekleme
+
+Galeri bölümü, bir kültür varlığı ile ilgili her çeşit görsel belge ekleyebileceğiniz bir alandır. Bir fotoğraf, çizim, kroki, harita veya gravür ekleyebilirsiniz. Kendi fotoğraflarınızı, çizimlerinizi ekleyebilir veya telif haklarına ve veri kullanım politikalarına dikkat etmek koşulu ile çeşitli kaynaklardan görsel temin edebilirsiniz. Bir telif hakkı ihlali olduğunu düşündüğünüz durumlarda lütfen bizimle iletişime geçin.
+
+Belge adı ve açıklaması, ilgili kültür varlığına uygun bir şekilde doldurulmalıdır. Ayrıca eklediğiniz belgenin mümkün olduğunca “yaratılış tarihi”, “oluşturan kişi veya kurumun adı”, “kaynağın web adresi” bilgilerini tamamlamaya özen gösterin. “Alternatif metin, başlık ve altyazı” görsel ile ilgili detaylarda önemlidir. Aynı metni de kopyalabilirsiniz. Örnek: Kepenekçi Sinan Medresesi yazabileceğiniz gibi “Kepenekçi Sinan Medresesi’nin kuzeydoğudan görünümü” de yazabilirsiniz.
+
+Bir dosya eklerken dikkat etmeniz gereken bazı standartlar var. Dosyanın geniş kenarı 1920px ile sınırlanacak şekilde optimize edilmeli ve jpg formatı tercih edilmelidir. Fotoğraflar çok küçük ölçülerde veya düşük kalitede olmamalıdır.
+
+> Galeriye eklenecek görsel malzemenin içeriğe doğrudan katkı sağlamasının yanı sıra, belge niteliği ve estetik kaygı taşıması da beklenir.
+
+### Alternatif Metin
+
+Doldurulması tavsiye edilir. Google aramaları için faydalı. En basitinden yer başlığı ile aynı şekilde doldurabilirsiniz. İsterseniz fotoğrafı daha detaylı tanımlayabilirsiniz.
+
+### Başlık
+
+Doldurulması tavsiye edilir. En basitinden yer başlığı ile aynı şekilde doldurabilirsiniz. Sitenin editör panelinde Medya Kütüphanesinde editöryal kolaylık sağlıyor.
+
+### Altyazı
+
+Doldurulması önemli! Sitenin ön yüzünde ziyaretçilerin fotoğraf hakkında bilgi sahibi olması içindir. En basitinden yer başlığı ile aynı şekilde doldurabilirsiniz. Veya biraz daha detay verebilirsiniz.
+
+### Medya Etiketi
+
+İsteğe bağlı. Editöryal amaçlı etiketleme yapabilirsiniz. Medya kütüphanesinde gruplamak istediğiniz başlıklar var ise kullanabilirsiniz.
+
+### Oluşturan
+
+Doldurulması önemli! Foto ise, fotoğrafı çeken kişi, Çizim ise, çizimi bizzat yapan kişi. (Foto sahibi ile karıştırılmamalıdır. Sahibi ve oluşturan farklı olabiliyor çoğu  zaman.) Eğer ulaşabiliyorsaniz bu bilgiye ulaşın ve doldurun. Eğer ulaşamıyorsanız boş bırakın.
+
+### Yıl
+
+Doldurulması önemli! 
+
+### Kaynak
+
+Doldurulması önemli! Eğer bir arşivden veya dijital koleksiyondan faydalanıyorsanız. İmajı temin ettiğiniz kalıcı adresini girin.
+
+## Vikipedi makalesi eşleştirme
+
+Bir kültür varlığı ile, ilgili Vikipedi makalesini eşleştirdiğimizde, Vikipedi içeriğini sayfalarımızda yayınlayabiliyoruz. Bunun için Vikipedi kutusuna eşleştireceğiniz makalenin adresindeki başlık kısmını eklemeniz yeterli.
+
+Örnek: Eklemek istediğiniz makalenin adresi, “https://tr.wikipedia.org/wiki/Sait_Faik_Abasıyanık_Müzesi” ise, sadece “Sait_Faik_Abasıyanık_Müzesi” kısmını yazmanız gerekir.
+
+## İlgili yerler
+
+Bir kültür varlığı hemen yakınındaki bir başka kültür varlığı ile ilişkili ise bu ilişkiyi de tanımlayabiliyoruz. Özellikle külliye, antik kent gibi grup yapıları ile cami ve cami önündeki çeşmeler birbiriyle ilişkilidir. Örnek olarak Aspendos Antik Tiyatrosu ve Su Kemerleri Aspendos Antik Kenti ile ilişkilidir. Yapısal ilişkiye bakıyoruz.
+
+Bunun haricinde hem medrese hem müze olan yapılar arasında da bu ilişkiyi kuruyoruz.
+
+## Örnek sayfalar
+
+Perge: https://kulturenvanteri.com/yer/perge/
+Süleymaniye Camii: https://kulturenvanteri.com/yer/suleymaniye-camii-ve-kulliyesi/
